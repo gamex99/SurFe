@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ParraX'PC\\Desktop\\PP3 AGOSTO 2023\\Visual\\SurFeFront\\SurFeFront\\SurFeFront.csproj": {}
+    "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\SurFeFront.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ParraX'PC\\Desktop\\PP3 AGOSTO 2023\\Visual\\SurFeFront\\SurFeFront\\SurFeFront.csproj": {
+    "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\SurFeFront.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ParraX'PC\\Desktop\\PP3 AGOSTO 2023\\Visual\\SurFeFront\\SurFeFront\\SurFeFront.csproj",
+        "projectUniqueName": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\SurFeFront.csproj",
         "projectName": "SurFeFront",
-        "projectPath": "C:\\Users\\ParraX'PC\\Desktop\\PP3 AGOSTO 2023\\Visual\\SurFeFront\\SurFeFront\\SurFeFront.csproj",
+        "projectPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\SurFeFront.csproj",
         "packagesPath": "C:\\Users\\ParraX'PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ParraX'PC\\Desktop\\PP3 AGOSTO 2023\\Visual\\SurFeFront\\SurFeFront\\obj\\",
+        "outputPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ParraX'PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
