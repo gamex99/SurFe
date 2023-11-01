@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SurFeEntidades
 {
-    internal class Cliente
+    public class Cliente
     {
+
     }
 }
