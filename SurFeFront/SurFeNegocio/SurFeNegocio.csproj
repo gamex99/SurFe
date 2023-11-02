@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SurFeDatos\SurFeDatos.csproj" />
+    <ProjectReference Include="..\SurFeEntidades\SurFeEntidades.csproj" />
+  </ItemGroup>
+
 </Project>

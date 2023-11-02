@@ -1,0 +1,7 @@
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.csproj.AssemblyReference.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.Form1.resources
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.csproj.GenerateResource.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.AssemblyInfoInputs.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.AssemblyInfo.cs
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.csproj.CoreCompileInputs.cache

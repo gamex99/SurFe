@@ -1,0 +1,5 @@
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.AssemblyReference.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.AssemblyInfoInputs.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.AssemblyInfo.cs
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.CoreCompileInputs.cache
