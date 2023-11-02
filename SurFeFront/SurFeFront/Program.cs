@@ -1,4 +1,4 @@
-namespace SurFeFront
+namespace SurFe
 {
     internal static class Program
     {

@@ -14,7 +14,7 @@ namespace SurFeNegocio
         {
             try
             {
-                return SurFeDatos.Get(e);
+                return SurFeDatos.SurFeDatos.Get(e);
             }
             catch (Exception)
             {
