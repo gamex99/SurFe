@@ -89,6 +89,7 @@
             txtNomAp.Name = "txtNomAp";
             txtNomAp.Size = new Size(200, 23);
             txtNomAp.TabIndex = 2;
+            txtNomAp.Text = "Ingrese nombre completo";
             // 
             // lblTipo
             // 
@@ -145,7 +146,7 @@
             // 
             // txtDom
             // 
-            txtDom.ForeColor = Color.Silver;
+            txtDom.ForeColor = Color.Black;
             txtDom.Location = new Point(101, 212);
             txtDom.Name = "txtDom";
             txtDom.Size = new Size(200, 23);
@@ -163,7 +164,7 @@
             // 
             // txtTel
             // 
-            txtTel.ForeColor = Color.Silver;
+            txtTel.ForeColor = Color.Black;
             txtTel.Location = new Point(101, 251);
             txtTel.Name = "txtTel";
             txtTel.Size = new Size(200, 23);
@@ -181,7 +182,7 @@
             // 
             // txtEmail
             // 
-            txtEmail.ForeColor = Color.Silver;
+            txtEmail.ForeColor = Color.Black;
             txtEmail.Location = new Point(101, 288);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(200, 23);
@@ -233,7 +234,7 @@
             // 
             // txtBarrio
             // 
-            txtBarrio.ForeColor = Color.Silver;
+            txtBarrio.ForeColor = Color.Black;
             txtBarrio.Location = new Point(101, 390);
             txtBarrio.Name = "txtBarrio";
             txtBarrio.Size = new Size(200, 23);
@@ -251,7 +252,7 @@
             // 
             // txtCp
             // 
-            txtCp.ForeColor = Color.Silver;
+            txtCp.ForeColor = Color.Black;
             txtCp.Location = new Point(101, 423);
             txtCp.Name = "txtCp";
             txtCp.Size = new Size(200, 23);
