@@ -799,19 +799,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ParraX'PC\\.nuget\\packages\\": {}
+    "C:\\Users\\Luichi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeDatos\\SurFeDatos.csproj",
+      "projectUniqueName": "C:\\Users\\Luichi\\Desktop\\PCeluisca\\ISSD\\Tercer Año\\Segundo semestre\\PP2\\SURFE\\SurFe\\SurFeFront\\SurFeDatos\\SurFeDatos.csproj",
       "projectName": "SurFeDatos",
-      "projectPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeDatos\\SurFeDatos.csproj",
-      "packagesPath": "C:\\Users\\ParraX'PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeDatos\\obj\\",
+      "projectPath": "C:\\Users\\Luichi\\Desktop\\PCeluisca\\ISSD\\Tercer Año\\Segundo semestre\\PP2\\SURFE\\SurFe\\SurFeFront\\SurFeDatos\\SurFeDatos.csproj",
+      "packagesPath": "C:\\Users\\Luichi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Luichi\\Desktop\\PCeluisca\\ISSD\\Tercer Año\\Segundo semestre\\PP2\\SURFE\\SurFe\\SurFeFront\\SurFeDatos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ParraX'PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Luichi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -825,8 +825,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj": {
-              "projectPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj"
+            "C:\\Users\\Luichi\\Desktop\\PCeluisca\\ISSD\\Tercer Año\\Segundo semestre\\PP2\\SURFE\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj": {
+              "projectPath": "C:\\Users\\Luichi\\Desktop\\PCeluisca\\ISSD\\Tercer Año\\Segundo semestre\\PP2\\SURFE\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj"
             }
           }
         }
@@ -866,7 +866,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

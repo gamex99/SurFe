@@ -21,5 +21,16 @@ namespace SurFeFront
         {
 
         }
+
+        private void btSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btNuevo_Click(object sender, EventArgs e)
+        {
+            RegistrarCliente rg = new RegistrarCliente();
+            rg.ShowDialog();
+        }
     }
 }

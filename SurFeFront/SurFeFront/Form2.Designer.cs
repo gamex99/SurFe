@@ -308,6 +308,7 @@
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Punto de Venta";
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

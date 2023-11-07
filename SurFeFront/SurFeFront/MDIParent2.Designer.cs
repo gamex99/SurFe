@@ -76,6 +76,7 @@
             MainMenuStrip = menuStrip;
             Margin = new Padding(4, 3, 4, 3);
             Name = "MDIParent2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MDIParent2";
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();

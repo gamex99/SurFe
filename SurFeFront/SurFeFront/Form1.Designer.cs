@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btSalir = new Button();
+            button1 = new Button();
             label3 = new Label();
             button4 = new Button();
             button3 = new Button();
@@ -39,7 +41,6 @@
             bindingSource1 = new BindingSource(components);
             label1 = new Label();
             label2 = new Label();
-            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
@@ -47,6 +48,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Blue;
+            panel1.Controls.Add(btSalir);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(button4);
@@ -57,6 +59,32 @@
             panel1.Size = new Size(178, 453);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // btSalir
+            // 
+            btSalir.BackColor = Color.DodgerBlue;
+            btSalir.FlatAppearance.BorderColor = Color.White;
+            btSalir.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btSalir.Location = new Point(12, 396);
+            btSalir.Name = "btSalir";
+            btSalir.Size = new Size(151, 43);
+            btSalir.TabIndex = 5;
+            btSalir.Text = "SALIR";
+            btSalir.UseVisualStyleBackColor = false;
+            btSalir.Click += btSalir_Click;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.DodgerBlue;
+            button1.FlatAppearance.BorderColor = Color.White;
+            button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(12, 209);
+            button1.Name = "button1";
+            button1.Size = new Size(151, 43);
+            button1.TabIndex = 4;
+            button1.Text = "CLIENTES";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
             // 
             // label3
             // 
@@ -71,7 +99,7 @@
             // 
             // button4
             // 
-            button4.BackColor = Color.Blue;
+            button4.BackColor = Color.DodgerBlue;
             button4.FlatAppearance.BorderColor = Color.White;
             button4.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             button4.Location = new Point(12, 160);
@@ -84,7 +112,7 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.Blue;
+            button3.BackColor = Color.DodgerBlue;
             button3.FlatAppearance.BorderColor = Color.White;
             button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             button3.Location = new Point(12, 111);
@@ -97,7 +125,7 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.Blue;
+            button2.BackColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderColor = Color.White;
             button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             button2.Location = new Point(12, 62);
@@ -137,18 +165,6 @@
             label2.TabIndex = 3;
             label2.Text = "SurFe®";
             // 
-            // button1
-            // 
-            button1.BackColor = Color.Blue;
-            button1.FlatAppearance.BorderColor = Color.White;
-            button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(12, 209);
-            button1.Name = "button1";
-            button1.Size = new Size(151, 43);
-            button1.TabIndex = 4;
-            button1.Text = "CLIENTES";
-            button1.UseVisualStyleBackColor = false;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -162,6 +178,7 @@
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu Principal";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
@@ -183,5 +200,6 @@
         private Label label2;
         private Label label3;
         private Button button1;
+        private Button btSalir;
     }
 }

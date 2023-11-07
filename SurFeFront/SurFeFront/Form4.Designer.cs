@@ -105,6 +105,7 @@
             Controls.Add(button1);
             Controls.Add(label1);
             Name = "Form4";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form4";
             ResumeLayout(false);
             PerformLayout();

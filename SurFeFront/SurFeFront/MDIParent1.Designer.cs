@@ -68,7 +68,7 @@
             // nuevoProductoToolStripMenuItem
             // 
             nuevoProductoToolStripMenuItem.Name = "nuevoProductoToolStripMenuItem";
-            nuevoProductoToolStripMenuItem.Size = new Size(180, 22);
+            nuevoProductoToolStripMenuItem.Size = new Size(161, 22);
             nuevoProductoToolStripMenuItem.Text = "Nuevo Producto";
             nuevoProductoToolStripMenuItem.Click += nuevoProductoToolStripMenuItem_Click;
             // 
@@ -141,6 +141,7 @@
             MainMenuStrip = menuStrip;
             Margin = new Padding(4, 3, 4, 3);
             Name = "MDIParent1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Deposito";
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();

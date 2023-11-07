@@ -1,3 +1,5 @@
+using SurFeFront;
+
 namespace SurFe
 {
     public partial class Form1 : Form
@@ -14,7 +16,7 @@ namespace SurFe
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -47,6 +49,18 @@ namespace SurFe
 
 
             frm2.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Cliente cl = new Cliente();
+            cl.ShowDialog();
+        }
+
+        private void btSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
         }
     }
 }
