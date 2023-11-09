@@ -28,13 +28,15 @@ namespace SurFeFront
             string contraseña = txtCont.Text; 
 
            
-            if (usuario == "admin" && contraseña == "admin")
+            if (usuario == "demo" && contraseña == "demo")
             {
-               
-                this.Hide(); 
-                             
-                SurFe.Form1 f1 = new SurFe.Form1();
+
+
+              
+                SurFe.Menu f1 = new SurFe.Menu();
+                
                 f1.ShowDialog();
+                this.Close();
             }
             else
             {

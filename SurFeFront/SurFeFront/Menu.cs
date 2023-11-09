@@ -2,9 +2,9 @@ using SurFeFront;
 
 namespace SurFe
 {
-    public partial class Form1 : Form
+    public partial class Menu : Form
     {
-        public Form1()
+        public Menu()
         {
             InitializeComponent();
         }
@@ -59,7 +59,7 @@ namespace SurFe
 
         private void btSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
 
         }
     }

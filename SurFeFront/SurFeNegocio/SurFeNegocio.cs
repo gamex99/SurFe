@@ -12,14 +12,14 @@ namespace SurFeNegocio
     {
         public static List<Cliente> Get(Cliente e)
         {
-            try
-            {
-                return SurFeDatos.SurFeDatos.Get(e);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+           // try
+            //{
+                return SurFeDatos.Get(e);
+            //}
+            //catch (Exception)
+            //{
+              //  throw;
+            //}
         }
     }
 }

@@ -42,9 +42,22 @@
             menuStrip1 = new MenuStrip();
             opcionesToolStripMenuItem1 = new ToolStripMenuItem();
             reportesToolStripMenuItem = new ToolStripMenuItem();
+            clienteBindingSource = new BindingSource(components);
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            razonsocialDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            condicionivaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            tipofacturaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            cuitDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            domicilioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            localidadDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            provinciaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            cpDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            telefonoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            anuladoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)clienteBindingSource).BeginInit();
             SuspendLayout();
             // 
             // lblBuscar
@@ -65,7 +78,10 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, razonsocialDataGridViewTextBoxColumn, condicionivaDataGridViewTextBoxColumn, tipofacturaDataGridViewTextBoxColumn, cuitDataGridViewTextBoxColumn, domicilioDataGridViewTextBoxColumn, localidadDataGridViewTextBoxColumn, provinciaDataGridViewTextBoxColumn, cpDataGridViewTextBoxColumn, telefonoDataGridViewTextBoxColumn, anuladoDataGridViewCheckBoxColumn });
+            dataGridView1.DataSource = clienteBindingSource;
             dataGridView1.Location = new Point(12, 78);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
@@ -151,6 +167,76 @@
             reportesToolStripMenuItem.Size = new Size(65, 20);
             reportesToolStripMenuItem.Text = "Reportes";
             // 
+            // clienteBindingSource
+            // 
+            clienteBindingSource.DataSource = typeof(SurFeEntidades.Cliente);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            idDataGridViewTextBoxColumn.HeaderText = "id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // razonsocialDataGridViewTextBoxColumn
+            // 
+            razonsocialDataGridViewTextBoxColumn.DataPropertyName = "razon_social";
+            razonsocialDataGridViewTextBoxColumn.HeaderText = "razon_social";
+            razonsocialDataGridViewTextBoxColumn.Name = "razonsocialDataGridViewTextBoxColumn";
+            // 
+            // condicionivaDataGridViewTextBoxColumn
+            // 
+            condicionivaDataGridViewTextBoxColumn.DataPropertyName = "condicion_iva";
+            condicionivaDataGridViewTextBoxColumn.HeaderText = "condicion_iva";
+            condicionivaDataGridViewTextBoxColumn.Name = "condicionivaDataGridViewTextBoxColumn";
+            // 
+            // tipofacturaDataGridViewTextBoxColumn
+            // 
+            tipofacturaDataGridViewTextBoxColumn.DataPropertyName = "tipo_factura";
+            tipofacturaDataGridViewTextBoxColumn.HeaderText = "tipo_factura";
+            tipofacturaDataGridViewTextBoxColumn.Name = "tipofacturaDataGridViewTextBoxColumn";
+            // 
+            // cuitDataGridViewTextBoxColumn
+            // 
+            cuitDataGridViewTextBoxColumn.DataPropertyName = "cuit";
+            cuitDataGridViewTextBoxColumn.HeaderText = "cuit";
+            cuitDataGridViewTextBoxColumn.Name = "cuitDataGridViewTextBoxColumn";
+            // 
+            // domicilioDataGridViewTextBoxColumn
+            // 
+            domicilioDataGridViewTextBoxColumn.DataPropertyName = "domicilio";
+            domicilioDataGridViewTextBoxColumn.HeaderText = "domicilio";
+            domicilioDataGridViewTextBoxColumn.Name = "domicilioDataGridViewTextBoxColumn";
+            // 
+            // localidadDataGridViewTextBoxColumn
+            // 
+            localidadDataGridViewTextBoxColumn.DataPropertyName = "localidad";
+            localidadDataGridViewTextBoxColumn.HeaderText = "localidad";
+            localidadDataGridViewTextBoxColumn.Name = "localidadDataGridViewTextBoxColumn";
+            // 
+            // provinciaDataGridViewTextBoxColumn
+            // 
+            provinciaDataGridViewTextBoxColumn.DataPropertyName = "provincia";
+            provinciaDataGridViewTextBoxColumn.HeaderText = "provincia";
+            provinciaDataGridViewTextBoxColumn.Name = "provinciaDataGridViewTextBoxColumn";
+            // 
+            // cpDataGridViewTextBoxColumn
+            // 
+            cpDataGridViewTextBoxColumn.DataPropertyName = "cp";
+            cpDataGridViewTextBoxColumn.HeaderText = "cp";
+            cpDataGridViewTextBoxColumn.Name = "cpDataGridViewTextBoxColumn";
+            // 
+            // telefonoDataGridViewTextBoxColumn
+            // 
+            telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
+            telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
+            telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            // 
+            // anuladoDataGridViewCheckBoxColumn
+            // 
+            anuladoDataGridViewCheckBoxColumn.DataPropertyName = "anulado";
+            anuladoDataGridViewCheckBoxColumn.HeaderText = "anulado";
+            anuladoDataGridViewCheckBoxColumn.Name = "anuladoDataGridViewCheckBoxColumn";
+            // 
             // Cliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -174,6 +260,7 @@
             contextMenuStrip1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)clienteBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,5 +280,17 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem opcionesToolStripMenuItem1;
         private ToolStripMenuItem reportesToolStripMenuItem;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn razonsocialDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn condicionivaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn tipofacturaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cuitDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn domicilioDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn localidadDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn provinciaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cpDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn anuladoDataGridViewCheckBoxColumn;
+        private BindingSource clienteBindingSource;
     }
 }

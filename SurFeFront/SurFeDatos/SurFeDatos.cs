@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace SurFeDatos
             using (SqlConnection connection = new SqlConnection(conString))
             {
                 // Create the Command and Parameter objects.
-                SqlCommand command = new SqlCommand("empleadosGet", connection);
+                SqlCommand command = new SqlCommand("GetSurFe", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 if (e.id != null)
                     command.Parameters.AddWithValue("@id", e.id);

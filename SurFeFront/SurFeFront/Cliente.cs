@@ -12,9 +12,11 @@ namespace SurFeFront
 {
     public partial class Cliente : Form
     {
+        List<Cliente> clienteList = new List<Cliente>();
         public Cliente()
         {
             InitializeComponent();
+            reFreshGrid();
         }
 
         private void Cliente_Load(object sender, EventArgs e)
@@ -32,5 +34,21 @@ namespace SurFeFront
             RegistrarCliente rg = new RegistrarCliente();
             rg.ShowDialog();
         }
+
+
+        private void reFreshGrid()
+        {
+            dataGridView1.DataSource = clienteList;
+            dataGridView1.Refresh();
+        }
+
+        private void buscarEmpleados()
+        {
+
+            clienteList = SurFeNegocio.Get(new Cliente());
+            reFreshGrid();
+        }
     }
+
+    
 }
