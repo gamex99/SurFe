@@ -1,3 +1,6 @@
+USE [master]
+GO
+/****** Object:  Database [SurFe]    Script Date: 9/11/2023 20:22:55 ******/
 CREATE DATABASE [SurFe]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -81,7 +84,7 @@ ALTER DATABASE [SurFe] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POL
 GO
 USE [SurFe]
 GO
-/****** Object:  Table [dbo].[cliente]    Script Date: 2/11/2023 14:15:29 ******/
+/****** Object:  Table [dbo].[cliente]    Script Date: 9/11/2023 20:22:55 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,13 +100,14 @@ CREATE TABLE [dbo].[cliente](
 	[provincia] [varchar](50) NULL,
 	[cp] [int] NULL,
 	[telefono] [varchar](50) NULL,
+	[anulado] [bit] NULL,
  CONSTRAINT [PK_cliente] PRIMARY KEY CLUSTERED 
 (
 	[id_cliente] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[producto]    Script Date: 2/11/2023 14:15:29 ******/
+/****** Object:  Table [dbo].[producto]    Script Date: 9/11/2023 20:22:55 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -120,7 +124,27 @@ CREATE TABLE [dbo].[producto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+/****** Object:  StoredProcedure [dbo].[GetSurfe]    Script Date: 9/11/2023 20:22:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[GetSurfe]
+--parametros
+@id int = null,
+@razon_social varchar(50) = null
+AS
+BEGIN
+--cuerpo del procedimiento
+SET NOCOUNT ON;
+select c.* from cliente c
+where (c.id_cliente = @id or @id is null) AND
+(rtrim(upper(razon_social )) like '%'+ rtrim(upper(@razon_social )) + '%'
+or @razon_social is null)
+END
+GO
 USE [master]
 GO
 ALTER DATABASE [SurFe] SET  READ_WRITE 
 GO
+
