@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [SurFe]    Script Date: 9/11/2023 20:22:55 ******/
+/****** Object:  Database [SurFe]    Script Date: 14/11/2023 18:09:50 ******/
 CREATE DATABASE [SurFe]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ ALTER DATABASE [SurFe] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POL
 GO
 USE [SurFe]
 GO
-/****** Object:  Table [dbo].[cliente]    Script Date: 9/11/2023 20:22:55 ******/
+/****** Object:  Table [dbo].[cliente]    Script Date: 14/11/2023 18:09:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +92,7 @@ GO
 CREATE TABLE [dbo].[cliente](
 	[id_cliente] [int] IDENTITY(1,1) NOT NULL,
 	[razon_social] [varchar](50) NULL,
-	[condicion_iva] [varchar](50) NULL,
+	[idCondicionIVA] [int] NOT NULL,
 	[tipo_factura] [varchar](50) NULL,
 	[cuit] [varchar](50) NULL,
 	[domicilio] [varchar](50) NULL,
@@ -107,7 +107,21 @@ CREATE TABLE [dbo].[cliente](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[producto]    Script Date: 9/11/2023 20:22:55 ******/
+/****** Object:  Table [dbo].[condicionIVA]    Script Date: 14/11/2023 18:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[condicionIVA](
+	[idCondicionIVA] [int] NOT NULL,
+	[descripcion] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_condicionIVA] PRIMARY KEY CLUSTERED 
+(
+	[idCondicionIVA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[producto]    Script Date: 14/11/2023 18:09:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -124,23 +138,29 @@ CREATE TABLE [dbo].[producto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[GetSurfe]    Script Date: 9/11/2023 20:22:55 ******/
+ALTER TABLE [dbo].[cliente]  WITH CHECK ADD  CONSTRAINT [FK_cliente_condicionIVA] FOREIGN KEY([idCondicionIVA])
+REFERENCES [dbo].[condicionIVA] ([idCondicionIVA])
+GO
+ALTER TABLE [dbo].[cliente] CHECK CONSTRAINT [FK_cliente_condicionIVA]
+GO
+/****** Object:  StoredProcedure [dbo].[GetSurfe]    Script Date: 14/11/2023 18:09:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[GetSurfe]
 --parametros
-@id int = null,
-@razon_social varchar(50) = null
+@filtro varchar(50) = null
 AS
 BEGIN
 --cuerpo del procedimiento
 SET NOCOUNT ON;
-select c.* from cliente c
-where (c.id_cliente = @id or @id is null) AND
-(rtrim(upper(razon_social )) like '%'+ rtrim(upper(@razon_social )) + '%'
-or @razon_social is null)
+select c.id_cliente, c.razon_social, c.tipo_factura, c.cuit, c.domicilio, c.localidad, c.provincia, c.cp
+, c.telefono, iva.descripcion CondicionIVA
+from cliente c, condicionIVA iva
+where c.idCondicionIVA =iva.idCondicionIVA and  ( Convert(nvarchar,c.id_cliente) like '%'+@filtro+'%'  or
+(upper(razon_social ) like '%'+ upper(@filtro ) + '%'))
 END
 GO
 USE [master]
