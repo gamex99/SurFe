@@ -1,6 +1,6 @@
 ﻿namespace SurFe
 {
-    partial class Form2
+    partial class PuntoDeVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PuntoDeVenta));
             label1 = new Label();
             label2 = new Label();
             bindingSource1 = new BindingSource(components);

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SurFe
 {
-    public partial class Form2 : Form
+    public partial class PuntoDeVenta : Form
     {
-        public Form2()
+        public PuntoDeVenta()
         {
             InitializeComponent();
         }

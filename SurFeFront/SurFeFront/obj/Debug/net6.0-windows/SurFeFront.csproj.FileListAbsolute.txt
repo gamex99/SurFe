@@ -78,7 +78,6 @@ C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\bin\Debug\net6.0
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\bin\Debug\net6.0-windows\SurFeDatos.pdb
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.csproj.AssemblyReference.cache
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.Cliente.resources
-C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFe.Form2.resources
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFe.Form3.resources
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFe.Form4.resources
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.Login.resources
@@ -98,3 +97,4 @@ C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.pdb
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.genruntimeconfig.cache
 C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\ref\SurFeFront.dll
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeFront\obj\Debug\net6.0-windows\SurFe.PuntoDeVenta.resources

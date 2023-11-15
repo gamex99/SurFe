@@ -48,7 +48,6 @@
             btModificar = new Button();
             btEliminar = new Button();
             btSalir = new Button();
-            comboBox1 = new ComboBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             opcionesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
@@ -197,14 +196,6 @@
             btSalir.UseVisualStyleBackColor = true;
             btSalir.Click += btSalir_Click;
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(358, 41);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(165, 23);
-            comboBox1.TabIndex = 7;
-            // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { opcionesToolStripMenuItem });
@@ -244,7 +235,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 432);
             Controls.Add(menuStrip1);
-            Controls.Add(comboBox1);
             Controls.Add(btSalir);
             Controls.Add(btEliminar);
             Controls.Add(btModificar);
@@ -275,7 +265,6 @@
         private Button btModificar;
         private Button btEliminar;
         private Button btSalir;
-        private ComboBox comboBox1;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem opcionesToolStripMenuItem;
         private MenuStrip menuStrip1;

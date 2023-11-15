@@ -35,8 +35,14 @@ namespace SurFeFront
 
         private void btNuevo_Click(object sender, EventArgs e)
         {
-            RegistrarCliente rg = new RegistrarCliente();
-            rg.ShowDialog();
+            RegistrarCliente frm = new RegistrarCliente();
+
+            //paso por parametro "algo"
+            frm.modo = EnumModoForm.Alta;
+
+            frm.ShowDialog();
+
+            reFreshGrid(); 
         }
 
 
@@ -49,7 +55,7 @@ namespace SurFeFront
             dtgEmpledos.Refresh();
         }
 
-   
+
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {

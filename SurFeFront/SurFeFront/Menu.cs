@@ -26,7 +26,7 @@ namespace SurFe
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2();
+            PuntoDeVenta frm = new PuntoDeVenta();
 
 
 

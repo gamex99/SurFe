@@ -30,7 +30,7 @@
         {
             lblPersona = new Label();
             lblNomAp = new Label();
-            txtNomAp = new TextBox();
+            txtRazonSocial = new TextBox();
             lblTipo = new Label();
             cbxDoc = new ComboBox();
             label1 = new Label();
@@ -45,11 +45,10 @@
             lblProv = new Label();
             cbcProv = new ComboBox();
             lblLoc = new Label();
-            cbxLoc = new ComboBox();
             lblBarrio = new Label();
             txtBarrio = new TextBox();
             lblCp = new Label();
-            txtCp = new TextBox();
+            txtCodigoPostal = new TextBox();
             label3 = new Label();
             lblFechaN = new Label();
             dtpFn = new DateTimePicker();
@@ -62,6 +61,7 @@
             cbxTfac = new ComboBox();
             btGuardar = new Button();
             btCancelar = new Button();
+            txtLocalidad = new TextBox();
             SuspendLayout();
             // 
             // lblPersona
@@ -83,13 +83,13 @@
             lblNomAp.TabIndex = 1;
             lblNomAp.Text = "Apellido y Nombre";
             // 
-            // txtNomAp
+            // txtRazonSocial
             // 
-            txtNomAp.Location = new Point(149, 48);
-            txtNomAp.Name = "txtNomAp";
-            txtNomAp.Size = new Size(200, 23);
-            txtNomAp.TabIndex = 2;
-            txtNomAp.Text = "Ingrese nombre completo";
+            txtRazonSocial.Location = new Point(149, 48);
+            txtRazonSocial.Name = "txtRazonSocial";
+            txtRazonSocial.Size = new Size(200, 23);
+            txtRazonSocial.TabIndex = 2;
+            txtRazonSocial.Text = "Ingrese nombre completo";
             // 
             // lblTipo
             // 
@@ -124,6 +124,7 @@
             txtNumDoc.Name = "txtNumDoc";
             txtNumDoc.Size = new Size(200, 23);
             txtNumDoc.TabIndex = 6;
+            txtNumDoc.TextChanged += txtNumDoc_TextChanged;
             // 
             // label2
             // 
@@ -215,14 +216,6 @@
             lblLoc.TabIndex = 16;
             lblLoc.Text = "Localidad";
             // 
-            // cbxLoc
-            // 
-            cbxLoc.FormattingEnabled = true;
-            cbxLoc.Location = new Point(101, 357);
-            cbxLoc.Name = "cbxLoc";
-            cbxLoc.Size = new Size(121, 23);
-            cbxLoc.TabIndex = 17;
-            // 
             // lblBarrio
             // 
             lblBarrio.AutoSize = true;
@@ -250,14 +243,14 @@
             lblCp.TabIndex = 20;
             lblCp.Text = "CP";
             // 
-            // txtCp
+            // txtCodigoPostal
             // 
-            txtCp.ForeColor = Color.Black;
-            txtCp.Location = new Point(101, 423);
-            txtCp.Name = "txtCp";
-            txtCp.Size = new Size(200, 23);
-            txtCp.TabIndex = 21;
-            txtCp.Text = "Ingrese codigo postal";
+            txtCodigoPostal.ForeColor = Color.Black;
+            txtCodigoPostal.Location = new Point(101, 423);
+            txtCodigoPostal.Name = "txtCodigoPostal";
+            txtCodigoPostal.Size = new Size(200, 23);
+            txtCodigoPostal.TabIndex = 21;
+            txtCodigoPostal.Text = "Ingrese codigo postal";
             // 
             // label3
             // 
@@ -355,6 +348,7 @@
             btGuardar.TabIndex = 33;
             btGuardar.Text = "Guardar";
             btGuardar.UseVisualStyleBackColor = true;
+            btGuardar.Click += btGuardar_Click;
             // 
             // btCancelar
             // 
@@ -366,11 +360,19 @@
             btCancelar.UseVisualStyleBackColor = true;
             btCancelar.Click += btCancelar_Click;
             // 
+            // txtLocalidad
+            // 
+            txtLocalidad.Location = new Point(101, 357);
+            txtLocalidad.Name = "txtLocalidad";
+            txtLocalidad.Size = new Size(200, 23);
+            txtLocalidad.TabIndex = 35;
+            // 
             // RegistrarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(753, 575);
+            Controls.Add(txtLocalidad);
             Controls.Add(btCancelar);
             Controls.Add(btGuardar);
             Controls.Add(cbxTfac);
@@ -383,11 +385,10 @@
             Controls.Add(dtpFn);
             Controls.Add(lblFechaN);
             Controls.Add(label3);
-            Controls.Add(txtCp);
+            Controls.Add(txtCodigoPostal);
             Controls.Add(lblCp);
             Controls.Add(txtBarrio);
             Controls.Add(lblBarrio);
-            Controls.Add(cbxLoc);
             Controls.Add(lblLoc);
             Controls.Add(cbcProv);
             Controls.Add(lblProv);
@@ -402,12 +403,13 @@
             Controls.Add(label1);
             Controls.Add(cbxDoc);
             Controls.Add(lblTipo);
-            Controls.Add(txtNomAp);
+            Controls.Add(txtRazonSocial);
             Controls.Add(lblNomAp);
             Controls.Add(lblPersona);
             Name = "RegistrarCliente";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "RegistrarCliente";
+            Text = "|";
+            Load += RegistrarCliente_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -416,7 +418,7 @@
 
         private Label lblPersona;
         private Label lblNomAp;
-        private TextBox txtNomAp;
+        private TextBox txtRazonSocial;
         private Label lblTipo;
         private ComboBox cbxDoc;
         private Label label1;
@@ -431,11 +433,10 @@
         private Label lblProv;
         private ComboBox cbcProv;
         private Label lblLoc;
-        private ComboBox cbxLoc;
         private Label lblBarrio;
         private TextBox txtBarrio;
         private Label lblCp;
-        private TextBox txtCp;
+        private TextBox txtCodigoPostal;
         private Label label3;
         private Label lblFechaN;
         private DateTimePicker dtpFn;
@@ -448,5 +449,6 @@
         private ComboBox cbxTfac;
         private Button btGuardar;
         private Button btCancelar;
+        private TextBox txtLocalidad;
     }
 }

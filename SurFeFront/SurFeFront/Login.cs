@@ -34,8 +34,9 @@ namespace SurFeFront
 
               
                 SurFe.Menu f1 = new SurFe.Menu();
-                
+                this.Hide();
                 f1.ShowDialog();
+               
                 this.Close();
             }
             else
