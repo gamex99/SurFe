@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "i253bCpd4hE4P6OuF2XrisosmtqcSlvGQV7/tv3sqY1642csDvvvdnQfKasX/w9CdJrIAcC+ncCu3ErwtRT5tA==",
+  "dgSpecHash": "IS+x/bCt9gTdazedSY1jwuZMpfzlGThcvGYglgBBPf/GZAmnbx1BZDDDL+yZE5h19YQ21d93HmyDAUTWhRZNSg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeEntidades\\SurFeEntidades.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
+  ],
   "logs": []
 }

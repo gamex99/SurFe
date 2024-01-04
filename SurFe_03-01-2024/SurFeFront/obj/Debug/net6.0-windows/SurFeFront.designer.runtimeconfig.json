@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\ParraX'PC\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\ParraX'PC\\.nuget\\packages"
+      "C:\\Users\\ParraX\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\ParraX\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

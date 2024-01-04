@@ -16,7 +16,7 @@ namespace SurFeEntidades
         public string? domicilio { get; set; }
         public string? localidad { get; set; }
         public string? provincia {  get; set; }
-        public int? cp { get; set; }
+        public string? cp { get; set; } //aca primero le puse que era int, hara algo?
         public string? telefono { get; set; }
         public bool anulado { get; set; }
     }

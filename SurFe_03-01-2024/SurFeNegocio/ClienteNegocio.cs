@@ -17,5 +17,26 @@ namespace SurFeNegocio
 
 
         }
+        public static int Insert(ClienteModel e)
+        {
+            if (String.IsNullOrEmpty(e.razon_social))
+            {
+                return 0;
+            }
+            if (String.IsNullOrEmpty(e.cuit))
+            {
+                return 0;
+            }
+           
+            try
+            {
+                return ClienteDatos.Insert(e);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }

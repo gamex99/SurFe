@@ -837,19 +837,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ParraX'PC\\.nuget\\packages\\": {}
+    "C:\\Users\\ParraX\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\SurFeFront.csproj",
+      "projectUniqueName": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeFront\\SurFeFront.csproj",
       "projectName": "SurFeFront",
-      "projectPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\SurFeFront.csproj",
-      "packagesPath": "C:\\Users\\ParraX'PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeFront\\obj\\",
+      "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeFront\\SurFeFront.csproj",
+      "packagesPath": "C:\\Users\\ParraX\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeFront\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ParraX'PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ParraX\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -863,11 +863,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj": {
-              "projectPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeEntidades\\SurFeEntidades.csproj"
+            "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeEntidades\\SurFeEntidades.csproj": {
+              "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeEntidades\\SurFeEntidades.csproj"
             },
-            "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeNegocio\\SurFeNegocio.csproj": {
-              "projectPath": "C:\\Users\\ParraX'PC\\Documents\\GitHub\\SurFe\\SurFeFront\\SurFeNegocio\\SurFeNegocio.csproj"
+            "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeNegocio\\SurFeNegocio.csproj": {
+              "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeNegocio\\SurFeNegocio.csproj"
             }
           }
         }
@@ -892,6 +892,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.25, 6.0.25]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.25, 6.0.25]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.25, 6.0.25]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.25, 6.0.25]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -900,7 +918,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

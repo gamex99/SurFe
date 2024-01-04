@@ -30,11 +30,10 @@
         {
             lblPersona = new Label();
             lblNomAp = new Label();
-            txtNomAp = new TextBox();
+            txtrazonsocial = new TextBox();
             lblTipo = new Label();
-            cbxDoc = new ComboBox();
             label1 = new Label();
-            txtNumDoc = new TextBox();
+            txtdni = new TextBox();
             label2 = new Label();
             lblDom = new Label();
             txtDom = new TextBox();
@@ -43,25 +42,23 @@
             lblEmail = new Label();
             txtEmail = new TextBox();
             lblProv = new Label();
-            cbcProv = new ComboBox();
+            cbxprov = new ComboBox();
             lblLoc = new Label();
             cbxLoc = new ComboBox();
             lblBarrio = new Label();
             txtBarrio = new TextBox();
             lblCp = new Label();
             txtCp = new TextBox();
-            label3 = new Label();
-            lblFechaN = new Label();
-            dtpFn = new DateTimePicker();
             label4 = new Label();
             lblCuit = new Label();
-            txtCuit = new TextBox();
+            txtcuit = new TextBox();
             label5 = new Label();
-            cbxIva = new ComboBox();
+            cbxiva = new ComboBox();
             lblTfac = new Label();
-            cbxTfac = new ComboBox();
+            cbxtfac = new ComboBox();
             btGuardar = new Button();
             btCancelar = new Button();
+            cbxDoc = new ComboBox();
             SuspendLayout();
             // 
             // lblPersona
@@ -83,13 +80,14 @@
             lblNomAp.TabIndex = 1;
             lblNomAp.Text = "Apellido y Nombre";
             // 
-            // txtNomAp
+            // txtrazonsocial
             // 
-            txtNomAp.Location = new Point(149, 48);
-            txtNomAp.Name = "txtNomAp";
-            txtNomAp.Size = new Size(200, 23);
-            txtNomAp.TabIndex = 2;
-            txtNomAp.Text = "Ingrese nombre completo";
+            txtrazonsocial.Location = new Point(149, 48);
+            txtrazonsocial.Name = "txtrazonsocial";
+            txtrazonsocial.Size = new Size(200, 23);
+            txtrazonsocial.TabIndex = 2;
+            txtrazonsocial.Text = "Ingrese nombre completo";
+            txtrazonsocial.TextChanged += txtNomAp_TextChanged;
             // 
             // lblTipo
             // 
@@ -100,15 +98,6 @@
             lblTipo.TabIndex = 3;
             lblTipo.Text = "Tipo de documento";
             // 
-            // cbxDoc
-            // 
-            cbxDoc.FormattingEnabled = true;
-            cbxDoc.Location = new Point(149, 90);
-            cbxDoc.Name = "cbxDoc";
-            cbxDoc.Size = new Size(121, 23);
-            cbxDoc.TabIndex = 4;
-            cbxDoc.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -118,12 +107,12 @@
             label1.TabIndex = 5;
             label1.Text = "Numero de documento";
             // 
-            // txtNumDoc
+            // txtdni
             // 
-            txtNumDoc.Location = new Point(150, 133);
-            txtNumDoc.Name = "txtNumDoc";
-            txtNumDoc.Size = new Size(200, 23);
-            txtNumDoc.TabIndex = 6;
+            txtdni.Location = new Point(150, 133);
+            txtdni.Name = "txtdni";
+            txtdni.Size = new Size(200, 23);
+            txtdni.TabIndex = 6;
             // 
             // label2
             // 
@@ -198,13 +187,13 @@
             lblProv.TabIndex = 14;
             lblProv.Text = "Provincia";
             // 
-            // cbcProv
+            // cbxprov
             // 
-            cbcProv.FormattingEnabled = true;
-            cbcProv.Location = new Point(101, 325);
-            cbcProv.Name = "cbcProv";
-            cbcProv.Size = new Size(121, 23);
-            cbcProv.TabIndex = 15;
+            cbxprov.FormattingEnabled = true;
+            cbxprov.Location = new Point(101, 325);
+            cbxprov.Name = "cbxprov";
+            cbxprov.Size = new Size(121, 23);
+            cbxprov.TabIndex = 15;
             // 
             // lblLoc
             // 
@@ -259,33 +248,6 @@
             txtCp.TabIndex = 21;
             txtCp.Text = "Ingrese codigo postal";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(12, 474);
-            label3.Name = "label3";
-            label3.Size = new Size(97, 21);
-            label3.TabIndex = 22;
-            label3.Text = "Otros datos";
-            // 
-            // lblFechaN
-            // 
-            lblFechaN.AutoSize = true;
-            lblFechaN.Location = new Point(15, 513);
-            lblFechaN.Name = "lblFechaN";
-            lblFechaN.Size = new Size(117, 15);
-            lblFechaN.TabIndex = 23;
-            lblFechaN.Text = "Fecha de nacimiento";
-            // 
-            // dtpFn
-            // 
-            dtpFn.Format = DateTimePickerFormat.Short;
-            dtpFn.Location = new Point(150, 507);
-            dtpFn.Name = "dtpFn";
-            dtpFn.Size = new Size(100, 23);
-            dtpFn.TabIndex = 24;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -305,13 +267,13 @@
             lblCuit.TabIndex = 26;
             lblCuit.Text = "CUIT";
             // 
-            // txtCuit
+            // txtcuit
             // 
-            txtCuit.Location = new Point(516, 48);
-            txtCuit.Name = "txtCuit";
-            txtCuit.Size = new Size(200, 23);
-            txtCuit.TabIndex = 27;
-            txtCuit.Text = "Ingrese cuit";
+            txtcuit.Location = new Point(516, 48);
+            txtcuit.Name = "txtcuit";
+            txtcuit.Size = new Size(200, 23);
+            txtcuit.TabIndex = 27;
+            txtcuit.Text = "Ingrese cuit";
             // 
             // label5
             // 
@@ -322,13 +284,14 @@
             label5.TabIndex = 28;
             label5.Text = "Situacion IVA";
             // 
-            // cbxIva
+            // cbxiva
             // 
-            cbxIva.FormattingEnabled = true;
-            cbxIva.Location = new Point(563, 90);
-            cbxIva.Name = "cbxIva";
-            cbxIva.Size = new Size(121, 23);
-            cbxIva.TabIndex = 29;
+            cbxiva.FormattingEnabled = true;
+            cbxiva.Items.AddRange(new object[] { "Responsable Inscripto", "Consumidor Final", "Excento" });
+            cbxiva.Location = new Point(563, 90);
+            cbxiva.Name = "cbxiva";
+            cbxiva.Size = new Size(121, 23);
+            cbxiva.TabIndex = 29;
             // 
             // lblTfac
             // 
@@ -339,13 +302,14 @@
             lblTfac.TabIndex = 30;
             lblTfac.Text = "Tipo de factura";
             // 
-            // cbxTfac
+            // cbxtfac
             // 
-            cbxTfac.FormattingEnabled = true;
-            cbxTfac.Location = new Point(563, 133);
-            cbxTfac.Name = "cbxTfac";
-            cbxTfac.Size = new Size(121, 23);
-            cbxTfac.TabIndex = 31;
+            cbxtfac.FormattingEnabled = true;
+            cbxtfac.Items.AddRange(new object[] { "A", "B", "C" });
+            cbxtfac.Location = new Point(563, 133);
+            cbxtfac.Name = "cbxtfac";
+            cbxtfac.Size = new Size(121, 23);
+            cbxtfac.TabIndex = 31;
             // 
             // btGuardar
             // 
@@ -355,6 +319,7 @@
             btGuardar.TabIndex = 33;
             btGuardar.Text = "Guardar";
             btGuardar.UseVisualStyleBackColor = true;
+            btGuardar.Click += btGuardar_Click;
             // 
             // btCancelar
             // 
@@ -366,6 +331,15 @@
             btCancelar.UseVisualStyleBackColor = true;
             btCancelar.Click += btCancelar_Click;
             // 
+            // cbxDoc
+            // 
+            cbxDoc.FormattingEnabled = true;
+            cbxDoc.Location = new Point(149, 90);
+            cbxDoc.Name = "cbxDoc";
+            cbxDoc.Size = new Size(121, 23);
+            cbxDoc.TabIndex = 4;
+            cbxDoc.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // RegistrarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -373,23 +347,20 @@
             ClientSize = new Size(753, 575);
             Controls.Add(btCancelar);
             Controls.Add(btGuardar);
-            Controls.Add(cbxTfac);
+            Controls.Add(cbxtfac);
             Controls.Add(lblTfac);
-            Controls.Add(cbxIva);
+            Controls.Add(cbxiva);
             Controls.Add(label5);
-            Controls.Add(txtCuit);
+            Controls.Add(txtcuit);
             Controls.Add(lblCuit);
             Controls.Add(label4);
-            Controls.Add(dtpFn);
-            Controls.Add(lblFechaN);
-            Controls.Add(label3);
             Controls.Add(txtCp);
             Controls.Add(lblCp);
             Controls.Add(txtBarrio);
             Controls.Add(lblBarrio);
             Controls.Add(cbxLoc);
             Controls.Add(lblLoc);
-            Controls.Add(cbcProv);
+            Controls.Add(cbxprov);
             Controls.Add(lblProv);
             Controls.Add(txtEmail);
             Controls.Add(lblEmail);
@@ -398,11 +369,11 @@
             Controls.Add(txtDom);
             Controls.Add(lblDom);
             Controls.Add(label2);
-            Controls.Add(txtNumDoc);
+            Controls.Add(txtdni);
             Controls.Add(label1);
             Controls.Add(cbxDoc);
             Controls.Add(lblTipo);
-            Controls.Add(txtNomAp);
+            Controls.Add(txtrazonsocial);
             Controls.Add(lblNomAp);
             Controls.Add(lblPersona);
             Name = "RegistrarCliente";
@@ -416,11 +387,10 @@
 
         private Label lblPersona;
         private Label lblNomAp;
-        private TextBox txtNomAp;
+        private TextBox txtrazonsocial;
         private Label lblTipo;
-        private ComboBox cbxDoc;
         private Label label1;
-        private TextBox txtNumDoc;
+        private TextBox txtdni;
         private Label label2;
         private Label lblDom;
         private TextBox txtDom;
@@ -429,24 +399,22 @@
         private Label lblEmail;
         private TextBox txtEmail;
         private Label lblProv;
-        private ComboBox cbcProv;
+        private ComboBox cbxprov;
         private Label lblLoc;
         private ComboBox cbxLoc;
         private Label lblBarrio;
         private TextBox txtBarrio;
         private Label lblCp;
         private TextBox txtCp;
-        private Label label3;
-        private Label lblFechaN;
-        private DateTimePicker dtpFn;
         private Label label4;
         private Label lblCuit;
-        private TextBox txtCuit;
+        private TextBox txtcuit;
         private Label label5;
-        private ComboBox cbxIva;
+        private ComboBox cbxiva;
         private Label lblTfac;
-        private ComboBox cbxTfac;
+        private ComboBox cbxtfac;
         private Button btGuardar;
         private Button btCancelar;
+        private ComboBox cbxDoc;
     }
 }

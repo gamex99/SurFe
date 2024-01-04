@@ -64,6 +64,57 @@ namespace SurFeDatos
             }
         
         }
+        public static int Insert(ClienteModel e)
+        {
+            int idClienteCreado = 0;
+            string conString = System.Configuration.ConfigurationManager.
+            ConnectionStrings["conexionDB"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(conString))
+            {
+                SqlCommand command = new SqlCommand("InsertSurfe", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                /*
+                @razon_social varchar(50),
+                @idCondicionIVA int,
+                @tipo_factura varchar(50),
+                @cuit varchar(50),
+                @domicilio varchar(50),
+                localidad varchar(50),
+                @provincia varchar(50),
+                @cp int,
+                @telefono varchar(50),
+                @anulado bit
+                */
+                if (e.razon_social != null)
+                    command.Parameters.AddWithValue("@razon_social", e.razon_social);
+                if (e.condicion_iva != null)
+                    command.Parameters.AddWithValue("@idCondicion", e.condicion_iva);
+                if (e.cuit != null)
+                    command.Parameters.AddWithValue("@cuit", e.cuit);
+                if (e.domicilio != null)
+                    command.Parameters.AddWithValue("@domicilio", e.domicilio);
+                if (e.localidad != null)
+                    command.Parameters.AddWithValue("@localidad", e.localidad);
+                if (e.provincia != null)
+                    command.Parameters.AddWithValue("@provincia", e.provincia);
+                if (e.cp != null)
+                    command.Parameters.AddWithValue("@cp", e.cp);
+                if (e.telefono != null)
+                    command.Parameters.AddWithValue("@telefono", e.telefono);
+                try
+                {
+                    connection.Open();
+                    //Realizo el insert y obtengo el ID generado de la BD
+                    idClienteCreado = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                return idClienteCreado;
+            }
+        }
+
     }
 }
 
