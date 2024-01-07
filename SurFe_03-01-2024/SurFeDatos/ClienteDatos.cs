@@ -47,7 +47,7 @@ namespace SurFeDatos
                         if (reader["provincia"].GetType() != typeof(DBNull))
                             emp.provincia = Convert.ToString(reader["provincia"]);
                         if (reader["cp"].GetType() != typeof(DBNull))
-                            emp.cp = Convert.ToInt32(reader["cp"]);
+                            emp.cp = Convert.ToString(reader["cp"]);
                         if (reader["telefono"].GetType() != typeof(DBNull))
                             emp.telefono = Convert.ToString(reader["telefono"]);
 
@@ -88,7 +88,9 @@ namespace SurFeDatos
                 if (e.razon_social != null)
                     command.Parameters.AddWithValue("@razon_social", e.razon_social);
                 if (e.condicion_iva != null)
-                    command.Parameters.AddWithValue("@idCondicion", e.condicion_iva);
+                    command.Parameters.AddWithValue("@idCondicionIVA", e.condicion_iva);
+                if (e.condicion_iva != null)
+                    command.Parameters.AddWithValue("@tipo_factura", e.tipo_factura);
                 if (e.cuit != null)
                     command.Parameters.AddWithValue("@cuit", e.cuit);
                 if (e.domicilio != null)

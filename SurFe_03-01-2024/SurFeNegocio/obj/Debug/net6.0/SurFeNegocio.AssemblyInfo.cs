@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SurFeNegocio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14e8045eea04d01cbf7c95b50bf2899d498d3b25")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27a234f5fb9d06dcad20ca74ce7c54c425ad7966")]
 [assembly: System.Reflection.AssemblyProductAttribute("SurFeNegocio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SurFeNegocio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
