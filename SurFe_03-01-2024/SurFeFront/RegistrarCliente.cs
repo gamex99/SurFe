@@ -71,6 +71,7 @@ namespace SurFeFront
                 cli.provincia = cbxprov.SelectedIndex.ToString();
                 cli.localidad = cbxLoc.SelectedIndex.ToString();
                 cli.cp = txtCp.Text.Trim();
+                cli.telefono = txtTel.Text.Trim();
                 string mensajeErrores = "";
                 //realizo validaciones. El mensaje va por referencia
                 if (!ValidarEmpleado(ref mensajeErrores, cli))
@@ -89,7 +90,7 @@ namespace SurFeFront
                 //Guardo los datos
                 //////////////////////////////////////////////hasta aca llegue 
                 int idEmp = ClienteNegocio.Insert(cli);
-                
+
                 MessageBox.Show("Se generó el empleado nro " +
                idEmp.ToString(), "Empleado creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -121,17 +122,24 @@ namespace SurFeFront
 
             return true;
         }
-        
-                private void LimpiarControles()
-                {
-                    txtrazonsocial.Text = "";
-                    txtcuit.Text = "";
-                     txtdni.Text = "";   
+
+        private void LimpiarControles()
+        {
+            txtrazonsocial.Text = "";
+            txtcuit.Text = "";
+            txtdni.Text = "";
         }
-        
+
         private void txtNomAp_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void RegistrarCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter)) {
+                Guardar();
+            }
         }
         // todavia no  private void FrmEditEmpleados_Load(object sender, EventArgs e)
         //{
@@ -140,8 +148,8 @@ namespace SurFeFront
 
 
     }
-                
-            
 
-        
+
+
+
 }

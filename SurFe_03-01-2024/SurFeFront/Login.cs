@@ -22,25 +22,25 @@ namespace SurFeFront
         private void btAcceso_Click(object sender, EventArgs e)
         {
 
-           
 
-            string usuario = txtUsu.Text; 
-            string contraseña = txtCont.Text; 
 
-           
+            string usuario = txtUsu.Text;
+            string contraseña = txtCont.Text;
+
+
             if (usuario == "demo" && contraseña == "demo")
             {
 
 
-              
+
                 SurFe.Menu f1 = new SurFe.Menu();
-                
+
                 f1.ShowDialog();
                 this.Close();
             }
             else
             {
-                
+
                 MessageBox.Show("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
             }
 
@@ -59,6 +59,36 @@ namespace SurFeFront
         private void txtCont_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+
+
+
+                string usuario = txtUsu.Text;
+                string contraseña = txtCont.Text;
+
+
+                if (usuario == "demo" && contraseña == "demo")
+                {
+
+
+
+                    SurFe.Menu f1 = new SurFe.Menu();
+
+                    f1.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+
+                    MessageBox.Show("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
+                }
+
+            }
         }
     }
 }

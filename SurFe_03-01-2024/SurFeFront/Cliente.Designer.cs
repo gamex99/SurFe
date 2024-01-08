@@ -83,6 +83,7 @@
             dtgEmpledos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgEmpledos.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, razonsocialDataGridViewTextBoxColumn, condicionivaDataGridViewTextBoxColumn, tipofacturaDataGridViewTextBoxColumn, cuitDataGridViewTextBoxColumn, domicilioDataGridViewTextBoxColumn, localidadDataGridViewTextBoxColumn, provinciaDataGridViewTextBoxColumn, cpDataGridViewTextBoxColumn, telefonoDataGridViewTextBoxColumn, anuladoDataGridViewCheckBoxColumn });
             dtgEmpledos.DataSource = clienteBindingSource;
+            dtgEmpledos.ImeMode = ImeMode.Disable;
             dtgEmpledos.Location = new Point(12, 78);
             dtgEmpledos.Name = "dtgEmpledos";
             dtgEmpledos.RowTemplate.Height = 25;

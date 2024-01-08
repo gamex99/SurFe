@@ -73,6 +73,7 @@
             txtUsu.Name = "txtUsu";
             txtUsu.Size = new Size(136, 23);
             txtUsu.TabIndex = 5;
+            txtUsu.Text = "demo";
             // 
             // txtCont
             // 
@@ -80,6 +81,7 @@
             txtCont.Name = "txtCont";
             txtCont.Size = new Size(136, 23);
             txtCont.TabIndex = 6;
+            txtCont.Text = "demo";
             txtCont.TextChanged += txtCont_TextChanged;
             // 
             // btAcceso
@@ -119,6 +121,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             Load += Login_Load;
+            KeyPress += Login_KeyPress;
             ResumeLayout(false);
             PerformLayout();
         }

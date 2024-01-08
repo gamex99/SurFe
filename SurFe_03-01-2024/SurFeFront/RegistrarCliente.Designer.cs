@@ -379,6 +379,7 @@
             Name = "RegistrarCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RegistrarCliente";
+            KeyPress += RegistrarCliente_KeyPress;
             ResumeLayout(false);
             PerformLayout();
         }
