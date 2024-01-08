@@ -54,6 +54,7 @@
             menuStrip1 = new MenuStrip();
             opcionesToolStripMenuItem1 = new ToolStripMenuItem();
             reportesToolStripMenuItem = new ToolStripMenuItem();
+            btnConsultar = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgEmpledos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clienteBindingSource).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -172,7 +173,7 @@
             // 
             // btModificar
             // 
-            btModificar.Location = new Point(93, 400);
+            btModificar.Location = new Point(174, 400);
             btModificar.Name = "btModificar";
             btModificar.Size = new Size(75, 25);
             btModificar.TabIndex = 4;
@@ -181,7 +182,7 @@
             // 
             // btEliminar
             // 
-            btEliminar.Location = new Point(174, 400);
+            btEliminar.Location = new Point(255, 400);
             btEliminar.Name = "btEliminar";
             btEliminar.Size = new Size(75, 25);
             btEliminar.TabIndex = 5;
@@ -239,11 +240,22 @@
             reportesToolStripMenuItem.Size = new Size(65, 20);
             reportesToolStripMenuItem.Text = "Reportes";
             // 
+            // btnConsultar
+            // 
+            btnConsultar.Location = new Point(93, 400);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(75, 25);
+            btnConsultar.TabIndex = 10;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
             // Cliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 432);
+            Controls.Add(btnConsultar);
             Controls.Add(menuStrip1);
             Controls.Add(comboBox1);
             Controls.Add(btSalir);
@@ -294,5 +306,6 @@
         private DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn anuladoDataGridViewCheckBoxColumn;
         private BindingSource clienteBindingSource;
+        private Button btnConsultar;
     }
 }

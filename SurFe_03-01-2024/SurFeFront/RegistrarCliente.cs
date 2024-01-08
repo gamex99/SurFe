@@ -16,6 +16,8 @@ namespace SurFeFront
 {
     public partial class RegistrarCliente : Form
     {
+        public EnumModoForm modo = EnumModoForm.Alta; // aca tamb enum
+        public ClienteModel _clienteModel = new ClienteModel();
         public RegistrarCliente()
         {
             InitializeComponent();
@@ -137,15 +139,32 @@ namespace SurFeFront
 
         private void RegistrarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter)) {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
                 Guardar();
             }
         }
-        // todavia no  private void FrmEditEmpleados_Load(object sender, EventArgs e)
-        //{
-        //   LimpiarControles();
-        //}
 
+        private void RegistrarCliente_Load(object sender, EventArgs e)
+        {
+            if (modo == EnumModoForm.Alta)
+            {
+                LimpiarControles();
+                //HabilitarControles(true);
+            }
+            if (modo == EnumModoForm.Modificacion)
+            {
+                //HabilitarControles(true);
+                //CargarDatos();
+            }
+            if (modo == EnumModoForm.Consulta)
+            {
+                //HabilitarControles(false);
+                //CargarDatos();
+                btGuardar.Enabled = false;
+            }
+        }
+        
 
     }
 
