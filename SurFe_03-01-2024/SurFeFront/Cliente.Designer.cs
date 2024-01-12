@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             lblBuscar = new Label();
             txtBuscar = new TextBox();
-            dtgEmpledos = new DataGridView();
+            dtgEmpleados = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             razonsocialDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             condicionivaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -49,16 +49,9 @@
             btEliminar = new Button();
             btSalir = new Button();
             comboBox1 = new ComboBox();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            opcionesToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip1 = new MenuStrip();
-            opcionesToolStripMenuItem1 = new ToolStripMenuItem();
-            reportesToolStripMenuItem = new ToolStripMenuItem();
             btnConsultar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dtgEmpledos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgEmpleados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clienteBindingSource).BeginInit();
-            contextMenuStrip1.SuspendLayout();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lblBuscar
@@ -78,84 +71,99 @@
             txtBuscar.TabIndex = 1;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
-            // dtgEmpledos
+            // dtgEmpleados
             // 
-            dtgEmpledos.AutoGenerateColumns = false;
-            dtgEmpledos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgEmpledos.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, razonsocialDataGridViewTextBoxColumn, condicionivaDataGridViewTextBoxColumn, tipofacturaDataGridViewTextBoxColumn, cuitDataGridViewTextBoxColumn, domicilioDataGridViewTextBoxColumn, localidadDataGridViewTextBoxColumn, provinciaDataGridViewTextBoxColumn, cpDataGridViewTextBoxColumn, telefonoDataGridViewTextBoxColumn, anuladoDataGridViewCheckBoxColumn });
-            dtgEmpledos.DataSource = clienteBindingSource;
-            dtgEmpledos.ImeMode = ImeMode.Disable;
-            dtgEmpledos.Location = new Point(12, 78);
-            dtgEmpledos.Name = "dtgEmpledos";
-            dtgEmpledos.RowTemplate.Height = 25;
-            dtgEmpledos.Size = new Size(776, 316);
-            dtgEmpledos.TabIndex = 2;
+            dtgEmpleados.AllowUserToAddRows = false;
+            dtgEmpleados.AllowUserToDeleteRows = false;
+            dtgEmpleados.AllowUserToOrderColumns = true;
+            dtgEmpleados.AutoGenerateColumns = false;
+            dtgEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgEmpleados.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, razonsocialDataGridViewTextBoxColumn, condicionivaDataGridViewTextBoxColumn, tipofacturaDataGridViewTextBoxColumn, cuitDataGridViewTextBoxColumn, domicilioDataGridViewTextBoxColumn, localidadDataGridViewTextBoxColumn, provinciaDataGridViewTextBoxColumn, cpDataGridViewTextBoxColumn, telefonoDataGridViewTextBoxColumn, anuladoDataGridViewCheckBoxColumn });
+            dtgEmpleados.DataSource = clienteBindingSource;
+            dtgEmpleados.ImeMode = ImeMode.Disable;
+            dtgEmpleados.Location = new Point(12, 78);
+            dtgEmpleados.Name = "dtgEmpleados";
+            dtgEmpleados.ReadOnly = true;
+            dtgEmpleados.RowTemplate.Height = 25;
+            dtgEmpleados.Size = new Size(776, 316);
+            dtgEmpleados.TabIndex = 2;
             // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "id";
             idDataGridViewTextBoxColumn.HeaderText = "id";
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // razonsocialDataGridViewTextBoxColumn
             // 
             razonsocialDataGridViewTextBoxColumn.DataPropertyName = "razon_social";
             razonsocialDataGridViewTextBoxColumn.HeaderText = "razon_social";
             razonsocialDataGridViewTextBoxColumn.Name = "razonsocialDataGridViewTextBoxColumn";
+            razonsocialDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // condicionivaDataGridViewTextBoxColumn
             // 
             condicionivaDataGridViewTextBoxColumn.DataPropertyName = "condicion_iva";
             condicionivaDataGridViewTextBoxColumn.HeaderText = "condicion_iva";
             condicionivaDataGridViewTextBoxColumn.Name = "condicionivaDataGridViewTextBoxColumn";
+            condicionivaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tipofacturaDataGridViewTextBoxColumn
             // 
             tipofacturaDataGridViewTextBoxColumn.DataPropertyName = "tipo_factura";
             tipofacturaDataGridViewTextBoxColumn.HeaderText = "tipo_factura";
             tipofacturaDataGridViewTextBoxColumn.Name = "tipofacturaDataGridViewTextBoxColumn";
+            tipofacturaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cuitDataGridViewTextBoxColumn
             // 
             cuitDataGridViewTextBoxColumn.DataPropertyName = "cuit";
             cuitDataGridViewTextBoxColumn.HeaderText = "cuit";
             cuitDataGridViewTextBoxColumn.Name = "cuitDataGridViewTextBoxColumn";
+            cuitDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // domicilioDataGridViewTextBoxColumn
             // 
             domicilioDataGridViewTextBoxColumn.DataPropertyName = "domicilio";
             domicilioDataGridViewTextBoxColumn.HeaderText = "domicilio";
             domicilioDataGridViewTextBoxColumn.Name = "domicilioDataGridViewTextBoxColumn";
+            domicilioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // localidadDataGridViewTextBoxColumn
             // 
             localidadDataGridViewTextBoxColumn.DataPropertyName = "localidad";
             localidadDataGridViewTextBoxColumn.HeaderText = "localidad";
             localidadDataGridViewTextBoxColumn.Name = "localidadDataGridViewTextBoxColumn";
+            localidadDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // provinciaDataGridViewTextBoxColumn
             // 
             provinciaDataGridViewTextBoxColumn.DataPropertyName = "provincia";
             provinciaDataGridViewTextBoxColumn.HeaderText = "provincia";
             provinciaDataGridViewTextBoxColumn.Name = "provinciaDataGridViewTextBoxColumn";
+            provinciaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cpDataGridViewTextBoxColumn
             // 
             cpDataGridViewTextBoxColumn.DataPropertyName = "cp";
             cpDataGridViewTextBoxColumn.HeaderText = "cp";
             cpDataGridViewTextBoxColumn.Name = "cpDataGridViewTextBoxColumn";
+            cpDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // telefonoDataGridViewTextBoxColumn
             // 
             telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
             telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
             telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            telefonoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // anuladoDataGridViewCheckBoxColumn
             // 
             anuladoDataGridViewCheckBoxColumn.DataPropertyName = "anulado";
             anuladoDataGridViewCheckBoxColumn.HeaderText = "anulado";
             anuladoDataGridViewCheckBoxColumn.Name = "anuladoDataGridViewCheckBoxColumn";
+            anuladoDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // clienteBindingSource
             // 
@@ -179,6 +187,7 @@
             btModificar.TabIndex = 4;
             btModificar.Text = "Modificar";
             btModificar.UseVisualStyleBackColor = true;
+            btModificar.Click += btModificar_Click;
             // 
             // btEliminar
             // 
@@ -188,6 +197,7 @@
             btEliminar.TabIndex = 5;
             btEliminar.Text = "Eliminar";
             btEliminar.UseVisualStyleBackColor = true;
+            btEliminar.Click += btEliminar_Click;
             // 
             // btSalir
             // 
@@ -207,39 +217,6 @@
             comboBox1.Size = new Size(165, 23);
             comboBox1.TabIndex = 7;
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { opcionesToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(125, 26);
-            // 
-            // opcionesToolStripMenuItem
-            // 
-            opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            opcionesToolStripMenuItem.Size = new Size(124, 22);
-            opcionesToolStripMenuItem.Text = "Opciones";
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { opcionesToolStripMenuItem1, reportesToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
-            menuStrip1.TabIndex = 9;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // opcionesToolStripMenuItem1
-            // 
-            opcionesToolStripMenuItem1.Name = "opcionesToolStripMenuItem1";
-            opcionesToolStripMenuItem1.Size = new Size(69, 20);
-            opcionesToolStripMenuItem1.Text = "Opciones";
-            // 
-            // reportesToolStripMenuItem
-            // 
-            reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            reportesToolStripMenuItem.Size = new Size(65, 20);
-            reportesToolStripMenuItem.Text = "Reportes";
-            // 
             // btnConsultar
             // 
             btnConsultar.Location = new Point(93, 400);
@@ -256,25 +233,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 432);
             Controls.Add(btnConsultar);
-            Controls.Add(menuStrip1);
             Controls.Add(comboBox1);
             Controls.Add(btSalir);
             Controls.Add(btEliminar);
             Controls.Add(btModificar);
             Controls.Add(btNuevo);
-            Controls.Add(dtgEmpledos);
+            Controls.Add(dtgEmpleados);
             Controls.Add(txtBuscar);
             Controls.Add(lblBuscar);
-            MainMenuStrip = menuStrip1;
             Name = "Cliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cliente";
             Load += Cliente_Load;
-            ((System.ComponentModel.ISupportInitialize)dtgEmpledos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgEmpleados).EndInit();
             ((System.ComponentModel.ISupportInitialize)clienteBindingSource).EndInit();
-            contextMenuStrip1.ResumeLayout(false);
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,17 +255,12 @@
 
         private Label lblBuscar;
         private TextBox txtBuscar;
-        private DataGridView dtgEmpledos;
+        private DataGridView dtgEmpleados;
         private Button btNuevo;
         private Button btModificar;
         private Button btEliminar;
         private Button btSalir;
         private ComboBox comboBox1;
-        private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem opcionesToolStripMenuItem;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem opcionesToolStripMenuItem1;
-        private ToolStripMenuItem reportesToolStripMenuItem;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn razonsocialDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn condicionivaDataGridViewTextBoxColumn;

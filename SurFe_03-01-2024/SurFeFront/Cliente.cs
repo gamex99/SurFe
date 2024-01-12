@@ -20,7 +20,7 @@ namespace SurFeFront
         public Cliente()
         {
             InitializeComponent();
-            reFreshGrid();
+            BuscarCliente();
         }
 
         private void Cliente_Load(object sender, EventArgs e)
@@ -42,35 +42,116 @@ namespace SurFeFront
         }
 
 
-        private void reFreshGrid()
+        private void BuscarCliente()
         {
+            reFreshGrid();
             ClienteNegocio obj = new ClienteNegocio();
             clienteList = obj.Get(txtBuscar.Text.Trim());
 
-            dtgEmpledos.DataSource = clienteList;
-            dtgEmpledos.Refresh();
+            dtgEmpleados.DataSource = clienteList;
+
+            dtgEmpleados.Refresh();
+
+        }
+        private void reFreshGrid()
+        {
+
+            dtgEmpleados.DataSource = clienteList;
+
+            clienteBindingSource.DataSource = clienteList;
+            dtgEmpleados.DataSource = clienteBindingSource;
+            dtgEmpleados.Refresh();
+
+
         }
 
 
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            reFreshGrid();
-            //mostrame el procedimiento almacenado
+            BuscarCliente();
+
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
-        
-            
+
+
+        {
+            dtgEmpleados.DataSource = clienteList;
+
+            clienteBindingSource.DataSource = clienteList;
+            dtgEmpleados.DataSource = clienteBindingSource;
+            dtgEmpleados.Refresh();
+
+
+            if (clienteBindingSource.Current == null)
+                return;
+            RegistrarCliente frm = new RegistrarCliente();
+            frm.modo = EnumModoForm.Consulta;
+            frm._clienteModel = (ClienteModel)clienteBindingSource.Current;
+            frm.ShowDialog();
+            reFreshGrid();
+        }
+
+        private void btModificar_Click(object sender, EventArgs e)
+        {
+            dtgEmpleados.DataSource = clienteList;
+
+            clienteBindingSource.DataSource = clienteList;
+            dtgEmpleados.DataSource = clienteBindingSource;
+            dtgEmpleados.Refresh();
+
+            if (clienteBindingSource.Current == null)
+                return;
+            RegistrarCliente frm = new RegistrarCliente();
+
+            frm.modo = EnumModoForm.Modificacion;
+            frm._clienteModel = (ClienteModel)clienteBindingSource.Current;
+
+            frm.ShowDialog();
+            BuscarCliente();
+            frm.FormClosed += delegate
             {
-                if (clienteBindingSource.Current == null)
-                    return; //aca hay un error y no me abre el form
-                RegistrarCliente frm = new RegistrarCliente();
-                frm.modo = EnumModoForm.Consulta;
-                frm._clienteModel = (ClienteModel)clienteBindingSource.Current;
-                frm.ShowDialog();
                 reFreshGrid();
+            };
+        }
+
+        private void btEliminar_Click(object sender, EventArgs e)
+        {
+            dtgEmpleados.DataSource = clienteList;
+
+            clienteBindingSource.DataSource = clienteList;
+            dtgEmpleados.DataSource = clienteBindingSource;
+            dtgEmpleados.Refresh();
+
+            if (clienteBindingSource.Current == null)
+                return;
+
+            ClienteModel cli = (ClienteModel)clienteBindingSource.Current;
+
+            //pregunto si quiere guardar los datos
+            DialogResult res = MessageBox.Show("¿Confirma anular el cliente " + cli.razon_social + " ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.No)
+            {
+                return;
             }
+
+            cli.anulado = 1;
+
+            try
+            {
+                ClienteNegocio.Update(cli);
+                MessageBox.Show("El empleado " + cli.razon_social + " se anuló correctamente", "Anulación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+            BuscarCliente();
         
     }
-}
+    }
+} 
+

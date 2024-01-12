@@ -59,6 +59,7 @@
             btGuardar = new Button();
             btCancelar = new Button();
             cbxDoc = new ComboBox();
+            txtid = new TextBox();
             SuspendLayout();
             // 
             // lblPersona
@@ -190,6 +191,7 @@
             // cbxprov
             // 
             cbxprov.FormattingEnabled = true;
+            cbxprov.Items.AddRange(new object[] { "", "Santa Fe" });
             cbxprov.Location = new Point(101, 325);
             cbxprov.Name = "cbxprov";
             cbxprov.Size = new Size(121, 23);
@@ -207,6 +209,7 @@
             // cbxLoc
             // 
             cbxLoc.FormattingEnabled = true;
+            cbxLoc.Items.AddRange(new object[] { "", "Peyrano", "Santa Teresa", "Rosario" });
             cbxLoc.Location = new Point(101, 357);
             cbxLoc.Name = "cbxLoc";
             cbxLoc.Size = new Size(121, 23);
@@ -287,7 +290,7 @@
             // cbxiva
             // 
             cbxiva.FormattingEnabled = true;
-            cbxiva.Items.AddRange(new object[] { "Responsable Inscripto", "Consumidor Final", "Excento" });
+            cbxiva.Items.AddRange(new object[] { "", "Responsable Inscripto", "Consumidor Final", "Excento" });
             cbxiva.Location = new Point(563, 90);
             cbxiva.Name = "cbxiva";
             cbxiva.Size = new Size(121, 23);
@@ -305,7 +308,7 @@
             // cbxtfac
             // 
             cbxtfac.FormattingEnabled = true;
-            cbxtfac.Items.AddRange(new object[] { "A", "B", "C" });
+            cbxtfac.Items.AddRange(new object[] { "", "A", "B", "C" });
             cbxtfac.Location = new Point(563, 133);
             cbxtfac.Name = "cbxtfac";
             cbxtfac.Size = new Size(121, 23);
@@ -334,17 +337,29 @@
             // cbxDoc
             // 
             cbxDoc.FormattingEnabled = true;
+            cbxDoc.Items.AddRange(new object[] { "", "DNI", "LC" });
             cbxDoc.Location = new Point(149, 90);
             cbxDoc.Name = "cbxDoc";
             cbxDoc.Size = new Size(121, 23);
             cbxDoc.TabIndex = 4;
             cbxDoc.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // txtid
+            // 
+            txtid.Enabled = false;
+            txtid.ForeColor = Color.Black;
+            txtid.Location = new Point(101, 540);
+            txtid.Name = "txtid";
+            txtid.Size = new Size(200, 23);
+            txtid.TabIndex = 35;
+            txtid.Text = "2";
+            // 
             // RegistrarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(753, 575);
+            Controls.Add(txtid);
             Controls.Add(btCancelar);
             Controls.Add(btGuardar);
             Controls.Add(cbxtfac);
@@ -378,7 +393,7 @@
             Controls.Add(lblPersona);
             Name = "RegistrarCliente";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "RegistrarCliente";
+            Text = "Client";
             Load += RegistrarCliente_Load;
             KeyPress += RegistrarCliente_KeyPress;
             ResumeLayout(false);
@@ -418,5 +433,6 @@
         private Button btGuardar;
         private Button btCancelar;
         private ComboBox cbxDoc;
+        private TextBox txtid;
     }
 }

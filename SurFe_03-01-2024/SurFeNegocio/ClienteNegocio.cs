@@ -38,5 +38,25 @@ namespace SurFeNegocio
             }
 
         }
+        public static bool Update(ClienteModel e)
+        {
+            if (String.IsNullOrEmpty(e.razon_social))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(e.cuit))
+            {
+                return false;
+            }
+            
+            try
+            {
+                return ClienteDatos.Update(e);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

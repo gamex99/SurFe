@@ -18,17 +18,15 @@ namespace SurFeDatos
             using (SqlConnection connection = new SqlConnection(conString))
             {
                 // Create the Command and Parameter objects.
-                SqlCommand command = new SqlCommand("GetSurFe", connection);
+               // SqlCommand command = new SqlCommand("GetSurFe", connection); //GetSurfeNuevo
+                SqlCommand command = new SqlCommand("GetSurfeNuevo", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
         
                     command.Parameters.AddWithValue("@filtro", filtro);
             
                 try
                 {
-                    //que es esto para pp3?
-                    //pp2 ok
-                    // bueno mira para las busquedas te aconsejo un datatable pero aguanta q vemos este error despues
-                    //te muestro la otra manera de hacer
+                    
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -50,8 +48,10 @@ namespace SurFeDatos
                             emp.cp = Convert.ToString(reader["cp"]);
                         if (reader["telefono"].GetType() != typeof(DBNull))
                             emp.telefono = Convert.ToString(reader["telefono"]);
+                        if (reader["anulado"].GetType() != typeof(DBNull))
+                            emp.anulado = Convert.ToInt32(reader["anulado"]);
 
-                        
+
                         list.Add(emp);
                     }
                     reader.Close();
@@ -115,6 +115,60 @@ namespace SurFeDatos
                 }
                 return idClienteCreado;
             }
+        }
+        public static bool Update(ClienteModel e)
+        {
+            
+            string conString = System.Configuration.ConfigurationManager.
+            ConnectionStrings["conexionDB"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(conString))
+            {
+                SqlCommand command = new SqlCommand("UpdateSurfe", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                /*
+                @razon_social varchar(50),
+                @idCondicionIVA int,
+                @tipo_factura varchar(50),
+                @cuit varchar(50),
+                @domicilio varchar(50),
+                localidad varchar(50),
+                @provincia varchar(50),
+                @cp int,
+                @telefono varchar(50),
+                @anulado bit
+                */
+                if (e.razon_social != null)
+                    command.Parameters.AddWithValue("@razon_social", e.razon_social);
+                if (e.condicion_iva != null)
+                    command.Parameters.AddWithValue("@idCondicionIVA", e.condicion_iva);
+                if (e.condicion_iva != null)
+                    command.Parameters.AddWithValue("@tipo_factura", e.tipo_factura);
+                if (e.cuit != null)
+                    command.Parameters.AddWithValue("@cuit", e.cuit);
+                if (e.domicilio != null)
+                    command.Parameters.AddWithValue("@domicilio", e.domicilio);
+                if (e.localidad != null)
+                    command.Parameters.AddWithValue("@localidad", e.localidad);
+                if (e.provincia != null)
+                    command.Parameters.AddWithValue("@provincia", e.provincia);
+                if (e.cp != null)
+                    command.Parameters.AddWithValue("@cp", e.cp);
+                if (e.telefono != null)
+                    command.Parameters.AddWithValue("@telefono", e.telefono);
+                try
+                {
+                    connection.Open();
+                    //Realizo el update
+                    command.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                
+            }
+            return true;
         }
 
     }

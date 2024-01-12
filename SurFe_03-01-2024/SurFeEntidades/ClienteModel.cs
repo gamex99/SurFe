@@ -18,6 +18,6 @@ namespace SurFeEntidades
         public string? provincia {  get; set; }
         public string? cp { get; set; } //aca primero le puse que era int, hara algo?
         public string? telefono { get; set; }
-        public bool anulado { get; set; }
+        public int anulado { get; set; }
     }
 }
