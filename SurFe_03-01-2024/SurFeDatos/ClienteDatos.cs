@@ -36,6 +36,7 @@ namespace SurFeDatos
                         emp.id = Convert.ToInt32(reader["id_cliente"]);
                         emp.razon_social = Convert.ToString(reader["razon_social"]);
                         emp.condicion_iva = Convert.ToString(reader["condicionIVA"]);
+                        emp.id_condicion_iva = Convert.ToString(reader["idCondicionIVA"]);
                         emp.tipo_factura = Convert.ToString(reader["tipo_factura"]);
                         emp.cuit = Convert.ToString(reader["cuit"]);
                         if (reader["domicilio"].GetType() != typeof(DBNull))
@@ -49,7 +50,7 @@ namespace SurFeDatos
                         if (reader["telefono"].GetType() != typeof(DBNull))
                             emp.telefono = Convert.ToString(reader["telefono"]);
                         if (reader["anulado"].GetType() != typeof(DBNull))
-                            emp.anulado = Convert.ToInt32(reader["anulado"]);
+                            emp.anulado = Convert.ToBoolean(reader["anulado"]);
 
 
                         list.Add(emp);
@@ -87,9 +88,9 @@ namespace SurFeDatos
                 */
                 if (e.razon_social != null)
                     command.Parameters.AddWithValue("@razon_social", e.razon_social);
-                if (e.condicion_iva != null)
-                    command.Parameters.AddWithValue("@idCondicionIVA", e.condicion_iva);
-                if (e.condicion_iva != null)
+                
+                    command.Parameters.AddWithValue("@idCondicionIVA", e.id_condicion_iva);
+              if (e.tipo_factura != null)  
                     command.Parameters.AddWithValue("@tipo_factura", e.tipo_factura);
                 if (e.cuit != null)
                     command.Parameters.AddWithValue("@cuit", e.cuit);
@@ -103,6 +104,7 @@ namespace SurFeDatos
                     command.Parameters.AddWithValue("@cp", e.cp);
                 if (e.telefono != null)
                     command.Parameters.AddWithValue("@telefono", e.telefono);
+                    command.Parameters.AddWithValue("@anulado", e.anulado);
                 try
                 {
                     connection.Open();
@@ -139,9 +141,11 @@ namespace SurFeDatos
                 */
                 if (e.razon_social != null)
                     command.Parameters.AddWithValue("@razon_social", e.razon_social);
-                if (e.condicion_iva != null)
-                    command.Parameters.AddWithValue("@idCondicionIVA", e.condicion_iva);
-                if (e.condicion_iva != null)
+                
+                    command.Parameters.AddWithValue("@idCondicionIVA", e.id_condicion_iva);
+
+               
+
                     command.Parameters.AddWithValue("@tipo_factura", e.tipo_factura);
                 if (e.cuit != null)
                     command.Parameters.AddWithValue("@cuit", e.cuit);
@@ -154,7 +158,9 @@ namespace SurFeDatos
                 if (e.cp != null)
                     command.Parameters.AddWithValue("@cp", e.cp);
                 if (e.telefono != null)
-                    command.Parameters.AddWithValue("@telefono", e.telefono);
+                    command.Parameters.AddWithValue("@telefono", e.telefono); 
+                
+                    command.Parameters.AddWithValue("@anulado", e.anulado);
                 try
                 {
                     connection.Open();
@@ -168,7 +174,7 @@ namespace SurFeDatos
                 }
                 
             }
-            return true;
+            return  true;
         }
 
     }

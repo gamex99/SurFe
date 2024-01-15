@@ -118,27 +118,19 @@ namespace SurFeFront
                 cli.cuit = txtcuit.Text.Trim();
 
                 ///////////////
-                string seleccion = cbxiva.SelectedIndex.ToString();
+                cli.id_condicion_iva = cbxiva.SelectedIndex.ToString();
 
 
-                // Utiliza una estructura condicional para asignar valores según la selección
-                string valor = "0";
-                if (seleccion == "Responsable Inscripto")
-                {
-                    valor = "1";
-                }
-                else if (seleccion == "Consumidor Final")
-                {
-                    valor = "2";
-                }
-                else if (seleccion == "Exento")
-                {
-                    valor = "3";
-                }
+               
+                
+              
 
                 /////////////
-                cli.condicion_iva = valor;
-                cli.tipo_factura = cbxtfac.SelectedIndex.ToString();
+                
+                
+              cli.tipo_factura = cbxtfac.SelectedIndex.ToString();
+                
+            // MessageBox.Show("Atención: Se encontraron los siguientes errores \n" + cli.id_condicion_iva, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cli.domicilio = txtDom.Text.Trim();
                 cli.provincia = cbxprov.SelectedIndex.ToString();
                 cli.localidad = cbxLoc.SelectedIndex.ToString();

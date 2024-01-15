@@ -39,6 +39,10 @@ namespace SurFeFront
             rg.modo = EnumModoForm.Alta;   ///esto es una referencia de enum
 
             rg.ShowDialog();
+            rg.FormClosed += delegate
+            {
+                reFreshGrid();
+            };
         }
 
 
@@ -136,7 +140,7 @@ namespace SurFeFront
                 return;
             }
 
-            cli.anulado = 1;
+            cli.anulado = true;
 
             try
             {

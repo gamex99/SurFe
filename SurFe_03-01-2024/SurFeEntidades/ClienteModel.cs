@@ -11,6 +11,7 @@ namespace SurFeEntidades
         public int? id { get; set; }
         public string? razon_social { get; set; }
         public string? condicion_iva { get; set; }
+        public string? id_condicion_iva {  get; set; }
         public string? tipo_factura { get; set; }
         public string? cuit {  get; set; } 
         public string? domicilio { get; set; }
@@ -18,6 +19,6 @@ namespace SurFeEntidades
         public string? provincia {  get; set; }
         public string? cp { get; set; } //aca primero le puse que era int, hara algo?
         public string? telefono { get; set; }
-        public int anulado { get; set; }
+        public bool anulado { get; set; }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SurFeEntidades")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c1224394b6acb6f6dc58168a5d02abc4a122068")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93c2f0c17cf074b93d1f7017f7a97bcfd12d1340")]
 [assembly: System.Reflection.AssemblyProductAttribute("SurFeEntidades")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SurFeEntidades")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
