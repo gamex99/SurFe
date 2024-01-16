@@ -154,8 +154,13 @@ namespace SurFeFront
             }
 
             BuscarCliente();
-        
-    }
+
+        }
+
+        private void dtgEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 } 
 

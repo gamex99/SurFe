@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [SurFe]    Script Date: 12/1/2024 17:49:24 ******/
+/****** Object:  Database [SurFe]    Script Date: 16/1/2024 18:43:54 ******/
 CREATE DATABASE [SurFe]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ ALTER DATABASE [SurFe] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POL
 GO
 USE [SurFe]
 GO
-/****** Object:  Table [dbo].[cliente]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  Table [dbo].[cliente]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,22 +92,26 @@ GO
 CREATE TABLE [dbo].[cliente](
 	[id_cliente] [int] IDENTITY(1,1) NOT NULL,
 	[razon_social] [varchar](50) NULL,
-	[idCondicionIVA] [varchar](50) NOT NULL,
-	[tipo_factura] [varchar](50) NULL,
+	[idCondicionIVA] [int] NOT NULL,
+	[tipo_factura] [int] NULL,
 	[cuit] [varchar](50) NULL,
 	[domicilio] [varchar](50) NULL,
-	[localidad] [varchar](50) NULL,
-	[provincia] [varchar](50) NULL,
+	[localidad] [int] NULL,
+	[provincia] [int] NULL,
 	[cp] [varchar](50) NULL,
 	[telefono] [varchar](50) NULL,
-	[anulado] [bit] NULL,
+	[anulado] [bit] NOT NULL,
+	[dni] [varchar](50) NULL,
+	[tipo_documento] [int] NULL,
+	[email] [varchar](50) NULL,
+	[barrio] [varchar](50) NULL,
  CONSTRAINT [PK_cliente] PRIMARY KEY CLUSTERED 
 (
 	[id_cliente] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[condicionIVA]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  Table [dbo].[condicionIVA]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -121,7 +125,17 @@ CREATE TABLE [dbo].[condicionIVA](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[producto]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  Table [dbo].[localidad]    Script Date: 16/1/2024 18:43:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[localidad](
+	[id] [int] NULL,
+	[localidad] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[producto]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,7 +152,71 @@ CREATE TABLE [dbo].[producto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[GetSurfe]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  Table [dbo].[provincia]    Script Date: 16/1/2024 18:43:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[provincia](
+	[id] [int] NULL,
+	[provincia] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tipo_documento]    Script Date: 16/1/2024 18:43:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tipo_documento](
+	[id] [int] NULL,
+	[descripcion] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tipo_factura]    Script Date: 16/1/2024 18:43:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tipo_factura](
+	[id] [int] NULL,
+	[descripcion] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[cliente] ON 
+GO
+INSERT [dbo].[cliente] ([id_cliente], [razon_social], [idCondicionIVA], [tipo_factura], [cuit], [domicilio], [localidad], [provincia], [cp], [telefono], [anulado], [dni], [tipo_documento], [email], [barrio]) VALUES (1, N'Facundo', 1, 1, N'2041', N'sdsadsa', 1, 1, N'2113', N'2164566545656456', 1, N'41637946', 1, N'sadadasd', N'sadsa')
+GO
+INSERT [dbo].[cliente] ([id_cliente], [razon_social], [idCondicionIVA], [tipo_factura], [cuit], [domicilio], [localidad], [provincia], [cp], [telefono], [anulado], [dni], [tipo_documento], [email], [barrio]) VALUES (2, N'Facundo Paron', 1, 1, N'15641564561', N'asdasdasasda', 2, 1, N'2113', N'asdadsadsad', 0, N'41637946', 1, N'asdadsadsad', N'sadadsasd')
+GO
+SET IDENTITY_INSERT [dbo].[cliente] OFF
+GO
+INSERT [dbo].[condicionIVA] ([idCondicionIVA], [descripcion]) VALUES (0, N'No especificado')
+GO
+INSERT [dbo].[condicionIVA] ([idCondicionIVA], [descripcion]) VALUES (1, N'Responsable Inscripto')
+GO
+INSERT [dbo].[condicionIVA] ([idCondicionIVA], [descripcion]) VALUES (2, N'Consumidor Final')
+GO
+INSERT [dbo].[condicionIVA] ([idCondicionIVA], [descripcion]) VALUES (3, N'Excento')
+GO
+INSERT [dbo].[localidad] ([id], [localidad]) VALUES (1, N'Peyrano')
+GO
+INSERT [dbo].[localidad] ([id], [localidad]) VALUES (2, N'Santa Teresa')
+GO
+INSERT [dbo].[localidad] ([id], [localidad]) VALUES (3, N'Rosario')
+GO
+INSERT [dbo].[provincia] ([id], [provincia]) VALUES (1, N'Santa Fe')
+GO
+INSERT [dbo].[tipo_documento] ([id], [descripcion]) VALUES (1, N'DNI')
+GO
+INSERT [dbo].[tipo_documento] ([id], [descripcion]) VALUES (2, N'LC')
+GO
+INSERT [dbo].[tipo_factura] ([id], [descripcion]) VALUES (1, N'A')
+GO
+INSERT [dbo].[tipo_factura] ([id], [descripcion]) VALUES (2, N'B')
+GO
+INSERT [dbo].[tipo_factura] ([id], [descripcion]) VALUES (3, N'C')
+GO
+/****** Object:  StoredProcedure [dbo].[GetSurfe]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -158,7 +236,63 @@ where c.idCondicionIVA =iva.idCondicionIVA and  ( Convert(nvarchar,c.id_cliente)
 (upper(razon_social ) like '%'+ upper(@filtro ) + '%' and anulado = 0))
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetSurfeNuevo]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  StoredProcedure [dbo].[GetSurFeFinal]    Script Date: 16/1/2024 18:43:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Otros procedimientos, declaraciones, etc.
+
+-- Nuevo procedimiento almacenado
+CREATE PROCEDURE [dbo].[GetSurFeFinal]
+    -- Parámetros
+    @filtro VARCHAR(50) = NULL
+AS
+BEGIN
+    -- Cuerpo del procedimiento
+    SET NOCOUNT ON;
+
+    SELECT 
+    c.id_cliente, 
+    c.razon_social, 
+    c.tipo_factura, 
+    c.cuit, 
+    c.domicilio, 
+    c.localidad, 
+    c.provincia, 
+    c.cp,
+    c.telefono, 
+    iva.descripcion AS CondicionIVA,
+    c.idCondicionIVA,
+    c.anulado,
+    loc.localidad AS localidad_loc,
+    prov.provincia AS provincia_prov,
+    tf.descripcion AS tipofactura,
+	td.descripcion as documento,
+	c.tipo_documento,
+	c.dni,
+	c.email,
+	c.barrio
+
+FROM 
+    cliente c
+INNER JOIN 
+    condicionIVA iva ON c.idCondicionIVA = iva.idCondicionIVA
+LEFT JOIN 
+    localidad loc ON c.localidad = loc.id
+LEFT JOIN 
+    provincia prov ON c.provincia = prov.id
+LEFT JOIN 
+    tipo_factura tf ON c.tipo_factura = tf.id
+	LEFT JOIN 
+	tipo_documento td on c.tipo_documento = td.id
+WHERE 
+    (CONVERT(NVARCHAR, c.id_cliente) LIKE '%' + @filtro + '%' AND c.anulado = 0) OR
+    (UPPER(razon_social) LIKE '%' + UPPER(@filtro) + '%' AND c.anulado = 0);
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetSurfeNuevo]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -186,6 +320,7 @@ BEGIN
         c.cp,
         c.telefono, 
         iva.descripcion AS CondicionIVA,
+		c.idCondicionIVA,
 		c.anulado
     FROM 
         cliente c
@@ -196,7 +331,7 @@ BEGIN
         (UPPER(razon_social) LIKE '%' + UPPER(@filtro) + '%' AND c.anulado = 0);
 END
 GO
-/****** Object:  StoredProcedure [dbo].[InsertSurfe]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  StoredProcedure [dbo].[InsertSurfe]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,11 +342,15 @@ CREATE PROCEDURE [dbo].[InsertSurfe]
  @tipo_factura varchar(50),
 @cuit varchar(50),
 @domicilio varchar(50),
-@localidad varchar(50),
+@localidad int,
 @provincia varchar(50),
 @cp varchar(50),
-@telefono varchar(50)
-
+@telefono varchar(50),
+@anulado bit,
+@tipo_documento int,
+@dni varchar(50),
+@barrio varchar(50),
+@email varchar(50)
 AS
 BEGIN
 INSERT INTO [dbo].[cliente]
@@ -224,7 +363,11 @@ INSERT INTO [dbo].[cliente]
            ,[provincia]
            ,[cp]
            ,[telefono]
-           ,[anulado])
+           ,[anulado]
+		   ,[tipo_documento]
+		   ,[dni]
+		   ,[barrio]
+		   ,[email])
      VALUES
            ( @razon_social,
  @idCondicionIVA ,
@@ -235,11 +378,15 @@ INSERT INTO [dbo].[cliente]
 @provincia,
 @cp,
 @telefono,
-0)
+0,
+@tipo_documento,
+@dni,
+@barrio,
+@email)
 select SCOPE_IDENTITY()
 end
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateSurfe]    Script Date: 12/1/2024 17:49:25 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateSurfe]    Script Date: 16/1/2024 18:43:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -251,11 +398,15 @@ CREATE PROCEDURE [dbo].[UpdateSurfe]
  @tipo_factura varchar(50),
 @cuit varchar(50),
 @domicilio varchar(50),
-@localidad varchar(50),
+@localidad int,
 @provincia varchar(50),
 @cp varchar(50),
 @telefono varchar(50),
-@anulado bit = 0
+@anulado bit,
+@tipo_documento int,
+@dni varchar(50),
+@barrio varchar(50),
+@email varchar(50)
 
 AS
 BEGIN
@@ -268,7 +419,11 @@ update cliente set
 	provincia = @provincia,
 	cp = @cp,
 	telefono = @telefono,
-	anulado = @anulado
+	anulado = @anulado,
+	tipo_documento = @tipo_documento,
+	dni = @dni,
+	barrio = @barrio,
+	email = email
 where cuit = @cuit
 end
 GO
@@ -276,3 +431,4 @@ USE [master]
 GO
 ALTER DATABASE [SurFe] SET  READ_WRITE 
 GO
+

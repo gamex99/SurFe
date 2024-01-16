@@ -32,17 +32,6 @@
             lblBuscar = new Label();
             txtBuscar = new TextBox();
             dtgEmpleados = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            razonsocialDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            condicionivaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            tipofacturaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            cuitDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            domicilioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            localidadDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            provinciaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            cpDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            telefonoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            anuladoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             clienteBindingSource = new BindingSource(components);
             btNuevo = new Button();
             btModificar = new Button();
@@ -50,6 +39,19 @@
             btSalir = new Button();
             comboBox1 = new ComboBox();
             btnConsultar = new Button();
+            razon_social = new DataGridViewTextBoxColumn();
+            condicion_iva = new DataGridViewTextBoxColumn();
+            cuit = new DataGridViewTextBoxColumn();
+            tipo_factura = new DataGridViewTextBoxColumn();
+            domicilio = new DataGridViewTextBoxColumn();
+            barrio = new DataGridViewTextBoxColumn();
+            localidad = new DataGridViewTextBoxColumn();
+            cp = new DataGridViewTextBoxColumn();
+            provincia = new DataGridViewTextBoxColumn();
+            telefono = new DataGridViewTextBoxColumn();
+            documento = new DataGridViewTextBoxColumn();
+            dni = new DataGridViewTextBoxColumn();
+            email = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgEmpleados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clienteBindingSource).BeginInit();
             SuspendLayout();
@@ -78,7 +80,7 @@
             dtgEmpleados.AllowUserToOrderColumns = true;
             dtgEmpleados.AutoGenerateColumns = false;
             dtgEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgEmpleados.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, razonsocialDataGridViewTextBoxColumn, condicionivaDataGridViewTextBoxColumn, tipofacturaDataGridViewTextBoxColumn, cuitDataGridViewTextBoxColumn, domicilioDataGridViewTextBoxColumn, localidadDataGridViewTextBoxColumn, provinciaDataGridViewTextBoxColumn, cpDataGridViewTextBoxColumn, telefonoDataGridViewTextBoxColumn, anuladoDataGridViewCheckBoxColumn });
+            dtgEmpleados.Columns.AddRange(new DataGridViewColumn[] { razon_social, condicion_iva, cuit, tipo_factura, domicilio, barrio, localidad, cp, provincia, telefono, documento, dni, email });
             dtgEmpleados.DataSource = clienteBindingSource;
             dtgEmpleados.ImeMode = ImeMode.Disable;
             dtgEmpleados.Location = new Point(12, 78);
@@ -87,83 +89,7 @@
             dtgEmpleados.RowTemplate.Height = 25;
             dtgEmpleados.Size = new Size(776, 316);
             dtgEmpleados.TabIndex = 2;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            idDataGridViewTextBoxColumn.HeaderText = "id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // razonsocialDataGridViewTextBoxColumn
-            // 
-            razonsocialDataGridViewTextBoxColumn.DataPropertyName = "razon_social";
-            razonsocialDataGridViewTextBoxColumn.HeaderText = "razon_social";
-            razonsocialDataGridViewTextBoxColumn.Name = "razonsocialDataGridViewTextBoxColumn";
-            razonsocialDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // condicionivaDataGridViewTextBoxColumn
-            // 
-            condicionivaDataGridViewTextBoxColumn.DataPropertyName = "condicion_iva";
-            condicionivaDataGridViewTextBoxColumn.HeaderText = "condicion_iva";
-            condicionivaDataGridViewTextBoxColumn.Name = "condicionivaDataGridViewTextBoxColumn";
-            condicionivaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tipofacturaDataGridViewTextBoxColumn
-            // 
-            tipofacturaDataGridViewTextBoxColumn.DataPropertyName = "tipo_factura";
-            tipofacturaDataGridViewTextBoxColumn.HeaderText = "tipo_factura";
-            tipofacturaDataGridViewTextBoxColumn.Name = "tipofacturaDataGridViewTextBoxColumn";
-            tipofacturaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cuitDataGridViewTextBoxColumn
-            // 
-            cuitDataGridViewTextBoxColumn.DataPropertyName = "cuit";
-            cuitDataGridViewTextBoxColumn.HeaderText = "cuit";
-            cuitDataGridViewTextBoxColumn.Name = "cuitDataGridViewTextBoxColumn";
-            cuitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // domicilioDataGridViewTextBoxColumn
-            // 
-            domicilioDataGridViewTextBoxColumn.DataPropertyName = "domicilio";
-            domicilioDataGridViewTextBoxColumn.HeaderText = "domicilio";
-            domicilioDataGridViewTextBoxColumn.Name = "domicilioDataGridViewTextBoxColumn";
-            domicilioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // localidadDataGridViewTextBoxColumn
-            // 
-            localidadDataGridViewTextBoxColumn.DataPropertyName = "localidad";
-            localidadDataGridViewTextBoxColumn.HeaderText = "localidad";
-            localidadDataGridViewTextBoxColumn.Name = "localidadDataGridViewTextBoxColumn";
-            localidadDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // provinciaDataGridViewTextBoxColumn
-            // 
-            provinciaDataGridViewTextBoxColumn.DataPropertyName = "provincia";
-            provinciaDataGridViewTextBoxColumn.HeaderText = "provincia";
-            provinciaDataGridViewTextBoxColumn.Name = "provinciaDataGridViewTextBoxColumn";
-            provinciaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cpDataGridViewTextBoxColumn
-            // 
-            cpDataGridViewTextBoxColumn.DataPropertyName = "cp";
-            cpDataGridViewTextBoxColumn.HeaderText = "cp";
-            cpDataGridViewTextBoxColumn.Name = "cpDataGridViewTextBoxColumn";
-            cpDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // telefonoDataGridViewTextBoxColumn
-            // 
-            telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
-            telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
-            telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
-            telefonoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // anuladoDataGridViewCheckBoxColumn
-            // 
-            anuladoDataGridViewCheckBoxColumn.DataPropertyName = "anulado";
-            anuladoDataGridViewCheckBoxColumn.HeaderText = "anulado";
-            anuladoDataGridViewCheckBoxColumn.Name = "anuladoDataGridViewCheckBoxColumn";
-            anuladoDataGridViewCheckBoxColumn.ReadOnly = true;
+            dtgEmpleados.CellContentClick += dtgEmpleados_CellContentClick;
             // 
             // clienteBindingSource
             // 
@@ -227,6 +153,97 @@
             btnConsultar.UseVisualStyleBackColor = true;
             btnConsultar.Click += btnConsultar_Click;
             // 
+            // razon_social
+            // 
+            razon_social.DataPropertyName = "razon_social";
+            razon_social.HeaderText = "Razon Social";
+            razon_social.Name = "razon_social";
+            razon_social.ReadOnly = true;
+            // 
+            // condicion_iva
+            // 
+            condicion_iva.DataPropertyName = "condicion_iva";
+            condicion_iva.HeaderText = "Condicion IVA";
+            condicion_iva.Name = "condicion_iva";
+            condicion_iva.ReadOnly = true;
+            // 
+            // cuit
+            // 
+            cuit.DataPropertyName = "cuit";
+            cuit.HeaderText = "CUIT";
+            cuit.Name = "cuit";
+            cuit.ReadOnly = true;
+            // 
+            // tipo_factura
+            // 
+            tipo_factura.DataPropertyName = "tipo_factura";
+            tipo_factura.HeaderText = "Factura Tipo";
+            tipo_factura.Name = "tipo_factura";
+            tipo_factura.ReadOnly = true;
+            // 
+            // domicilio
+            // 
+            domicilio.DataPropertyName = "domicilio";
+            domicilio.HeaderText = "Domicilio";
+            domicilio.Name = "domicilio";
+            domicilio.ReadOnly = true;
+            // 
+            // barrio
+            // 
+            barrio.DataPropertyName = "barrio";
+            barrio.HeaderText = "Barrio";
+            barrio.Name = "barrio";
+            barrio.ReadOnly = true;
+            // 
+            // localidad
+            // 
+            localidad.DataPropertyName = "localidad";
+            localidad.HeaderText = "Localidad";
+            localidad.Name = "localidad";
+            localidad.ReadOnly = true;
+            // 
+            // cp
+            // 
+            cp.DataPropertyName = "cp";
+            cp.HeaderText = "Codigo Postal";
+            cp.Name = "cp";
+            cp.ReadOnly = true;
+            // 
+            // provincia
+            // 
+            provincia.DataPropertyName = "provincia";
+            provincia.HeaderText = "Provincia";
+            provincia.Name = "provincia";
+            provincia.ReadOnly = true;
+            // 
+            // telefono
+            // 
+            telefono.DataPropertyName = "telefono";
+            telefono.HeaderText = "Telefono";
+            telefono.Name = "telefono";
+            telefono.ReadOnly = true;
+            // 
+            // documento
+            // 
+            documento.DataPropertyName = "documento";
+            documento.HeaderText = "Tipo Documento";
+            documento.Name = "documento";
+            documento.ReadOnly = true;
+            // 
+            // dni
+            // 
+            dni.DataPropertyName = "dni";
+            dni.HeaderText = "Numero";
+            dni.Name = "dni";
+            dni.ReadOnly = true;
+            // 
+            // email
+            // 
+            email.DataPropertyName = "email";
+            email.HeaderText = "E-Mail";
+            email.Name = "email";
+            email.ReadOnly = true;
+            // 
             // Cliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -261,18 +278,28 @@
         private Button btEliminar;
         private Button btSalir;
         private ComboBox comboBox1;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn razonsocialDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn condicionivaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn tipofacturaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cuitDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn domicilioDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn localidadDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn provinciaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cpDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
-        private DataGridViewCheckBoxColumn anuladoDataGridViewCheckBoxColumn;
         private BindingSource clienteBindingSource;
         private Button btnConsultar;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn id_condicion_iva;
+        private DataGridViewTextBoxColumn id_tipo_factura;
+        private DataGridViewTextBoxColumn id_pronvincia;
+        private DataGridViewTextBoxColumn id_localidad;
+        private DataGridViewCheckBoxColumn anulado;
+        private DataGridViewTextBoxColumn id_tipo_documento;
+        private DataGridViewTextBoxColumn id_provincia;
+        private DataGridViewTextBoxColumn razon_social;
+        private DataGridViewTextBoxColumn condicion_iva;
+        private DataGridViewTextBoxColumn cuit;
+        private DataGridViewTextBoxColumn tipo_factura;
+        private DataGridViewTextBoxColumn domicilio;
+        private DataGridViewTextBoxColumn barrio;
+        private DataGridViewTextBoxColumn localidad;
+        private DataGridViewTextBoxColumn cp;
+        private DataGridViewTextBoxColumn provincia;
+        private DataGridViewTextBoxColumn telefono;
+        private DataGridViewTextBoxColumn documento;
+        private DataGridViewTextBoxColumn dni;
+        private DataGridViewTextBoxColumn email;
     }
 }
