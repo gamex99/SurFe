@@ -19,7 +19,7 @@ namespace SurFeFront
 
         private void PDFView_Load(object sender, EventArgs e)
         {
-            axAcropdf1.src = "C:\\Users\\ParraX\\Desktop\\TestPDF\\elarchivo.pdf";
+            axAcropdf1.src = "C:\\Windows\\Temp\\elarchivo.pdf";
         }
     }
 }

@@ -1,86 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\pdfview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\pdfview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\pdfview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\pdfview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedHeight": 200,
-          "SelectedChildIndex": 3,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PDFView.cs",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PDFView.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\PDFView.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PDFView.cs",
-              "RelativeToolTip": "SurFeFront\\PDFView.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T00:19:55.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PDFView.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PDFView.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\PDFView.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PDFView.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SurFeFront\\PDFView.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T00:13:49.77Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form2.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Form2.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Form2.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Form2.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SurFeFront\\Form2.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T21:16:14.184Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form2.cs",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Form2.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Form2.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Form2.cs",
-              "RelativeToolTip": "SurFeFront\\Form2.cs",
-              "ViewState": "AQIAAK4BAAAAAAAAAAAQwLkBAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T21:03:04.741Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
