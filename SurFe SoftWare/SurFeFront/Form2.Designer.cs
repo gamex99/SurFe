@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             label1 = new Label();
             labelrazonsocial = new Label();
-            bindingSource1 = new BindingSource(components);
             button1 = new Button();
             labelcuit = new Label();
             labeldireccion = new Label();
@@ -54,12 +52,6 @@
             labeliva = new Label();
             btnagregar = new Button();
             btnbuscarart = new Button();
-            Codigo = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
-            Producto = new DataGridViewTextBoxColumn();
-            preciouni = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -136,8 +128,9 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Codigo, Cantidad, Producto, preciouni, Precio });
             dataGridView1.Location = new Point(40, 156);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -198,6 +191,7 @@
             button3.TabIndex = 13;
             button3.Text = "Aceptar";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -286,38 +280,6 @@
             btnbuscarart.UseVisualStyleBackColor = true;
             btnbuscarart.Click += btnbuscarart_Click;
             // 
-            // Codigo
-            // 
-            Codigo.HeaderText = "Codigo";
-            Codigo.Name = "Codigo";
-            Codigo.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.Name = "Cantidad";
-            Cantidad.ReadOnly = true;
-            // 
-            // Producto
-            // 
-            Producto.HeaderText = "Producto";
-            Producto.Name = "Producto";
-            Producto.ReadOnly = true;
-            Producto.Width = 350;
-            // 
-            // preciouni
-            // 
-            preciouni.HeaderText = "PrecioUnitario";
-            preciouni.Name = "preciouni";
-            preciouni.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            Precio.HeaderText = "Precio";
-            Precio.Name = "Precio";
-            Precio.ReadOnly = true;
-            Precio.Width = 125;
-            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -351,7 +313,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Punto de Venta";
             Load += Form2_Load;
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -361,7 +322,6 @@
 
         private Label label1;
         private Label labelrazonsocial;
-        private BindingSource bindingSource1;
         private Button button1;
         private Label labelcuit;
         private Label labeldireccion;
@@ -383,10 +343,5 @@
         private Label labeliva;
         private Button btnagregar;
         private Button btnbuscarart;
-        private DataGridViewTextBoxColumn Codigo;
-        private DataGridViewTextBoxColumn Cantidad;
-        private DataGridViewTextBoxColumn Producto;
-        private DataGridViewTextBoxColumn preciouni;
-        private DataGridViewTextBoxColumn Precio;
     }
 }

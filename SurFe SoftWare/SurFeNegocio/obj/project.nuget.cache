@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YjhqhMfq405Cc9msQyWm1YMGMqA8ZFjaOREKBDOOwh8qOfB6Plvy99FC8NkxC43yJXF5Qp1hPyTTA2is9BXGBw==",
+  "dgSpecHash": "ReNFTWgmTt9C7bbxgCXsvHQUuY0NGFFvSNMgL9m9nh7Aso+4cpHSS3H32wOmBDkBw1MCDH4L9fy+vTLgKm1R2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe_03-01-2024\\SurFeNegocio\\SurFeNegocio.csproj",
+  "projectFilePath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
@@ -18,10 +18,7 @@
     "C:\\Users\\ParraX\\.nuget\\packages\\system.security.cryptography.protecteddata\\7.0.0\\system.security.cryptography.protecteddata.7.0.0.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\system.security.permissions\\7.0.0\\system.security.permissions.7.0.0.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\ParraX\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
-    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
+    "C:\\Users\\ParraX\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

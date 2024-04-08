@@ -1,4 +1,5 @@
-﻿using SurFeEntidades;
+﻿using iTextSharp.tool.xml;
+using SurFeEntidades;
 using SurFeFront;
 using System;
 using System.Collections.Generic;
@@ -6,19 +7,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using System.IO;
+using Document = iTextSharp.text.Document;
+using iTextSharp.text.pdf;
+using iTextSharp.tool;
+using System.Diagnostics;
+
 
 namespace SurFe
 {
     public partial class Form2 : Form
     {
         private List<DetallesFactura> detalles = new List<DetallesFactura>();
+        string cuit;
+        string razonsocial;
+        string domicilio;
+        string localidad;
+        string tipo_factura;
         public Form2()
         {
             InitializeComponent();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -43,6 +59,11 @@ namespace SurFe
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            dataGridView1.Columns.Add("Codigo", "Codigo");
+            dataGridView1.Columns.Add("Cantidad", "Cantidad");
+            dataGridView1.Columns.Add("Producto", "Producto");
+            dataGridView1.Columns.Add("preciouni", "Precio Unitario");
+            dataGridView1.Columns.Add("Precio", "Precio");
 
         }
 
@@ -95,11 +116,18 @@ namespace SurFe
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // Obtener los datos del formulario secundario
-                string cuit = form.cuitselect;
-                string razonsocial = form.razonsocialselect;
-                string domicilio = form.domicilio;
-                string localidad = form.localidad;
-                string tipo_factura = form.factura_tipo;
+                //string cuit = form.cuitselect;
+                //string razonsocial = form.razonsocialselect;
+                //string domicilio = form.domicilio;
+                //string localidad = form.localidad;
+                //string tipo_factura = form.factura_tipo;
+
+
+                cuit = form.cuitselect;
+                razonsocial = form.razonsocialselect;
+                domicilio = form.domicilio;
+                localidad = form.localidad;
+                tipo_factura = form.factura_tipo;
 
 
                 // Puedes usar los datos como desees, por ejemplo, mostrarlos en un MessageBox
@@ -154,7 +182,7 @@ namespace SurFe
             decimal precio = (decimal)00;
             int stock = 0;
             int cantidad = int.Parse(txtcantidad.Text);
-            
+
 
             using (SqlConnection connection = new SqlConnection(conString))
             {
@@ -174,15 +202,15 @@ namespace SurFe
                             while (reader.Read())
                             {
                                 // Asigna los valores a las variables
-                                 barcode = reader["barcode"].ToString();
-                                 detalle = reader["detalle"].ToString();
-                                 precio = Convert.ToDecimal(reader["precio"]);
+                                barcode = reader["barcode"].ToString();
+                                detalle = reader["detalle"].ToString();
+                                precio = Convert.ToDecimal(reader["precio"]);
                                 stock = Convert.ToInt32(reader["stock"]);
 
-                               
+
                             }
                         }
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -190,10 +218,10 @@ namespace SurFe
                     }
                 }
             }
-            if(stock > 0)
+            if (stock > 0)
             {
                 decimal totalart = precio * cantidad;
-                dataGridView1.Rows.Add(barcode,cantidad, detalle,precio , totalart, stock);
+                dataGridView1.Rows.Add(barcode, cantidad, detalle, precio, totalart, stock);
                 RecalcularSuma();
             }
             else
@@ -239,7 +267,7 @@ namespace SurFe
         private void GuardarDatosEnBaseDeDatos()
         {
             string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            
+
             string consultaSql = "INSERT INTO TuTabla (Barcode, Detalle, Cantidad, PrecioUnitario, TotalPorProducto) " +
                                  "VALUES (@Barcode, @Detalle, @Cantidad, @PrecioUnitario, @TotalPorProducto); SELECT SCOPE_IDENTITY();";
 
@@ -271,6 +299,149 @@ namespace SurFe
                 {
                     MessageBox.Show("Error al guardar los datos en la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //METEMOS CODIGO PARA HACER EL PDF backup
+            /*
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+
+
+
+            //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
+
+            string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", cuit);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            string filas = string.Empty;
+            decimal total = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                filas += "<tr>";
+                filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Producto"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["preciouni"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
+                filas += "</tr>";
+                total += decimal.Parse(row.Cells["Precio"].Value.ToString());
             }
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
+
+
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    //Creamos un nuevo documento y lo definimos como PDF
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(new Phrase(""));
+
+                    //Agregamos la imagen del banner al documento
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.shop, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(60, 60);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                    //img.SetAbsolutePosition(10,100);
+                    img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
+                    pdfDoc.Add(img);
+
+
+                    //pdfDoc.Add(new Phrase("Hola Mundo"));
+                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+                Process.Start(savefile.FileName + ".pdf");
+            }
+
+
+            
+
+            //HASTA ACA PARA HACER EL PDF PA 
+            */
+            //METEMOS CODIGO PARA HACER EL PDF 
+
+
+
+
+
+
+            //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
+            string rutaArchivoPDF = @"C:\Users\ParraX\Desktop\TestPDF\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
+            string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", cuit);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            string filas = string.Empty;
+            decimal total = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                filas += "<tr>";
+                filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Producto"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["preciouni"].Value.ToString() + "</td>";
+                filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
+                filas += "</tr>";
+                total += decimal.Parse(row.Cells["Precio"].Value.ToString());
+            }
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
+
+
+
+
+
+            using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
+            {
+                //Creamos un nuevo documento y lo definimos como PDF
+                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+                pdfDoc.Add(new Phrase(""));
+
+                //Agregamos la imagen del banner al documento
+                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.shop, System.Drawing.Imaging.ImageFormat.Png);
+                img.ScaleToFit(60, 60);
+                img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                //img.SetAbsolutePosition(10,100);
+                img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
+                pdfDoc.Add(img);
+
+
+                //pdfDoc.Add(new Phrase("Hola Mundo"));
+                using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                }
+
+                pdfDoc.Close();
+                stream.Close();
+            }
+
+            PDFView formPDF = new PDFView();
+
+            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
+            formPDF.ShowDialog();
+
+
         }
     }
+}

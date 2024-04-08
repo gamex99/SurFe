@@ -25,6 +25,9 @@
     <Compile Update="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="RegistrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>

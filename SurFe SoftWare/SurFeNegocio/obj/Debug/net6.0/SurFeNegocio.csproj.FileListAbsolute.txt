@@ -50,3 +50,21 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeNegocio\obj\Debug\n
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeNegocio\obj\Debug\net6.0\refint\SurFeNegocio.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.pdb
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeNegocio\obj\Debug\net6.0\ref\SurFeNegocio.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeNegocio.deps.json
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeNegocio.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeNegocio.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeDatos.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeDatos.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.AssemblyReference.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.AssemblyInfoInputs.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.AssemblyInfo.cs
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.CoreCompileInputs.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.sourcelink.json
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNeg.AB884325.Up2Date
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\refint\SurFeNegocio.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\ref\SurFeNegocio.dll
