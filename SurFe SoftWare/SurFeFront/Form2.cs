@@ -308,7 +308,7 @@ namespace SurFe
 
 
             //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-            string rutaArchivoPDF = @"C:\Windows\Temp\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
+            string rutaArchivoPDF = @"C:\PDF\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
             string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", cuit);
