@@ -309,11 +309,12 @@ namespace SurFe
 
             //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
             string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-            string nombreArchivo = @"miarchivo.pdf";
+            string nombreArchivo = GetNombreArchivoFechaHora();
             string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
             //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
             string rutaArchivoPDF = nombreArchivo;
-            string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
+            //string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
+            string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            position: relative; \r\n            color: #fff; \r\n            background-color: #3498db; \r\n            padding: 10px 0; \r\n        }\r\n        .header img {\r\n            width: 250px; \r\n            height: auto; \r\n            position: absolute; \r\n        }\r\n        .header .left-img {\r\n            left: 10px; \r\n        }\r\n        .footer {\r\n            background-color: #f1c40f; \r\n        }\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db; \r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f; \r\n            color: #fff; \r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h4>CODIGO ESTUDIANTE</h4>\r\n            <p>Dirección: av. las águilas 123</p>\r\n            <p>Teléfono: 567-546-55</p>\r\n            \r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <tr>\r\n                    <td>RUC: 3434343434</td>\r\n                    <td class=\"highlight\">Presupuesto</td>\r\n                    <td>Nro: 00000111</td>\r\n                </tr>\r\n            </table>\r\n            <table>\r\n                <tr>\r\n                    <td>Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Documento:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOCUMENTO</td>\r\n                    <td>Fecha:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@FECHA</td>\r\n                </tr>\r\n            </table>\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        <th>P. Unitario</th>\r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@TOTAL</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p>Gracias por su compra</p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", cuit);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
@@ -373,6 +374,20 @@ namespace SurFe
                 formPDF.ShowDialog();
                 //eso es codigo para hacer el html del pdf
 
+        }
+        private static string GetNombreArchivoFechaHora()
+        {
+            // Obtener la fecha y hora actual
+            DateTime now = DateTime.Now;
+
+            // Formatear la fecha y hora en un formato de nombre de archivo
+            string nombreArchivoFormateado = now.ToString("yyyyMMdd_HHmmss");
+            
+            // Combinar el nombre con la extensión
+            string nombreArchivo = nombreArchivoFormateado + ".pdf";
+
+            // Devolver el nombre de archivo
+            return nombreArchivo;
         }
 
 
