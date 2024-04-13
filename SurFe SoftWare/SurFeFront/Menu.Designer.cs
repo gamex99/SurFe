@@ -82,7 +82,7 @@
             button1.Name = "button1";
             button1.Size = new Size(151, 43);
             button1.TabIndex = 4;
-            button1.Text = "CLIENTES";
+            button1.Text = "Facundo";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
@@ -165,7 +165,7 @@
             label2.TabIndex = 3;
             label2.Text = "SurFe®";
             // 
-            // Form1
+            // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -177,7 +177,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form1";
+            Name = "Menu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu Principal";
             Load += Form1_Load;
