@@ -68,3 +68,20 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\refint\SurFeNegocio.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.pdb
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\ref\SurFeNegocio.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeNegocio.deps.json
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeNegocio.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeNegocio.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeDatos.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeDatos.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\bin\Debug\net6.0\SurFeEntidades.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.AssemblyReference.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.GeneratedMSBuildEditorConfig.editorconfig
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.AssemblyInfoInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.AssemblyInfo.cs
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.CoreCompileInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.csproj.CopyComplete
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\refint\SurFeNegocio.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\SurFeNegocio.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeNegocio\obj\Debug\net6.0\ref\SurFeNegocio.dll

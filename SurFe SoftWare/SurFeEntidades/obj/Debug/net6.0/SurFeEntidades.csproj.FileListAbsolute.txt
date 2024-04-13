@@ -45,3 +45,15 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\n
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.deps.json
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.AssemblyReference.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.GeneratedMSBuildEditorConfig.editorconfig
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfoInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfo.cs
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.CoreCompileInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll

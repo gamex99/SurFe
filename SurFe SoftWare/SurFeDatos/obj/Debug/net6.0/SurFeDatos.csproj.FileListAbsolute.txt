@@ -60,3 +60,18 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\refint\SurFeDatos.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.pdb
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\ref\SurFeDatos.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeDatos.deps.json
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeDatos.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeDatos.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeEntidades.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.csproj.AssemblyReference.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.GeneratedMSBuildEditorConfig.editorconfig
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.AssemblyInfoInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.AssemblyInfo.cs
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.csproj.CoreCompileInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.csproj.CopyComplete
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\refint\SurFeDatos.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\ref\SurFeDatos.dll
