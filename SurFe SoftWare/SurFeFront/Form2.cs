@@ -304,11 +304,15 @@ namespace SurFe
         private void button3_Click(object sender, EventArgs e)
         {
             //METEMOS CODIGO PARA HACER EL PDF backup
-        
+
 
 
             //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-            string rutaArchivoPDF = @"C:\PDF\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
+            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
+            string nombreArchivo = @"miarchivo.pdf";
+            string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
+            //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
+            string rutaArchivoPDF = nombreArchivo;
             string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", cuit);
