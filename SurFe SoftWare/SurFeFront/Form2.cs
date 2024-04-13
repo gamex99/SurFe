@@ -367,11 +367,11 @@ namespace SurFe
                 stream.Close();
             }
 
-            PDFView formPDF = new PDFView();
+                PDFView formPDF = new PDFView(rutaCompletaArchivo);
 
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            formPDF.ShowDialog();
-            //eso es codigo para hacer el html del pdf
+                // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
+                formPDF.ShowDialog();
+                //eso es codigo para hacer el html del pdf
 
         }
 
