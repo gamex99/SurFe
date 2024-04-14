@@ -118,7 +118,7 @@
             // 
             cbxfactura.DisplayMember = "Tipo Factura";
             cbxfactura.FormattingEnabled = true;
-            cbxfactura.Items.AddRange(new object[] { "Factura A", "Factura B", "Factura C", "Presupuesto" });
+            cbxfactura.Items.AddRange(new object[] { "", "Factura A", "Factura B", "Factura C", "Presupuesto" });
             cbxfactura.Location = new Point(297, 32);
             cbxfactura.Name = "cbxfactura";
             cbxfactura.Size = new Size(121, 23);

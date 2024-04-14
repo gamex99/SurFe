@@ -19,6 +19,7 @@ using Document = iTextSharp.text.Document;
 using iTextSharp.text.pdf;
 using iTextSharp.tool;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace SurFe
@@ -30,7 +31,8 @@ namespace SurFe
         string razonsocial;
         string domicilio;
         string localidad;
-        string tipo_factura;
+        int tipo_factura;
+        string id_cliente1;
         public Form2()
         {
             InitializeComponent();
@@ -122,13 +124,13 @@ namespace SurFe
                 //string localidad = form.localidad;
                 //string tipo_factura = form.factura_tipo;
 
-
+                id_cliente1 = form.id_clienteselect;
                 cuit = form.cuitselect;
                 razonsocial = form.razonsocialselect;
                 domicilio = form.domicilio;
                 localidad = form.localidad;
-                tipo_factura = form.factura_tipo;
-
+                //tipo_factura = int.TryParse(form.factura_tipo);
+                int.TryParse(form.factura_tipo, out tipo_factura);
 
                 // Puedes usar los datos como desees, por ejemplo, mostrarlos en un MessageBox
                 labelrazonsocial.Text = "Razon Social: " + razonsocial;
@@ -142,9 +144,9 @@ namespace SurFe
                 labelcuit.Text = "CUIT: " + cuit;
                 labeldireccion.Text = "Direccion: " + domicilio;
                 labellocalidad.Text = "Localidad: " + localidad;
-
-                int.TryParse(tipo_factura, out int tipo_facutra_cbx);
-                cbxfactura.SelectedIndex = tipo_facutra_cbx;
+                cbxfactura.SelectedIndex = tipo_factura;
+               
+                //cbxfactura.SelectedIndex = tipo_facutra_cbx;
             }
         }
 
@@ -303,6 +305,8 @@ namespace SurFe
 
         private void button3_Click(object sender, EventArgs e)
         {
+
+           
             //METEMOS CODIGO PARA HACER EL PDF backup
 
 
@@ -366,9 +370,44 @@ namespace SurFe
 
                 pdfDoc.Close();
                 stream.Close();
-            }
+            }// aca vamo a mandar a la base de dato antes de abrir el pdf porque sino desp se traba y no anda pa 
 
-                PDFView formPDF = new PDFView(rutaCompletaArchivo);
+            string tipo_documento = tipo_factura.ToString();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            DateTime fechaActual = DateTime.Now;
+            command.Parameters.AddWithValue("@id_cliente", id_cliente1);
+            command.Parameters.AddWithValue("@tipo_documento", tipo_documento);
+            command.Parameters.AddWithValue("@fecha", fechaActual);
+            command.Parameters.AddWithValue("@total", total);
+            command.Parameters.AddWithValue("@location", nombreArchivo);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+
+            //hasta aca guardamos en la db
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //hasta aca guardamos en la db
+
+            PDFView formPDF = new PDFView(rutaCompletaArchivo);
 
                 // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
                 formPDF.ShowDialog();

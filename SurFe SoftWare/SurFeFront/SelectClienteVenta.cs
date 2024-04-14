@@ -18,6 +18,7 @@ namespace SurFeFront
         public string domicilio { get; private set; }
         public string localidad { get; private set; }
         public string factura_tipo {  get; private set; }  
+        public string id_clienteselect { get; private set; }
         public SelectClienteVenta()
         {
             InitializeComponent();
@@ -106,6 +107,7 @@ namespace SurFeFront
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+                id_clienteselect = row.Cells["id_cliente"].Value.ToString();
                 cuitselect = row.Cells["cuit"].Value.ToString();
                 razonsocialselect = row.Cells["razon_social"].Value.ToString();
                 domicilio = row.Cells["domicilio"].Value.ToString();
