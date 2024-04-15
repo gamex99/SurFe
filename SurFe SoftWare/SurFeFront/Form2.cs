@@ -20,6 +20,8 @@ using iTextSharp.text.pdf;
 using iTextSharp.tool;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static iTextSharp.text.pdf.events.IndexEvents;
 
 
 namespace SurFe
@@ -33,6 +35,7 @@ namespace SurFe
         string localidad;
         int tipo_factura;
         string id_cliente1;
+        int numero_factura;
         public Form2()
         {
             InitializeComponent();
@@ -145,7 +148,7 @@ namespace SurFe
                 labeldireccion.Text = "Direccion: " + domicilio;
                 labellocalidad.Text = "Localidad: " + localidad;
                 cbxfactura.SelectedIndex = tipo_factura;
-               
+
                 //cbxfactura.SelectedIndex = tipo_facutra_cbx;
             }
         }
@@ -305,8 +308,50 @@ namespace SurFe
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //aca metemos codigo para traer el numero de factura de la db 
 
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            int numero = 0;
            
+            
+               
+                
+                    connection.Open();
+
+                    string sqlQuery = "SELECT [numero] FROM [dbo].[numero_factura] WHERE [id_numero] = 1 ;";
+                    SqlCommand command2 = new SqlCommand(sqlQuery, connection);
+
+                    using (SqlDataReader reader = command2.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            
+                             numero = reader.GetInt32(0);
+
+                           
+                        }
+                    }
+               
+            
+           
+
+            string cadena = numero.ToString();
+
+            if (cadena.Length > 5)
+            {
+                // Trunca si tiene más de 5 caracteres
+                cadena = cadena.Substring(0, 5);
+            }
+            else if (cadena.Length < 5)
+            {
+                // Rellena con ceros si tiene menos de 5 caracteres
+                cadena = cadena.PadLeft(5, '0');
+            }
+
+            //hasta aca el numero de factura
+
+
             //METEMOS CODIGO PARA HACER EL PDF backup
 
 
@@ -318,10 +363,11 @@ namespace SurFe
             //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
             string rutaArchivoPDF = nombreArchivo;
             //string PaginaHTML_Texto = SurFeFront.Properties.Resources.Plantilla.ToString();
-            string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            position: relative; \r\n            color: #fff; \r\n            background-color: #3498db; \r\n            padding: 10px 0; \r\n        }\r\n        .header img {\r\n            width: 250px; \r\n            height: auto; \r\n            position: absolute; \r\n        }\r\n        .header .left-img {\r\n            left: 10px; \r\n        }\r\n        .footer {\r\n            background-color: #f1c40f; \r\n        }\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db; \r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f; \r\n            color: #fff; \r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h4>CODIGO ESTUDIANTE</h4>\r\n            <p>Dirección: av. las águilas 123</p>\r\n            <p>Teléfono: 567-546-55</p>\r\n            \r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <tr>\r\n                    <td>RUC: 3434343434</td>\r\n                    <td class=\"highlight\">Presupuesto</td>\r\n                    <td>Nro: 00000111</td>\r\n                </tr>\r\n            </table>\r\n            <table>\r\n                <tr>\r\n                    <td>Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Cuit:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOCUMENTO</td>\r\n                    <td>Fecha:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@FECHA</td>\r\n                </tr>\r\n            </table>\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        <th>P. Unitario</th>\r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@TOTAL</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p>Gracias por su compra</p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
+            string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            position: relative; \r\n            color: #fff; \r\n            background-color: #3498db; \r\n            padding: 10px 0; \r\n        }\r\n        .header img {\r\n            width: 250px; \r\n            height: auto; \r\n            position: absolute; \r\n        }\r\n        .header .left-img {\r\n            left: 10px; \r\n        }\r\n        .footer {\r\n            background-color: #f1c40f; \r\n        }\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db; \r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f; \r\n            color: #fff; \r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h4>CODIGO ESTUDIANTE</h4>\r\n            <p>Dirección: av. las águilas 123</p>\r\n            <p>Teléfono: 567-546-55</p>\r\n            \r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <tr>\r\n                    <td>RUC: 3434343434</td>\r\n                    <td class=\"highlight\">Presupuesto</td>\r\n                    <td>Nro: 0002-@NUMERO</td>\r\n                </tr>\r\n            </table>\r\n            <table>\r\n                <tr>\r\n                    <td>Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Cuit:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOCUMENTO</td>\r\n                    <td>Fecha:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@FECHA</td>\r\n                </tr>\r\n            </table>\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        <th>P. Unitario</th>\r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@TOTAL</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p>Gracias por su compra</p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", cuit);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMERO", cadena);
 
             string filas = string.Empty;
             decimal total = 0;
@@ -373,8 +419,8 @@ namespace SurFe
             }// aca vamo a mandar a la base de dato antes de abrir el pdf porque sino desp se traba y no anda pa 
 
             string tipo_documento = tipo_factura.ToString();
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
+           // string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+           // SqlConnection connection = new SqlConnection(connectionString);
             string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -384,7 +430,7 @@ namespace SurFe
             command.Parameters.AddWithValue("@fecha", fechaActual);
             command.Parameters.AddWithValue("@total", total);
             command.Parameters.AddWithValue("@location", nombreArchivo);
-            connection.Open();
+           // connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
 
@@ -409,9 +455,9 @@ namespace SurFe
 
             PDFView formPDF = new PDFView(rutaCompletaArchivo);
 
-                // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-                formPDF.ShowDialog();
-                //eso es codigo para hacer el html del pdf
+            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
+            formPDF.ShowDialog();
+            //eso es codigo para hacer el html del pdf
 
         }
         private static string GetNombreArchivoFechaHora()
@@ -421,7 +467,7 @@ namespace SurFe
 
             // Formatear la fecha y hora en un formato de nombre de archivo
             string nombreArchivoFormateado = now.ToString("yyyyMMdd_HHmmss");
-            
+
             // Combinar el nombre con la extensión
             string nombreArchivo = nombreArchivoFormateado + ".pdf";
 
@@ -429,6 +475,9 @@ namespace SurFe
             return nombreArchivo;
         }
 
-
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

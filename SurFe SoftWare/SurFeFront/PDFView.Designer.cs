@@ -39,14 +39,14 @@
             axAcropdf1.Location = new Point(12, 12);
             axAcropdf1.Name = "axAcropdf1";
             axAcropdf1.OcxState = (AxHost.State)resources.GetObject("axAcropdf1.OcxState");
-            axAcropdf1.Size = new Size(776, 426);
+            axAcropdf1.Size = new Size(1080, 725);
             axAcropdf1.TabIndex = 0;
             // 
             // PDFView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1104, 749);
             Controls.Add(axAcropdf1);
             Name = "PDFView";
             Text = "PDFView";
