@@ -186,7 +186,6 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows\Interop.AcroPDFLib.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows\AxInterop.AcroPDFLib.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.csproj.AssemblyReference.cache
-C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\Interop.PDFSHELLSERVERLib.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\Interop.Acrobat.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\Interop.AcroPDFLib.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\AxInterop.AcroPDFLib.dll
