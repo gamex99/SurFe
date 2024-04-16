@@ -57,10 +57,17 @@ namespace SurFe
             cl.ShowDialog();
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Productos Prod = new Productos();
+            Prod.ShowDialog();
+        }
+
         private void btSalir_Click(object sender, EventArgs e)
         {
             Close();
 
         }
+
     }
 }

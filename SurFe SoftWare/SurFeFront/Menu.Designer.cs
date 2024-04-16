@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             panel1 = new Panel();
+            button5 = new Button();
             btSalir = new Button();
             button1 = new Button();
             label3 = new Label();
@@ -48,6 +49,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Blue;
+            panel1.Controls.Add(button5);
             panel1.Controls.Add(btSalir);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label3);
@@ -59,6 +61,18 @@
             panel1.Size = new Size(178, 453);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.DodgerBlue;
+            button5.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Location = new Point(12, 258);
+            button5.Name = "button5";
+            button5.Size = new Size(151, 43);
+            button5.TabIndex = 6;
+            button5.Text = "PRODUCTOS";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // btSalir
             // 
@@ -91,11 +105,14 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(56, 25);
+            label3.ForeColor = SystemColors.ButtonHighlight;
+            label3.ImageAlign = ContentAlignment.TopCenter;
+            label3.Location = new Point(59, 25);
             label3.Name = "label3";
             label3.Size = new Size(55, 21);
             label3.TabIndex = 0;
             label3.Text = "MENU";
+            label3.UseMnemonic = false;
             // 
             // button4
             // 
@@ -201,5 +218,6 @@
         private Label label3;
         private Button button1;
         private Button btSalir;
+        private Button button5;
     }
 }

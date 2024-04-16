@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj": {}
+    "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj": {
+    "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
+        "projectUniqueName": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
         "projectName": "SurFeDatos",
-        "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
-        "packagesPath": "C:\\Users\\ParraX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\obj\\",
+        "projectPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
+        "packagesPath": "C:\\Users\\EZE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeDatos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ParraX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EZE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj": {
-                "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj"
+              "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj": {
+                "projectPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj"
               }
             }
           }
@@ -43,11 +43,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -79,24 +74,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj": {
+    "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj",
+        "projectUniqueName": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj",
         "projectName": "SurFeEntidades",
-        "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj",
-        "packagesPath": "C:\\Users\\ParraX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\obj\\",
+        "projectPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj",
+        "packagesPath": "C:\\Users\\EZE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ParraX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EZE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -118,11 +113,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -144,24 +134,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj": {
+    "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj",
+        "projectUniqueName": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj",
         "projectName": "SurFeNegocio",
-        "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj",
-        "packagesPath": "C:\\Users\\ParraX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeNegocio\\obj\\",
+        "projectPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeNegocio\\SurFeNegocio.csproj",
+        "packagesPath": "C:\\Users\\EZE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeNegocio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ParraX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EZE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -177,11 +167,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj": {
-                "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj"
+              "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj": {
+                "projectPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj"
               },
-              "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj": {
-                "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj"
+              "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj": {
+                "projectPath": "C:\\Users\\EZE\\Documents\\GitHub\\SurFe2\\SurFe\\SurFe SoftWare\\SurFeEntidades\\SurFeEntidades.csproj"
               }
             }
           }
@@ -190,11 +180,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -216,7 +201,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

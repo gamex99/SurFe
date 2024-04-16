@@ -51,12 +51,14 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = SystemColors.Menu;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(22, 27);
             label1.Name = "label1";
             label1.Size = new Size(116, 15);
             label1.TabIndex = 0;
             label1.Text = "NUEVO PRODUCTO";
+            label1.Click += label1_Click;
             // 
             // comboBox1
             // 
@@ -71,8 +73,10 @@
             // 
             // textBox1
             // 
+            textBox1.ForeColor = SystemColors.WindowText;
             textBox1.Location = new Point(22, 105);
             textBox1.Name = "textBox1";
+            textBox1.RightToLeft = RightToLeft.No;
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 2;
             textBox1.Text = "BarCode";
@@ -112,7 +116,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(51, 72);
+            label2.Location = new Point(46, 72);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 7;
@@ -148,7 +152,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(457, 67);
+            label6.Location = new Point(457, 72);
             label6.Name = "label6";
             label6.Size = new Size(81, 15);
             label6.TabIndex = 11;
@@ -157,12 +161,13 @@
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.Menu;
             button1.Location = new Point(411, 192);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 12;
             button1.Text = "Cargar";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
@@ -173,6 +178,7 @@
             button2.TabIndex = 13;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // groupBox1
             // 
@@ -211,6 +217,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Menu;
             ClientSize = new Size(591, 227);
             Controls.Add(groupBox1);
             Controls.Add(button2);
@@ -227,9 +234,10 @@
             Controls.Add(textBox1);
             Controls.Add(comboBox1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form3";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form3";
+            Text = "Nuevo Producto";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

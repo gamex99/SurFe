@@ -75,3 +75,18 @@ D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\Su
 D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\refint\SurFeDatos.dll
 D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.pdb
 D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\ref\SurFeDatos.dll
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeDatos.deps.json
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeDatos.dll
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeDatos.pdb
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeEntidades.dll
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\bin\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.csproj.AssemblyReference.cache
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.AssemblyInfoInputs.cache
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.AssemblyInfo.cs
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.csproj.CoreCompileInputs.cache
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.csproj.CopyComplete
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.dll
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\refint\SurFeDatos.dll
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\SurFeDatos.pdb
+C:\Users\EZE\Documents\GitHub\SurFe2\SurFe\SurFe SoftWare\SurFeDatos\obj\Debug\net6.0\ref\SurFeDatos.dll
