@@ -19,6 +19,7 @@ namespace SurFeFront
         public string localidad { get; private set; }
         public string factura_tipo {  get; private set; }  
         public string id_clienteselect { get; private set; }
+        public string condicioniva { get; private set; }
         public SelectClienteVenta()
         {
             InitializeComponent();
@@ -113,6 +114,7 @@ namespace SurFeFront
                 domicilio = row.Cells["domicilio"].Value.ToString();
                 localidad = row.Cells["localidad_loc"].Value.ToString();
                 factura_tipo = row.Cells["tipo_factura"].Value.ToString();
+                condicioniva = row.Cells["CondicionIva"].Value.ToString();
                 // Establecer el resultado del cuadro de diálogo como OK
                 DialogResult = DialogResult.OK;
 

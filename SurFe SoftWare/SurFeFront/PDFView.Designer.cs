@@ -50,6 +50,7 @@
             Controls.Add(axAcropdf1);
             Name = "PDFView";
             Text = "PDFView";
+            FormClosing += PDFView_FormClosing;
             Load += PDFView_Load;
             ((System.ComponentModel.ISupportInitialize)axAcropdf1).EndInit();
             ResumeLayout(false);

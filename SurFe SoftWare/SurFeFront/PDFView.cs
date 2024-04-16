@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurFe;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,7 @@ namespace SurFeFront
         public PDFView(string recibido)
         {
             InitializeComponent();
-           
+
             this.rutaCompletaArchivo = recibido;
         }
 
@@ -25,6 +26,10 @@ namespace SurFeFront
             //axAcropdf1.src = "C:\\PDF\\elarchivo.pdf";
             axAcropdf1.src = rutaCompletaArchivo;
             //tengo que agregar un valor que me traiga desde el form2 para vizualizar el ultimo archivo
+        }
+
+        private void PDFView_FormClosing(object sender, FormClosingEventArgs e)
+        {
         }
     }
 }
