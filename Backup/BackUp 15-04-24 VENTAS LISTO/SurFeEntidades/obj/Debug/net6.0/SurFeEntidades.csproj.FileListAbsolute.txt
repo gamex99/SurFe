@@ -1,0 +1,59 @@
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.deps.json
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.dll
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.AssemblyReference.cache
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfoInputs.cache
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfo.cs
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.CoreCompileInputs.cache
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.dll
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\Luichi\Desktop\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.deps.json
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfoInputs.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfo.cs
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.CoreCompileInputs.cache
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX'PC\Documents\GitHub\SurFe\SurFeFront\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.deps.json
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfoInputs.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfo.cs
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.CoreCompileInputs.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.sourcelink.json
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe_03-01-2024\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.deps.json
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfoInputs.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfo.cs
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.CoreCompileInputs.cache
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.sourcelink.json
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.deps.json
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\bin\Debug\net6.0\SurFeEntidades.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.AssemblyReference.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.GeneratedMSBuildEditorConfig.editorconfig
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfoInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.AssemblyInfo.cs
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.csproj.CoreCompileInputs.cache
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\refint\SurFeEntidades.dll
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\SurFeEntidades.pdb
+D:\PCeluisca\ISSD\Tercer Año\Segundo semestre\PP2\SURFE\SurFe\SurFe SoftWare\SurFeEntidades\obj\Debug\net6.0\ref\SurFeEntidades.dll
