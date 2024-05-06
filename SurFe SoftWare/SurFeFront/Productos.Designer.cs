@@ -33,10 +33,10 @@
             button3 = new Button();
             button5 = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tbBuscar = new TextBox();
+            dataProductos = new DataGridView();
+            cbcategorias = new ComboBox();
+            ((System.ComponentModel.ISupportInitialize)dataProductos).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -87,38 +87,40 @@
             label1.TabIndex = 5;
             label1.Text = "Buscar";
             // 
-            // textBox1
+            // tbBuscar
             // 
-            textBox1.Location = new Point(60, 40);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(225, 23);
-            textBox1.TabIndex = 6;
+            tbBuscar.Location = new Point(60, 40);
+            tbBuscar.Name = "tbBuscar";
+            tbBuscar.Size = new Size(225, 23);
+            tbBuscar.TabIndex = 6;
+            tbBuscar.TextChanged += tbBuscar_TextChanged;
             // 
-            // comboBox1
+            // dataProductos
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(317, 40);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 23);
-            comboBox1.TabIndex = 7;
+            dataProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataProductos.Location = new Point(12, 69);
+            dataProductos.Name = "dataProductos";
+            dataProductos.RowTemplate.Height = 25;
+            dataProductos.Size = new Size(665, 287);
+            dataProductos.TabIndex = 8;
             // 
-            // dataGridView1
+            // cbcategorias
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 69);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(665, 287);
-            dataGridView1.TabIndex = 8;
+            cbcategorias.FormattingEnabled = true;
+            cbcategorias.Location = new Point(317, 40);
+            cbcategorias.Name = "cbcategorias";
+            cbcategorias.Size = new Size(151, 23);
+            cbcategorias.TabIndex = 7;
+            cbcategorias.TextChanged += cbcategorias_TextChanged;
             // 
             // Productos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(689, 397);
-            Controls.Add(dataGridView1);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
+            Controls.Add(dataProductos);
+            Controls.Add(cbcategorias);
+            Controls.Add(tbBuscar);
             Controls.Add(label1);
             Controls.Add(button5);
             Controls.Add(button3);
@@ -126,7 +128,7 @@
             Controls.Add(button1);
             Name = "Productos";
             Text = "Productos";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -138,8 +140,8 @@
         private Button button3;
         private Button button5;
         private Label label1;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
-        private DataGridView dataGridView1;
+        private TextBox tbBuscar;
+        private DataGridView dataProductos;
+        private ComboBox cbcategorias;
     }
 }
