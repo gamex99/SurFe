@@ -110,7 +110,7 @@ namespace SurFe
 
         private void nuevoProductoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 newMDIChild = new Form3();
+            CargarProducto newMDIChild = new CargarProducto();
             // Set the parent form of the child window.  
             newMDIChild.MdiParent = this;
             // Display the new form.  

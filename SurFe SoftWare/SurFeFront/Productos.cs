@@ -17,31 +17,41 @@ namespace SurFeFront
     public partial class Productos : Form
     {
 
+
         public Productos()
         {
             InitializeComponent();
             getCategorias();
             buscarDatos();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form3 NewProd = new Form3();
-            //NewProd.modo = EnumModoForm.Alta;               
+            CargarProducto NewProd = new CargarProducto();
+            NewProd.modo = EnumModoForm.Alta;
             NewProd.ShowDialog();
             NewProd.FormClosed += delegate
             {
                 buscarDatos();
             };
-            
 
-            
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1 ConsProd = new Form1();
+            CargarProducto ConsProd = new CargarProducto();
+            ConsProd.modo = EnumModoForm.Modificacion;
             ConsProd.ShowDialog();
+
+            EnviarDatos();
+            ConsProd.FormClosed += delegate
+            {
+                buscarDatos();
+            };
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -137,6 +147,28 @@ namespace SurFeFront
         private void cbcategorias_TextChanged(object sender, EventArgs e)
         {
             buscarDatos();
+        }
+
+        private void EnviarDatos()
+        {
+
+
+        }
+
+        private void dataProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ClaseCompartida.categoria = (int)dataProductos.Rows[e.RowIndex].Cells[6].Value;
+            ClaseCompartida.barcode = (int)dataProductos.Rows[e.RowIndex].Cells[1].Value;
+            ClaseCompartida.detalle = (string)dataProductos.Rows[e.RowIndex].Cells[2].Value;
+            ClaseCompartida.stock = (int)dataProductos.Rows[e.RowIndex].Cells[3].Value;
+            ClaseCompartida.precio = (decimal)dataProductos.Rows[e.RowIndex].Cells[4].Value;
+        }
+
+        private void btncons_Click(object sender, EventArgs e)
+        {
+            CargarProducto ConsProd = new CargarProducto();
+            ConsProd.modo = EnumModoForm.Consulta;
+            ConsProd.ShowDialog();
         }
     }
 }

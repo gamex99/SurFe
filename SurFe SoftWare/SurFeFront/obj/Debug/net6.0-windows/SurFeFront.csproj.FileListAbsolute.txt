@@ -319,10 +319,10 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\AxInterop.AcroPDFLib.dll
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.csproj.ResolveComReference.cache
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront..resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFe.CargarProducto.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.Cliente.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.Form1.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFe.Form2.resources
-C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFe.Form3.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFe.Form4.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.Login.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFe.MDIParent1.resources

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnConsulta = new Button();
+            btncons = new Button();
             button5 = new Button();
             label1 = new Label();
             tbBuscar = new TextBox();
@@ -49,24 +49,25 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
+            // btnConsulta
             // 
-            button2.Location = new Point(93, 362);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "Consultar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnConsulta.Location = new Point(93, 362);
+            btnConsulta.Name = "btnConsulta";
+            btnConsulta.Size = new Size(75, 23);
+            btnConsulta.TabIndex = 1;
+            btnConsulta.Text = "Modificacion";
+            btnConsulta.UseVisualStyleBackColor = true;
+            btnConsulta.Click += button2_Click;
             // 
-            // button3
+            // btncons
             // 
-            button3.Location = new Point(174, 362);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 2;
-            button3.Text = "Eliminar";
-            button3.UseVisualStyleBackColor = true;
+            btncons.Location = new Point(174, 362);
+            btncons.Name = "btncons";
+            btncons.Size = new Size(75, 23);
+            btncons.TabIndex = 2;
+            btncons.Text = "Consulta";
+            btncons.UseVisualStyleBackColor = true;
+            btncons.Click += btncons_Click;
             // 
             // button5
             // 
@@ -103,6 +104,7 @@
             dataProductos.RowTemplate.Height = 25;
             dataProductos.Size = new Size(665, 287);
             dataProductos.TabIndex = 8;
+            dataProductos.CellClick += dataProductos_CellClick;
             // 
             // cbcategorias
             // 
@@ -123,8 +125,8 @@
             Controls.Add(tbBuscar);
             Controls.Add(label1);
             Controls.Add(button5);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(btncons);
+            Controls.Add(btnConsulta);
             Controls.Add(button1);
             Name = "Productos";
             Text = "Productos";
@@ -136,8 +138,8 @@
         #endregion
 
         private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnConsulta;
+        private Button btncons;
         private Button button5;
         private Label label1;
         private TextBox tbBuscar;
