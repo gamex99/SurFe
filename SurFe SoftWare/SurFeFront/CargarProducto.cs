@@ -36,36 +36,40 @@ namespace SurFe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Guardar();
-            if (modo == EnumModoForm.Alta)
+            if (validarcontroles() == true)
             {
 
-                if (rbOtroSi.Checked)
+                Guardar();
+                if (modo == EnumModoForm.Alta)
                 {
-                    LimpiarControles();
-                }
-                else if (rbOtroNo.Checked)
-                {
-                    this.Close();
-                }
-                else if (!rbOtroNo.Checked & !rbOtroSi.Checked)
-                {
-                    DialogResult result = MessageBox.Show("¿Desea cargar otro producto?", "Mensaje de confirmación",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    switch (result)
+                    if (rbOtroSi.Checked)
                     {
-                        case DialogResult.Yes:
-                            LimpiarControles(); // Call your function to clear controls
-                            break;
-                        case DialogResult.No:
-                            this.Close();
-                            break;
+                        LimpiarControles();
+                    }
+                    else if (rbOtroNo.Checked)
+                    {
+                        this.Close();
+                    }
+                    else if (!rbOtroNo.Checked & !rbOtroSi.Checked)
+                    {
+                        DialogResult result = MessageBox.Show("¿Desea cargar otro producto?", "Mensaje de confirmación",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                LimpiarControles(); // Call your function to clear controls
+                                break;
+                            case DialogResult.No:
+                                this.Close();
+                                break;
+
+                        }
                     }
                 }
+                else { this.Close(); }
             }
-            else { this.Close(); }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -192,6 +196,50 @@ namespace SurFe
             tbprecio.Text = ClaseCompartida.precio.ToString();
             tbstock.Text = ClaseCompartida.stock.ToString();
 
+        }
+        private bool validarcontroles()
+        {
+            if(cbCategoria.SelectedIndex > -1)
+            {
+                if(tbbarcode.Text.Length > 0 && int.TryParse(tbbarcode.Text, out int barcode))
+                {
+                    if (tbdetalle.Text.Length > 0)
+                    {
+                        if(tbstock.Text.Length > 0)
+                        {
+                            if(tbprecio.Text.Length > 0 && (decimal.TryParse(tbprecio.Text, out decimal precio) || int.TryParse(tbprecio.Text, out int precioo)))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Falta cargar precio o no es decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return false;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Falta cargar stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falta cargar detalle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                else { 
+                    MessageBox.Show("Falta cargar barcode o no es un numero entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            } else
+            {
+                MessageBox.Show("Cargar Categoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
     }

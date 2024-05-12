@@ -170,5 +170,61 @@ namespace SurFeFront
             ConsProd.modo = EnumModoForm.Consulta;
             ConsProd.ShowDialog();
         }
+
+        private void btneliminar_Click(object sender, EventArgs e)
+        {
+            int ideliminar = (int)dataProductos.SelectedCells[0].Value;
+            DialogResult result = MessageBox.Show("¿Desea eliminar el producto" + (string)dataProductos.SelectedCells[2].Value + "?", "Mensaje de confirmación",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    borrarproducto(ideliminar);
+                    buscarDatos();
+
+                    break;
+                case DialogResult.No:
+                    
+                    break;
+
+            }
+        }
+        private void borrarproducto(int idEliminar)
+        {
+            string errorMessage = null;
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("DELETE FROM producto WHERE id = @ideliminar", connection))
+                    {
+                        command.Parameters.AddWithValue("@ideliminar", idEliminar);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                errorMessage = ex.Message;
+            }
+
+            if (errorMessage != null)
+            {
+                MessageBox.Show("Error al cargar producto", "" + errorMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+                MessageBox.Show("Producto borrado correctamente", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
     }
 }

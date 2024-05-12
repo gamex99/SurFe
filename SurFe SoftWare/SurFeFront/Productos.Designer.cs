@@ -36,6 +36,7 @@
             tbBuscar = new TextBox();
             dataProductos = new DataGridView();
             cbcategorias = new ComboBox();
+            btneliminar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataProductos).BeginInit();
             SuspendLayout();
             // 
@@ -115,11 +116,22 @@
             cbcategorias.TabIndex = 7;
             cbcategorias.TextChanged += cbcategorias_TextChanged;
             // 
+            // btneliminar
+            // 
+            btneliminar.Location = new Point(255, 362);
+            btneliminar.Name = "btneliminar";
+            btneliminar.Size = new Size(75, 23);
+            btneliminar.TabIndex = 9;
+            btneliminar.Text = "Eliminar";
+            btneliminar.UseVisualStyleBackColor = true;
+            btneliminar.Click += btneliminar_Click;
+            // 
             // Productos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(689, 397);
+            Controls.Add(btneliminar);
             Controls.Add(dataProductos);
             Controls.Add(cbcategorias);
             Controls.Add(tbBuscar);
@@ -145,5 +157,6 @@
         private TextBox tbBuscar;
         private DataGridView dataProductos;
         private ComboBox cbcategorias;
+        private Button btneliminar;
     }
 }
