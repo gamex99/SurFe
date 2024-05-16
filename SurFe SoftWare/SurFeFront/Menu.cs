@@ -26,7 +26,7 @@ namespace SurFe
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2();
+            PuntoDeVenta frm = new PuntoDeVenta();
 
 
 
@@ -35,7 +35,7 @@ namespace SurFe
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MDIParent1 frm1 = new MDIParent1();
+            Deposito frm1 = new Deposito();
 
 
 
@@ -44,7 +44,7 @@ namespace SurFe
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MDIParent2 frm2 = new MDIParent2();
+            Informes frm2 = new Informes();
 
 
 

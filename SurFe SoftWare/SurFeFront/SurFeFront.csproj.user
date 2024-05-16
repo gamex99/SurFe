@@ -13,7 +13,7 @@
     <Compile Update="Productos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form2.cs">
+    <Compile Update="PuntoDeVenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form4.cs">
@@ -22,10 +22,10 @@
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MDIParent1.cs">
+    <Compile Update="Deposito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MDIParent2.cs">
+    <Compile Update="Informes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Menu.cs">
@@ -37,10 +37,13 @@
     <Compile Update="RegistrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="RegistrarStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SelectClienteVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SelectProductoVenta.cs">
+    <Compile Update="SelectProducto.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
