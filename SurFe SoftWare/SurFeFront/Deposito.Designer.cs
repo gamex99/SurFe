@@ -33,23 +33,16 @@
             menuStrip = new MenuStrip();
             fileMenu = new ToolStripMenuItem();
             nuevoProductoToolStripMenuItem = new ToolStripMenuItem();
-            actualizarStockToolStripMenuItem = new ToolStripMenuItem();
-            actualizarStockPorListaToolStripMenuItem = new ToolStripMenuItem();
-            actualizarStockPorUnicoProductoToolStripMenuItem = new ToolStripMenuItem();
-            bajaDeStockToolStripMenuItem = new ToolStripMenuItem();
-            porRoturaToolStripMenuItem = new ToolStripMenuItem();
-            antiguedadToolStripMenuItem = new ToolStripMenuItem();
-            perdidaToolStripMenuItem = new ToolStripMenuItem();
-            proveedorToolStripMenuItem = new ToolStripMenuItem();
-            cargarRemitoDeCompraToolStripMenuItem = new ToolStripMenuItem();
-            toolTip = new ToolTip(components);
             registrarStockToolStripMenuItem = new ToolStripMenuItem();
+            consultarStockPorProductoToolStripMenuItem = new ToolStripMenuItem();
+            bajaStockPorRoturaPerdidaToolStripMenuItem = new ToolStripMenuItem();
+            toolTip = new ToolTip(components);
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenu, registrarStockToolStripMenuItem, actualizarStockToolStripMenuItem, proveedorToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenu, registrarStockToolStripMenuItem, consultarStockPorProductoToolStripMenuItem, bajaStockPorRoturaPerdidaToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(7, 2, 0, 2);
@@ -69,66 +62,9 @@
             // nuevoProductoToolStripMenuItem
             // 
             nuevoProductoToolStripMenuItem.Name = "nuevoProductoToolStripMenuItem";
-            nuevoProductoToolStripMenuItem.Size = new Size(180, 22);
+            nuevoProductoToolStripMenuItem.Size = new Size(161, 22);
             nuevoProductoToolStripMenuItem.Text = "Nuevo Producto";
             nuevoProductoToolStripMenuItem.Click += nuevoProductoToolStripMenuItem_Click;
-            // 
-            // actualizarStockToolStripMenuItem
-            // 
-            actualizarStockToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { actualizarStockPorListaToolStripMenuItem, actualizarStockPorUnicoProductoToolStripMenuItem, bajaDeStockToolStripMenuItem });
-            actualizarStockToolStripMenuItem.Name = "actualizarStockToolStripMenuItem";
-            actualizarStockToolStripMenuItem.Size = new Size(103, 20);
-            actualizarStockToolStripMenuItem.Text = "Actualizar Stock";
-            // 
-            // actualizarStockPorListaToolStripMenuItem
-            // 
-            actualizarStockPorListaToolStripMenuItem.Name = "actualizarStockPorListaToolStripMenuItem";
-            actualizarStockPorListaToolStripMenuItem.Size = new Size(263, 22);
-            actualizarStockPorListaToolStripMenuItem.Text = "Actualizar stock por lista";
-            // 
-            // actualizarStockPorUnicoProductoToolStripMenuItem
-            // 
-            actualizarStockPorUnicoProductoToolStripMenuItem.Name = "actualizarStockPorUnicoProductoToolStripMenuItem";
-            actualizarStockPorUnicoProductoToolStripMenuItem.Size = new Size(263, 22);
-            actualizarStockPorUnicoProductoToolStripMenuItem.Text = "Actualizar stock por unico producto";
-            // 
-            // bajaDeStockToolStripMenuItem
-            // 
-            bajaDeStockToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { porRoturaToolStripMenuItem, antiguedadToolStripMenuItem, perdidaToolStripMenuItem });
-            bajaDeStockToolStripMenuItem.Name = "bajaDeStockToolStripMenuItem";
-            bajaDeStockToolStripMenuItem.Size = new Size(263, 22);
-            bajaDeStockToolStripMenuItem.Text = "Baja de stock";
-            // 
-            // porRoturaToolStripMenuItem
-            // 
-            porRoturaToolStripMenuItem.Name = "porRoturaToolStripMenuItem";
-            porRoturaToolStripMenuItem.Size = new Size(136, 22);
-            porRoturaToolStripMenuItem.Text = "Rotura";
-            // 
-            // antiguedadToolStripMenuItem
-            // 
-            antiguedadToolStripMenuItem.Name = "antiguedadToolStripMenuItem";
-            antiguedadToolStripMenuItem.Size = new Size(136, 22);
-            antiguedadToolStripMenuItem.Text = "Antiguedad";
-            // 
-            // perdidaToolStripMenuItem
-            // 
-            perdidaToolStripMenuItem.Name = "perdidaToolStripMenuItem";
-            perdidaToolStripMenuItem.Size = new Size(136, 22);
-            perdidaToolStripMenuItem.Text = "Perdida";
-            // 
-            // proveedorToolStripMenuItem
-            // 
-            proveedorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cargarRemitoDeCompraToolStripMenuItem });
-            proveedorToolStripMenuItem.Name = "proveedorToolStripMenuItem";
-            proveedorToolStripMenuItem.Size = new Size(73, 20);
-            proveedorToolStripMenuItem.Text = "Proveedor";
-            // 
-            // cargarRemitoDeCompraToolStripMenuItem
-            // 
-            cargarRemitoDeCompraToolStripMenuItem.Name = "cargarRemitoDeCompraToolStripMenuItem";
-            cargarRemitoDeCompraToolStripMenuItem.Size = new Size(207, 22);
-            cargarRemitoDeCompraToolStripMenuItem.Text = "Cargar remito de compra";
             // 
             // registrarStockToolStripMenuItem
             // 
@@ -136,6 +72,20 @@
             registrarStockToolStripMenuItem.Size = new Size(97, 20);
             registrarStockToolStripMenuItem.Text = "Registrar Stock";
             registrarStockToolStripMenuItem.Click += registrarStockToolStripMenuItem_Click;
+            // 
+            // consultarStockPorProductoToolStripMenuItem
+            // 
+            consultarStockPorProductoToolStripMenuItem.Name = "consultarStockPorProductoToolStripMenuItem";
+            consultarStockPorProductoToolStripMenuItem.Size = new Size(175, 20);
+            consultarStockPorProductoToolStripMenuItem.Text = "Consultar Stock Por Producto";
+            consultarStockPorProductoToolStripMenuItem.Click += consultarStockPorProductoToolStripMenuItem_Click;
+            // 
+            // bajaStockPorRoturaPerdidaToolStripMenuItem
+            // 
+            bajaStockPorRoturaPerdidaToolStripMenuItem.Name = "bajaStockPorRoturaPerdidaToolStripMenuItem";
+            bajaStockPorRoturaPerdidaToolStripMenuItem.Size = new Size(283, 20);
+            bajaStockPorRoturaPerdidaToolStripMenuItem.Text = "Actualizar Stock Por Perdida, Rotura o Antiguedad";
+            bajaStockPorRoturaPerdidaToolStripMenuItem.Click += bajaStockPorRoturaPerdidaToolStripMenuItem_Click;
             // 
             // Deposito
             // 
@@ -163,16 +113,9 @@
         private ToolStripMenuItem fileMenu;
         private ToolTip toolTip;
         private ToolStripMenuItem nuevoProductoToolStripMenuItem;
-        private ToolStripMenuItem actualizarStockToolStripMenuItem;
-        private ToolStripMenuItem actualizarStockPorListaToolStripMenuItem;
-        private ToolStripMenuItem actualizarStockPorUnicoProductoToolStripMenuItem;
-        private ToolStripMenuItem bajaDeStockToolStripMenuItem;
-        private ToolStripMenuItem porRoturaToolStripMenuItem;
-        private ToolStripMenuItem antiguedadToolStripMenuItem;
-        private ToolStripMenuItem perdidaToolStripMenuItem;
-        private ToolStripMenuItem proveedorToolStripMenuItem;
-        private ToolStripMenuItem cargarRemitoDeCompraToolStripMenuItem;
         private ToolStripMenuItem registrarStockToolStripMenuItem;
+        private ToolStripMenuItem consultarStockPorProductoToolStripMenuItem;
+        private ToolStripMenuItem bajaStockPorRoturaPerdidaToolStripMenuItem;
     }
 }
 

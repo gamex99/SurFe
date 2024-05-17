@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurFeFront;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -101,6 +102,15 @@ namespace SurFe
         private void porProductoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form4 newMDIChild = new Form4();
+            // Set the parent form of the child window.  
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
+        }
+
+        private void porFaltanteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InformeFaltantes newMDIChild = new InformeFaltantes();
             // Set the parent form of the child window.  
             newMDIChild.MdiParent = this;
             // Display the new form.  

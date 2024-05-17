@@ -347,3 +347,6 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFe.Informes.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.RegistrarStock.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.SelectProducto.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.SelectProductoStockPorProducto.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.ActualizarStockPorPerdidaRoturaAntiguedad.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.InformeFaltantes.resources

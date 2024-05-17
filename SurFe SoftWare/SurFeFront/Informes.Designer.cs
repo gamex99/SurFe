@@ -59,6 +59,7 @@
             porFaltanteToolStripMenuItem.Name = "porFaltanteToolStripMenuItem";
             porFaltanteToolStripMenuItem.Size = new Size(82, 20);
             porFaltanteToolStripMenuItem.Text = "Por Faltante";
+            porFaltanteToolStripMenuItem.Click += porFaltanteToolStripMenuItem_Click;
             // 
             // stockActualToolStripMenuItem
             // 
@@ -66,7 +67,7 @@
             stockActualToolStripMenuItem.Size = new Size(85, 20);
             stockActualToolStripMenuItem.Text = "Stock Actual";
             // 
-            // MDIParent2
+            // Informes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -75,7 +76,7 @@
             IsMdiContainer = true;
             MainMenuStrip = menuStrip;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "MDIParent2";
+            Name = "Informes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MDIParent2";
             menuStrip.ResumeLayout(false);

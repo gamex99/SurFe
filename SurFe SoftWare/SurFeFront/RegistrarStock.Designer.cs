@@ -34,6 +34,8 @@
             stockactual = new DataGridViewTextBoxColumn();
             nuevostock = new DataGridViewTextBoxColumn();
             button1 = new Button();
+            btncerrar = new Button();
+            btncargar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -84,11 +86,32 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btncerrar
+            // 
+            btncerrar.Location = new Point(713, 415);
+            btncerrar.Name = "btncerrar";
+            btncerrar.Size = new Size(75, 23);
+            btncerrar.TabIndex = 2;
+            btncerrar.Text = "Cancelar";
+            btncerrar.UseVisualStyleBackColor = true;
+            // 
+            // btncargar
+            // 
+            btncargar.Location = new Point(632, 415);
+            btncargar.Name = "btncargar";
+            btncargar.Size = new Size(75, 23);
+            btncargar.TabIndex = 3;
+            btncargar.Text = "Cargar";
+            btncargar.UseVisualStyleBackColor = true;
+            btncargar.Click += btncargar_Click;
+            // 
             // RegistrarStock
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btncargar);
+            Controls.Add(btncerrar);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Name = "RegistrarStock";
@@ -105,5 +128,7 @@
         private DataGridViewTextBoxColumn detalle;
         private DataGridViewTextBoxColumn stockactual;
         private DataGridViewTextBoxColumn nuevostock;
+        private Button btncerrar;
+        private Button btncargar;
     }
 }

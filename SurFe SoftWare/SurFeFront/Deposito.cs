@@ -126,5 +126,20 @@ namespace SurFe
             nMDI.MdiParent = this;
             nMDI.Show();
         }
+
+        private void consultarStockPorProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectProductoStockPorProducto nMDI = new SelectProductoStockPorProducto();
+            nMDI.MdiParent = this;
+            nMDI.Show();
+        }
+
+        private void bajaStockPorRoturaPerdidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ActualizarStockPorPerdidaRoturaAntiguedad nMDI = new ActualizarStockPorPerdidaRoturaAntiguedad();
+            nMDI.MdiParent = this;
+            nMDI.Show();
+
+        }
     }
 }

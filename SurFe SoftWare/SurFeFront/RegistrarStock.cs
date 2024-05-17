@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace SurFeFront
 {
     public partial class RegistrarStock : Form
     {
+        
         public RegistrarStock()
         {
             InitializeComponent();
@@ -22,26 +24,27 @@ namespace SurFeFront
             SelectProducto formproducto = new SelectProducto();
 
             // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-             if (formproducto.ShowDialog() == DialogResult.OK)
-              {
-            for (int j = 0; j < dataGridView1.RowCount;j++)
+            if (formproducto.ShowDialog() == DialogResult.OK)
             {
-                if (dataGridView1.Rows[j].Cells[0].Value == null)
+                dataGridView1.Rows.Add();
+                for (int j = 0; j < dataGridView1.RowCount; j++)
                 {
-                    dataGridView1.Rows[j].Cells[0].Value = formproducto.barcode;
+                    if (dataGridView1.Rows[j].Cells[0].Value == null)
+                    {
+                        dataGridView1.Rows[j].Cells[0].Value = formproducto.barcode;
                         dataGridView1.Rows[j].Cells[1].Value = formproducto.detalle;
                         dataGridView1.Rows[j].Cells[2].Value = formproducto.stock;
 
 
-                        dataGridView1.Rows.Add();
-                   
-                    break;
+                        
+
+                        break;
+                    }
                 }
+
+
+
             }
-
-
-
-             }
 
 
 
@@ -58,6 +61,41 @@ namespace SurFeFront
 
         }
 
+        private void btncargar_Click(object sender, EventArgs e)
+        {
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            for (int j = 0; j < dataGridView1.RowCount; j++)
+            {
+                if (dataGridView1.Rows[j].Cells[3].Value != null)
+                {
+                    string sql = @"
+UPDATE producto
+SET stock = @newStock
+WHERE barcode = @barcode;
+";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@barcode", int.Parse(dataGridView1.Rows[j].Cells[0].Value.ToString()));
+                    command.Parameters.AddWithValue("@newStock", int.Parse(dataGridView1.Rows[j].Cells[3].Value.ToString()));
+
+                    command.ExecuteNonQuery();
+
+
+
+
+
+
+                }
+            }
+            connection.Close();
+            MessageBox.Show("Stock Actualizado Correctamente", "Stock Actualizado");
+            this.Close();
+        }
     }
 
 }
