@@ -16,6 +16,9 @@
     <Compile Update="InformeFaltantes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ListadoPorCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Productos.cs">
       <SubType>Form</SubType>
     </Compile>

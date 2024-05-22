@@ -30,23 +30,45 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PDFView));
             axAcropdf1 = new AxAcroPDFLib.AxAcroPDF();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
+            btnsalir = new Button();
             ((System.ComponentModel.ISupportInitialize)axAcropdf1).BeginInit();
             SuspendLayout();
             // 
             // axAcropdf1
             // 
+            axAcropdf1.Dock = DockStyle.Fill;
             axAcropdf1.Enabled = true;
-            axAcropdf1.Location = new Point(12, 12);
+            axAcropdf1.Location = new Point(0, 0);
             axAcropdf1.Name = "axAcropdf1";
             axAcropdf1.OcxState = (AxHost.State)resources.GetObject("axAcropdf1.OcxState");
-            axAcropdf1.Size = new Size(1080, 725);
+            axAcropdf1.Size = new Size(1104, 353);
             axAcropdf1.TabIndex = 0;
+            // 
+            // printDocument1
+            // 
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            // 
+            // btnsalir
+            // 
+            btnsalir.AutoEllipsis = true;
+            btnsalir.AutoSize = true;
+            btnsalir.Location = new Point(1017, 12);
+            btnsalir.Name = "btnsalir";
+            btnsalir.Size = new Size(75, 25);
+            btnsalir.TabIndex = 1;
+            btnsalir.Text = "Salir";
+            btnsalir.UseVisualStyleBackColor = true;
+            btnsalir.Click += btnsalir_Click;
             // 
             // PDFView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1104, 749);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(1104, 353);
+            Controls.Add(btnsalir);
             Controls.Add(axAcropdf1);
             Name = "PDFView";
             Text = "PDFView";
@@ -54,10 +76,13 @@
             Load += PDFView_Load;
             ((System.ComponentModel.ISupportInitialize)axAcropdf1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private AxAcroPDFLib.AxAcroPDF axAcropdf1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private Button btnsalir;
     }
 }

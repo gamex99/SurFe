@@ -15,5 +15,14 @@ namespace SurFeFront
         public static decimal precio;
         public static int operador = 1;
         public static string carpetaTemp = Path.Combine(Path.GetTempPath(), "SurFeDatosTemp");
+
+
+        //login
+
+        public static string nombre;
+        public static string apellido;
+        public static string departamnto;
+        public static int idDepartamento;
+        //login 
     }
 }

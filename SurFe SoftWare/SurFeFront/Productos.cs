@@ -46,11 +46,16 @@ namespace SurFeFront
             ConsProd.modo = EnumModoForm.Modificacion;
             ConsProd.ShowDialog();
 
-            EnviarDatos();
-            ConsProd.FormClosed += delegate
-            {
-                buscarDatos();
-            };
+            
+           
+               
+                   
+                    buscarDatos();
+                
+                
+               
+                
+            
 
         }
 

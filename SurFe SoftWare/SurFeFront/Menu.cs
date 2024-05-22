@@ -7,6 +7,7 @@ namespace SurFe
         public Menu()
         {
             InitializeComponent();
+            label1.Text = ClaseCompartida.apellido + " " + ClaseCompartida.nombre + " Departamento: " + ClaseCompartida.departamnto;
         }
 
         private void button1_Click(object sender, EventArgs e)

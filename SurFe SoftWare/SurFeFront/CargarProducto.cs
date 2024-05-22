@@ -39,9 +39,10 @@ namespace SurFe
             if (validarcontroles() == true)
             {
 
-                Guardar();
+                
                 if (modo == EnumModoForm.Alta)
-                {
+                { 
+                    Guardar();
 
                     if (rbOtroSi.Checked)
                     {
@@ -59,7 +60,7 @@ namespace SurFe
                         switch (result)
                         {
                             case DialogResult.Yes:
-                                LimpiarControles(); // Call your function to clear controls
+                                LimpiarControles(); 
                                 break;
                             case DialogResult.No:
                                 this.Close();
@@ -67,8 +68,23 @@ namespace SurFe
 
                         }
                     }
+                } else if (modo == EnumModoForm.Modificacion)
+                {
+                    DialogResult result = MessageBox.Show("¿Esta seguro que desea guardar las modificaciones?", "Mensaje de confirmación",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            Guardar();
+                            this.Close();
+                            break;
+                        case DialogResult.No:
+                            
+                            break;
+
+                    }
                 }
-                else { this.Close(); }
             }
         }
 
@@ -128,6 +144,7 @@ namespace SurFe
                 groupBox1.Visible = false;
                 rbOtroNo.Visible = false;
                 rbOtroSi.Visible = false;
+                btnCargar.Text = "Modificar";
             }
             if (modo == EnumModoForm.Consulta)
             {
@@ -137,6 +154,7 @@ namespace SurFe
                 groupBox1.Visible = false;
                 rbOtroNo.Visible = false;
                 rbOtroSi.Visible = false;
+                btnCargar.Visible = false;
             }
         }
         private void LimpiarControles()
@@ -159,7 +177,8 @@ namespace SurFe
 
         }
 
-        private void Guardar()
+       /* guardar sin comprobacion del lado del sql
+        * private void Guardar()
         {
             string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(conString))
@@ -185,6 +204,59 @@ namespace SurFe
                 command.Parameters.AddWithValue("@precio", decimal.Parse(tbprecio.Text));
 
                 command.ExecuteNonQuery();
+            }
+        } */
+
+        private void Guardar()
+        {
+            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conString))
+                {
+                    connection.Open();
+
+                    string query;
+                    if (modo == EnumModoForm.Modificacion)
+                    {
+                        query = "UPDATE producto SET categoria = @categoria, detalle = @detalle, stock = @stock, precio = @precio WHERE barcode = @barcode;";
+                    }
+                    else
+                    {
+                        query = "INSERT INTO producto (categoria, barcode, detalle, stock, precio) VALUES (@categoria, @barcode, @detalle, @stock, @precio)";
+                    }
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@categoria", cbCategoria.SelectedIndex + 1);
+                    command.Parameters.AddWithValue("@barcode", int.Parse(tbbarcode.Text)); // Allow null for barcode (consider validation)
+                    command.Parameters.AddWithValue("@detalle", tbdetalle.Text);
+                    command.Parameters.AddWithValue("@stock", int.Parse(tbstock.Text));
+                    command.Parameters.AddWithValue("@precio", decimal.Parse(tbprecio.Text));
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        // Success message (optional)
+                        MessageBox.Show("¡Operación realizada con éxito!", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // Handle potential errors here:
+                        // - Check for specific exception types (e.g., SqlException)
+                        // - Log the error for debugging
+                        // - Provide a more informative error message to the user
+                        MessageBox.Show("Ha ocurrido un error al guardar los datos. Por favor, intente nuevamente o contacte al soporte técnico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Catch any unexpected exceptions
+                MessageBox.Show("Se ha producido un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Log the exception for further investigation
             }
         }
 
