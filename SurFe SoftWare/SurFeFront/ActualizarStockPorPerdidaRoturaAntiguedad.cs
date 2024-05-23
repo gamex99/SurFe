@@ -75,8 +75,11 @@ namespace SurFeFront
                     commandd.Parameters.AddWithValue("@operador", ClaseCompartida.operador);
                     commandd.ExecuteNonQuery();
 
-                    int newStock = stock - int.Parse(dataGridView1.Rows[j].Cells[0].Value.ToString());
-
+                    int newStock = 0;
+                    int stockbaja = 0;
+                    int.TryParse(dataGridView1.Rows[j].Cells[2].Value.ToString(), out stockbaja);
+                    newStock = stock - stockbaja;
+                    MessageBox.Show("STOCK " + stock +"STOCKBJA: " + stockbaja + "NEWSTOCK: " + newStock , "Stock Actualizado");
 
 
                     string updateSql = "UPDATE producto SET stock = @newStock WHERE barcode = @barcode;";
@@ -89,7 +92,7 @@ namespace SurFeFront
                 }
             }
             connection.Close();
-            MessageBox.Show("Stock Actualizado Correctamente", "Stock Actualizado");
+            MessageBox.Show("Stock Actualizado Correctamente ", "Stock Actualizado");
             this.Close();
         }
     }
