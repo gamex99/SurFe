@@ -37,16 +37,17 @@
             consultarStockPorProductoToolStripMenuItem = new ToolStripMenuItem();
             bajaStockPorRoturaPerdidaToolStripMenuItem = new ToolStripMenuItem();
             toolTip = new ToolTip(components);
+            controlPorInventarioToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenu, registrarStockToolStripMenuItem, consultarStockPorProductoToolStripMenuItem, bajaStockPorRoturaPerdidaToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenu, registrarStockToolStripMenuItem, consultarStockPorProductoToolStripMenuItem, bajaStockPorRoturaPerdidaToolStripMenuItem, controlPorInventarioToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(7, 2, 0, 2);
-            menuStrip.Size = new Size(737, 24);
+            menuStrip.Size = new Size(863, 24);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "MenuStrip";
             // 
@@ -87,12 +88,19 @@
             bajaStockPorRoturaPerdidaToolStripMenuItem.Text = "Actualizar Stock Por Perdida, Rotura o Antiguedad";
             bajaStockPorRoturaPerdidaToolStripMenuItem.Click += bajaStockPorRoturaPerdidaToolStripMenuItem_Click;
             // 
+            // controlPorInventarioToolStripMenuItem
+            // 
+            controlPorInventarioToolStripMenuItem.Name = "controlPorInventarioToolStripMenuItem";
+            controlPorInventarioToolStripMenuItem.Size = new Size(136, 20);
+            controlPorInventarioToolStripMenuItem.Text = "Control Por Inventario";
+            controlPorInventarioToolStripMenuItem.Click += controlPorInventarioToolStripMenuItem_Click;
+            // 
             // Deposito
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Red;
-            ClientSize = new Size(737, 523);
+            ClientSize = new Size(863, 523);
             Controls.Add(menuStrip);
             Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
@@ -116,6 +124,7 @@
         private ToolStripMenuItem registrarStockToolStripMenuItem;
         private ToolStripMenuItem consultarStockPorProductoToolStripMenuItem;
         private ToolStripMenuItem bajaStockPorRoturaPerdidaToolStripMenuItem;
+        private ToolStripMenuItem controlPorInventarioToolStripMenuItem;
     }
 }
 

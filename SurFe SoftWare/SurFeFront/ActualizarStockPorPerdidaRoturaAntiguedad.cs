@@ -79,7 +79,7 @@ namespace SurFeFront
                     int stockbaja = 0;
                     int.TryParse(dataGridView1.Rows[j].Cells[2].Value.ToString(), out stockbaja);
                     newStock = stock - stockbaja;
-                    MessageBox.Show("STOCK " + stock +"STOCKBJA: " + stockbaja + "NEWSTOCK: " + newStock , "Stock Actualizado");
+                    //MessageBox.Show("STOCK " + stock +"STOCKBJA: " + stockbaja + "NEWSTOCK: " + newStock , "Stock Actualizado");
 
 
                     string updateSql = "UPDATE producto SET stock = @newStock WHERE barcode = @barcode;";

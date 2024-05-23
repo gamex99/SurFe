@@ -141,5 +141,12 @@ namespace SurFe
             nMDI.Show();
 
         }
+
+        private void controlPorInventarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControlPorInventario nMDI = new ControlPorInventario();
+            nMDI.MdiParent = this;
+            nMDI.Show();
+        }
     }
 }
