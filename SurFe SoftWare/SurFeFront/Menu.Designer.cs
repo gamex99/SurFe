@@ -42,6 +42,7 @@
             bindingSource1 = new BindingSource(components);
             label1 = new Label();
             label2 = new Label();
+            btnproveedores = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
@@ -49,6 +50,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Blue;
+            panel1.Controls.Add(btnproveedores);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(btSalir);
             panel1.Controls.Add(button1);
@@ -182,6 +184,17 @@
             label2.TabIndex = 3;
             label2.Text = "SurFe®";
             // 
+            // btnproveedores
+            // 
+            btnproveedores.BackColor = Color.DodgerBlue;
+            btnproveedores.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnproveedores.Location = new Point(12, 307);
+            btnproveedores.Name = "btnproveedores";
+            btnproveedores.Size = new Size(151, 43);
+            btnproveedores.TabIndex = 7;
+            btnproveedores.Text = "PROVEEDORES";
+            btnproveedores.UseVisualStyleBackColor = false;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -219,5 +232,6 @@
         private Button button1;
         private Button btSalir;
         private Button button5;
+        private Button btnproveedores;
     }
 }

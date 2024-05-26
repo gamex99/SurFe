@@ -105,11 +105,11 @@ namespace SurFe
 
         private void porProductoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form4 newMDIChild = new Form4();
+            //Form4 newMDIChild = new Form4();
             // Set the parent form of the child window.  
-            newMDIChild.MdiParent = this;
+            //newMDIChild.MdiParent = this;
             // Display the new form.  
-            newMDIChild.Show();
+            //newMDIChild.Show();
         }
 
         private void porFaltanteToolStripMenuItem_Click(object sender, EventArgs e)
