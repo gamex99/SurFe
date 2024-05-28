@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             panel1 = new Panel();
+            btnproveedores = new Button();
             button5 = new Button();
             btSalir = new Button();
             button1 = new Button();
@@ -42,7 +43,6 @@
             bindingSource1 = new BindingSource(components);
             label1 = new Label();
             label2 = new Label();
-            btnproveedores = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
@@ -63,6 +63,18 @@
             panel1.Size = new Size(178, 453);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // btnproveedores
+            // 
+            btnproveedores.BackColor = Color.DodgerBlue;
+            btnproveedores.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnproveedores.Location = new Point(12, 307);
+            btnproveedores.Name = "btnproveedores";
+            btnproveedores.Size = new Size(151, 43);
+            btnproveedores.TabIndex = 7;
+            btnproveedores.Text = "PROVEEDORES";
+            btnproveedores.UseVisualStyleBackColor = false;
+            btnproveedores.Click += btnproveedores_Click;
             // 
             // button5
             // 
@@ -183,17 +195,6 @@
             label2.Size = new Size(47, 15);
             label2.TabIndex = 3;
             label2.Text = "SurFe®";
-            // 
-            // btnproveedores
-            // 
-            btnproveedores.BackColor = Color.DodgerBlue;
-            btnproveedores.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            btnproveedores.Location = new Point(12, 307);
-            btnproveedores.Name = "btnproveedores";
-            btnproveedores.Size = new Size(151, 43);
-            btnproveedores.TabIndex = 7;
-            btnproveedores.Text = "PROVEEDORES";
-            btnproveedores.UseVisualStyleBackColor = false;
             // 
             // Menu
             // 

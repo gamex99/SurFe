@@ -262,6 +262,7 @@ namespace SurFe
 
         private void CargarDatos()
         {
+            
             cbCategoria.SelectedIndex = ClaseCompartida.categoria - 1;
             tbbarcode.Text = ClaseCompartida.barcode.ToString();
             tbdetalle.Text = ClaseCompartida.detalle.ToString();

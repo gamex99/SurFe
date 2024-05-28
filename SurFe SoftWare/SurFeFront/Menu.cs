@@ -70,5 +70,11 @@ namespace SurFe
 
         }
 
+        private void btnproveedores_Click(object sender, EventArgs e)
+        {
+            Proveedores Prod = new Proveedores();
+            Prod.ShowDialog();
+
+        }
     }
 }

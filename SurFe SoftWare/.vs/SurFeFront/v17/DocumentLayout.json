@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\proveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\proveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,39 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Menu.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Menu.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Menu.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Menu.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SurFeFront\\Menu.cs [Dise\u00F1o]",
+              "Title": "Proveedores.cs",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Proveedores.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\Proveedores.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Proveedores.cs",
+              "RelativeToolTip": "SurFeFront\\Proveedores.cs",
+              "ViewState": "AQIAAKwAAAAAAAAAAAAUwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T23:24:06.256Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-05-28T22:07:27.172Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Proveedores.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Proveedores.cs",
               "RelativeDocumentMoniker": "SurFeFront\\Proveedores.cs",
               "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Proveedores.cs [Dise\u00F1o]",
               "RelativeToolTip": "SurFeFront\\Proveedores.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T17:11:32.249Z",
+              "WhenOpened": "2024-05-28T22:07:23.371Z",
               "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Proveedores.cs",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Proveedores.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Proveedores.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Proveedores.cs",
-              "RelativeToolTip": "SurFeFront\\Proveedores.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAgwFoAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T15:31:23.089Z",
-              "EditorCaption": ""
             }
           ]
         }

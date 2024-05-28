@@ -24,5 +24,18 @@ namespace SurFeFront
         public static string departamnto;
         public static int idDepartamento;
         //login 
+
+
+        //proveedores
+        public static string razon_rosial;
+        public static long cuit;
+        public static string direccion;
+        public static long tel;
+        public static string correo;
+        public static int idlocalidad;
+
+
+
+        //proveedores
     }
 }

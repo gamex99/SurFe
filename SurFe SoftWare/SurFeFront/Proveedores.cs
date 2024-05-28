@@ -28,7 +28,7 @@ namespace SurFeFront
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CargarProducto NewProd = new CargarProducto();
+            RegistrarProveedor NewProd = new RegistrarProveedor();
             NewProd.modo = EnumModoForm.Alta;
             NewProd.ShowDialog();
             NewProd.FormClosed += delegate
@@ -42,7 +42,7 @@ namespace SurFeFront
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CargarProducto ConsProd = new CargarProducto();
+            RegistrarProveedor ConsProd = new RegistrarProveedor();
             ConsProd.modo = EnumModoForm.Modificacion;
             ConsProd.ShowDialog();
 
@@ -136,24 +136,25 @@ namespace SurFeFront
 
         private void dataProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ClaseCompartida.categoria = (int)dataProductos.Rows[e.RowIndex].Cells[6].Value;
-            ClaseCompartida.barcode = (int)dataProductos.Rows[e.RowIndex].Cells[1].Value;
-            ClaseCompartida.detalle = (string)dataProductos.Rows[e.RowIndex].Cells[2].Value;
-            ClaseCompartida.stock = (int)dataProductos.Rows[e.RowIndex].Cells[3].Value;
-            ClaseCompartida.precio = (decimal)dataProductos.Rows[e.RowIndex].Cells[4].Value;
+            ClaseCompartida.razon_rosial = (string)dataProductos.Rows[e.RowIndex].Cells[0].Value;
+            ClaseCompartida.cuit = (long)dataProductos.Rows[e.RowIndex].Cells[1].Value;
+            ClaseCompartida.direccion = (string)dataProductos.Rows[e.RowIndex].Cells[2].Value;
+            ClaseCompartida.tel = (long)dataProductos.Rows[e.RowIndex].Cells[3].Value;
+            ClaseCompartida.correo = (string)dataProductos.Rows[e.RowIndex].Cells[4].Value;
+            ClaseCompartida.idlocalidad = (int)dataProductos.Rows[e.RowIndex].Cells[6].Value;
         }
 
         private void btncons_Click(object sender, EventArgs e)
         {
-            CargarProducto ConsProd = new CargarProducto();
+            RegistrarProveedor ConsProd = new RegistrarProveedor();
             ConsProd.modo = EnumModoForm.Consulta;
             ConsProd.ShowDialog();
         }
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
-            int ideliminar = (int)dataProductos.SelectedCells[0].Value;
-            DialogResult result = MessageBox.Show("¿Desea eliminar el producto" + (string)dataProductos.SelectedCells[2].Value + "?", "Mensaje de confirmación",
+            int ideliminar = (int)dataProductos.SelectedCells[1].Value;
+            DialogResult result = MessageBox.Show("¿Desea eliminar el Proveedor" + (string)dataProductos.SelectedCells[2].Value + "?", "Mensaje de confirmación",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             switch (result)
@@ -180,9 +181,9 @@ namespace SurFeFront
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("DELETE FROM producto WHERE id = @ideliminar", connection))
+                    using (SqlCommand command = new SqlCommand("DELETE FROM proveedor WHERE cuit = @cuitel", connection))
                     {
-                        command.Parameters.AddWithValue("@ideliminar", idEliminar);
+                        command.Parameters.AddWithValue("@cuitel", idEliminar);
 
                         int rowsAffected = command.ExecuteNonQuery();
                         

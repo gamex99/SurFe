@@ -93,6 +93,7 @@ namespace SurFeFront
                     Close();
                 }
                 LimpiarControles();
+                this.Close();
             }
             catch (Exception ex)
             {
