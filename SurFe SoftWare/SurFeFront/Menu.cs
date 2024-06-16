@@ -66,7 +66,8 @@ namespace SurFe
 
         private void btSalir_Click(object sender, EventArgs e)
         {
-            Close();
+            md menunuevo = new md();
+            menunuevo.ShowDialog();
 
         }
 

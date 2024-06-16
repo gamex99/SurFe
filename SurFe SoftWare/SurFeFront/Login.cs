@@ -42,8 +42,9 @@ namespace SurFeFront
                 ClaseCompartida.departamnto = reader["nombreDepartamento"].ToString();
 
                 // ¡Inicio de sesión exitoso!
-                SurFe.Menu f1 = new SurFe.Menu();
-
+                //SurFe.Menu f1 = new SurFe.Menu();
+                this.Hide();
+                md f1 = new md();
                 f1.ShowDialog();
                 this.Close();
             }
@@ -139,9 +140,10 @@ namespace SurFeFront
 
 
 
-                    SurFe.Menu f1 = new SurFe.Menu();
-
+                   // SurFe.md f1 = new SurFe.md();
+                    md f1 = new md();
                     f1.ShowDialog();
+                    this.Hide();
                     this.Close();
                 }
                 else

@@ -180,11 +180,11 @@ namespace SurFe
                     string query;
                     if (modo == EnumModoForm.Modificacion)
                     {
-                        query = "UPDATE proveedor SET razon_social = @razon_social,   ciut = @ciut,    direccion = @direccion,   idLocalidad = @idLocalidad,   tel = @tel,   correo = @correo WHERE CUIT = @cuit;";
+                        query = "UPDATE proveedor SET razon_social = @razon_social,   cuit = @cuit,    direccion = @direccion,   idLocalidad = @idLocalidad,   tel = @tel,   correo = @correo WHERE CUIT = @cuit;";
                     }
                     else
                     {
-                        query = "INSERT INTO proveedor (razon_social, ciut, direccion, idLocalidad, tel, correo ) VALUES (@razon_social, @cuit, @direccion, @idLocalidad, @tel, @correo)";
+                        query = "INSERT INTO proveedor (razon_social, cuit, direccion, idLocalidad, tel, correo ) VALUES (@razon_social, @cuit, @direccion, @idLocalidad, @tel, @correo)";
                     }
 
                     SqlCommand command = new SqlCommand(query, connection);
@@ -221,6 +221,7 @@ namespace SurFe
         {
             
             cblocalidad.SelectedIndex = ClaseCompartida.idlocalidad - 1;
+            tbrazonsocial.Text = ClaseCompartida.razon_rosial;
             tbcuit.Text = ClaseCompartida.cuit.ToString();
             tbdireccion.Text = ClaseCompartida.direccion.ToString();
             tbcorreo.Text = ClaseCompartida.correo.ToString();
@@ -230,47 +231,49 @@ namespace SurFe
         }
         private bool validarcontroles()
         {
-            if(cblocalidad.SelectedIndex > -1)
-            {
-                if(tbcuit.Text.Length > 0 && int.TryParse(tbcuit.Text, out int barcode))
-                {
-                    if (tbdireccion.Text.Length > 0)
-                    {
-                        if(tbtel.Text.Length > 0)
-                        {
-                            if(tbcorreo.Text.Length > 0 )
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Falta cargar precio o no es decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return false;
-                            }
+            /* if(cblocalidad.SelectedIndex > -1)
+             {
+                 if(tbcuit.Text.Length > 0 && int.TryParse(tbcuit.Text, out int barcode))
+                 {
+                     if (tbdireccion.Text.Length > 0)
+                     {
+                         if(tbtel.Text.Length > 0)
+                         {
+                             if(tbcorreo.Text.Length > 0 )
+                             {
+                                 return true;
+                             }
+                             else
+                             {
+                                 MessageBox.Show("Falta cargar precio o no es decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                 return false;
+                             }
 
-                        }
-                        else
-                        {
-                            MessageBox.Show("Falta cargar stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
+                         }
+                         else
+                         {
+                             MessageBox.Show("Falta cargar stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                             return false;
+                         }
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falta cargar detalle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                }
-                else { 
-                    MessageBox.Show("Falta cargar barcode o no es un numero entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            } else
-            {
-                MessageBox.Show("Cargar Categoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                     }
+                     else
+                     {
+                         MessageBox.Show("Falta cargar detalle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                         return false;
+                     }
+                 }
+                 else { 
+                     MessageBox.Show("Falta cargar barcode o no es un numero entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     return false;
+                 }
+             } else
+             {
+                 MessageBox.Show("Cargar Categoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return false;
+             }*/
+            return true;
+
         }
 
     }

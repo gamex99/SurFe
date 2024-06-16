@@ -325,5 +325,15 @@ namespace SurFe
 
 
         }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stockActualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -141,7 +141,7 @@ namespace SurFeFront
             ClaseCompartida.direccion = (string)dataProductos.Rows[e.RowIndex].Cells[2].Value;
             ClaseCompartida.tel = (long)dataProductos.Rows[e.RowIndex].Cells[3].Value;
             ClaseCompartida.correo = (string)dataProductos.Rows[e.RowIndex].Cells[4].Value;
-            ClaseCompartida.idlocalidad = (int)dataProductos.Rows[e.RowIndex].Cells[6].Value;
+            ClaseCompartida.idlocalidad = (int)dataProductos.Rows[e.RowIndex].Cells[5].Value;
         }
 
         private void btncons_Click(object sender, EventArgs e)
@@ -153,7 +153,7 @@ namespace SurFeFront
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
-            int ideliminar = (int)dataProductos.SelectedCells[1].Value;
+            long ideliminar = (long)dataProductos.SelectedCells[1].Value;
             DialogResult result = MessageBox.Show("¿Desea eliminar el Proveedor" + (string)dataProductos.SelectedCells[2].Value + "?", "Mensaje de confirmación",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -170,7 +170,7 @@ namespace SurFeFront
 
             }
         }
-        private void borrarproducto(int idEliminar)
+        private void borrarproducto(long idEliminar)
         {
             string errorMessage = null;
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;

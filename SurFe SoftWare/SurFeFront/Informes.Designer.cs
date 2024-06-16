@@ -37,8 +37,8 @@
             productosToolStripMenuItem = new ToolStripMenuItem();
             listadoCompletoToolStripMenuItem = new ToolStripMenuItem();
             listadoPorCategoriaToolStripMenuItem = new ToolStripMenuItem();
-            toolTip = new ToolTip(components);
             productosDeBajaToolStripMenuItem = new ToolStripMenuItem();
+            toolTip = new ToolTip(components);
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,6 +71,7 @@
             stockActualToolStripMenuItem.Name = "stockActualToolStripMenuItem";
             stockActualToolStripMenuItem.Size = new Size(85, 20);
             stockActualToolStripMenuItem.Text = "Stock Actual";
+            stockActualToolStripMenuItem.Click += stockActualToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
             // 
@@ -83,6 +84,7 @@
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
             productosToolStripMenuItem.Size = new Size(73, 20);
             productosToolStripMenuItem.Text = "Productos";
+            productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // listadoCompletoToolStripMenuItem
             // 
