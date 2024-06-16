@@ -217,7 +217,7 @@ namespace SurFeFront
             string nombreArchivoFormateado = now.ToString("yyyyMMdd_HHmmss");
 
             // Combinar el nombre con la extensión
-            string nombreArchivo = nombreArchivoFormateado + "NotaDePedido" + ".pdf";
+            string nombreArchivo = nombreArchivoFormateado + "ReclamoProveedor" + ".pdf";
 
             // Devolver el nombre de archivo
             return nombreArchivo;
