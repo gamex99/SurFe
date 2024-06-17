@@ -48,17 +48,19 @@
             pROVEEDORESToolStripMenuItem = new ToolStripMenuItem();
             proveedoresToolStripMenuItem1 = new ToolStripMenuItem();
             registrarPedidoToolStripMenuItem = new ToolStripMenuItem();
+            registrarReclamoODevolucionToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             toolStripStatusLabel = new ToolStripStatusLabel();
             toolTip = new ToolTip(components);
-            registrarReclamoODevolucionToolStripMenuItem = new ToolStripMenuItem();
+            administracionToolStripMenuItem = new ToolStripMenuItem();
+            pagosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { vENTAToolStripMenuItem, dEPOSITOToolStripMenuItem, iNFORMESToolStripMenuItem, cLIENTESToolStripMenuItem, pRODUCTOSToolStripMenuItem, pROVEEDORESToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { vENTAToolStripMenuItem, dEPOSITOToolStripMenuItem, iNFORMESToolStripMenuItem, cLIENTESToolStripMenuItem, pRODUCTOSToolStripMenuItem, pROVEEDORESToolStripMenuItem, administracionToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(7, 2, 0, 2);
@@ -192,6 +194,13 @@
             registrarPedidoToolStripMenuItem.Text = "Registrar Pedido";
             registrarPedidoToolStripMenuItem.Click += registrarPedidoToolStripMenuItem_Click;
             // 
+            // registrarReclamoODevolucionToolStripMenuItem
+            // 
+            registrarReclamoODevolucionToolStripMenuItem.Name = "registrarReclamoODevolucionToolStripMenuItem";
+            registrarReclamoODevolucionToolStripMenuItem.Size = new Size(242, 22);
+            registrarReclamoODevolucionToolStripMenuItem.Text = "Registrar Reclamo o Devolucion";
+            registrarReclamoODevolucionToolStripMenuItem.Click += registrarReclamoODevolucionToolStripMenuItem_Click;
+            // 
             // statusStrip
             // 
             statusStrip.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel });
@@ -208,12 +217,19 @@
             toolStripStatusLabel.Size = new Size(42, 17);
             toolStripStatusLabel.Text = "Estado";
             // 
-            // registrarReclamoODevolucionToolStripMenuItem
+            // administracionToolStripMenuItem
             // 
-            registrarReclamoODevolucionToolStripMenuItem.Name = "registrarReclamoODevolucionToolStripMenuItem";
-            registrarReclamoODevolucionToolStripMenuItem.Size = new Size(242, 22);
-            registrarReclamoODevolucionToolStripMenuItem.Text = "Registrar Reclamo o Devolucion";
-            registrarReclamoODevolucionToolStripMenuItem.Click += registrarReclamoODevolucionToolStripMenuItem_Click;
+            administracionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pagosToolStripMenuItem });
+            administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
+            administracionToolStripMenuItem.Size = new Size(117, 20);
+            administracionToolStripMenuItem.Text = "ADMINISTRACION";
+            // 
+            // pagosToolStripMenuItem
+            // 
+            pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
+            pagosToolStripMenuItem.Size = new Size(180, 22);
+            pagosToolStripMenuItem.Text = "Pagos";
+            pagosToolStripMenuItem.Click += pagosToolStripMenuItem_Click;
             // 
             // md
             // 
@@ -260,6 +276,8 @@
         private ToolStripMenuItem proveedoresToolStripMenuItem1;
         private ToolStripMenuItem registrarPedidoToolStripMenuItem;
         private ToolStripMenuItem registrarReclamoODevolucionToolStripMenuItem;
+        private ToolStripMenuItem administracionToolStripMenuItem;
+        private ToolStripMenuItem pagosToolStripMenuItem;
     }
 }
 

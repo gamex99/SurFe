@@ -327,5 +327,14 @@ namespace SurFeFront
             // Display the new form.  
             newMDIChild.Show();
         }
+
+        private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProveedorRegistrarPago newMDIChild = new ProveedorRegistrarPago();
+            // Set the parent form of the child window.  
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
+        }
     }
 }

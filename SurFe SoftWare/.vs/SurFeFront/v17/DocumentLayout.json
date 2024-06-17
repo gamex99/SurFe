@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\proveedorregistrarpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\proveedorregistrarpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\proveedorregistrarreclamo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\proveedorregistrarreclamo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\proveedorregistrarreclamo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\proveedorregistrarreclamo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\proveedorregistrarpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\proveedorregistrarpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,27 +34,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProveedorRegistrarReclamo.cs",
               "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarReclamo.cs",
               "RelativeDocumentMoniker": "SurFeFront\\ProveedorRegistrarReclamo.cs",
               "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarReclamo.cs",
               "RelativeToolTip": "SurFeFront\\ProveedorRegistrarReclamo.cs",
-              "ViewState": "AQIAAM0AAAAAAAAAAAAAANsAAABOAAAA",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAgwKoAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T21:50:57.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T19:06:13.738Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProveedorRegistrarReclamo.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarReclamo.cs",
               "RelativeDocumentMoniker": "SurFeFront\\ProveedorRegistrarReclamo.cs",
               "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarReclamo.cs [Dise\u00F1o]",
               "RelativeToolTip": "SurFeFront\\ProveedorRegistrarReclamo.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T21:44:29.834Z",
+              "WhenOpened": "2024-06-17T19:06:07.899Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProveedorRegistrarPago.cs",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarPago.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\ProveedorRegistrarPago.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarPago.cs",
+              "RelativeToolTip": "SurFeFront\\ProveedorRegistrarPago.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAAGIAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T19:05:57.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProveedorRegistrarPago.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarPago.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\ProveedorRegistrarPago.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\ProveedorRegistrarPago.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SurFeFront\\ProveedorRegistrarPago.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T18:24:17.19Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

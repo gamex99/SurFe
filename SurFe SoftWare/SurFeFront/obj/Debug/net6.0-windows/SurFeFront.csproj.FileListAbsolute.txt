@@ -356,3 +356,4 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.ProveedorRegistrarPedido.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.ProveedorSelect.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.ProveedorRegistrarReclamo.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows\SurFeFront.ProveedorRegistrarPago.resources
