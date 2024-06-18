@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SurFeFront</id>
+    <version>1.0.0</version>
+    <authors>SurFeFront</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="2491fb833a0768555b83bff05b73111ec5d601f5" />
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0">
+        <dependency id="SurFeEntidades" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="SurFeNegocio" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="itextsharp.xmlworker" version="5.5.13.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows\SurFeFront.runtimeconfig.json" target="lib\net6.0-windows7.0\SurFeFront.runtimeconfig.json" />
+    <file src="C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows\SurFeFront.dll" target="lib\net6.0-windows7.0\SurFeFront.dll" />
+  </files>
+</package>

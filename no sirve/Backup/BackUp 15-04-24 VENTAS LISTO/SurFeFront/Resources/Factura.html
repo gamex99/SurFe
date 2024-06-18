@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Título del Documento</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header, .footer {
+            text-align: center;
+            padding: 10px 0;
+            color: #fff;
+        }
+
+        .header {
+            position: relative;
+            color: #fff;
+            background-color: #3498db;
+            padding: 10px 0;
+        }
+
+            .header img {
+                width: 250px;
+                height: auto;
+                position: absolute;
+            }
+
+            .header .left-img {
+                left: 10px;
+            }
+
+        .footer {
+            background-color: #f1c40f;
+        }
+
+        .main {
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+        }
+
+        .highlight {
+            background-color: #f1c40f;
+            color: #fff;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./logo pp1 carpeta 2023.png" class="left-img" />
+            <h4>CODIGO ESTUDIANTE</h4>
+            <p>Dirección: av. las águilas 123</p>
+            <p>Teléfono: 567-546-55</p>
+
+        </div>
+        <div class="main">
+            <table>
+                <tr>
+                    <td>RUC: 3434343434</td>
+                    <td class="highlight">Presupuesto</td>
+                    <td>Nro: 00000111</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>Cliente:</td>
+                    <td style="border-bottom:1px solid black">@CLIENTE</td>
+                </tr>
+                <tr>
+                    <td>Documento:</td>
+                    <td style="border-bottom:1px solid black">@DOCUMENTO</td>
+                    <td>Fecha:</td>
+                    <td style="border-bottom:1px solid black">@FECHA</td>
+                </tr>
+            </table>
+            <table>
+                <thead>
+                    <tr class="highlight">
+                        <th>Cant.</th>
+                        <th>Descripción</th>
+                        <th>P. Unitario</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @FILAS
+                    <tr>
+                        <td colspan="3" class="total">Total:</td>
+                        <td>@TOTAL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <p>Gracias por su compra</p>
+        </div>
+    </div>
+</body>
+</html>
