@@ -4,6 +4,9 @@
     <Compile Update="ActualizarStockPorPerdidaRoturaAntiguedad.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CargaFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CargarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +56,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RegistrarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RegistrarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RegistrarStock.cs">

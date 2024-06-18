@@ -37,5 +37,9 @@ namespace SurFeFront
 
 
         //proveedores
+
+        //cargar factura
+        public static string id_factura;
+        //cargarfactura
     }
 }

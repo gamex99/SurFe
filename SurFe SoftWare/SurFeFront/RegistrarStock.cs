@@ -93,7 +93,19 @@ WHERE barcode = @barcode;
                 }
             }
             connection.Close();
+
+
+
+
+
+
+
+
             MessageBox.Show("Stock Actualizado Correctamente", "Stock Actualizado");
+
+
+
+
             this.Close();
         }
     }
