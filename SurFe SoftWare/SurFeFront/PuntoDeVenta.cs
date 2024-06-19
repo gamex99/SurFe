@@ -317,28 +317,28 @@ namespace SurFe
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             int numero = 0;
-           
-            
-               
-                
-                    connection.Open();
 
-                    string sqlQuery = "SELECT [numero] FROM [dbo].[numero_factura] WHERE [id_numero] = 1 ;";
-                    SqlCommand command2 = new SqlCommand(sqlQuery, connection);
 
-                    using (SqlDataReader reader = command2.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            
-                             numero = reader.GetInt32(0);
 
-                           
-                        }
-                    }
-               
-            
-           
+
+            connection.Open();
+
+            string sqlQuery = "SELECT [numero] FROM [dbo].[numero_factura] WHERE [id_numero] = 1 ;";
+            SqlCommand command2 = new SqlCommand(sqlQuery, connection);
+
+            using (SqlDataReader reader = command2.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+
+                    numero = reader.GetInt32(0);
+
+
+                }
+            }
+
+
+
 
             string cadena = numero.ToString();
 
@@ -358,7 +358,7 @@ namespace SurFe
             Random random = new Random();
             long randomNumber = (long)(random.NextDouble() * (1e14 - 1e13) + 1e13);
             string randomString = randomNumber.ToString("D14");
-            
+
 
             switch (cbxfactura.SelectedIndex)
             {
@@ -376,14 +376,14 @@ namespace SurFe
                     break;
             }
 
-                    //aca cae xddddddd
+            //aca cae xddddddd
 
-                    //METEMOS CODIGO PARA HACER EL PDF backup
+            //METEMOS CODIGO PARA HACER EL PDF backup
 
 
 
-                    //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-                    string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
+            //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
+            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
             string nombreArchivo = GetNombreArchivoFechaHora();
             string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
             //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
@@ -453,8 +453,8 @@ namespace SurFe
             }// aca vamo a mandar a la base de dato antes de abrir el pdf porque sino desp se traba y no anda pa 
 
             string tipo_documento = tipo_factura.ToString();
-           // string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-           // SqlConnection connection = new SqlConnection(connectionString);
+            // string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+            // SqlConnection connection = new SqlConnection(connectionString);
             string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -464,7 +464,7 @@ namespace SurFe
             command.Parameters.AddWithValue("@fecha", fechaActual);
             command.Parameters.AddWithValue("@total", total);
             command.Parameters.AddWithValue("@location", nombreArchivo);
-           // connection.Open();
+            // connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
 

@@ -40,7 +40,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(25, 29);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(30, 27);
             label1.Name = "label1";
             label1.Size = new Size(65, 15);
             label1.TabIndex = 0;
@@ -49,7 +51,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(117, 29);
+            label2.BackColor = Color.Transparent;
+            label2.Location = new Point(122, 27);
             label2.Name = "label2";
             label2.Size = new Size(27, 15);
             label2.TabIndex = 1;
@@ -58,29 +61,31 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(30, 85);
             label3.Name = "label3";
-            label3.Size = new Size(74, 15);
+            label3.Size = new Size(76, 15);
             label3.TabIndex = 2;
             label3.Text = "FACTURA N°";
             // 
             // tbfac
             // 
-            tbfac.Location = new Point(131, 82);
+            tbfac.Location = new Point(115, 81);
             tbfac.Name = "tbfac";
-            tbfac.Size = new Size(100, 23);
+            tbfac.Size = new Size(179, 23);
             tbfac.TabIndex = 3;
             // 
             // tbfactura
             // 
-            tbfactura.Location = new Point(265, 82);
+            tbfactura.Location = new Point(300, 81);
             tbfactura.Name = "tbfactura";
-            tbfactura.Size = new Size(100, 23);
+            tbfactura.Size = new Size(179, 23);
             tbfactura.TabIndex = 4;
             // 
             // btncarga
             // 
-            btncarga.Location = new Point(419, 132);
+            btncarga.Location = new Point(468, 139);
             btncarga.Name = "btncarga";
             btncarga.Size = new Size(75, 23);
             btncarga.TabIndex = 5;
@@ -90,7 +95,7 @@
             // 
             // salir
             // 
-            salir.Location = new Point(500, 132);
+            salir.Location = new Point(549, 139);
             salir.Name = "salir";
             salir.Size = new Size(75, 23);
             salir.TabIndex = 6;
@@ -101,6 +106,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.fondo_carga_factura1;
+            BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(643, 174);
             Controls.Add(salir);
             Controls.Add(btncarga);
@@ -110,6 +117,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "CargaFactura";
+            RightToLeft = RightToLeft.No;
             Text = "CargaFactura";
             ResumeLayout(false);
             PerformLayout();

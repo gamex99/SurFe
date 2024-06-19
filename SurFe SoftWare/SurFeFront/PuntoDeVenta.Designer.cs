@@ -59,10 +59,10 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe MDL2 Assets", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(40, 18);
             label1.Name = "label1";
-            label1.Size = new Size(231, 37);
+            label1.Size = new Size(205, 27);
             label1.TabIndex = 0;
             label1.Text = "PUNTO DE VENTA";
             label1.Click += label1_Click;
@@ -70,9 +70,11 @@
             // labelrazonsocial
             // 
             labelrazonsocial.AutoSize = true;
+            labelrazonsocial.BackColor = Color.Transparent;
+            labelrazonsocial.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             labelrazonsocial.Location = new Point(40, 74);
             labelrazonsocial.Name = "labelrazonsocial";
-            labelrazonsocial.Size = new Size(76, 15);
+            labelrazonsocial.Size = new Size(79, 15);
             labelrazonsocial.TabIndex = 1;
             labelrazonsocial.Text = "Razon Social:";
             // 
@@ -80,6 +82,7 @@
             // 
             button1.BackColor = Color.Transparent;
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.None;
             button1.Location = new Point(205, 66);
             button1.Name = "button1";
             button1.Size = new Size(40, 30);
@@ -90,24 +93,30 @@
             // labelcuit
             // 
             labelcuit.AutoSize = true;
+            labelcuit.BackColor = Color.Transparent;
+            labelcuit.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             labelcuit.Location = new Point(263, 74);
             labelcuit.Name = "labelcuit";
-            labelcuit.Size = new Size(38, 15);
+            labelcuit.Size = new Size(40, 15);
             labelcuit.TabIndex = 3;
             labelcuit.Text = "CUIT: ";
             // 
             // labeldireccion
             // 
             labeldireccion.AutoSize = true;
+            labeldireccion.BackColor = Color.Transparent;
+            labeldireccion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             labeldireccion.Location = new Point(401, 74);
             labeldireccion.Name = "labeldireccion";
-            labeldireccion.Size = new Size(63, 15);
+            labeldireccion.Size = new Size(66, 15);
             labeldireccion.TabIndex = 4;
             labeldireccion.Text = "Direccion: ";
             // 
             // labellocalidad
             // 
             labellocalidad.AutoSize = true;
+            labellocalidad.BackColor = Color.Transparent;
+            labellocalidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             labellocalidad.Location = new Point(546, 73);
             labellocalidad.Name = "labellocalidad";
             labellocalidad.Size = new Size(64, 15);
@@ -119,7 +128,7 @@
             cbxfactura.DisplayMember = "Tipo Factura";
             cbxfactura.FormattingEnabled = true;
             cbxfactura.Items.AddRange(new object[] { "", "Factura A", "Factura B", "Factura C", "Presupuesto" });
-            cbxfactura.Location = new Point(297, 32);
+            cbxfactura.Location = new Point(297, 25);
             cbxfactura.Name = "cbxfactura";
             cbxfactura.Size = new Size(121, 23);
             cbxfactura.TabIndex = 6;
@@ -135,7 +144,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(809, 322);
+            dataGridView1.Size = new Size(808, 322);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
@@ -144,15 +153,19 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(40, 125);
             label6.Name = "label6";
-            label6.Size = new Size(46, 15);
+            label6.Size = new Size(45, 15);
             label6.TabIndex = 8;
             label6.Text = "Codigo";
             // 
             // label7
             // 
             label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label7.Location = new Point(205, 125);
             label7.Name = "label7";
             label7.Size = new Size(55, 15);
@@ -185,7 +198,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(523, 525);
+            button3.Location = new Point(692, 525);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 13;
@@ -195,7 +208,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(643, 525);
+            button4.Location = new Point(773, 525);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 14;
@@ -206,8 +219,9 @@
             // label8
             // 
             label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(377, 481);
+            label8.Location = new Point(266, 481);
             label8.Name = "label8";
             label8.Size = new Size(68, 15);
             label8.TabIndex = 15;
@@ -217,7 +231,7 @@
             // subtotal
             // 
             subtotal.AutoSize = true;
-            subtotal.Location = new Point(451, 481);
+            subtotal.Location = new Point(340, 481);
             subtotal.Name = "subtotal";
             subtotal.Size = new Size(28, 15);
             subtotal.TabIndex = 16;
@@ -226,8 +240,9 @@
             // label10
             // 
             label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(507, 481);
+            label10.Location = new Point(476, 481);
             label10.Name = "label10";
             label10.Size = new Size(39, 15);
             label10.TabIndex = 17;
@@ -236,8 +251,9 @@
             // label11
             // 
             label11.AutoSize = true;
+            label11.BackColor = Color.Transparent;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(590, 481);
+            label11.Location = new Point(661, 481);
             label11.Name = "label11";
             label11.Size = new Size(47, 15);
             label11.TabIndex = 18;
@@ -247,7 +263,7 @@
             // labeltotal
             // 
             labeltotal.AutoSize = true;
-            labeltotal.Location = new Point(643, 481);
+            labeltotal.Location = new Point(714, 481);
             labeltotal.Name = "labeltotal";
             labeltotal.Size = new Size(28, 15);
             labeltotal.TabIndex = 19;
@@ -256,7 +272,7 @@
             // labeliva
             // 
             labeliva.AutoSize = true;
-            labeliva.Location = new Point(536, 481);
+            labeliva.Location = new Point(523, 481);
             labeliva.Name = "labeliva";
             labeliva.Size = new Size(28, 15);
             labeliva.TabIndex = 20;
@@ -281,10 +297,11 @@
             btnbuscarart.UseVisualStyleBackColor = true;
             btnbuscarart.Click += btnbuscarart_Click;
             // 
-            // Form2
+            // PuntoDeVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = SurFeFront.Properties.Resources.fondo_funto_venta2;
             ClientSize = new Size(881, 561);
             Controls.Add(btnbuscarart);
             Controls.Add(btnagregar);
@@ -310,7 +327,7 @@
             Controls.Add(labelrazonsocial);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form2";
+            Name = "PuntoDeVenta";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Punto de Venta";
             Load += Form2_Load;

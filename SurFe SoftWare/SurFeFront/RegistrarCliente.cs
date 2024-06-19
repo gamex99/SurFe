@@ -40,20 +40,20 @@ namespace SurFeFront
         }
         private void Guardar()
         {
-            
+
 
 
             try
             {
-   
+
                 ClienteModel cli = new ClienteModel();
                 cli.razon_social = txtrazonsocial.Text.Trim();
                 cli.cuit = txtcuit.Text.Trim();
                 cli.id_tipo_documento = cbxDoc.SelectedIndex;
                 cli.dni = Int32.Parse(txtdni.Text);
                 cli.id_tipo_factura = cbxtfac.SelectedIndex;
-                cli.id_condicion_iva = cbxiva.SelectedIndex;                
-                cli.tipo_factura = cbxtfac.SelectedIndex.ToString();          
+                cli.id_condicion_iva = cbxiva.SelectedIndex;
+                cli.tipo_factura = cbxtfac.SelectedIndex.ToString();
                 cli.domicilio = txtDom.Text.Trim();
                 cli.id_provincia = cbxprov.SelectedIndex;
                 cli.id_localidad = cbxLoc.SelectedIndex;
@@ -61,7 +61,7 @@ namespace SurFeFront
                 cli.telefono = txtTel.Text.Trim();
                 cli.email = txtTel.Text.Trim();
                 cli.barrio = txtBarrio.Text.Trim();
-                
+
                 string mensajeErrores = "";
                 //aca decia algo de realizar validaciones
                 if (!ValidarEmpleado(ref mensajeErrores, cli))
@@ -81,7 +81,7 @@ namespace SurFeFront
                 if (modo == EnumModoForm.Alta)
                 {
                     int idcli = ClienteDatos.Insert(cli);
-                    
+
                     MessageBox.Show("Se generó el cliente nro " + idcli.ToString(), "Cliente creado",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -99,9 +99,9 @@ namespace SurFeFront
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
 
-    }
+
+        }
         private bool ValidarEmpleado(ref string mensaje, ClienteModel e)
         {
             mensaje = "";
@@ -160,14 +160,14 @@ namespace SurFeFront
         private void CargarDatos()
         {
             txtrazonsocial.Text = _clienteModel.razon_social.ToString();
-            cbxDoc.SelectedIndex = _clienteModel.id_tipo_documento; 
+            cbxDoc.SelectedIndex = _clienteModel.id_tipo_documento;
             txtdni.Text = _clienteModel.dni.ToString(); ;
             txtcuit.Text = _clienteModel.cuit.ToString();
             cbxiva.SelectedIndex = _clienteModel.id_condicion_iva;
             cbxtfac.SelectedIndex = _clienteModel.id_tipo_factura;
             txtDom.Text = _clienteModel.domicilio.ToString();
             txtTel.Text = _clienteModel.telefono.ToString();
-            txtEmail.Text = _clienteModel.email.ToString(); 
+            txtEmail.Text = _clienteModel.email.ToString();
             cbxprov.SelectedIndex = _clienteModel.id_provincia;
             cbxLoc.SelectedIndex = _clienteModel.id_localidad;
             txtBarrio.Text = _clienteModel.barrio.ToString();
@@ -207,7 +207,7 @@ namespace SurFeFront
                 btGuardar.Enabled = false;
             }
         }
-        
+
 
     }
 

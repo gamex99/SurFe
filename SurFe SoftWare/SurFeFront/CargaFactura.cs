@@ -32,7 +32,7 @@ namespace SurFeFront
             DateTime fechaActual = DateTime.Now;
             command.Parameters.AddWithValue("@id_compra", label2.Text);
             command.Parameters.AddWithValue("@factura", factura);
-           
+
             // connection.Open();
             command.ExecuteNonQuery();
             connection.Close();

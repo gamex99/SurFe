@@ -164,7 +164,7 @@ namespace SurFeFront
             command.Parameters.AddWithValue("@fecha", fechaActual);
             command.Parameters.AddWithValue("@id_proveedor", id);
             command.Parameters.AddWithValue("@location", nombreArchivo);
-            
+
             // connection.Open();
             command.ExecuteNonQuery();
             connection.Close();

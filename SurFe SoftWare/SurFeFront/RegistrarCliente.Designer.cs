@@ -65,6 +65,7 @@
             // lblPersona
             // 
             lblPersona.AutoSize = true;
+            lblPersona.BackColor = Color.Transparent;
             lblPersona.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblPersona.Location = new Point(12, 9);
             lblPersona.Name = "lblPersona";
@@ -75,9 +76,11 @@
             // lblNomAp
             // 
             lblNomAp.AutoSize = true;
+            lblNomAp.BackColor = Color.Transparent;
+            lblNomAp.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblNomAp.Location = new Point(12, 51);
             lblNomAp.Name = "lblNomAp";
-            lblNomAp.Size = new Size(107, 15);
+            lblNomAp.Size = new Size(110, 15);
             lblNomAp.TabIndex = 1;
             lblNomAp.Text = "Apellido y Nombre";
             // 
@@ -93,18 +96,22 @@
             // lblTipo
             // 
             lblTipo.AutoSize = true;
+            lblTipo.BackColor = Color.Transparent;
+            lblTipo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblTipo.Location = new Point(12, 93);
             lblTipo.Name = "lblTipo";
-            lblTipo.Size = new Size(111, 15);
+            lblTipo.Size = new Size(115, 15);
             lblTipo.TabIndex = 3;
             lblTipo.Text = "Tipo de documento";
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(12, 136);
             label1.Name = "label1";
-            label1.Size = new Size(132, 15);
+            label1.Size = new Size(137, 15);
             label1.TabIndex = 5;
             label1.Text = "Numero de documento";
             // 
@@ -118,6 +125,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(12, 181);
             label2.Name = "label2";
@@ -128,9 +136,11 @@
             // lblDom
             // 
             lblDom.AutoSize = true;
+            lblDom.BackColor = Color.Transparent;
+            lblDom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblDom.Location = new Point(12, 215);
             lblDom.Name = "lblDom";
-            lblDom.Size = new Size(58, 15);
+            lblDom.Size = new Size(59, 15);
             lblDom.TabIndex = 8;
             lblDom.Text = "Domicilio";
             // 
@@ -146,9 +156,11 @@
             // lblTel
             // 
             lblTel.AutoSize = true;
+            lblTel.BackColor = Color.Transparent;
+            lblTel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblTel.Location = new Point(12, 254);
             lblTel.Name = "lblTel";
-            lblTel.Size = new Size(52, 15);
+            lblTel.Size = new Size(56, 15);
             lblTel.TabIndex = 10;
             lblTel.Text = "Telefono";
             // 
@@ -164,6 +176,8 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
+            lblEmail.BackColor = Color.Transparent;
+            lblEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblEmail.Location = new Point(12, 291);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(41, 15);
@@ -182,9 +196,11 @@
             // lblProv
             // 
             lblProv.AutoSize = true;
+            lblProv.BackColor = Color.Transparent;
+            lblProv.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblProv.Location = new Point(12, 328);
             lblProv.Name = "lblProv";
-            lblProv.Size = new Size(56, 15);
+            lblProv.Size = new Size(58, 15);
             lblProv.TabIndex = 14;
             lblProv.Text = "Provincia";
             // 
@@ -194,12 +210,14 @@
             cbxprov.Items.AddRange(new object[] { "", "Santa Fe" });
             cbxprov.Location = new Point(101, 325);
             cbxprov.Name = "cbxprov";
-            cbxprov.Size = new Size(121, 23);
+            cbxprov.Size = new Size(200, 23);
             cbxprov.TabIndex = 15;
             // 
             // lblLoc
             // 
             lblLoc.AutoSize = true;
+            lblLoc.BackColor = Color.Transparent;
+            lblLoc.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblLoc.Location = new Point(14, 360);
             lblLoc.Name = "lblLoc";
             lblLoc.Size = new Size(58, 15);
@@ -212,15 +230,17 @@
             cbxLoc.Items.AddRange(new object[] { "", "Peyrano", "Santa Teresa", "Rosario" });
             cbxLoc.Location = new Point(101, 357);
             cbxLoc.Name = "cbxLoc";
-            cbxLoc.Size = new Size(121, 23);
+            cbxLoc.Size = new Size(200, 23);
             cbxLoc.TabIndex = 17;
             // 
             // lblBarrio
             // 
             lblBarrio.AutoSize = true;
+            lblBarrio.BackColor = Color.Transparent;
+            lblBarrio.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblBarrio.Location = new Point(12, 393);
             lblBarrio.Name = "lblBarrio";
-            lblBarrio.Size = new Size(38, 15);
+            lblBarrio.Size = new Size(41, 15);
             lblBarrio.TabIndex = 18;
             lblBarrio.Text = "Barrio";
             // 
@@ -236,9 +256,11 @@
             // lblCp
             // 
             lblCp.AutoSize = true;
+            lblCp.BackColor = Color.Transparent;
+            lblCp.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblCp.Location = new Point(15, 426);
             lblCp.Name = "lblCp";
-            lblCp.Size = new Size(22, 15);
+            lblCp.Size = new Size(21, 15);
             lblCp.TabIndex = 20;
             lblCp.Text = "CP";
             // 
@@ -254,6 +276,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(462, 9);
             label4.Name = "label4";
@@ -264,9 +287,11 @@
             // lblCuit
             // 
             lblCuit.AutoSize = true;
+            lblCuit.BackColor = Color.Transparent;
+            lblCuit.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblCuit.Location = new Point(462, 51);
             lblCuit.Name = "lblCuit";
-            lblCuit.Size = new Size(32, 15);
+            lblCuit.Size = new Size(34, 15);
             lblCuit.TabIndex = 26;
             lblCuit.Text = "CUIT";
             // 
@@ -281,9 +306,11 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(462, 98);
             label5.Name = "label5";
-            label5.Size = new Size(76, 15);
+            label5.Size = new Size(80, 15);
             label5.TabIndex = 28;
             label5.Text = "Situacion IVA";
             // 
@@ -293,15 +320,17 @@
             cbxiva.Items.AddRange(new object[] { "", "Responsable Inscripto", "Consumidor Final", "Excento" });
             cbxiva.Location = new Point(563, 90);
             cbxiva.Name = "cbxiva";
-            cbxiva.Size = new Size(121, 23);
+            cbxiva.Size = new Size(153, 23);
             cbxiva.TabIndex = 29;
             // 
             // lblTfac
             // 
             lblTfac.AutoSize = true;
+            lblTfac.BackColor = Color.Transparent;
+            lblTfac.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblTfac.Location = new Point(462, 136);
             lblTfac.Name = "lblTfac";
-            lblTfac.Size = new Size(86, 15);
+            lblTfac.Size = new Size(91, 15);
             lblTfac.TabIndex = 30;
             lblTfac.Text = "Tipo de factura";
             // 
@@ -311,14 +340,14 @@
             cbxtfac.Items.AddRange(new object[] { "", "A", "B", "C" });
             cbxtfac.Location = new Point(563, 133);
             cbxtfac.Name = "cbxtfac";
-            cbxtfac.Size = new Size(121, 23);
+            cbxtfac.Size = new Size(153, 23);
             cbxtfac.TabIndex = 31;
             // 
             // btGuardar
             // 
-            btGuardar.Location = new Point(563, 540);
+            btGuardar.Location = new Point(447, 540);
             btGuardar.Name = "btGuardar";
-            btGuardar.Size = new Size(75, 30);
+            btGuardar.Size = new Size(144, 30);
             btGuardar.TabIndex = 33;
             btGuardar.Text = "Guardar";
             btGuardar.UseVisualStyleBackColor = true;
@@ -326,9 +355,9 @@
             // 
             // btCancelar
             // 
-            btCancelar.Location = new Point(666, 540);
+            btCancelar.Location = new Point(597, 540);
             btCancelar.Name = "btCancelar";
-            btCancelar.Size = new Size(75, 30);
+            btCancelar.Size = new Size(144, 30);
             btCancelar.TabIndex = 34;
             btCancelar.Text = "Cancelar";
             btCancelar.UseVisualStyleBackColor = true;
@@ -340,7 +369,7 @@
             cbxDoc.Items.AddRange(new object[] { "", "DNI", "LC" });
             cbxDoc.Location = new Point(149, 90);
             cbxDoc.Name = "cbxDoc";
-            cbxDoc.Size = new Size(121, 23);
+            cbxDoc.Size = new Size(201, 23);
             cbxDoc.TabIndex = 4;
             cbxDoc.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -358,6 +387,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.fondo_carga_cliente;
             ClientSize = new Size(753, 575);
             Controls.Add(txtid);
             Controls.Add(btCancelar);

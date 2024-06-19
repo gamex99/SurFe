@@ -51,6 +51,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
@@ -61,7 +62,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 118);
+            label2.BackColor = Color.Transparent;
+            label2.Location = new Point(12, 119);
             label2.Name = "label2";
             label2.Size = new Size(53, 15);
             label2.TabIndex = 1;
@@ -78,7 +80,8 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(391, 123);
+            label3.BackColor = Color.Transparent;
+            label3.Location = new Point(391, 119);
             label3.Name = "label3";
             label3.Size = new Size(55, 15);
             label3.TabIndex = 4;
@@ -153,7 +156,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(22, 60);
+            label4.BackColor = Color.Transparent;
+            label4.Location = new Point(12, 62);
             label4.Name = "label4";
             label4.Size = new Size(67, 15);
             label4.TabIndex = 10;
@@ -162,7 +166,8 @@
             // lbrazonsocial
             // 
             lbrazonsocial.AutoSize = true;
-            lbrazonsocial.Location = new Point(95, 60);
+            lbrazonsocial.BackColor = Color.Transparent;
+            lbrazonsocial.Location = new Point(86, 62);
             lbrazonsocial.Name = "lbrazonsocial";
             lbrazonsocial.Size = new Size(27, 15);
             lbrazonsocial.TabIndex = 11;
@@ -170,7 +175,7 @@
             // 
             // btnbuscarproveedor
             // 
-            btnbuscarproveedor.Location = new Point(252, 52);
+            btnbuscarproveedor.Location = new Point(243, 58);
             btnbuscarproveedor.Name = "btnbuscarproveedor";
             btnbuscarproveedor.Size = new Size(126, 23);
             btnbuscarproveedor.TabIndex = 12;
@@ -181,7 +186,8 @@
             // lbbarcode
             // 
             lbbarcode.AutoSize = true;
-            lbbarcode.Location = new Point(71, 118);
+            lbbarcode.BackColor = Color.Transparent;
+            lbbarcode.Location = new Point(71, 119);
             lbbarcode.Name = "lbbarcode";
             lbbarcode.Size = new Size(22, 15);
             lbbarcode.TabIndex = 13;
@@ -190,6 +196,7 @@
             // lbdetalle
             // 
             lbdetalle.AutoSize = true;
+            lbdetalle.BackColor = Color.Transparent;
             lbdetalle.Location = new Point(182, 119);
             lbdetalle.Name = "lbdetalle";
             lbdetalle.Size = new Size(22, 15);
@@ -200,6 +207,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.FONDO_REGISTRAR_COMPRA;
             ClientSize = new Size(800, 450);
             Controls.Add(lbdetalle);
             Controls.Add(lbbarcode);

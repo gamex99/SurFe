@@ -118,31 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ba417aa1-3766-4bcf-b287-904d1ac69866" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ba417aa1-3766-4bcf-b287-904d1ac69866.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo pp1 carpeta 2023 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo pp1 carpeta 2023 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fondo azul piola" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fondo azul piola.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="lupa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lupa1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo pp1 carpeta 2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo pp1 carpeta 2023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fondo clientres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo clientres.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo pp1 carpeta 20231" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo pp1 carpeta 20231.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Plantilla" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Plantilla.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="fondo funto venta2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo funto venta2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo pp1 carpeta 2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo pp1 carpeta 2023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo login2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo login2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo pp1 carpeta 2023 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo pp1 carpeta 2023 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sin título-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sin título-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo carga cliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo carga cliente.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo login1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo login1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo funto venta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo funto venta.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo funto venta1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo funto venta1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo carga factura1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo carga factura1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo carga factura" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo carga factura.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ba417aa1-3766-4bcf-b287-904d1ac69866" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ba417aa1-3766-4bcf-b287-904d1ac69866.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Plantilla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Plantilla.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="fondo menu 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo menu 1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo azul piola" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo azul piola.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo nvo Produc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo nvo Produc.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FONDO REGISTRAR COMPRA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FONDO REGISTRAR COMPRA.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

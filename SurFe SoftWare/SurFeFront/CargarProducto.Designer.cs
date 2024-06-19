@@ -50,7 +50,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.Menu;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(22, 27);
             label1.Name = "label1";
@@ -107,36 +107,44 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(173, 72);
             label2.Name = "label2";
-            label2.Size = new Size(52, 15);
+            label2.Size = new Size(54, 15);
             label2.TabIndex = 7;
             label2.Text = "BarCode";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(302, 72);
             label4.Name = "label4";
-            label4.Size = new Size(43, 15);
+            label4.Size = new Size(47, 15);
             label4.TabIndex = 9;
             label4.Text = "Detalle";
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(431, 72);
             label5.Name = "label5";
-            label5.Size = new Size(36, 15);
+            label5.Size = new Size(39, 15);
             label5.TabIndex = 10;
             label5.Text = "Stock";
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(558, 72);
             label6.Name = "label6";
-            label6.Size = new Size(40, 15);
+            label6.Size = new Size(42, 15);
             label6.TabIndex = 11;
             label6.Text = "Precio";
             label6.Click += label6_Click;
@@ -164,8 +172,10 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(rbOtroNo);
             groupBox1.Controls.Add(rbOtroSi);
+            groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(475, 134);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(163, 42);
@@ -189,7 +199,7 @@
             rbOtroSi.AutoSize = true;
             rbOtroSi.Location = new Point(11, 18);
             rbOtroSi.Name = "rbOtroSi";
-            rbOtroSi.Size = new Size(34, 19);
+            rbOtroSi.Size = new Size(35, 19);
             rbOtroSi.TabIndex = 0;
             rbOtroSi.TabStop = true;
             rbOtroSi.Text = "Si";
@@ -198,9 +208,11 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(42, 72);
             label3.Name = "label3";
-            label3.Size = new Size(58, 15);
+            label3.Size = new Size(60, 15);
             label3.TabIndex = 15;
             label3.Text = "Categoria";
             label3.Click += label3_Click;
@@ -210,6 +222,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
+            BackgroundImage = SurFeFront.Properties.Resources.fondo_nvo_Produc;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(655, 213);
             Controls.Add(label3);
             Controls.Add(groupBox1);

@@ -20,12 +20,12 @@ namespace SurFe
     public partial class CargarProducto : Form
     {
         public EnumModoForm modo = EnumModoForm.Alta;
- 
+
         public CargarProducto()
         {
             InitializeComponent();
             getCategorias();
-           
+
 
         }
 
@@ -39,9 +39,9 @@ namespace SurFe
             if (validarcontroles() == true)
             {
 
-                
+
                 if (modo == EnumModoForm.Alta)
-                { 
+                {
                     Guardar();
 
                     if (rbOtroSi.Checked)
@@ -60,7 +60,7 @@ namespace SurFe
                         switch (result)
                         {
                             case DialogResult.Yes:
-                                LimpiarControles(); 
+                                LimpiarControles();
                                 break;
                             case DialogResult.No:
                                 this.Close();
@@ -68,7 +68,8 @@ namespace SurFe
 
                         }
                     }
-                } else if (modo == EnumModoForm.Modificacion)
+                }
+                else if (modo == EnumModoForm.Modificacion)
                 {
                     DialogResult result = MessageBox.Show("¿Esta seguro que desea guardar las modificaciones?", "Mensaje de confirmación",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -80,7 +81,7 @@ namespace SurFe
                             this.Close();
                             break;
                         case DialogResult.No:
-                            
+
                             break;
 
                     }
@@ -133,7 +134,7 @@ namespace SurFe
             {
                 LimpiarControles();
                 HabilitarControles(true);
-                
+
             }
             if (modo == EnumModoForm.Modificacion)
             {
@@ -177,35 +178,35 @@ namespace SurFe
 
         }
 
-       /* guardar sin comprobacion del lado del sql
-        * private void Guardar()
-        {
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(conString))
-            {
-                connection.Open();
-                string query = "INSERT INTO producto (categoria, barcode, detalle, stock, precio) VALUES (@categoria, @barcode, @detalle, @stock, @precio)";
-                if (modo == EnumModoForm.Modificacion)
-                {
-                    query = "UPDATE producto SET categoria = @categoria, detalle = @detalle, stock = @stock, precio = @precio WHERE barcode = @barcode;";
+        /* guardar sin comprobacion del lado del sql
+         * private void Guardar()
+         {
+             string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+             using (SqlConnection connection = new SqlConnection(conString))
+             {
+                 connection.Open();
+                 string query = "INSERT INTO producto (categoria, barcode, detalle, stock, precio) VALUES (@categoria, @barcode, @detalle, @stock, @precio)";
+                 if (modo == EnumModoForm.Modificacion)
+                 {
+                     query = "UPDATE producto SET categoria = @categoria, detalle = @detalle, stock = @stock, precio = @precio WHERE barcode = @barcode;";
 
-                }
+                 }
 
 
 
-                
 
-                SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@categoria", cbCategoria.SelectedIndex + 1);
-                command.Parameters.AddWithValue("@barcode", int.Parse(tbbarcode.Text)); // Allow null for barcode
-                command.Parameters.AddWithValue("@detalle", tbdetalle.Text);
-                command.Parameters.AddWithValue("@stock", int.Parse(tbstock.Text));
-                command.Parameters.AddWithValue("@precio", decimal.Parse(tbprecio.Text));
+                 SqlCommand command = new SqlCommand(query, connection);
 
-                command.ExecuteNonQuery();
-            }
-        } */
+                 command.Parameters.AddWithValue("@categoria", cbCategoria.SelectedIndex + 1);
+                 command.Parameters.AddWithValue("@barcode", int.Parse(tbbarcode.Text)); // Allow null for barcode
+                 command.Parameters.AddWithValue("@detalle", tbdetalle.Text);
+                 command.Parameters.AddWithValue("@stock", int.Parse(tbstock.Text));
+                 command.Parameters.AddWithValue("@precio", decimal.Parse(tbprecio.Text));
+
+                 command.ExecuteNonQuery();
+             }
+         } */
 
         private void Guardar()
         {
@@ -262,7 +263,7 @@ namespace SurFe
 
         private void CargarDatos()
         {
-            
+
             cbCategoria.SelectedIndex = ClaseCompartida.categoria - 1;
             tbbarcode.Text = ClaseCompartida.barcode.ToString();
             tbdetalle.Text = ClaseCompartida.detalle.ToString();
@@ -272,15 +273,15 @@ namespace SurFe
         }
         private bool validarcontroles()
         {
-            if(cbCategoria.SelectedIndex > -1)
+            if (cbCategoria.SelectedIndex > -1)
             {
-                if(tbbarcode.Text.Length > 0 && int.TryParse(tbbarcode.Text, out int barcode))
+                if (tbbarcode.Text.Length > 0 && int.TryParse(tbbarcode.Text, out int barcode))
                 {
                     if (tbdetalle.Text.Length > 0)
                     {
-                        if(tbstock.Text.Length > 0)
+                        if (tbstock.Text.Length > 0)
                         {
-                            if(tbprecio.Text.Length > 0 && (decimal.TryParse(tbprecio.Text, out decimal precio) || int.TryParse(tbprecio.Text, out int precioo)))
+                            if (tbprecio.Text.Length > 0 && (decimal.TryParse(tbprecio.Text, out decimal precio) || int.TryParse(tbprecio.Text, out int precioo)))
                             {
                                 return true;
                             }
@@ -304,11 +305,13 @@ namespace SurFe
                         return false;
                     }
                 }
-                else { 
+                else
+                {
                     MessageBox.Show("Falta cargar barcode o no es un numero entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Cargar Categoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -316,5 +319,5 @@ namespace SurFe
         }
 
     }
-    }
+}
 

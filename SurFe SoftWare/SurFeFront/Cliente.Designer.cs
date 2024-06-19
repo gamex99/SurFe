@@ -45,12 +45,6 @@
             documento = new DataGridViewTextBoxColumn();
             dni = new DataGridViewTextBoxColumn();
             email = new DataGridViewTextBoxColumn();
-            clienteBindingSource = new BindingSource(components);
-            btNuevo = new Button();
-            btModificar = new Button();
-            btEliminar = new Button();
-            btSalir = new Button();
-            btnConsultar = new Button();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             razonsocialDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             condicionivaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -71,6 +65,12 @@
             dniDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             barrioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            clienteBindingSource = new BindingSource(components);
+            btNuevo = new Button();
+            btModificar = new Button();
+            btEliminar = new Button();
+            btSalir = new Button();
+            btnConsultar = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgEmpleados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clienteBindingSource).BeginInit();
             SuspendLayout();
@@ -78,9 +78,12 @@
             // lblBuscar
             // 
             lblBuscar.AutoSize = true;
+            lblBuscar.BackColor = Color.Transparent;
+            lblBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblBuscar.ForeColor = SystemColors.ActiveCaptionText;
             lblBuscar.Location = new Point(12, 44);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(42, 15);
+            lblBuscar.Size = new Size(44, 15);
             lblBuscar.TabIndex = 0;
             lblBuscar.Text = "Buscar";
             // 
@@ -98,6 +101,7 @@
             dtgEmpleados.AllowUserToDeleteRows = false;
             dtgEmpleados.AllowUserToOrderColumns = true;
             dtgEmpleados.AutoGenerateColumns = false;
+            dtgEmpleados.BackgroundColor = SystemColors.ButtonFace;
             dtgEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgEmpleados.Columns.AddRange(new DataGridViewColumn[] { razon_social, condicion_iva, cuit, tipo_factura, domicilio, barrio, localidad, cp, provincia, telefono, documento, dni, email, idDataGridViewTextBoxColumn, razonsocialDataGridViewTextBoxColumn, condicionivaDataGridViewTextBoxColumn, idcondicionivaDataGridViewTextBoxColumn, tipofacturaDataGridViewTextBoxColumn, idtipofacturaDataGridViewTextBoxColumn, cuitDataGridViewTextBoxColumn, domicilioDataGridViewTextBoxColumn, localidadDataGridViewTextBoxColumn, provinciaDataGridViewTextBoxColumn, idprovinciaDataGridViewTextBoxColumn, idlocalidadDataGridViewTextBoxColumn, cpDataGridViewTextBoxColumn, telefonoDataGridViewTextBoxColumn, anuladoDataGridViewCheckBoxColumn, idtipodocumentoDataGridViewTextBoxColumn, documentoDataGridViewTextBoxColumn, dniDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, barrioDataGridViewTextBoxColumn });
             dtgEmpleados.DataSource = clienteBindingSource;
@@ -200,60 +204,6 @@
             email.HeaderText = "E-Mail";
             email.Name = "email";
             email.ReadOnly = true;
-            // 
-            // clienteBindingSource
-            // 
-            clienteBindingSource.DataSource = typeof(SurFeEntidades.ClienteModel);
-            // 
-            // btNuevo
-            // 
-            btNuevo.Location = new Point(12, 400);
-            btNuevo.Name = "btNuevo";
-            btNuevo.Size = new Size(75, 25);
-            btNuevo.TabIndex = 3;
-            btNuevo.Text = "Nuevo";
-            btNuevo.UseVisualStyleBackColor = true;
-            btNuevo.Click += btNuevo_Click;
-            // 
-            // btModificar
-            // 
-            btModificar.Location = new Point(174, 400);
-            btModificar.Name = "btModificar";
-            btModificar.Size = new Size(75, 25);
-            btModificar.TabIndex = 4;
-            btModificar.Text = "Modificar";
-            btModificar.UseVisualStyleBackColor = true;
-            btModificar.Click += btModificar_Click;
-            // 
-            // btEliminar
-            // 
-            btEliminar.Location = new Point(255, 400);
-            btEliminar.Name = "btEliminar";
-            btEliminar.Size = new Size(75, 25);
-            btEliminar.TabIndex = 5;
-            btEliminar.Text = "Eliminar";
-            btEliminar.UseVisualStyleBackColor = true;
-            btEliminar.Click += btEliminar_Click;
-            // 
-            // btSalir
-            // 
-            btSalir.Location = new Point(713, 400);
-            btSalir.Name = "btSalir";
-            btSalir.Size = new Size(75, 25);
-            btSalir.TabIndex = 6;
-            btSalir.Text = "Salir";
-            btSalir.UseVisualStyleBackColor = true;
-            btSalir.Click += btSalir_Click;
-            // 
-            // btnConsultar
-            // 
-            btnConsultar.Location = new Point(93, 400);
-            btnConsultar.Name = "btnConsultar";
-            btnConsultar.Size = new Size(75, 25);
-            btnConsultar.TabIndex = 10;
-            btnConsultar.Text = "Consultar";
-            btnConsultar.UseVisualStyleBackColor = true;
-            btnConsultar.Click += btnConsultar_Click;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -395,10 +345,65 @@
             barrioDataGridViewTextBoxColumn.Name = "barrioDataGridViewTextBoxColumn";
             barrioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // clienteBindingSource
+            // 
+            clienteBindingSource.DataSource = typeof(SurFeEntidades.ClienteModel);
+            // 
+            // btNuevo
+            // 
+            btNuevo.Location = new Point(12, 400);
+            btNuevo.Name = "btNuevo";
+            btNuevo.Size = new Size(75, 25);
+            btNuevo.TabIndex = 3;
+            btNuevo.Text = "Nuevo";
+            btNuevo.UseVisualStyleBackColor = true;
+            btNuevo.Click += btNuevo_Click;
+            // 
+            // btModificar
+            // 
+            btModificar.Location = new Point(174, 400);
+            btModificar.Name = "btModificar";
+            btModificar.Size = new Size(75, 25);
+            btModificar.TabIndex = 4;
+            btModificar.Text = "Modificar";
+            btModificar.UseVisualStyleBackColor = true;
+            btModificar.Click += btModificar_Click;
+            // 
+            // btEliminar
+            // 
+            btEliminar.Location = new Point(255, 400);
+            btEliminar.Name = "btEliminar";
+            btEliminar.Size = new Size(75, 25);
+            btEliminar.TabIndex = 5;
+            btEliminar.Text = "Eliminar";
+            btEliminar.UseVisualStyleBackColor = true;
+            btEliminar.Click += btEliminar_Click;
+            // 
+            // btSalir
+            // 
+            btSalir.Location = new Point(713, 400);
+            btSalir.Name = "btSalir";
+            btSalir.Size = new Size(75, 25);
+            btSalir.TabIndex = 6;
+            btSalir.Text = "Salir";
+            btSalir.UseVisualStyleBackColor = true;
+            btSalir.Click += btSalir_Click;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.Location = new Point(93, 400);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(75, 25);
+            btnConsultar.TabIndex = 10;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
             // Cliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.fondo_clientres;
             ClientSize = new Size(800, 432);
             Controls.Add(btnConsultar);
             Controls.Add(btSalir);

@@ -44,6 +44,7 @@
             productosToolStripMenuItem1 = new ToolStripMenuItem();
             productosDeBajaToolStripMenuItem = new ToolStripMenuItem();
             comprasRealizadasToolStripMenuItem = new ToolStripMenuItem();
+            ventasRealizadasToolStripMenuItem = new ToolStripMenuItem();
             cLIENTESToolStripMenuItem = new ToolStripMenuItem();
             pRODUCTOSToolStripMenuItem = new ToolStripMenuItem();
             pROVEEDORESToolStripMenuItem = new ToolStripMenuItem();
@@ -59,7 +60,6 @@
             statusStrip = new StatusStrip();
             toolStripStatusLabel = new ToolStripStatusLabel();
             toolTip = new ToolTip(components);
-            ventasRealizadasToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             SuspendLayout();
@@ -70,7 +70,7 @@
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(7, 2, 0, 2);
-            menuStrip.Size = new Size(821, 24);
+            menuStrip.Size = new Size(834, 24);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "MenuStrip";
             // 
@@ -134,42 +134,49 @@
             // porProductoToolStripMenuItem
             // 
             porProductoToolStripMenuItem.Name = "porProductoToolStripMenuItem";
-            porProductoToolStripMenuItem.Size = new Size(180, 22);
+            porProductoToolStripMenuItem.Size = new Size(179, 22);
             porProductoToolStripMenuItem.Text = "Por Producto";
             // 
             // porFaltanteToolStripMenuItem
             // 
             porFaltanteToolStripMenuItem.Name = "porFaltanteToolStripMenuItem";
-            porFaltanteToolStripMenuItem.Size = new Size(180, 22);
+            porFaltanteToolStripMenuItem.Size = new Size(179, 22);
             porFaltanteToolStripMenuItem.Text = "Por Faltante";
             porFaltanteToolStripMenuItem.Click += porFaltanteToolStripMenuItem_Click;
             // 
             // stockActualToolStripMenuItem
             // 
             stockActualToolStripMenuItem.Name = "stockActualToolStripMenuItem";
-            stockActualToolStripMenuItem.Size = new Size(180, 22);
+            stockActualToolStripMenuItem.Size = new Size(179, 22);
             stockActualToolStripMenuItem.Text = "Stock Actual";
             stockActualToolStripMenuItem.Click += stockActualToolStripMenuItem_Click;
             // 
             // productosToolStripMenuItem1
             // 
             productosToolStripMenuItem1.Name = "productosToolStripMenuItem1";
-            productosToolStripMenuItem1.Size = new Size(180, 22);
+            productosToolStripMenuItem1.Size = new Size(179, 22);
             productosToolStripMenuItem1.Text = "Productos";
             // 
             // productosDeBajaToolStripMenuItem
             // 
             productosDeBajaToolStripMenuItem.Name = "productosDeBajaToolStripMenuItem";
-            productosDeBajaToolStripMenuItem.Size = new Size(180, 22);
+            productosDeBajaToolStripMenuItem.Size = new Size(179, 22);
             productosDeBajaToolStripMenuItem.Text = "Productos De Baja";
             productosDeBajaToolStripMenuItem.Click += productosDeBajaToolStripMenuItem_Click;
             // 
             // comprasRealizadasToolStripMenuItem
             // 
             comprasRealizadasToolStripMenuItem.Name = "comprasRealizadasToolStripMenuItem";
-            comprasRealizadasToolStripMenuItem.Size = new Size(180, 22);
+            comprasRealizadasToolStripMenuItem.Size = new Size(179, 22);
             comprasRealizadasToolStripMenuItem.Text = "Compras Realizadas";
             comprasRealizadasToolStripMenuItem.Click += comprasRealizadasToolStripMenuItem_Click;
+            // 
+            // ventasRealizadasToolStripMenuItem
+            // 
+            ventasRealizadasToolStripMenuItem.Name = "ventasRealizadasToolStripMenuItem";
+            ventasRealizadasToolStripMenuItem.Size = new Size(179, 22);
+            ventasRealizadasToolStripMenuItem.Text = "Ventas Realizadas";
+            ventasRealizadasToolStripMenuItem.Click += ventasRealizadasToolStripMenuItem_Click;
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -259,10 +266,10 @@
             // statusStrip
             // 
             statusStrip.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel });
-            statusStrip.Location = new Point(0, 497);
+            statusStrip.Location = new Point(0, 499);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new Padding(1, 0, 16, 0);
-            statusStrip.Size = new Size(821, 22);
+            statusStrip.Size = new Size(834, 22);
             statusStrip.TabIndex = 2;
             statusStrip.Text = "StatusStrip";
             // 
@@ -272,20 +279,17 @@
             toolStripStatusLabel.Size = new Size(42, 17);
             toolStripStatusLabel.Text = "Estado";
             // 
-            // ventasRealizadasToolStripMenuItem
-            // 
-            ventasRealizadasToolStripMenuItem.Name = "ventasRealizadasToolStripMenuItem";
-            ventasRealizadasToolStripMenuItem.Size = new Size(180, 22);
-            ventasRealizadasToolStripMenuItem.Text = "Ventas Realizadas";
-            ventasRealizadasToolStripMenuItem.Click += ventasRealizadasToolStripMenuItem_Click;
-            // 
             // md
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(821, 519);
+            BackColor = SystemColors.ActiveBorder;
+            BackgroundImage = Properties.Resources.Sin_título_1;
+            BackgroundImageLayout = ImageLayout.None;
+            ClientSize = new Size(834, 521);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
+            DoubleBuffered = true;
             IsMdiContainer = true;
             MainMenuStrip = menuStrip;
             Margin = new Padding(4, 3, 4, 3);
@@ -301,10 +305,10 @@
         #endregion
 
 
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.ToolTip toolTip;
+        private MenuStrip menuStrip;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel toolStripStatusLabel;
+        private ToolTip toolTip;
         private ToolStripMenuItem vENTAToolStripMenuItem;
         private ToolStripMenuItem dEPOSITOToolStripMenuItem;
         private ToolStripMenuItem iNFORMESToolStripMenuItem;
