@@ -403,7 +403,6 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.fondo_clientres;
             ClientSize = new Size(800, 432);
             Controls.Add(btnConsultar);
             Controls.Add(btSalir);

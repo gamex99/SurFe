@@ -35,6 +35,7 @@
             // 
             // dataGridView3
             // 
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView3.Location = new Point(18, 41);
             dataGridView3.Name = "dataGridView3";
@@ -52,14 +53,14 @@
             txtbuscarproducto.TabIndex = 1;
             txtbuscarproducto.TextChanged += txtbuscarproducto_TextChanged;
             // 
-            // SelectProductoVenta
+            // SelectProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 315);
             Controls.Add(txtbuscarproducto);
             Controls.Add(dataGridView3);
-            Name = "SelectProductoVenta";
+            Name = "SelectProducto";
             Text = "SelectProductoVenta";
             Load += SelectProductoVenta_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();

@@ -42,9 +42,13 @@
             // 
             // dataproveedores
             // 
+            dataproveedores.AllowUserToAddRows = false;
+            dataproveedores.AllowUserToDeleteRows = false;
+            dataproveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataproveedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataproveedores.Location = new Point(10, 56);
             dataproveedores.Name = "dataproveedores";
+            dataproveedores.ReadOnly = true;
             dataproveedores.RowTemplate.Height = 25;
             dataproveedores.Size = new Size(778, 382);
             dataproveedores.TabIndex = 1;

@@ -36,6 +36,7 @@
             button1 = new Button();
             btncerrar = new Button();
             btncargar = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -105,11 +106,21 @@
             btncargar.UseVisualStyleBackColor = true;
             btncargar.Click += btncargar_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 426);
+            label1.Name = "label1";
+            label1.Size = new Size(434, 15);
+            label1.TabIndex = 4;
+            label1.Text = "ESTA VENTANA ES PARA MODIFICAR EL STOCK. NO SUMA NI RESTA POR SI SOLO";
+            // 
             // RegistrarStock
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(btncargar);
             Controls.Add(btncerrar);
             Controls.Add(button1);
@@ -118,6 +129,7 @@
             Text = "RegistrarStock";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -130,5 +142,6 @@
         private DataGridViewTextBoxColumn nuevostock;
         private Button btncerrar;
         private Button btncargar;
+        private Label label1;
     }
 }

@@ -99,6 +99,7 @@ namespace SurFeDatos
                 command.Parameters.AddWithValue("@dni", e.dni);
                 command.Parameters.AddWithValue("@barrio", e.barrio);
                 command.Parameters.AddWithValue("@email", e.email);
+                command.Parameters.AddWithValue("@fechaRegistro", DateTime.Now);
                 try
                 {
                     connection.Open();

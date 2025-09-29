@@ -26,26 +26,34 @@ namespace SurFeFront
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnmostrar_Click(object sender, EventArgs e)
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
 
-            SqlConnection connection = new SqlConnection(connectionString);
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
 
-            string sql = "select barcode, detalle , stock from producto where stock < @stockfaltante";
-            SqlCommand command = new SqlCommand(sql, connection);
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                string sql = "select barcode, detalle , stock from producto where stock < @stockfaltante";
+                SqlCommand command = new SqlCommand(sql, connection);
 
 
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            System.Data.DataSet dataSet = new System.Data.DataSet();
-            connection.Open();
-            command.Parameters.AddWithValue("@stockfaltante", int.Parse(textBox1.Text));
-            adapter.Fill(dataSet, "productosfaltantes");
-            connection.Close();
-            dataGridView1.DataSource = dataSet.Tables["productosfaltantes"];
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                System.Data.DataSet dataSet = new System.Data.DataSet();
+                connection.Open();
+                command.Parameters.AddWithValue("@stockfaltante", int.Parse(textBox1.Text));
+                adapter.Fill(dataSet, "productosfaltantes");
+                connection.Close();
+                dataGridView1.DataSource = dataSet.Tables["productosfaltantes"];
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese la cantidad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnimprimir_Click(object sender, EventArgs e)

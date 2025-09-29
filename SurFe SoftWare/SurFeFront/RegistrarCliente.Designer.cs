@@ -387,7 +387,6 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.fondo_carga_cliente;
             ClientSize = new Size(753, 575);
             Controls.Add(txtid);
             Controls.Add(btCancelar);

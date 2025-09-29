@@ -99,9 +99,12 @@
             // 
             // dataProductos
             // 
+            dataProductos.AllowUserToAddRows = false;
+            dataProductos.AllowUserToDeleteRows = false;
             dataProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataProductos.Location = new Point(12, 69);
             dataProductos.Name = "dataProductos";
+            dataProductos.ReadOnly = true;
             dataProductos.RowTemplate.Height = 25;
             dataProductos.Size = new Size(665, 287);
             dataProductos.TabIndex = 8;

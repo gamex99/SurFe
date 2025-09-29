@@ -17,7 +17,7 @@ namespace SurFeFront
         public string barcode { get; private set; }
         public string detalle { get; private set; }
         public string stock { get; private set; }
-        public float precio { get; private set; }  
+        public float precio { get; private set; }
         public SelectProductoStockPorProducto()
         {
             InitializeComponent();
@@ -123,6 +123,11 @@ namespace SurFeFront
                 // Cerrar el formulario
                 Close();
             }
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

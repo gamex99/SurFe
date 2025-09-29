@@ -269,7 +269,7 @@ namespace SurFeFront
             formPDF.ShowDialog();
             //eso es codigo para hacer el html del pdf
             // Cerrar el formulario Form1 después de cerrar el formulario Form2
-            this.Close();
+
 
 
 
@@ -448,7 +448,7 @@ namespace SurFeFront
             formPDF.ShowDialog();
             //eso es codigo para hacer el html del pdf
             // Cerrar el formulario Form1 después de cerrar el formulario Form2
-            this.Close();
+
 
 
 
@@ -562,7 +562,6 @@ namespace SurFeFront
             formPDF.ShowDialog();
             //eso es codigo para hacer el html del pdf
             // Cerrar el formulario Form1 después de cerrar el formulario Form2
-            this.Close();
 
 
 
@@ -574,6 +573,14 @@ namespace SurFeFront
 
 
 
+
+        }
+
+        private void altaClienteMensualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GraficosAltaClientesMensualesMDI graficoForm = new GraficosAltaClientesMensualesMDI();
+            graficoForm.MdiParent = this; // Establece el MDI parent
+            graficoForm.Show();
         }
     }
 }

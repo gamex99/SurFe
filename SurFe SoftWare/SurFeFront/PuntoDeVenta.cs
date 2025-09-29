@@ -184,59 +184,67 @@ namespace SurFe
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string filtro = txtcodigo.Text;
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            string barcode = "";
-            string detalle = "";
-            decimal precio = (decimal)00;
-            int stock = 0;
-            int cantidad = int.Parse(txtcantidad.Text);
-
-
-            using (SqlConnection connection = new SqlConnection(conString))
+            if (!string.IsNullOrEmpty(txtcodigo.Text) && !string.IsNullOrEmpty(txtcantidad.Text))
             {
-                using (SqlCommand command = new SqlCommand("SelectProducto", connection))
+                string filtro = txtcodigo.Text;
+                string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+                string barcode = "";
+                string detalle = "";
+                decimal precio = (decimal)00;
+                int stock = 0;
+                int cantidad = int.Parse(txtcantidad.Text);
+
+
+                using (SqlConnection connection = new SqlConnection(conString))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    // Ajusta el nombre del parámetro y su valor según tus necesidades
-                    command.Parameters.AddWithValue("@filtro", filtro);
-
-                    try
+                    using (SqlCommand command = new SqlCommand("SelectProducto", connection))
                     {
-                        connection.Open();
+                        command.CommandType = CommandType.StoredProcedure;
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        // Ajusta el nombre del parámetro y su valor según tus necesidades
+                        command.Parameters.AddWithValue("@filtro", filtro);
+
+                        try
                         {
-                            while (reader.Read())
+                            connection.Open();
+
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                // Asigna los valores a las variables
-                                barcode = reader["barcode"].ToString();
-                                detalle = reader["detalle"].ToString();
-                                precio = Convert.ToDecimal(reader["precio"]);
-                                stock = Convert.ToInt32(reader["stock"]);
+                                while (reader.Read())
+                                {
+                                    // Asigna los valores a las variables
+                                    barcode = reader["barcode"].ToString();
+                                    detalle = reader["detalle"].ToString();
+                                    precio = Convert.ToDecimal(reader["precio"]);
+                                    stock = Convert.ToInt32(reader["stock"]);
 
 
+                                }
                             }
-                        }
 
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error: " + ex.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error: " + ex.Message);
+                        }
                     }
                 }
-            }
-            if (stock > 0)
-            {
-                decimal totalart = precio * cantidad;
-                dataGridView1.Rows.Add(barcode, cantidad, detalle, precio, totalart, stock);
-                RecalcularSuma();
+                if (stock > 0)
+                {
+                    decimal totalart = precio * cantidad;
+                    dataGridView1.Rows.Add(barcode, cantidad, detalle, precio, totalart, stock);
+                    RecalcularSuma();
+                }
+                else
+                {
+                    MessageBox.Show("NO HAY EN STOCK: " + detalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("NO HAY EN STOCK: " + detalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe introducir codigo de producto y cantidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         public class DetallesFactura
@@ -514,6 +522,27 @@ namespace SurFe
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RecalcularSuma();
+        }
+
+        private void btnagregar_Click(object sender, EventArgs e)
+        {
+            CargarProducto NewProd = new CargarProducto();
+            NewProd.modo = EnumModoForm.Alta;
+            NewProd.ShowDialog();
+            NewProd.FormClosed += delegate
+            {
+                
+            };
+        }
+
+        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            RecalcularSuma();
         }
     }
 }

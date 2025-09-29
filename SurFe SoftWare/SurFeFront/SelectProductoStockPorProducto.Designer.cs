@@ -37,6 +37,7 @@
             // 
             dataGridView3.AllowUserToAddRows = false;
             dataGridView3.AllowUserToDeleteRows = false;
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView3.Location = new Point(18, 41);
             dataGridView3.Name = "dataGridView3";
@@ -44,6 +45,7 @@
             dataGridView3.RowTemplate.Height = 25;
             dataGridView3.Size = new Size(770, 258);
             dataGridView3.TabIndex = 0;
+            dataGridView3.CellContentClick += dataGridView3_CellContentClick;
             dataGridView3.CellDoubleClick += dataGridView3_CellDoubleClick;
             // 
             // txtbuscarproducto

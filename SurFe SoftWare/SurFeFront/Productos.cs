@@ -186,8 +186,8 @@ namespace SurFeFront
                 ClaseCompartida.categoria = (int)dataProductos.Rows[e.RowIndex].Cells[6].Value;
             ClaseCompartida.barcode = (int)dataProductos.Rows[e.RowIndex].Cells[1].Value;
             ClaseCompartida.detalle = (string)dataProductos.Rows[e.RowIndex].Cells[2].Value;
-            ClaseCompartida.stock = (int)dataProductos.Rows[e.RowIndex].Cells[3].Value;
-            ClaseCompartida.precio = (decimal)dataProductos.Rows[e.RowIndex].Cells[4].Value;
+            //ClaseCompartida.stock = (int)dataProductos.Rows[e.RowIndex].Cells[3].Value;
+            ClaseCompartida.precio = (decimal)dataProductos.Rows[e.RowIndex].Cells[3].Value;
             }
         }
 

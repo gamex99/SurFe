@@ -16,6 +16,9 @@
     <Compile Update="ControlPorInventario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GraficosAltaClientesMensualesMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="InformeFaltantes.cs">
       <SubType>Form</SubType>
     </Compile>
