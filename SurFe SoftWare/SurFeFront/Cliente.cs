@@ -146,7 +146,7 @@ namespace SurFeFront
             try
             {
                 ClienteNegocio.Update(cli);
-                MessageBox.Show("El empleado " + cli.razon_social + " se anuló correctamente", "Anulación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El cliente " + cli.razon_social + " se anuló correctamente", "Anulación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

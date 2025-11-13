@@ -47,8 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HIC.System.Windows.Forms.DataVisualization" Version="1.0.1" />
     <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.3" />
+    <PackageReference Include="ScottPlot" Version="5.1.57" />
+    <PackageReference Include="ScottPlot.WinForms" Version="5.1.57" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +64,9 @@
       <DependentUpon>.resx</DependentUpon>
     </Compile>
     <Compile Update="ComprasRegistrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ArchivosSistema.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ProveedorRegistrarReclamo.cs">

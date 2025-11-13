@@ -13,6 +13,9 @@
     <Compile Update="Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ConsultarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ControlPorInventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -26,6 +29,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="md.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NotaDeCredito.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Productos.cs">

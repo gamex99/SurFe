@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IPiDeGm+iWNVxbJ4r5Ub5QzxzwuzHQRf774zdfmUnEFOTiuc2AMb55WQqm3PsZykR2j4c5HY2AYsNnF28HJuNQ==",
+  "dgSpecHash": "mmTos4gbl4Y=",
   "success": true,
   "projectFilePath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
   "expectedPackageFiles": [
@@ -24,8 +24,10 @@
     {
       "code": "NU1903",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "El paquete \"System.Data.SqlClient\" 4.8.5 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
+      "projectPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeDatos\\SurFeDatos.csproj",
       "libraryId": "System.Data.SqlClient",
       "targetGraphs": [
         "net6.0"

@@ -52,6 +52,8 @@
             labeliva = new Label();
             btnagregar = new Button();
             btnbuscarart = new Button();
+            btnpresu = new Button();
+            btnmod = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -204,7 +206,7 @@
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 13;
-            button3.Text = "Aceptar";
+            button3.Text = "Facturar";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -300,12 +302,34 @@
             btnbuscarart.UseVisualStyleBackColor = true;
             btnbuscarart.Click += btnbuscarart_Click;
             // 
+            // btnpresu
+            // 
+            btnpresu.Location = new Point(480, 525);
+            btnpresu.Name = "btnpresu";
+            btnpresu.Size = new Size(125, 23);
+            btnpresu.TabIndex = 23;
+            btnpresu.Text = "Generar Presupuesto";
+            btnpresu.UseVisualStyleBackColor = true;
+            btnpresu.Click += btnpresu_Click;
+            // 
+            // btnmod
+            // 
+            btnmod.Location = new Point(611, 525);
+            btnmod.Name = "btnmod";
+            btnmod.Size = new Size(75, 23);
+            btnmod.TabIndex = 24;
+            btnmod.Text = "Modificar";
+            btnmod.UseVisualStyleBackColor = true;
+            btnmod.Click += btnmod_Click;
+            // 
             // PuntoDeVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = SurFeFront.Properties.Resources.fondo_funto_venta2;
             ClientSize = new Size(881, 561);
+            Controls.Add(btnmod);
+            Controls.Add(btnpresu);
             Controls.Add(btnbuscarart);
             Controls.Add(btnagregar);
             Controls.Add(labeliva);
@@ -364,5 +388,7 @@
         private Label labeliva;
         private Button btnagregar;
         private Button btnbuscarart;
+        private Button btnpresu;
+        private Button btnmod;
     }
 }

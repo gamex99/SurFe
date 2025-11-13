@@ -27,6 +27,7 @@ namespace SurFeFront
         {
             //axAcropdf1.src = "C:\\PDF\\elarchivo.pdf";
             axAcropdf1.src = rutaCompletaArchivo;
+            axAcropdf1.setView("Fit");
             //tengo que agregar un valor que me traiga desde el form2 para vizualizar el ultimo archivo
         }
 

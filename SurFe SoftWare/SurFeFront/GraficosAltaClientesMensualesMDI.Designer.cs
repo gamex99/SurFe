@@ -28,18 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panel1 = new Panel();
             SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(10, 7);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1088, 643);
+            panel1.TabIndex = 0;
             // 
             // GraficosAltaClientesMensualesMDI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1110, 662);
+            Controls.Add(panel1);
             Name = "GraficosAltaClientesMensualesMDI";
             Text = "GraficosAltaClientesMensualesMDI";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel panel1;
     }
 }

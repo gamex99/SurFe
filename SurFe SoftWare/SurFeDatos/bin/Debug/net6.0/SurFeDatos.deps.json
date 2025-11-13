@@ -186,7 +186,10 @@
       },
       "SurFeEntidades/1.0.0": {
         "runtime": {
-          "SurFeEntidades.dll": {}
+          "SurFeEntidades.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

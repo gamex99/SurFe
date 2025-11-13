@@ -111,13 +111,6 @@ namespace SurFeFront
 
         private void vENTAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            PuntoDeVenta newMDIChild = new PuntoDeVenta();
-
-
-            newMDIChild.MdiParent = this;
-            // Display the new form.  
-            newMDIChild.Show();
         }
 
         private void dEPOSITOToolStripMenuItem_Click(object sender, EventArgs e)
@@ -473,6 +466,46 @@ namespace SurFeFront
         private void ventasRealizadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void altaClienteMensualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GraficosAltaClientesMensualesMDI graficoForm = new GraficosAltaClientesMensualesMDI();
+            graficoForm.MdiParent = this; // Establece el MDI parent
+            graficoForm.Show();
+        }
+
+        private void puntoDeVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+            PuntoDeVenta newMDIChild = new PuntoDeVenta();
+
+
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
+        }
+
+        private void notaDeCreditoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            NotaDeCredito newMDIChild = new NotaDeCredito();
+
+
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
+        }
+
+        private void porProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasRealizadasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
             string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
@@ -576,11 +609,24 @@ namespace SurFeFront
 
         }
 
-        private void altaClienteMensualesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void consultarVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GraficosAltaClientesMensualesMDI graficoForm = new GraficosAltaClientesMensualesMDI();
-            graficoForm.MdiParent = this; // Establece el MDI parent
-            graficoForm.Show();
+            ConsultarVenta newMDIChild = new ConsultarVenta();
+
+
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
+        }
+
+        private void pDFSistemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArchivosSistema newMDIChild = new ArchivosSistema();
+
+
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
         }
     }
 }

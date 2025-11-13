@@ -42,6 +42,9 @@ namespace SurFe
         public PuntoDeVenta()
         {
             InitializeComponent();
+            // btnagregar.Visible = false;
+            button3.Enabled = false;
+            btnmod.Enabled = false;
 
         }
 
@@ -392,7 +395,7 @@ namespace SurFe
 
             //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
             string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-            string nombreArchivo = GetNombreArchivoFechaHora();
+            string nombreArchivo = letra_factura + "_" +  GetNombreArchivoFechaHora();
             string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
             //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
             string rutaArchivoPDF = nombreArchivo;
@@ -463,7 +466,34 @@ namespace SurFe
             string tipo_documento = tipo_factura.ToString();
             // string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             // SqlConnection connection = new SqlConnection(connectionString);
-            string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+            //string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+            string sql = "";
+
+            // 2. Asigna la consulta correcta según el índice seleccionado
+            if (cbxfactura.SelectedIndex == 4) // Índice 4 es "Presupuesto X"
+            {
+                // Es un presupuesto
+                sql = "INSERT INTO dbo.presupuesto ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+            }
+            else if (cbxfactura.SelectedIndex >= 1 && cbxfactura.SelectedIndex <= 3) // Índices 1, 2, o 3
+            {
+                // Es una factura (A, B, o C)
+                sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+            }
+            else
+            {
+                // Si no se seleccionó nada válido (índice 0 o -1)
+                MessageBox.Show("Por favor, seleccione un tipo de documento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución del método para no intentar guardar
+            }
+
+
+
+
+
+
+
+
             SqlCommand command = new SqlCommand(sql, connection);
 
             DateTime fechaActual = DateTime.Now;
@@ -536,13 +566,275 @@ namespace SurFe
             NewProd.ShowDialog();
             NewProd.FormClosed += delegate
             {
-                
+
             };
         }
 
         private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             RecalcularSuma();
+        }
+
+        private void btnpresu_Click(object sender, EventArgs e)
+        {
+
+
+
+            if (labelcuit.Text != "CUIT: ")
+
+            {
+                if (dataGridView1.Rows.Count > 0)
+                {
+
+                    button2.Enabled = false;
+                    btnbuscarart.Enabled = false;
+                    btnpresu.Enabled = false;
+                    btnmod.Enabled = true;
+                    button3.Enabled = true;
+                    dataGridView1.ReadOnly = true;
+                    dataGridView1.AllowUserToAddRows = false;
+                    dataGridView1.AllowUserToDeleteRows = false;
+
+                    // Refuerzo por si acaso
+                    foreach (DataGridViewColumn col in dataGridView1.Columns)
+                    {
+                        col.ReadOnly = true;
+                    }
+
+                    foreach (DataGridViewColumn col in dataGridView1.Columns)
+                    {
+                        col.ReadOnly = true;
+                    }
+
+
+
+                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+                    SqlConnection connection = new SqlConnection(connectionString);
+                    int numero = 0;
+
+
+
+
+                    connection.Open();
+                    /*
+                    string sqlQuery = "SELECT [numero] FROM [dbo].[numero_factura] WHERE [id_numero] = 1 ;";
+                    SqlCommand command2 = new SqlCommand(sqlQuery, connection);
+
+                    using (SqlDataReader reader = command2.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            numero = reader.GetInt32(0);
+
+
+                        }
+                    }
+
+
+
+
+                    string cadena = numero.ToString();
+
+                    if (cadena.Length > 5)
+                    {
+                        // Trunca si tiene más de 5 caracteres
+                        cadena = cadena.Substring(0, 5);
+                    }
+                    else if (cadena.Length < 5)
+                    {
+                        // Rellena con ceros si tiene menos de 5 caracteres
+                        cadena = cadena.PadLeft(5, '0');
+                    }*/
+
+                    //hasta aca el numero de factura
+                    // codigo para el cae
+                    Random random = new Random();
+                    long randomNumber = (long)(random.NextDouble() * (1e14 - 1e13) + 1e13);
+                    string randomString = randomNumber.ToString("D14");
+                    /*
+
+                    switch (cbxfactura.SelectedIndex)
+                    {
+                        case 1:
+                            letra_factura = "Factura A";
+                            break;
+                        case 2:
+                            letra_factura = "Factura B";
+                            break;
+                        case 3:
+                            letra_factura = "Factura C";
+                            break;
+                        case 4:
+                            letra_factura = "Presupuesto X";
+                            break;
+                    }
+                    */
+                    letra_factura = "Presupuesto";
+
+                    //METEMOS CODIGO PARA HACER EL PDF backup
+
+
+
+                    //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
+                    string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
+                    string nombreArchivo = "Pres" + GetNombreArchivoFechaHora();
+                    string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
+                    //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
+                    string rutaArchivoPDF = nombreArchivo;
+
+
+
+                    string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            background-color: #3498db;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .header .info {\r\n            flex: 2;\r\n            text-align: center;\r\n        }\r\n        .header .mas-info {\r\n            flex: 3;\r\n            text-align: left;\r\n            height: 150px;\r\n        }\r\n        .header .logo {\r\n            width: auto;\r\n            margin-top: 0px;\r\n            flex: 1;\r\n            text-align: center;\r\n        }\r\n        img {\r\n            width: 200px;\r\n            height:200px;\r\n        }\r\n        .footer {\r\n            margin-top: 10px;\r\n            color: black;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .main {\r\n            margin: 10px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db;\r\n            color: white;\r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n        .cliente {\r\n            margin-top: 10px;\r\n        }\r\n        .productos {\r\n\r\n        }\r\n        #con {\r\n            width: 200px;\r\n        }\r\n        .logo-footer {\r\n            text-align: left;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <div class=\"logo\">\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n            </div>\r\n            <div class=\"info\">\r\n                <h1>@LETRA_FACTURA</h1>\r\n                <p>Dirección: Bolivar 325,Peyrano, Santa Fe</p>\r\n                <p>Teléfono: 3416082000</p>\r\n            </div>\r\n            <div class=\"mas-info\">\r\n                <p>Fecha de emision: @FECHAHOY</p>\r\n                <p>Cuit: 20-21950728-4</p>\r\n                <p>Ingresos Brutos: 102-009216-1</p>\r\n                <p>Inicio de actividades: 20/05/2005</p>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"main\">       \r\n            <table class=\"cliente\">\r\n                <tr>\r\n                    <td id=\"con\">Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Domicilio:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOMICILIO</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Cond iva:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@IVA</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">CUIT:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CUITCLIENTE</td>\r\n                </tr>\r\n                \r\n            </table>\r\n        </div>\r\n        <div class=\"productos\">    \r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cod.</th>\r\n                        \r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        \r\n                        <th>P.Unitario</th>\r\n                       \r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS \r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@NETO</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <div class=\"footer-uno\">\r\n                <table>\r\n                    <tr>\r\n                        <td id=\"con\">Importe neto </td>\r\n                        <td style=\"border-bottom:1px solid black\">@NETO</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 21% </td>\r\n                        <td style=\"border-bottom:1px solid black\">@ALGOIVA</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 10,5%</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">Importe otros tributos:</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>            \r\n                    <tr>\r\n                        <td id=\"con\">TOTAL</td>\r\n                        <td style=\"border-bottom:1px solid black\">@TOTAL</td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div class=\"logo-footer\">\r\n                          <img src=\"https://via.placeholder.com/200\" />\r\n                <p> Muchas gracias por su compra, vuelva pronto</p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
+
+
+
+
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUITCLIENTE", cuit);
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHAHOY", DateTime.Now.ToString("dd/MM/yyyy"));
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMERO", "0");
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LETRA_FACTURA", letra_factura);
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CAE", randomString);
+
+
+
+
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IVA", condicionivaa);
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NETO", subtotal.Text.ToString());
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ALGOIVA", labeliva.Text.ToString());
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOMICILIO", labeldireccion.Text.ToString());
+
+                    string filas = string.Empty;
+                    decimal total = 0;
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+
+                        filas += "<tr>";
+                        filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
+                        filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
+                        filas += "<td>" + row.Cells["Producto"].Value.ToString() + "</td>";
+                        filas += "<td>" + row.Cells["preciouni"].Value.ToString() + "</td>";
+                        filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
+                        filas += "</tr>";
+                        total += decimal.Parse(row.Cells["Precio"].Value.ToString());
+                    }
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
+                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", labeltotal.Text.ToString());
+
+
+
+
+                    using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
+                    {
+                        //Creamos un nuevo documento y lo definimos como PDF
+                        Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                        pdfDoc.Open();
+                        pdfDoc.Add(new Phrase(""));
+
+                        //Agregamos la imagen del banner al documento
+                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.shop, System.Drawing.Imaging.ImageFormat.Png);
+                        img.ScaleToFit(60, 60);
+                        img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                        //img.SetAbsolutePosition(10,100);
+                        img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
+                        pdfDoc.Add(img);
+
+
+                        //pdfDoc.Add(new Phrase("Hola Mundo"));
+                        using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                        {
+                            XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                        }
+
+                        pdfDoc.Close();
+                        stream.Close();
+                    }// aca vamo a mandar a la base de dato antes de abrir el pdf porque sino desp se traba y no anda pa 
+
+                    string tipo_documento = tipo_factura.ToString();
+                    // string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+                    // SqlConnection connection = new SqlConnection(connectionString);
+                    //string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+                    string sql = "INSERT INTO dbo.presupuesto ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    DateTime fechaActual = DateTime.Now;
+                    command.Parameters.AddWithValue("@id_cliente", id_cliente1);
+                    command.Parameters.AddWithValue("@tipo_documento", tipo_documento);
+                    command.Parameters.AddWithValue("@fecha", fechaActual);
+                    command.Parameters.AddWithValue("@total", total);
+                    command.Parameters.AddWithValue("@location", nombreArchivo);
+                    // connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                    //hasta aca guardamos en la db
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    //hasta aca guardamos en la db
+
+                    PDFView formPDF = new PDFView(rutaCompletaArchivo);
+
+                    // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
+                    formPDF.ShowDialog();
+                    //eso es codigo para hacer el html del pdf
+
+
+
+
+
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Debe cargar productos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void btnmod_Click(object sender, EventArgs e)
+        {
+            btnmod.Enabled = false;
+
+            btnpresu.Enabled = true;
+            button2.Enabled = true;
+            btnbuscarart.Enabled = true;
+            btnpresu.Enabled = true;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = true;
+
+            // Refuerzo por si acaso
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                col.ReadOnly = false;
+            }
         }
     }
 }
