@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\notadecredito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\notadecredito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\notadecredito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\notadecredito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\md.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\surfefront\\md.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\md.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -25,35 +25,6 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PuntoDeVenta.cs",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\PuntoDeVenta.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs",
-              "RelativeToolTip": "SurFeFront\\PuntoDeVenta.cs",
-              "ViewState": "AgIAAKUBAAAAAAAAAAASwEUBAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T20:59:15.612Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PuntoDeVenta.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\PuntoDeVenta.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SurFeFront\\PuntoDeVenta.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T20:59:09.71Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "md.cs [Dise\u00F1o]",
@@ -62,8 +33,38 @@
               "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\md.cs [Dise\u00F1o]",
               "RelativeToolTip": "SurFeFront\\md.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T20:34:52.17Z",
+              "WhenOpened": "2026-02-17T21:22:15.039Z",
+              "IsPinned": true,
               "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NotaDeCredito.cs",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\NotaDeCredito.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\NotaDeCredito.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\NotaDeCredito.cs*",
+              "RelativeToolTip": "SurFeFront\\NotaDeCredito.cs*",
+              "ViewState": "AgIAABUCAAAAAAAAAADwvzECAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T21:56:25.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NotaDeCredito.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\NotaDeCredito.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\NotaDeCredito.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\NotaDeCredito.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "SurFeFront\\NotaDeCredito.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T21:56:20.509Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }

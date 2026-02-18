@@ -20,160 +20,29 @@ namespace SurFeFront
 
             dataGridView1.ReadOnly = true;
         }
-        /*
-        private void CargarFacturas()
-        {
-            // 1. Define tu Connection String (Cadena de Conexión)
-            // ¡DEBES CAMBIAR ESTO!
-            // Usa "Server=." o "Server=localhost" si SQL Server está en tu misma PC.
-            // Si usas SQL Express, podría ser "Server=.\\SQLEXPRESS".
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            // 2. Define tu consulta (la que proporcionaste)
-            string query = @"
-               SELECT f.[id_factura]
-                  ,c.[razon_social] AS NombreCliente
-                  ,tf.[descripcion] AS TipoDocumento  -- <-- CAMBIO: Traemos la descripción
-                  ,f.[fecha]
-                  ,f.[total]
-                  ,f.[location]
-              FROM [dbo].[factura] f
-              INNER JOIN [dbo].[cliente] c ON f.[id_cliente] = c.[id_cliente]
-              -- V- CAMBIO: Añadimos el nuevo JOIN para tipo_factura
-              INNER JOIN [dbo].[tipo_factura] tf ON f.[tipo_documento] = tf.[id]";
-
-            // 3. Usa un DataTable para guardar los datos temporalmente
-            DataTable dt = new DataTable();
-
-            try
-            {
-                // 4. Usa bloques 'using' para asegurar que las conexiones se cierren
-                // automáticamente, incluso si hay un error.
-                using (SqlConnection con = new SqlConnection(conString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        // 5. El SqlDataAdapter es el puente entre la BD y el DataTable
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            // 6. El método Fill() abre la conexión, ejecuta la consulta,
-                            // llena el DataTable y cierra la conexión.
-                            da.Fill(dt);
-                        }
-                    }
-                }
-
-                // 7. ¡Asigna el DataTable como la fuente de datos del DataGridView!
-                dataGridView1.DataSource = dt;
-
-                // (Opcional) Mejorar los nombres de las columnas
-                AjustarColumnasDataGridView();
-            }
-            catch (Exception ex)
-            {
-                // Maneja cualquier error que pueda ocurrir
-                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// (Opcional) Método para hacer que los encabezados de las columnas se vean mejor.
-        /// </summary>
-        /// 
-
-
-
-
-        */
-
-
-
-
-        // 1. El método ahora acepta un parámetro 'terminoBusqueda'
+       
         private void CargarFacturas(string terminoBusqueda)
         {
             // 1. Define tu Connection String (Cadena de Conexión)
             string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
 
-            // 2. Define tu consulta (Query)
-            // ¡AÑADIMOS LA CLÁUSULA 'WHERE' AL FINAL!
-            /*string query = @"
-        SELECT f.[id_factura]
-          ,c.[razon_social] AS NombreCliente
-          ,tf.[descripcion] AS TipoDocumento
-          ,f.[fecha]
-          ,f.[total]
-          ,f.[location]
-        FROM [dbo].[factura] f
-        INNER JOIN [dbo].[cliente] c ON f.[id_cliente] = c.[id_cliente]
-        INNER JOIN [dbo].[tipo_factura] tf ON f.[tipo_documento] = tf.[id]
-        -- 3. FILTRO 'WHERE' AÑADIDO:
-        -- Comparamos la razón social O el número de factura.
-        -- Usamos CAST() para convertir el id_factura (que es número) a texto
-        -- y poder usar LIKE en ambos campos.
-        WHERE c.[razon_social] LIKE @busqueda OR CAST(f.[id_factura] AS VARCHAR(50)) LIKE @busqueda";*/
-            /*string query = @"-- 1. Definimos una ""tabla virtual"" (CTE) para unificar los 3 tipos de documentos
-;WITH DocumentosCombinados AS (
-    SELECT 
-        id_factura AS id_documento, 
-        id_cliente, 
-        tipo_documento, 
-        fecha, 
-        total, 
-        location
-    FROM [dbo].[factura]
-    
-    UNION ALL
-    
-    SELECT 
-        id_notaDeCredito AS id_documento, 
-        id_cliente, 
-        tipo_documento, 
-        fecha, 
-        total, 
-        location
-    FROM [dbo].[notaDeCredito]
-    
-    UNION ALL
-    
-    SELECT 
-        id_presupuesto AS id_documento, 
-        id_cliente, 
-        tipo_documento, 
-        fecha, 
-        total, 
-        location
-    FROM [dbo].[presupuesto]
-)
--- 2. Ahora consultamos esa ""tabla virtual"" y aplicamos los JOINS y el FILTRO
-SELECT 
-    d.[id_documento] AS id_factura,  -- <<< ¡AQUÍ ESTÁ LA CORRECCIÓN!
-    c.[razon_social] AS NombreCliente,
-    tf.[descripcion] AS TipoDocumento,
-    d.[fecha],
-    d.[total],
-    d.[location]
-FROM DocumentosCombinados d
-INNER JOIN [dbo].[cliente] c ON d.[id_cliente] = c.[id_cliente]
-INNER JOIN [dbo].[tipo_factura] tf ON d.[tipo_documento] = tf.[id]
--- 3. FILTRO 'WHERE' aplicado una sola vez a todos los resultados
-WHERE c.[razon_social] LIKE @busqueda OR CAST(d.[id_documento] AS VARCHAR(50)) LIKE @busqueda";*/
             string query = @"-- 1. Definimos la CTE...
 ;WITH DocumentosCombinados AS (
     SELECT 
         id_factura AS id_documento, id_cliente, tipo_documento, fecha, total, location, 'Factura' AS Origen
-    FROM [SurFeFinal].[dbo].[factura]
+    FROM [gamex99_SurFe].[dbo].[factura]
     
     UNION ALL
     
     SELECT 
         id_notaDeCredito AS id_documento, id_cliente, tipo_documento, fecha, total, location, 'Nota de Credito' AS Origen
-    FROM [SurFeFinal].[dbo].[notaDeCredito]
+    FROM [gamex99_SurFe].[dbo].[notaDeCredito]
     
     UNION ALL
     
     SELECT 
         id_presupuesto AS id_documento, id_cliente, tipo_documento, fecha, total, location, 'Presupuesto' AS Origen
-    FROM [SurFeFinal].[dbo].[presupuesto]
+    FROM [gamex99_SurFe].[dbo].[presupuesto]
 )
 -- 2. Cambiamos a LEFT JOIN para el test
 SELECT 
@@ -186,12 +55,12 @@ SELECT
     d.[location]
 FROM DocumentosCombinados d
 -- VAMOS A USAR LEFT JOIN PARA ENCONTRAR EL PROBLEMA
-LEFT JOIN [SurFeFinal].[dbo].[cliente] c ON d.[id_cliente] = c.[id_cliente]
-LEFT JOIN [SurFeFinal].[dbo].[tipo_factura] tf ON d.[tipo_documento] = tf.[id]
+LEFT JOIN [gamex99_SurFe].[dbo].[cliente] c ON d.[id_cliente] = c.[id_cliente]
+LEFT JOIN [gamex99_SurFe].[dbo].[tipo_factura] tf ON d.[tipo_documento] = tf.[id]
 -- 3. FILTRO 'WHERE' ...
 WHERE c.[razon_social] LIKE @busqueda OR CAST(d.[id_documento] AS VARCHAR(50)) LIKE @busqueda
 -- 4. ORDENADO...
-ORDER BY CAST(d.[fecha] AS DATETIME) DESC";
+ORDER BY TRY_CONVERT(DATETIME, d.[fecha], 103) DESC";
 
             // 3. Usa un DataTable para guardar los datos temporalmente
             DataTable dt = new DataTable();

@@ -511,7 +511,7 @@ namespace SurFeFront
             connection.Open();
 
             // string sql = "SELECT \r\n    [barcodebaja] as BarCode,\r\n    [cantidadbaja] as CantidadBaja,\r\n    [motivo] as Baja,\r\n   \r\n    u.nombre as Nombre,\r\n    u.apellido as Apellido\r\nFROM [dbo].[motivoBajaStock] AS mb\r\nINNER JOIN [dbo].[usuarios] AS u ON mb.operador = u.id";
-            string sql = "SELECT TOP (1000)\r\n    f.[id_factura] ,\r\n    \r\n    c.[razon_social],\r\n    \r\n    td.[descripcion],\r\n    f.[fecha],\r\n    f.[total]\r\n   \r\nFROM [SurFeFinal].[dbo].[factura] AS f\r\nJOIN [SurFeFinal].[dbo].[cliente] AS c\r\n    ON f.id_cliente = c.id_cliente\r\nJOIN [SurFeFinal].[dbo].[tipo_factura] AS td\r\n    ON f.tipo_documento = td.id;";
+            string sql = "SELECT TOP (1000)\r\n    f.[id_factura] ,\r\n    \r\n    c.[razon_social],\r\n    \r\n    td.[descripcion],\r\n    f.[fecha],\r\n    f.[total]\r\n   \r\nFROM [factura] AS f\r\nJOIN [cliente] AS c\r\n    ON f.id_cliente = c.id_cliente\r\nJOIN [tipo_factura] AS td\r\n    ON f.tipo_documento = td.id;";
             SqlCommand comando = new SqlCommand(sql, connection);
 
 
@@ -627,6 +627,141 @@ namespace SurFeFront
             newMDIChild.MdiParent = this;
             // Display the new form.  
             newMDIChild.Show();
+        }
+
+        private void top10ProductosMasVendidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TestChartTop10productos newMDIChild = new TestChartTop10productos();
+
+
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
+        }
+
+        private void top10ClientesConMasComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClienteMasVendido child = new ClienteMasVendido();
+            {
+                child.MdiParent = this;
+                child.Show();
+            }
+        }
+
+        private void listadoDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+                string sql = @"SELECT [id_cliente], [razon_social], [cuit], [dni], [domicilio], [localidad], [email] 
+                       FROM [dbo].[cliente] 
+                       WHERE [anulado] = 0 OR [anulado] IS NULL";
+
+                string filas = string.Empty;
+
+                // 1. Obtención de datos
+                using (SqlConnection connection = new SqlConnection(conString))
+                {
+                    SqlCommand comando = new SqlCommand(sql, connection);
+                    connection.Open();
+
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        while (lector.Read())
+                        {
+                            filas += "<tr>";
+                            filas += $"<td>{lector["id_cliente"]}</td>";
+                            filas += $"<td>{lector["razon_social"]}</td>";
+                            filas += $"<td>{(string.IsNullOrEmpty(lector["cuit"].ToString()) ? lector["dni"] : lector["cuit"])}</td>";
+                            filas += $"<td>{lector["domicilio"]}, {lector["localidad"]}</td>";
+                            filas += $"<td>{lector["email"]}</td>";
+                            filas += "</tr>";
+                        }
+                    }
+                }
+
+                // 2. Preparación del Directorio y Rutas
+                if (!Directory.Exists(ClaseCompartida.carpetaTemp))
+                {
+                    Directory.CreateDirectory(ClaseCompartida.carpetaTemp);
+                }
+
+                string nombreArchivo = "ReporteClientes.pdf";
+                string rutaCompletaArchivo = Path.Combine(ClaseCompartida.carpetaTemp, nombreArchivo);
+
+                // 3. Definición del Template HTML
+                string PaginaHTML_Texto = @"
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body { font-family: 'Arial', sans-serif; margin: 20px; }
+                .header { background-color: #3498db; color: white; text-align: center; padding: 10px; position: relative; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 10px; }
+                th { background-color: #3498db; color: white; }
+                .highlight { background-color: #f1c40f; }
+            </style>
+        </head>
+        <body>
+            <div class='header'>
+                <h3>LISTADO DE CLIENTES</h3>
+                <p>Sistema SurFe - Reporte Generado el " + DateTime.Now.ToString("dd/MM/yyyy") + @"</p>
+            </div>
+            <table>
+                <thead>
+                    <tr class='highlight'>
+                        <th>ID</th>
+                        <th>Razón Social</th>
+                        <th>CUIT/DNI</th>
+                        <th>Dirección</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @FILAS
+                </tbody>
+            </table>
+        </body>
+        </html>";
+
+                PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
+
+                // 4. Generación del PDF
+                using (FileStream stream = new FileStream(rutaCompletaArchivo, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4.Rotate(), 25, 25, 25, 25); // Horizontal para ver mejor los datos
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+
+                    pdfDoc.Open();
+
+                    // Logo (opcional - manejado con try-catch por si el recurso no existe)
+                    try
+                    {
+                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.logo_pp1_carpeta_2023, System.Drawing.Imaging.ImageFormat.Png);
+                        img.ScaleToFit(60, 60);
+                        img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 45);
+                        pdfDoc.Add(img);
+                    }
+                    catch { /* Si no hay logo, continua sin él */ }
+
+                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                }
+
+                // 5. Visualización
+                PDFView formPDF = new PDFView(rutaCompletaArchivo);
+                formPDF.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

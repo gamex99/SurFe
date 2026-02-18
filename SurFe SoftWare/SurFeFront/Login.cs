@@ -22,6 +22,71 @@ namespace SurFeFront
 
         private void btAcceso_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string sql = "SELECT u.nombre, u.apellido, u.idDepartamento, d.nombreDepartamento FROM usuarios AS u INNER JOIN departamento AS d ON u.idDepartamento = d.id WHERE u.usuario = @usuario AND u.pass = @password;";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@usuario", txtUsu.Text.Trim());
+                    command.Parameters.AddWithValue("@password", txtCont.Text.Trim());
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            ClaseCompartida.nombre = reader["nombre"].ToString();
+                            ClaseCompartida.apellido = reader["apellido"].ToString();
+                            ClaseCompartida.idDepartamento = int.Parse(reader["idDepartamento"].ToString());
+                            ClaseCompartida.departamnto = reader["nombreDepartamento"].ToString();
+
+                            // ¡Inicio de sesión exitoso!
+                            this.Hide();
+                            md f1 = new md();
+                            f1.ShowDialog();
+                            this.Close();
+                        }
+                        else
+                        {
+                            // Inicio de sesión fallido
+                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    } // El reader se cierra solo aquí
+                } // La conexión se cierra sola aquí
+            }
+            catch (SqlException ex)
+            {
+                // Si hay timeout o error de red, entra acá y NO se cierra el programa
+                MessageBox.Show("Error de base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                // Cualquier otro error general
+                MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             //string sql = "SELECT nombre, apellido, idDepartamento FROM usuarios WHERE user = @usuario AND pass = @password"; // Consulta SQL
@@ -54,59 +119,13 @@ namespace SurFeFront
                 MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+
+
             reader.Close();
             connection.Close();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-
-            ////////////////////////////////////////////////////
-            string usuario = txtUsu.Text;
-            string contraseña = txtCont.Text;
-
-
-            if (usuario == "demo" && contraseña == "demo")
-            {
-
-
-
-                SurFe.Menu f1 = new SurFe.Menu();
-
-                f1.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-
-                MessageBox.Show("Credenciales incorrectas. Por favor, inténtelo de nuevo.");
-            }*/
-
+            */
         }
 
         private void btSalir_Click(object sender, EventArgs e)

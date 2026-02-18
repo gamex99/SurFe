@@ -28,22 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PDFView));
-            axAcropdf1 = new AxAcroPDFLib.AxAcroPDF();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             btnsalir = new Button();
-            ((System.ComponentModel.ISupportInitialize)axAcropdf1).BeginInit();
+            webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            ((System.ComponentModel.ISupportInitialize)webView21).BeginInit();
             SuspendLayout();
-            // 
-            // axAcropdf1
-            // 
-            axAcropdf1.Dock = DockStyle.Fill;
-            axAcropdf1.Enabled = true;
-            axAcropdf1.Location = new Point(0, 0);
-            axAcropdf1.Name = "axAcropdf1";
-            axAcropdf1.OcxState = (AxHost.State)resources.GetObject("axAcropdf1.OcxState");
-            axAcropdf1.Size = new Size(1104, 353);
-            axAcropdf1.TabIndex = 0;
             // 
             // printDocument1
             // 
@@ -51,7 +40,6 @@
             // 
             // btnsalir
             // 
-            btnsalir.AutoEllipsis = true;
             btnsalir.AutoSize = true;
             btnsalir.Location = new Point(1017, 12);
             btnsalir.Name = "btnsalir";
@@ -61,6 +49,19 @@
             btnsalir.UseVisualStyleBackColor = true;
             btnsalir.Click += btnsalir_Click;
             // 
+            // webView21
+            // 
+            webView21.AllowExternalDrop = true;
+            webView21.CreationProperties = null;
+            webView21.DefaultBackgroundColor = Color.White;
+            webView21.Dock = DockStyle.Fill;
+            webView21.Location = new Point(0, 0);
+            webView21.Name = "webView21";
+            webView21.Size = new Size(1104, 353);
+            webView21.TabIndex = 2;
+            webView21.ZoomFactor = 1D;
+            webView21.Click += webView21_Click;
+            // 
             // PDFView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -68,21 +69,20 @@
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1104, 353);
+            Controls.Add(webView21);
             Controls.Add(btnsalir);
-            Controls.Add(axAcropdf1);
             Name = "PDFView";
             Text = "PDFView";
             FormClosing += PDFView_FormClosing;
             Load += PDFView_Load;
-            ((System.ComponentModel.ISupportInitialize)axAcropdf1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)webView21).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private AxAcroPDFLib.AxAcroPDF axAcropdf1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private Button btnsalir;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
     }
 }

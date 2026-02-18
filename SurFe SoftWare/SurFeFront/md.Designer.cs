@@ -54,6 +54,8 @@
             consultarVentaToolStripMenuItem = new ToolStripMenuItem();
             graficosToolStripMenuItem = new ToolStripMenuItem();
             altaClienteMensualesToolStripMenuItem = new ToolStripMenuItem();
+            top10ProductosMasVendidosToolStripMenuItem = new ToolStripMenuItem();
+            top10ClientesConMasComprasToolStripMenuItem = new ToolStripMenuItem();
             cLIENTESToolStripMenuItem = new ToolStripMenuItem();
             pRODUCTOSToolStripMenuItem = new ToolStripMenuItem();
             pROVEEDORESToolStripMenuItem = new ToolStripMenuItem();
@@ -72,6 +74,8 @@
             statusStrip = new StatusStrip();
             toolStripStatusLabel = new ToolStripStatusLabel();
             toolTip = new ToolTip(components);
+            clientesToolStripMenuItem1 = new ToolStripMenuItem();
+            listadoDeClientesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             SuspendLayout();
@@ -154,7 +158,7 @@
             // 
             // iNFORMESToolStripMenuItem
             // 
-            iNFORMESToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { porProductoToolStripMenuItem, porFaltanteToolStripMenuItem, stockActualToolStripMenuItem, productosToolStripMenuItem1, productosDeBajaToolStripMenuItem, comprasRealizadasToolStripMenuItem, ventasRealizadasToolStripMenuItem, graficosToolStripMenuItem });
+            iNFORMESToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { porProductoToolStripMenuItem, porFaltanteToolStripMenuItem, stockActualToolStripMenuItem, productosToolStripMenuItem1, productosDeBajaToolStripMenuItem, comprasRealizadasToolStripMenuItem, ventasRealizadasToolStripMenuItem, graficosToolStripMenuItem, clientesToolStripMenuItem1 });
             iNFORMESToolStripMenuItem.Name = "iNFORMESToolStripMenuItem";
             iNFORMESToolStripMenuItem.Size = new Size(76, 20);
             iNFORMESToolStripMenuItem.Text = "INFORMES";
@@ -233,26 +237,26 @@
             ventasRealizadasToolStripMenuItem.Name = "ventasRealizadasToolStripMenuItem";
             ventasRealizadasToolStripMenuItem.Size = new Size(180, 22);
             ventasRealizadasToolStripMenuItem.Text = "Ventas";
-            ventasRealizadasToolStripMenuItem.Visible = false;
             ventasRealizadasToolStripMenuItem.Click += ventasRealizadasToolStripMenuItem_Click;
             // 
             // ventasRealizadasToolStripMenuItem1
             // 
             ventasRealizadasToolStripMenuItem1.Name = "ventasRealizadasToolStripMenuItem1";
-            ventasRealizadasToolStripMenuItem1.Size = new Size(180, 22);
+            ventasRealizadasToolStripMenuItem1.Size = new Size(165, 22);
             ventasRealizadasToolStripMenuItem1.Text = "Ventas Realizadas";
             ventasRealizadasToolStripMenuItem1.Click += ventasRealizadasToolStripMenuItem1_Click;
             // 
             // consultarVentaToolStripMenuItem
             // 
             consultarVentaToolStripMenuItem.Name = "consultarVentaToolStripMenuItem";
-            consultarVentaToolStripMenuItem.Size = new Size(180, 22);
+            consultarVentaToolStripMenuItem.Size = new Size(165, 22);
             consultarVentaToolStripMenuItem.Text = "Consultar Venta";
+            consultarVentaToolStripMenuItem.Visible = false;
             consultarVentaToolStripMenuItem.Click += consultarVentaToolStripMenuItem_Click;
             // 
             // graficosToolStripMenuItem
             // 
-            graficosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { altaClienteMensualesToolStripMenuItem });
+            graficosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { altaClienteMensualesToolStripMenuItem, top10ProductosMasVendidosToolStripMenuItem, top10ClientesConMasComprasToolStripMenuItem });
             graficosToolStripMenuItem.Name = "graficosToolStripMenuItem";
             graficosToolStripMenuItem.Size = new Size(180, 22);
             graficosToolStripMenuItem.Text = "Graficos";
@@ -260,9 +264,23 @@
             // altaClienteMensualesToolStripMenuItem
             // 
             altaClienteMensualesToolStripMenuItem.Name = "altaClienteMensualesToolStripMenuItem";
-            altaClienteMensualesToolStripMenuItem.Size = new Size(225, 22);
+            altaClienteMensualesToolStripMenuItem.Size = new Size(239, 22);
             altaClienteMensualesToolStripMenuItem.Text = "Alta clientes segun Mes/Año";
             altaClienteMensualesToolStripMenuItem.Click += altaClienteMensualesToolStripMenuItem_Click;
+            // 
+            // top10ProductosMasVendidosToolStripMenuItem
+            // 
+            top10ProductosMasVendidosToolStripMenuItem.Name = "top10ProductosMasVendidosToolStripMenuItem";
+            top10ProductosMasVendidosToolStripMenuItem.Size = new Size(239, 22);
+            top10ProductosMasVendidosToolStripMenuItem.Text = "Top10 Productos mas vendidos";
+            top10ProductosMasVendidosToolStripMenuItem.Click += top10ProductosMasVendidosToolStripMenuItem_Click;
+            // 
+            // top10ClientesConMasComprasToolStripMenuItem
+            // 
+            top10ClientesConMasComprasToolStripMenuItem.Name = "top10ClientesConMasComprasToolStripMenuItem";
+            top10ClientesConMasComprasToolStripMenuItem.Size = new Size(239, 22);
+            top10ClientesConMasComprasToolStripMenuItem.Text = "Top10 Clientes ma svendidos";
+            top10ClientesConMasComprasToolStripMenuItem.Click += top10ClientesConMasComprasToolStripMenuItem_Click;
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -334,7 +352,7 @@
             // pagosToolStripMenuItem
             // 
             pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
-            pagosToolStripMenuItem.Size = new Size(180, 22);
+            pagosToolStripMenuItem.Size = new Size(106, 22);
             pagosToolStripMenuItem.Text = "Pagos";
             pagosToolStripMenuItem.Click += pagosToolStripMenuItem_Click;
             // 
@@ -349,14 +367,14 @@
             // registrarCompraToolStripMenuItem
             // 
             registrarCompraToolStripMenuItem.Name = "registrarCompraToolStripMenuItem";
-            registrarCompraToolStripMenuItem.Size = new Size(180, 22);
+            registrarCompraToolStripMenuItem.Size = new Size(163, 22);
             registrarCompraToolStripMenuItem.Text = "RegistrarCompra";
             registrarCompraToolStripMenuItem.Click += registrarCompraToolStripMenuItem_Click;
             // 
             // registrarToolStripMenuItem
             // 
             registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            registrarToolStripMenuItem.Size = new Size(180, 22);
+            registrarToolStripMenuItem.Size = new Size(163, 22);
             registrarToolStripMenuItem.Text = "Registrar Factura";
             registrarToolStripMenuItem.Click += registrarToolStripMenuItem_Click;
             // 
@@ -390,6 +408,20 @@
             toolStripStatusLabel.Name = "toolStripStatusLabel";
             toolStripStatusLabel.Size = new Size(42, 17);
             toolStripStatusLabel.Text = "Estado";
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            clientesToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { listadoDeClientesToolStripMenuItem });
+            clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            clientesToolStripMenuItem1.Size = new Size(180, 22);
+            clientesToolStripMenuItem1.Text = "Clientes";
+            // 
+            // listadoDeClientesToolStripMenuItem
+            // 
+            listadoDeClientesToolStripMenuItem.Name = "listadoDeClientesToolStripMenuItem";
+            listadoDeClientesToolStripMenuItem.Size = new Size(180, 22);
+            listadoDeClientesToolStripMenuItem.Text = "Listado de clientes";
+            listadoDeClientesToolStripMenuItem.Click += listadoDeClientesToolStripMenuItem_Click;
             // 
             // md
             // 
@@ -461,6 +493,10 @@
         private ToolStripMenuItem ventasRealizadasToolStripMenuItem1;
         private ToolStripMenuItem consultarVentaToolStripMenuItem;
         private ToolStripMenuItem pDFSistemaToolStripMenuItem;
+        private ToolStripMenuItem top10ProductosMasVendidosToolStripMenuItem;
+        private ToolStripMenuItem top10ClientesConMasComprasToolStripMenuItem;
+        private ToolStripMenuItem clientesToolStripMenuItem1;
+        private ToolStripMenuItem listadoDeClientesToolStripMenuItem;
     }
 }
 

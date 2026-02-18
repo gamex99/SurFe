@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B9P4R+aysGI=",
+  "dgSpecHash": "88eSgpl9++g=",
   "success": true,
   "projectFilePath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\SurFeFront.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\ParraX\\.nuget\\packages\\itextsharp\\5.5.13.3\\itextsharp.5.5.13.3.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\itextsharp.xmlworker\\5.5.13.3\\itextsharp.xmlworker.5.5.13.3.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.web.webview2\\1.0.3800.47\\microsoft.web.webview2.1.0.3800.47.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\ParraX\\.nuget\\packages\\opentk\\3.1.0\\opentk.3.1.0.nupkg.sha512",
