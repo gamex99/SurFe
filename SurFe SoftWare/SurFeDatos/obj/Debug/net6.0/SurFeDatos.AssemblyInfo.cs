@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SurFeDatos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc49aaab68b77d39a074156ed93faf270ad6c72f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4f137e3af021388f6b0e264092658c123baf885")]
 [assembly: System.Reflection.AssemblyProductAttribute("SurFeDatos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SurFeDatos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

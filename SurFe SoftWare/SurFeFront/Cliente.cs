@@ -21,6 +21,14 @@ namespace SurFeFront
         {
             InitializeComponent();
             BuscarCliente();
+            switch (ClaseCompartida.idDepartamento)
+            {
+                case 2:
+                    btEliminar.Enabled = false;
+                   
+                    break;
+                
+            }
         }
 
         private void Cliente_Load(object sender, EventArgs e)

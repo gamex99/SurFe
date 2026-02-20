@@ -22,6 +22,32 @@ namespace SurFeFront
         public md()
         {
             InitializeComponent();
+            lbNombre.Text = "Usuario: " + ClaseCompartida.nombre + " " + ClaseCompartida.apellido;
+            lbdepto.Text = "Departamento: " + ClaseCompartida.departamnto;
+            switch (ClaseCompartida.idDepartamento)
+            {
+                case 1: // ADMIN - Habilita TODO
+                    vENTAToolStripMenuItem.Visible = true;
+                    cLIENTESToolStripMenuItem.Visible = true;
+                    iNFORMESToolStripMenuItem.Visible = true;
+                    pDFSistemaToolStripMenuItem.Visible = true;
+
+
+                    break;
+
+                case 2: // VENTAS BÁSICO
+                    vENTAToolStripMenuItem.Visible = true;
+                    cLIENTESToolStripMenuItem.Visible = true;
+                    break;
+
+                case 3: // jefe de ventas 
+                    //vENTAToolStripMenuItem.Visible = true;
+                    cLIENTESToolStripMenuItem.Visible = true;
+                    iNFORMESToolStripMenuItem.Visible = true;
+                    break;
+            }
+
+
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -761,6 +787,17 @@ namespace SurFeFront
             catch (Exception ex)
             {
                 MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Desea cerrar sesión?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes)
+            {
+                // Esto reinicia la app completa. No hace falta limpiar las variables a mano
+                // porque al reiniciarse vuelven a sus valores por defecto (null y 0).
+                Application.Restart();
             }
         }
     }
