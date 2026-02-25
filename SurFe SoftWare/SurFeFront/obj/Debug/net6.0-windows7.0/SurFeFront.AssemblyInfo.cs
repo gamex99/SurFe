@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SurFeFront")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4f137e3af021388f6b0e264092658c123baf885")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab9452e7d9eb0e5c487d7f104876523636d5279e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SurFeFront")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SurFeFront")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

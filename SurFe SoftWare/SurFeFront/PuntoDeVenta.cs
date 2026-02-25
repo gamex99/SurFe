@@ -45,6 +45,8 @@ namespace SurFe
             // btnagregar.Visible = false;
             button3.Enabled = false;
             btnmod.Enabled = false;
+            btnagregar.Visible = false;
+            cbxfactura.Enabled = false;
 
         }
 
@@ -95,10 +97,14 @@ namespace SurFe
 
                 }
             }
-            IVA = SumaSubtotal * (decimal).21;
-            total = SumaSubtotal + IVA;
+            IVA = SumaSubtotal * (decimal).21; //esta bien, busca el iva nomas
+            
+            total = SumaSubtotal;
+            decimal subtotalfloat = SumaSubtotal - IVA;
             // Mostrar la suma en algún lugar, como un TextBox
-            subtotal.Text = SumaSubtotal.ToString("N2");
+           
+
+            subtotal.Text = subtotalfloat.ToString("N2");
             labeliva.Text = IVA.ToString("N2");
             labeltotal.Text = total.ToString("N2");
         }
@@ -404,6 +410,165 @@ namespace SurFe
 
             /////////////////string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            background-color: #3498db;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .header .info {\r\n            flex: 2;\r\n            text-align: center;\r\n        }\r\n        .header .mas-info {\r\n            flex: 3;\r\n            text-align: left;\r\n            height: 150px;\r\n        }\r\n        .header .logo {\r\n            width: auto;\r\n            margin-top: 0px;\r\n            flex: 1;\r\n            text-align: center;\r\n        }\r\n        img {\r\n            width: 200px;\r\n            height:200px;\r\n        }\r\n        .footer {\r\n            margin-top: 10px;\r\n            color: black;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .main {\r\n            margin: 10px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db;\r\n            color: white;\r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n        .cliente {\r\n            margin-top: 10px;\r\n        }\r\n        .productos {\r\n\r\n        }\r\n        #con {\r\n            width: 200px;\r\n        }\r\n        .logo-footer {\r\n            text-align: left;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <div class=\"logo\">\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n            </div>\r\n            <div class=\"info\">\r\n                <h1>@LETRA_FACTURA</h1>\r\n                <p>Dirección: Bolivar 325,Peyrano, Santa Fe</p>\r\n                <p>Teléfono: 3416082000</p>\r\n            </div>\r\n            <div class=\"mas-info\">\r\n                <p>Fecha de emision: @FECHAHOY</p>\r\n                <p>Cuit: 20-21950728-4</p>\r\n                <p>Ingresos Brutos: 102-009216-1</p>\r\n                <p>Inicio de actividades: 20/05/2005</p>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"main\">       \r\n            <table class=\"cliente\">\r\n                <tr>\r\n                    <td id=\"con\">Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Domicilio:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOMICILIO</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Cond iva:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@IVA</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">CUIT:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CUITCLIENTE</td>\r\n                </tr>\r\n                \r\n            </table>\r\n        </div>\r\n        <div class=\"productos\">    \r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cod.</th>\r\n                        \r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        \r\n                        <th>P.Unitario</th>\r\n                       \r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS \r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@NETO</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <div class=\"footer-uno\">\r\n                <table>\r\n                    <tr>\r\n                        <td id=\"con\">Importe neto </td>\r\n                        <td style=\"border-bottom:1px solid black\">@NETO</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 21% </td>\r\n                        <td style=\"border-bottom:1px solid black\">@ALGOIVA</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 10,5%</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">Importe otros tributos:</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>            \r\n                    <tr>\r\n                        <td id=\"con\">TOTAL</td>\r\n                        <td style=\"border-bottom:1px solid black\">@TOTAL</td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div class=\"logo-footer\">\r\n                <p>CAE N : @CAE</p>\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n                <p> Muchas gracias por su compra, vuelva pronto</p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
 
+            /*  string PaginaHTML_Texto = @"<!DOCTYPE html>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+      <title>Factura</title>
+      <style>
+          body {
+              font-family: 'Helvetica', 'Arial', sans-serif;
+              font-size: 11px;
+              margin: 0;
+              padding: 0;
+              color: #333;
+          }
+
+          table { width: 100%; border-collapse: collapse; }
+
+
+          .header-table { margin-bottom: 20px; }
+          .col-logo { width: 15%; height: 80px; }
+          .col-empresa { width: 45%; vertical-align: top; padding-left: 10px; }
+          .col-letra { width: 10%; vertical-align: top; text-align: center; }
+          .col-datos { width: 30%; vertical-align: top; text-align: right; }
+
+          .company-name { font-size: 16px; font-weight: bold; text-transform: uppercase; color: #2c3e50; }
+          .info-text { font-size: 10px; line-height: 1.4; color: #555; }
+
+          .letra-box {
+              background-color: #2c3e50; color: white; font-size: 24px; font-weight: bold;
+              width: 40px; height: 40px; line-height: 40px; text-align: center; margin: 0 auto; border-radius: 4px;
+          }
+          .doc-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
+
+
+          .box-cliente { background-color: #f8f9fa; border: 1px solid #ddd; padding: 8px; margin-bottom: 15px; }
+          .tbl-cliente td { padding: 3px; }
+          .label { font-weight: bold; color: #2c3e50; width: 70px; }
+
+
+          .tbl-productos { margin-bottom: 10px; }
+          .tbl-productos th {
+              background-color: #2c3e50; color: white; padding: 6px; text-align: left; font-size: 10px; text-transform: uppercase;
+          }
+          .tbl-productos td { border-bottom: 1px solid #eee; padding: 6px; font-size: 11px; }
+
+
+          tr { page-break-inside: avoid; }
+
+          .right { text-align: right; }
+          .center { text-align: center; }
+
+
+          .footer-section { margin-top: 20px; } 
+          .cae-container { border: 1px dashed #aaa; padding: 8px; background-color: #fafafa; font-size: 10px; width: 90%; }
+          .cae-label { font-weight: bold; }
+
+          .tbl-totales td { padding: 4px; border-bottom: 1px solid #eee; }
+          .total-label { font-weight: bold; text-align: right; }
+          .total-number { text-align: right; width: 100px; }
+          .row-total-final { background-color: #2c3e50; color: white; font-size: 13px; font-weight: bold; }
+      </style>
+  </head>
+  <body>
+
+      <table class='header-table'>
+          <tr>
+              <td class='col-logo'></td> 
+              <td class='col-empresa'>
+                  <div class='company-name'>SurFe Software</div>
+                  <div class='info-text'>
+                      Bolivar 325, Peyrano, Santa Fe<br/>
+                      Tel: 3416082000<br/>
+                      Email: contacto@surfe.com.ar<br/>
+                      IVA Responsable Inscripto
+                  </div>
+              </td>
+              <td class='col-letra'>
+                  <div class='letra-box'>@LETRA_FACTURA</div>
+                  <div style='font-size:9px; font-weight:bold; margin-top:2px;'>COD. 01</div>
+              </td>
+              <td class='col-datos'>
+                  <div class='doc-title'>FACTURA</div>
+                  <div class='info-text'>
+                      <strong>N°:</strong> 0001-@NUMERO<br/>
+                      <strong>Fecha:</strong> @FECHAHOY<br/>
+                      <strong>CUIT:</strong> 20-21950728-4<br/>
+                      <strong>Ing. Brutos:</strong> 102-009216-1<br/>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+      <div class='box-cliente'>
+          <table class='tbl-cliente'>
+              <tr>
+                  <td class='label'>Cliente:</td> <td>@CLIENTE</td>
+                  <td class='label'>CUIT:</td> <td>@CUITCLIENTE</td>
+              </tr>
+              <tr>
+                  <td class='label'>Domicilio:</td> <td>@DOMICILIO</td>
+                  <td class='label'>Cond. IVA:</td> <td>@IVA</td>
+              </tr>
+          </table>
+      </div>
+
+      <table class='tbl-productos'>
+          <thead>
+              <tr>
+                  <th style='width:10%;'>Cod.</th>
+                  <th style='width:10%;' class='center'>Cant.</th>
+                  <th style='width:40%;'>Descripción</th>
+                  <th style='width:20%;' class='right'>P. Unitario</th>
+                  <th style='width:20%;' class='right'>Importe</th>
+              </tr>
+          </thead>
+          <tbody>
+              @FILAS
+          </tbody>
+      </table>
+
+      <table class='footer-section'>
+          <tr>
+              <td style='width: 60%; vertical-align: top;'>
+                  <div class='cae-container'>
+                      <span class='cae-label'>CAE N°:</span> @CAE <br/>
+                      <span class='cae-label'>Vto. CAE:</span> @FECHAHOY <br/> 
+                      <br/>
+                      <em>Comprobante Autorizado</em>
+                  </div>
+                  <div style='margin-top:10px; font-size:9px; color:#777;'>
+                      Gracias por su compra. <br/>
+                      El pago debe realizarse antes del vencimiento.
+                  </div>
+              </td>
+
+              <td style='width: 40%; vertical-align: top;'>
+                  <table class='tbl-totales'>
+                      <tr>
+                          <td class='total-label'>Subtotal:</td>
+                          <td class='total-number'>@NETO</td>
+                      </tr>
+                      <tr>
+                          <td class='total-label'>IVA (21%):</td>
+                          <td class='total-number'>@ALGOIVA</td>
+                      </tr>
+                      <tr>
+                          <td class='total-label'>IVA (10.5%):</td>
+                          <td class='total-number'>0.00</td>
+                      </tr>
+                      <tr class='row-total-final'>
+                          <td class='total-label' style='color:white;'>TOTAL:</td>
+                          <td class='total-number' style='color:white;'>@TOTAL</td>
+                      </tr>
+                  </table>
+              </td>
+          </tr>
+      </table>
+
+  </body>
+  </html>";
+              */
             string PaginaHTML_Texto = @"<!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
@@ -447,14 +612,13 @@ namespace SurFe
         }
         .tbl-productos td { border-bottom: 1px solid #eee; padding: 6px; font-size: 11px; }
         
-        /* Evita que una fila se corte a la mitad al cambiar de hoja */
         tr { page-break-inside: avoid; }
 
         .right { text-align: right; }
         .center { text-align: center; }
 
         /* FOOTER Y TOTALES */
-        .footer-section { margin-top: 20px; } /* Un poco de aire antes de los totales */
+        .footer-section { margin-top: 20px; margin-bottom: 20px; }
         .cae-container { border: 1px dashed #aaa; padding: 8px; background-color: #fafafa; font-size: 10px; width: 90%; }
         .cae-label { font-weight: bold; }
 
@@ -462,6 +626,19 @@ namespace SurFe
         .total-label { font-weight: bold; text-align: right; }
         .total-number { text-align: right; width: 100px; }
         .row-total-final { background-color: #2c3e50; color: white; font-size: 13px; font-weight: bold; }
+
+        /* ALERTA DIDÁCTICA AL FINAL */
+        .didactic-alert {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -560,11 +737,32 @@ namespace SurFe
         </tr>
     </table>
 
+    <div class='didactic-alert'>
+        ESTE DOCUMENTO NO ES VÁLIDO COMO FACTURA - SOLAMENTE PARA USO DIDÁCTICO
+    </div>
+
 </body>
 </html>";
 
+            string iva_factura = labeliva.Text.ToString();
+            string total_factura = labeltotal.Text.ToString();
+            string subtotal_factura = subtotal.Text.ToString();
+
+            if (letra_factura == "C")
+            {
+                 iva_factura = "0";
+                total_factura = subtotal.Text.ToString();
 
 
+            }
+            if (letra_factura == "B")
+            {
+                iva_factura = "0";
+                subtotal_factura = labeltotal.Text.ToString();
+
+
+
+            }
 
 
             //string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            background-color: #3498db;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .header .info {\r\n            flex: 2;\r\n            text-align: center;\r\n        }\r\n        .header .mas-info {\r\n            flex: 3;\r\n            text-align: left;\r\n            height: 150px;\r\n        }\r\n        .header .logo {\r\n            width: auto;\r\n            margin-top: 0px;\r\n            flex: 1;\r\n            text-align: center;\r\n        }\r\n        img {\r\n            width: 200px;\r\n            height:200px;\r\n        }\r\n        .footer {\r\n            margin-top: 10px;\r\n            color: black;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .main {\r\n            margin: 10px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db;\r\n            color: white;\r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n        .cliente {\r\n            margin-top: 10px;\r\n        }\r\n        .productos {\r\n\r\n        }\r\n        #con {\r\n            width: 200px;\r\n        }\r\n        .logo-footer {\r\n            text-align: left;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <div class=\"logo\">\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n            </div>\r\n            <div class=\"info\">\r\n                <h1>@LETRA_FACTURA</h1>\r\n                <p>Dirección: Bolivar 325,Peyrano, Santa Fe</p>\r\n                <p>Teléfono: 3416082000</p>\r\n            </div>\r\n            <div class=\"mas-info\">\r\n                <p>Fecha de emision: @FECHAHOY</p>\r\n                <p>Cuit: 20-21950728-4</p>\r\n                <p>Ingresos Brutos: 102-009216-1</p>\r\n                <p>Inicio de actividades: 20/05/2005</p>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"main\">       \r\n            <table class=\"cliente\">\r\n                <tr>\r\n                    <td id=\"con\">Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Domicilio:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOMICILIO</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Cond iva:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@IVA</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">CUIT:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CUITCLIENTE</td>\r\n                </tr>\r\n                \r\n            </table>\r\n        </div>\r\n        <div class=\"productos\">    \r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cod.</th>\r\n                        \r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        \r\n                        <th>P.Unitario</th>\r\n                       \r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS \r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@NETO</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <div class=\"footer-uno\">\r\n                <table>\r\n                    <tr>\r\n                        <td id=\"con\">Importe neto </td>\r\n                        <td style=\"border-bottom:1px solid black\">@NETO</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 21% </td>\r\n                        <td style=\"border-bottom:1px solid black\">@NETOIVA</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 10,5%</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">Importe otros tributos:</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>            \r\n                    <tr>\r\n                        <td id=\"con\">TOTAL</td>\r\n                        <td style=\"border-bottom:1px solid black\">@TOTAL</td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div class=\"logo-footer\">\r\n                <p>CAE N : @CAE</p>\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n                <p> Muchas gracias por su compra, vuelva pronto</p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
@@ -575,8 +773,8 @@ namespace SurFe
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LETRA_FACTURA", letra_factura);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CAE", randomString);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IVA", condicionivaa);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NETO", subtotal.Text.ToString());
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ALGOIVA", labeliva.Text.ToString());
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NETO", subtotal_factura);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ALGOIVA", iva_factura);
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOMICILIO", labeldireccion.Text.ToString());
 
             string filas = string.Empty;
@@ -593,7 +791,7 @@ namespace SurFe
                 total += decimal.Parse(row.Cells["Precio"].Value.ToString());
             }
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", labeltotal.Text.ToString());
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total_factura);
 
 
 

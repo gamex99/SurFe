@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|c:\\users\\parrax\\documents\\github\\surfe\\surfe software\\surfefront\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F65AD91-42FC-459B-AA37-33639217BD0E}|SurFeFront\\SurFeFront.csproj|solutionrelative:surfefront\\puntodeventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,39 +27,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Login.Designer.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Login.Designer.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Login.Designer.cs",
-              "RelativeToolTip": "SurFeFront\\Login.Designer.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAiwHIAAAALAAAAAAAAAA==",
+              "Title": "PuntoDeVenta.cs",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\PuntoDeVenta.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs",
+              "RelativeToolTip": "SurFeFront\\PuntoDeVenta.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAxwDAAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-20T22:03:46.784Z",
+              "WhenOpened": "2026-02-23T19:52:44.983Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Login.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Login.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Login.cs",
-              "RelativeToolTip": "SurFeFront\\Login.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAIwJEAAAAHAAAAAAAAAA==",
+              "Title": "PuntoDeVenta.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs",
+              "RelativeDocumentMoniker": "SurFeFront\\PuntoDeVenta.cs",
+              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\PuntoDeVenta.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SurFeFront\\PuntoDeVenta.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-20T22:01:45.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Login.cs",
-              "RelativeDocumentMoniker": "SurFeFront\\Login.cs",
-              "ToolTip": "C:\\Users\\ParraX\\Documents\\GitHub\\SurFe\\SurFe SoftWare\\SurFeFront\\Login.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SurFeFront\\Login.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-20T21:59:58.091Z",
+              "WhenOpened": "2026-02-23T19:52:29.604Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]
