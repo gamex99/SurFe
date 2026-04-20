@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,210 +17,264 @@ namespace SurFeFront
 {
     public partial class ControlPorInventario : Form
     {
+        private string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+
         public ControlPorInventario()
         {
             InitializeComponent();
             getCategorias();
         }
+
         private void getCategorias()
         {
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            SqlConnection connection = new SqlConnection(conString);
-            connection.Open();
-
-            string sql = "SELECT [id], [categoria] FROM [dbo].[categoria_productos]";
-            SqlCommand command = new SqlCommand(sql, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            cbcategorias.Items.Clear();
-            while (reader.Read())
+            try
             {
-                int id = reader.GetInt32(0);
-                string categoria = reader.GetString(1);
+                using (SqlConnection connection = new SqlConnection(conString))
+                {
+                    connection.Open();
+                    string sql = "SELECT [id], [categoria] FROM [dbo].[categoria_productos]";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    SqlDataReader reader = command.ExecuteReader();
 
-                // Add category name to the ComboBox
+                    cbcategorias.Items.Clear();
+                    cbcategorias.Items.Add("Todas las categorias"); // Índice 0
 
-                //cbcategorias.Items.Insert( categoria);
-                cbcategorias.Items.Add(categoria);
+                    while (reader.Read())
+                    {
+                        // Agregamos el nombre de la categoría (Índices 1, 2, 3...)
+                        cbcategorias.Items.Add(reader.GetString(1));
+                    }
+
+                    // Forzamos a que aparezca seleccionado "Todas las categorias" al abrir
+                    if (cbcategorias.Items.Count > 0) cbcategorias.SelectedIndex = 0;
+                }
             }
-            reader.Close();
-            connection.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar categorías: " + ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
-        { if(cbcategorias.SelectedIndex != -1) { 
-            cargargrid();
-        }else MessageBox.Show("Debe seleccionar una categoría", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+        {
+            if (cbcategorias.SelectedIndex != -1)
+            {
+                dataGridView1.Rows.Clear(); // Limpiamos antes de cargar
+                cargargrid();
+            }
+            else MessageBox.Show("Debe seleccionar una categoría", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-    private void Cargar_Click(object sender, EventArgs e)
+        private void Cargar_Click(object sender, EventArgs e)
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+            if (dataGridView1.RowCount == 0) return;
 
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-
-            for (int j = 0; j < dataGridView1.RowCount; j++)
+            using (SqlConnection connection = new SqlConnection(conString))
             {
-                if (dataGridView1.Rows[j].Cells[3].Value != null && dataGridView1.Rows[j].Cells[3].Value != null)
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
                 {
+                    try
+                    {
+                        int filasProcesadas = 0;
+                        for (int j = 0; j < dataGridView1.RowCount; j++)
+                        {
+                            var stockNuevoRaw = dataGridView1.Rows[j].Cells[3].Value;
+                            if (stockNuevoRaw != null && int.TryParse(stockNuevoRaw.ToString(), out int stockReal))
+                            {
+                                string barcode = dataGridView1.Rows[j].Cells[0].Value.ToString();
+                                int stockSistema = Convert.ToInt32(dataGridView1.Rows[j].Cells[2].Value);
+                                int diferencia = stockReal - stockSistema;
 
+                                // 1. Registrar Historial de Inventario (Auditoría)
+                                string sqlAudit = @"INSERT INTO historialInventario (barcode, fecha, stock_sistema, stock_real, diferencia, operador) 
+                                                  VALUES (@barcode, @fecha, @sistema, @real, @dif, @ope)";
+                                using (SqlCommand cmdAudit = new SqlCommand(sqlAudit, connection, transaction))
+                                {
+                                    cmdAudit.Parameters.AddWithValue("@barcode", barcode);
+                                    cmdAudit.Parameters.AddWithValue("@fecha", DateTime.Now);
+                                    cmdAudit.Parameters.AddWithValue("@sistema", stockSistema);
+                                    cmdAudit.Parameters.AddWithValue("@real", stockReal);
+                                    cmdAudit.Parameters.AddWithValue("@dif", diferencia);
+                                    cmdAudit.Parameters.AddWithValue("@ope", ClaseCompartida.operador);
+                                    cmdAudit.ExecuteNonQuery();
+                                }
 
-
-
-
-                    int newStock = 0;
-                    int.TryParse(dataGridView1.Rows[j].Cells[3].Value.ToString(), out newStock);
-
-                    MessageBox.Show("STOCK nuev" + newStock, "Stock Actualizado");
-
-
-                    string updateSql = "UPDATE producto SET stock = @newStock WHERE barcode = @barcode;";
-                    SqlCommand updateCommand = new SqlCommand(updateSql, connection);
-                    updateCommand.Parameters.AddWithValue("@newStock", newStock);
-                    updateCommand.Parameters.AddWithValue("@barcode", int.Parse(dataGridView1.Rows[j].Cells[0].Value.ToString()));
-                    updateCommand.ExecuteNonQuery();
-
-
+                                // 2. Actualizar stock al valor REAL contado
+                                string sqlUpdate = "UPDATE producto SET stock = @newStock WHERE barcode = @barcode";
+                                using (SqlCommand cmdUpdate = new SqlCommand(sqlUpdate, connection, transaction))
+                                {
+                                    cmdUpdate.Parameters.AddWithValue("@newStock", stockReal);
+                                    cmdUpdate.Parameters.AddWithValue("@barcode", barcode);
+                                    cmdUpdate.ExecuteNonQuery();
+                                }
+                                filasProcesadas++;
+                            }
+                        }
+                        transaction.Commit();
+                        MessageBox.Show($"Se procesaron {filasProcesadas} ajustes de stock correctamente.", "SurFe - Éxito");
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Error al actualizar inventario: " + ex.Message);
+                    }
                 }
             }
-            connection.Close();
-            MessageBox.Show("Stock Actualizado Correctamente ", "Stock Actualizado");
-            this.Close();
-
         }
 
         private void Listado_Click(object sender, EventArgs e)
         {
-            if (cbcategorias.SelectedIndex != -1)
+            if (cbcategorias.SelectedIndex == -1)
             {
+                MessageBox.Show("Seleccione una categoría para generar el listado.", "Atención");
+                return;
+            }
 
-
-
-               // cargargrid();
-
-
-                string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-                SqlConnection connection = new SqlConnection(conString);
-                connection.Open();
-
-                string sql = "SELECT barcode, detalle, stock FROM producto WHERE categoria = @idcategoria";
-                SqlCommand comando = new SqlCommand(sql, connection);
-
-
-
-                comando.Parameters.AddWithValue("@idcategoria", cbcategorias.SelectedIndex);
-
-
-
-                SqlDataReader lector = comando.ExecuteReader();
-
-
-                //verificamos si esta la carpeta en temp total no tenemos que guardar este informe
+            try
+            {
+                // 1. Verificación de Carpeta Temporal
                 if (!Directory.Exists(ClaseCompartida.carpetaTemp))
-                {
-                    // La carpeta no existe, crearla
                     Directory.CreateDirectory(ClaseCompartida.carpetaTemp);
 
-                }
-                // hasta aca verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-                string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-                string nombreArchivo = "ListadoPorCategoria";
-                string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
-                string rutaArchivoPDF = nombreArchivo;
-                string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n\r\n\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n\r\n        .header {\r\n            position: relative;\r\n            color: #fff;\r\n            background-color: #3498db;\r\n            padding: 10px 0;\r\n        }\r\n\r\n            .header img {\r\n                width: 250px;\r\n                height: auto;\r\n                position: absolute;\r\n            }\r\n\r\n            .header .left-img {\r\n                left: 10px;\r\n            }\r\n\r\n        .footer {\r\n            background-color: #f1c40f;\r\n        }\r\n\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n\r\n        th {\r\n            background-color: #3498db;\r\n        }\r\n\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h3>INFORME</h3>\r\n            <p>INFORME @tipoinfo</p>\r\n            \r\n\r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Barcode</th>\r\n                        <th>Descripción</th>\r\n                        <th>StockActual</th>\r\n                        <th>StockFisico</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        \r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p></p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>\r\n\r\n";
-                string filas = string.Empty;
-                decimal total = 0;
-                while (lector.Read())
-                {
-                    string htmlRow = "<tr>";
+                string rutaCompletaArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ListadoInventario.pdf");
+                string PaginaHTML_Texto = GenerarHTMLPlantilla();
 
-                    for (int i = 0; i < lector.FieldCount; i++)
+                string filas = "";
+                using (SqlConnection connection = new SqlConnection(conString))
+                {
+                    connection.Open();
+                    string sql;
+
+                    // --- LÓGICA DE FILTRADO PARA TODAS (Índice 0) O UNA ESPECÍFICA ---
+                    if (cbcategorias.SelectedIndex == 0)
                     {
-                        htmlRow += "<td>" + lector.GetValue(i).ToString() + "</td>";
+                        // Si es "Todas", no filtramos por categoría
+                        sql = "SELECT barcode, detalle, stock FROM producto";
                     }
-                    htmlRow += "<td></td>";
-                    htmlRow += "</tr>";
-                    filas += htmlRow;
+                    else
+                    {
+                        // Si es una específica, usamos el parámetro
+                        sql = "SELECT barcode, detalle, stock FROM producto WHERE categoria = @idcategoria";
+                    }
 
+                    using (SqlCommand comando = new SqlCommand(sql, connection))
+                    {
+                        // Solo añadimos el parámetro si no elegimos "Todas"
+                        if (cbcategorias.SelectedIndex != 0)
+                        {
+                            comando.Parameters.AddWithValue("@idcategoria", cbcategorias.SelectedIndex);
+                        }
+
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                // Agregamos la raya para que el operario escriba el conteo a mano
+                                filas += $"<tr><td>{lector[0]}</td><td>{lector[1]}</td><td>{lector[2]}</td><td style='border-bottom: 1px solid black; width: 80px;'></td></tr>";
+                            }
+                        }
+                    }
                 }
-                lector.Close();
-                PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-                PaginaHTML_Texto = PaginaHTML_Texto.Replace("@tipoinfo", " CONTROL STOCK");
-                using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
-                {
-                    //Creamos un nuevo documento y lo definimos como PDF
-                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
 
+                // 2. Reemplazo de marcadores en el HTML
+                // Si es "Todas", el título dirá "TODAS LAS CATEGORIAS", sino dirá el nombre de la categoría elegida
+                string tituloReporte = cbcategorias.SelectedIndex == 0 ? "TODAS LAS CATEGORIAS" : cbcategorias.Text.ToUpper();
+                PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas).Replace("@tipoinfo", tituloReporte);
+
+                // 3. Generación del PDF con iTextSharp
+                using (FileStream stream = new FileStream(rutaCompletaArchivo, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
-                    pdfDoc.Add(new Phrase(""));
 
-                    //Agregamos la imagen del banner al documento
+                    // Logo de SurFe
                     iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.logo_pp1_carpeta_2023, System.Drawing.Imaging.ImageFormat.Png);
                     img.ScaleToFit(60, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                    //img.SetAbsolutePosition(10,100);
                     img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
                     pdfDoc.Add(img);
 
-
-
-
-
-                    //pdfDoc.Add(new Phrase("Hola Mundo"));
                     using (StringReader sr = new StringReader(PaginaHTML_Texto))
                     {
                         XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
                     }
-
                     pdfDoc.Close();
-                    stream.Close();
                 }
-                PDFView formPDF = new PDFView(rutaCompletaArchivo);
 
-                // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-                formPDF.ShowDialog();
-                //eso es codigo para hacer el html del pdf
-                // Cerrar el formulario Form1 después de cerrar el formulario Form2
-                //this.Close();
-
-            }else MessageBox.Show("Debe seleccionar una categoría", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                // 4. Abrir el visor de PDF
+                new PDFView(rutaCompletaArchivo).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar PDF: " + ex.Message, "Error SurFe");
+            }
         }
+
+        private string GenerarHTMLPlantilla()
+        {
+            return @"<html><head><style>
+                body { font-family: 'Arial'; }
+                .header { text-align: center; background-color: #3498db; color: white; padding: 10px; }
+                table { width: 100%; border-collapse: collapse; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f1c40f; color: black; }
+                </style></head><body>
+                <div class='header'><h3>SURFE - @tipoinfo</h3></div>
+                <br/><table><thead><tr><th>Barcode</th><th>Descripción</th><th>Stock Sist.</th><th>Conteo Real</th></tr></thead>
+                <tbody>@FILAS</tbody></table></body></html>";
+        }
+
         private void cargargrid()
         {
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(conString))
             {
-                connection.Open();
-
-                // Obtener el valor del combobox
-                int idCategoria = 0;
-                if (cbcategorias.SelectedIndex != -1)
+                try
                 {
-                    idCategoria = cbcategorias.SelectedIndex;
-                }
+                    connection.Open();
+                    string sql;
 
-                // Preparar la consulta SQL
-                string sql = "SELECT barcode, detalle, stock FROM producto WHERE categoria = @idcategoria";
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.AddWithValue("@idcategoria", idCategoria);
-
-                    // Ejecutar la consulta SQL
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    // Si es 0, no aplicamos el WHERE
+                    if (cbcategorias.SelectedIndex == 0)
                     {
-                        // Llenar el datagrid
-                        while (reader.Read())
-                        {
-                            int barcode = reader.GetInt32(0);
-                            string detalle = reader.GetString(1);
-                            int stockActual = reader.GetInt32(2);
+                        sql = "SELECT barcode, detalle, stock FROM producto";
+                    }
+                    else
+                    {
+                        // Filtramos por categoría. 
+                        // Usamos SelectedIndex porque cargaste las categorías en orden.
+                        sql = "SELECT barcode, detalle, stock FROM producto WHERE categoria = @idcategoria";
+                    }
 
-                            dataGridView1.Rows.Add(barcode, detalle, stockActual);
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        if (cbcategorias.SelectedIndex != 0)
+                        {
+                            // IMPORTANTE: Como el índice 0 es "Todas", 
+                            // el índice 1 del CB corresponde al ID 1 de la base de datos.
+                            command.Parameters.AddWithValue("@idcategoria", cbcategorias.SelectedIndex);
+                        }
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Limpiamos antes de cargar
+                            dataGridView1.Rows.Clear();
+
+                            while (reader.Read())
+                            {
+                                dataGridView1.Rows.Add(
+                                    reader["barcode"].ToString(),
+                                    reader["detalle"].ToString(),
+                                    reader["stock"].ToString()
+                                );
+                            }
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar productos: " + ex.Message);
                 }
             }
         }

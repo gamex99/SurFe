@@ -63,50 +63,80 @@ namespace SurFeFront
 
         private void btncargar_Click(object sender, EventArgs e)
         {
-
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-
-            for (int j = 0; j < dataGridView1.RowCount; j++)
+            // --- 0. VALIDACIÓN DE GRILLA VACÍA ---
+            if (dataGridView1.RowCount == 0)
             {
-                if (dataGridView1.Rows[j].Cells[3].Value != null)
+                MessageBox.Show("No hay productos cargados en la lista para actualizar.",
+                                "Lista Vacía", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // --- 1. VALIDACIÓN PREVIA DE TODA LA GRILLA ---
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                var cellValue = dataGridView1.Rows[i].Cells[3].Value;
+                string detalleProd = dataGridView1.Rows[i].Cells[1].Value?.ToString() ?? "Desconocido";
+
+                if (cellValue == null || string.IsNullOrWhiteSpace(cellValue.ToString()))
                 {
-                    string sql = @"
-UPDATE producto
-SET stock = @newStock
-WHERE barcode = @barcode;
-";
+                    MessageBox.Show($"La columna 'Nuevo Stock' está vacía en la fila {i + 1} ({detalleProd}).",
+                                    "Dato Faltante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                    SqlCommand command = new SqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@barcode", int.Parse(dataGridView1.Rows[j].Cells[0].Value.ToString()));
-                    command.Parameters.AddWithValue("@newStock", int.Parse(dataGridView1.Rows[j].Cells[3].Value.ToString()));
+                if (!int.TryParse(cellValue.ToString(), out int nuevoStock))
+                {
+                    MessageBox.Show($"El valor '{cellValue}' en la fila {i + 1} no es un número válido.",
+                                    "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    command.ExecuteNonQuery();
-
-
-
-
-
-
+                if (nuevoStock < 0)
+                {
+                    MessageBox.Show($"El stock no puede ser negativo (Fila {i + 1}: {detalleProd}).",
+                                    "Valor Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
-            connection.Close();
 
+            // --- 2. PROCESO DE ACTUALIZACIÓN ---
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
 
-
-
-
-
-
-
-            MessageBox.Show("Stock Actualizado Correctamente", "Stock Actualizado");
-
-
-
-
-            this.Close();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            for (int j = 0; j < dataGridView1.RowCount; j++)
+                            {
+                                string sql = "UPDATE producto SET stock = @newStock WHERE barcode = @barcode;";
+                                using (SqlCommand command = new SqlCommand(sql, connection, transaction))
+                                {
+                                    command.Parameters.AddWithValue("@newStock", Convert.ToInt32(dataGridView1.Rows[j].Cells[3].Value));
+                                    command.Parameters.AddWithValue("@barcode", dataGridView1.Rows[j].Cells[0].Value.ToString());
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+                            transaction.Commit();
+                            MessageBox.Show("¡Todo el stock se actualizó correctamente!", "SurFe - Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("Error al escribir en la base de datos: " + ex.Message, "Error Crítico");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo conectar con la base de datos: " + ex.Message, "Error de Conexión");
+            }
         }
     }
 

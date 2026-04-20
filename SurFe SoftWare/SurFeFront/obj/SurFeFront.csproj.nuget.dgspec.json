@@ -216,6 +216,10 @@
               "target": "Package",
               "version": "[5.1.57, )"
             },
+            "itext7": {
+              "target": "Package",
+              "version": "[9.6.0, )"
+            },
             "itextsharp.xmlworker": {
               "target": "Package",
               "version": "[5.5.13.3, )"

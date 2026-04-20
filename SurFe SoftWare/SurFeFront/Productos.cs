@@ -23,6 +23,8 @@ namespace SurFeFront
             InitializeComponent();
             getCategorias();
             buscarDatos();
+            cbcategorias.SelectedIndex = 0;
+            DeshabilitarAcciones();
 
         }
 
@@ -42,6 +44,7 @@ namespace SurFeFront
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             CargarProducto ConsProd = new CargarProducto();
             ConsProd.modo = EnumModoForm.Modificacion;
             ConsProd.ShowDialog();
@@ -74,6 +77,7 @@ namespace SurFeFront
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader = command.ExecuteReader();
             cbcategorias.Items.Clear();
+            cbcategorias.Items.Add("Todas las categorias");
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
@@ -99,7 +103,7 @@ namespace SurFeFront
             string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
             SqlConnection connection = new SqlConnection(conString);
             int selectedindex = 0;
-            selectedindex = cbcategorias.SelectedIndex + 1;
+            selectedindex = cbcategorias.SelectedIndex;
             if (cbcategorias.SelectedIndex == null)
             {
                 selectedindex = 0;
@@ -160,36 +164,62 @@ namespace SurFeFront
 
         }
 
+        // 1. El evento que mencionaste: se dispara al tocar la grilla
         private void dataProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int columnIndex = e.RowIndex;
-            // Comprobar si la selección actual incluye todo el DataGridView
-            if (dataProductos.SelectedRows.Count == dataProductos.RowCount)
+            // Intentamos cargar el producto. Si devuelve true, habilitamos botones.
+            if (CargarProductoSeleccionado(e.RowIndex))
             {
-                // Mostrar un mensaje indicando que no se puede seleccionar todo el DataGridView
-                MessageBox.Show("No se puede seleccionar toda la tabla");
-
-                // Deseleccionar la selección actual
-                dataProductos.ClearSelection();
+                btnConsulta.Enabled = true;   // Modificar
+                btncons.Enabled = true;       // Consulta
+                btneliminar.Enabled = true;   // Eliminar
             }
-
-
             else
             {
-
-
-
-                string rowindex = e.RowIndex.ToString();
-                int rowIndexint = e.RowIndex;
-
-                reselectRowCells(rowIndexint);
-                ClaseCompartida.categoria = (int)dataProductos.Rows[e.RowIndex].Cells[6].Value;
-            ClaseCompartida.barcode = (int)dataProductos.Rows[e.RowIndex].Cells[1].Value;
-            ClaseCompartida.detalle = (string)dataProductos.Rows[e.RowIndex].Cells[2].Value;
-            //ClaseCompartida.stock = (int)dataProductos.Rows[e.RowIndex].Cells[3].Value;
-            ClaseCompartida.precio = (decimal)dataProductos.Rows[e.RowIndex].Cells[3].Value;
+                // Si falló (clic en cabecera o error), deshabilitamos
+                btnConsulta.Enabled = false;
+                btncons.Enabled = false;
+                btneliminar.Enabled = false;
             }
         }
+
+        // 2. LA FUNCIÓN QUE TE FALTABA: Copiá esto debajo del evento anterior
+        private bool CargarProductoSeleccionado(int rowIndex)
+        {
+            // Validar que el clic sea en una fila real y no en los nombres de las columnas
+            if (rowIndex < 0) return false;
+
+            try
+            {
+                // Verificamos que la fila tenga datos reales
+                if (dataProductos.Rows[rowIndex].Cells[1].Value == null) return false;
+
+                // Pasamos los datos a la ClaseCompartida para que el otro Form los vea
+                // Usamos Convert para evitar el error de "Referencia a objeto no establecida"
+                ClaseCompartida.categoria = Convert.ToInt32(dataProductos.Rows[rowIndex].Cells[6].Value);
+                ClaseCompartida.barcode = Convert.ToInt32(dataProductos.Rows[rowIndex].Cells[1].Value);
+                ClaseCompartida.detalle = dataProductos.Rows[rowIndex].Cells[2].Value?.ToString() ?? "";
+                ClaseCompartida.precio = Convert.ToDecimal(dataProductos.Rows[rowIndex].Cells[3].Value);
+
+                // Si todo salió bien, devolvemos true
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // En caso de error (formato de celda, nulos, etc.)
+                Console.WriteLine("Error al cargar: " + ex.Message);
+                return false;
+            }
+        }
+
+        // Método auxiliar para limpiar el estado
+        private void DeshabilitarAcciones()
+        {
+            btnConsulta.Enabled = false;
+            btncons.Enabled = false;
+            btneliminar.Enabled = false;
+        }
+
 
         private void btncons_Click(object sender, EventArgs e)
         {
@@ -265,5 +295,7 @@ namespace SurFeFront
                 // dataProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Restore full row selection
             }
         }
+        
+        
     }
 }

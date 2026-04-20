@@ -273,50 +273,54 @@ namespace SurFe
         }
         private bool validarcontroles()
         {
-            if (cbCategoria.SelectedIndex > -1)
+            // 1. Validar Categoría
+            // Si usaste el ID 0 para "Seleccione...", verificamos que sea mayor a 0
+            if (cbCategoria.SelectedIndex <= -1)
             {
-                if (tbbarcode.Text.Length > 0 && int.TryParse(tbbarcode.Text, out int barcode))
-                {
-                    if (tbdetalle.Text.Length > 0)
-                    {
-                        if (tbstock.Text.Length > 0)
-                        {
-                            if (tbprecio.Text.Length > 0 && (decimal.TryParse(tbprecio.Text, out decimal precio) || int.TryParse(tbprecio.Text, out int precioo)))
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Falta cargar precio o no es decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return false;
-                            }
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Falta cargar stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falta cargar detalle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Falta cargar barcode o no es un numero entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Cargar Categoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar una categoría válida.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbCategoria.Focus();
                 return false;
             }
-        }
+
+            // 2. Validar Código de Barras (Barcode)
+            // Verificamos que no esté vacío y que sea un número positivo
+            if (string.IsNullOrWhiteSpace(tbbarcode.Text) || !long.TryParse(tbbarcode.Text, out long barcode) || barcode <= 0)
+            {
+                MessageBox.Show("El código de barras debe ser un número positivo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbbarcode.Focus();
+                return false;
+            }
+
+            // 3. Validar Detalle
+            // Verificamos que tenga una descripción mínima para no cargar productos "fantasma"
+            if (string.IsNullOrWhiteSpace(tbdetalle.Text) || tbdetalle.Text.Length < 3)
+            {
+                MessageBox.Show("El detalle debe tener al menos 3 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbdetalle.Focus();
+                return false;
+            }
+
+            // 4. Validar Stock
+            // No permitimos stock negativo (pueden ser 0, pero no -5)
+            if (!int.TryParse(tbstock.Text, out int stock) || stock < 0)
+            {
+                MessageBox.Show("El stock no puede ser un valor negativo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbstock.Focus();
+                return false;
+            }
+
+            // 5. Validar Precio
+            // El precio debe ser un número decimal mayor a 0
+            if (!decimal.TryParse(tbprecio.Text.Replace(".", ","), out decimal precio) || precio <= 0)
+            {
+                MessageBox.Show("El precio debe ser un valor numérico mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbprecio.Focus();
+                return false;
+            }
+
+            // Si pasó todas las pruebas
+            return true;
+        } 
 
     }
 }

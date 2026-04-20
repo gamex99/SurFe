@@ -2,15 +2,8 @@
 {
     partial class ProveedorRegistrarReclamo
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,241 +15,240 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            tbcantidad = new TextBox();
-            label3 = new Label();
-            btnagregar = new Button();
-            btnbuscar = new Button();
-            dataGridView1 = new DataGridView();
-            btnguardar = new Button();
-            button1 = new Button();
-            label4 = new Label();
-            lbrazonsocial = new Label();
-            btnbuscarproveedor = new Button();
-            lbbarcode = new Label();
-            lbdetalle = new Label();
-            Barcode = new DataGridViewTextBoxColumn();
-            Detalle = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
-            Tipo = new DataGridViewComboBoxColumn();
-            Motivo = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnBuscarPedido = new System.Windows.Forms.Button();
+            this.lblProveedor = new System.Windows.Forms.Label();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.labelTipo = new System.Windows.Forms.Label();
+            this.txtComprobante = new System.Windows.Forms.TextBox();
+            this.labelComp = new System.Windows.Forms.Label();
+            this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelGrid = new System.Windows.Forms.Label();
+            this.txtMotivo = new System.Windows.Forms.TextBox();
+            this.labelMotivo = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.panelTop = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
+            this.panelTop.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // label1
+            // panelTop
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(237, 40);
-            label1.TabIndex = 0;
-            label1.Text = "RegistrarReclamo";
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panelTop.Controls.Add(this.lblProveedor);
+            this.panelTop.Controls.Add(this.btnBuscarPedido);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(684, 60);
+            this.panelTop.TabIndex = 11;
             // 
-            // label2
+            // btnBuscarPedido
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 118);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Barcode:";
-            label2.Click += label2_Click;
+            this.btnBuscarPedido.BackColor = System.Drawing.Color.White;
+            this.btnBuscarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarPedido.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarPedido.Location = new System.Drawing.Point(20, 15);
+            this.btnBuscarPedido.Name = "btnBuscarPedido";
+            this.btnBuscarPedido.Size = new System.Drawing.Size(180, 30);
+            this.btnBuscarPedido.TabIndex = 0;
+            this.btnBuscarPedido.Text = "🔍 Buscar Pedido Recibido";
+            this.btnBuscarPedido.UseVisualStyleBackColor = false;
+            this.btnBuscarPedido.Click += new System.EventHandler(this.btnBuscarPedido_Click);
             // 
-            // tbcantidad
+            // lblProveedor
             // 
-            tbcantidad.Location = new Point(452, 115);
-            tbcantidad.Name = "tbcantidad";
-            tbcantidad.Size = new Size(100, 23);
-            tbcantidad.TabIndex = 3;
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.lblProveedor.Location = new System.Drawing.Point(220, 20);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(111, 20);
+            this.lblProveedor.TabIndex = 1;
+            this.lblProveedor.Text = "Proveedor: ---";
             // 
-            // label3
+            // labelTipo
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(391, 123);
-            label3.Name = "label3";
-            label3.Size = new Size(55, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Cantidad";
+            this.labelTipo.AutoSize = true;
+            this.labelTipo.Location = new System.Drawing.Point(20, 85);
+            this.labelTipo.Name = "labelTipo";
+            this.labelTipo.Size = new System.Drawing.Size(96, 15);
+            this.labelTipo.TabIndex = 3;
+            this.labelTipo.Text = "Tipo de Registro:";
             // 
-            // btnagregar
+            // cmbTipo
             // 
-            btnagregar.Location = new Point(558, 114);
-            btnagregar.Name = "btnagregar";
-            btnagregar.Size = new Size(75, 23);
-            btnagregar.TabIndex = 5;
-            btnagregar.Text = "Agregar";
-            btnagregar.UseVisualStyleBackColor = true;
-            btnagregar.Click += btnagregar_Click;
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(125, 82);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(150, 23);
+            this.cmbTipo.TabIndex = 2;
             // 
-            // btnbuscar
+            // labelComp
             // 
-            btnbuscar.Location = new Point(639, 115);
-            btnbuscar.Name = "btnbuscar";
-            btnbuscar.Size = new Size(111, 23);
-            btnbuscar.TabIndex = 6;
-            btnbuscar.Text = "BuscarProducto";
-            btnbuscar.UseVisualStyleBackColor = true;
-            btnbuscar.Click += btnbuscar_Click;
+            this.labelComp.AutoSize = true;
+            this.labelComp.Location = new System.Drawing.Point(300, 85);
+            this.labelComp.Name = "labelComp";
+            this.labelComp.Size = new System.Drawing.Size(107, 15);
+            this.labelComp.TabIndex = 5;
+            this.labelComp.Text = "Comprobante Nro:";
             // 
-            // dataGridView1
+            // txtComprobante
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Barcode, Detalle, Cantidad, Tipo, Motivo });
-            dataGridView1.Location = new Point(21, 176);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(767, 231);
-            dataGridView1.TabIndex = 7;
+            this.txtComprobante.Location = new System.Drawing.Point(415, 82);
+            this.txtComprobante.Name = "txtComprobante";
+            this.txtComprobante.ReadOnly = true;
+            this.txtComprobante.Size = new System.Drawing.Size(150, 23);
+            this.txtComprobante.TabIndex = 4;
             // 
-            // btnguardar
+            // labelGrid
             // 
-            btnguardar.Location = new Point(614, 415);
-            btnguardar.Name = "btnguardar";
-            btnguardar.Size = new Size(75, 23);
-            btnguardar.TabIndex = 8;
-            btnguardar.Text = "Guardar";
-            btnguardar.UseVisualStyleBackColor = true;
-            btnguardar.Click += btnguardar_Click;
+            this.labelGrid.AutoSize = true;
+            this.labelGrid.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGrid.Location = new System.Drawing.Point(20, 130);
+            this.labelGrid.Name = "labelGrid";
+            this.labelGrid.Size = new System.Drawing.Size(325, 15);
+            this.labelGrid.TabIndex = 6;
+            this.labelGrid.Text = "Artículos del Pedido (Edite la cantidad si es una devolución):";
             // 
-            // button1
+            // dgvProductos
             // 
-            button1.Location = new Point(704, 415);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 9;
-            button1.Text = "Cancelar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(22, 60);
-            label4.Name = "label4";
-            label4.Size = new Size(67, 15);
-            label4.TabIndex = 10;
-            label4.Text = "Proveedor: ";
-            // 
-            // lbrazonsocial
-            // 
-            lbrazonsocial.AutoSize = true;
-            lbrazonsocial.Location = new Point(95, 60);
-            lbrazonsocial.Name = "lbrazonsocial";
-            lbrazonsocial.Size = new Size(27, 15);
-            lbrazonsocial.TabIndex = 11;
-            lbrazonsocial.Text = "****";
-            // 
-            // btnbuscarproveedor
-            // 
-            btnbuscarproveedor.Location = new Point(252, 52);
-            btnbuscarproveedor.Name = "btnbuscarproveedor";
-            btnbuscarproveedor.Size = new Size(126, 23);
-            btnbuscarproveedor.TabIndex = 12;
-            btnbuscarproveedor.Text = "Buscar Proveedor";
-            btnbuscarproveedor.UseVisualStyleBackColor = true;
-            btnbuscarproveedor.Click += btnbuscarproveedor_Click;
-            // 
-            // lbbarcode
-            // 
-            lbbarcode.AutoSize = true;
-            lbbarcode.Location = new Point(71, 118);
-            lbbarcode.Name = "lbbarcode";
-            lbbarcode.Size = new Size(22, 15);
-            lbbarcode.TabIndex = 13;
-            lbbarcode.Text = "***";
-            // 
-            // lbdetalle
-            // 
-            lbdetalle.AutoSize = true;
-            lbdetalle.Location = new Point(182, 119);
-            lbdetalle.Name = "lbdetalle";
-            lbdetalle.Size = new Size(22, 15);
-            lbdetalle.TabIndex = 14;
-            lbdetalle.Text = "***";
+            this.dgvProductos.AllowUserToAddRows = false;
+            this.dgvProductos.AllowUserToDeleteRows = false;
+            this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProductos.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvProductos.ColumnHeadersHeight = 30;
+            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Barcode,
+            this.Detalle,
+            this.CantOriginal,
+            this.CantDevolver});
+            this.dgvProductos.EnableHeadersVisualStyles = false;
+            this.dgvProductos.Location = new System.Drawing.Point(20, 150);
+            this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.RowHeadersVisible = false;
+            this.dgvProductos.Size = new System.Drawing.Size(640, 180);
+            this.dgvProductos.TabIndex = 7;
             // 
             // Barcode
             // 
-            Barcode.HeaderText = "Barcode";
-            Barcode.Name = "Barcode";
+            this.Barcode.HeaderText = "Código";
+            this.Barcode.Name = "Barcode";
+            this.Barcode.ReadOnly = true;
             // 
             // Detalle
             // 
-            Detalle.HeaderText = "Detalle";
-            Detalle.Name = "Detalle";
+            this.Detalle.HeaderText = "Producto";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
             // 
-            // Cantidad
+            // CantOriginal
             // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.Name = "Cantidad";
+            this.CantOriginal.HeaderText = "Cant. Comprada";
+            this.CantOriginal.Name = "CantOriginal";
+            this.CantOriginal.ReadOnly = true;
             // 
-            // Tipo
+            // CantDevolver
             // 
-            Tipo.HeaderText = "Tipo";
-            Tipo.Items.AddRange(new object[] { "Reclamo", "Devolucion" });
-            Tipo.Name = "Tipo";
-            Tipo.Resizable = DataGridViewTriState.True;
-            Tipo.SortMode = DataGridViewColumnSortMode.Automatic;
+            this.CantDevolver.HeaderText = "Cant. a Devolver";
+            this.CantDevolver.Name = "CantDevolver";
             // 
-            // Motivo
+            // labelMotivo
             // 
-            Motivo.HeaderText = "Motivo";
-            Motivo.Name = "Motivo";
+            this.labelMotivo.AutoSize = true;
+            this.labelMotivo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMotivo.Location = new System.Drawing.Point(20, 350);
+            this.labelMotivo.Name = "labelMotivo";
+            this.labelMotivo.Size = new System.Drawing.Size(185, 15);
+            this.labelMotivo.TabIndex = 8;
+            this.labelMotivo.Text = "Motivo / Descripción (Obligatorio):";
+            // 
+            // txtMotivo
+            // 
+            this.txtMotivo.Location = new System.Drawing.Point(20, 370);
+            this.txtMotivo.Multiline = true;
+            this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMotivo.Size = new System.Drawing.Size(640, 80);
+            this.txtMotivo.TabIndex = 9;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(490, 470);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(170, 45);
+            this.btnGuardar.TabIndex = 10;
+            this.btnGuardar.Text = "GUARDAR REGISTRO";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // ProveedorRegistrarReclamo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(lbdetalle);
-            Controls.Add(lbbarcode);
-            Controls.Add(btnbuscarproveedor);
-            Controls.Add(lbrazonsocial);
-            Controls.Add(label4);
-            Controls.Add(button1);
-            Controls.Add(btnguardar);
-            Controls.Add(dataGridView1);
-            Controls.Add(btnbuscar);
-            Controls.Add(btnagregar);
-            Controls.Add(label3);
-            Controls.Add(tbcantidad);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "ProveedorRegistrarReclamo";
-            Text = "ProveedorRegistrarPedido";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(684, 531);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.txtMotivo);
+            this.Controls.Add(this.labelMotivo);
+            this.Controls.Add(this.dgvProductos);
+            this.Controls.Add(this.labelGrid);
+            this.Controls.Add(this.txtComprobante);
+            this.Controls.Add(this.labelComp);
+            this.Controls.Add(this.cmbTipo);
+            this.Controls.Add(this.labelTipo);
+            this.Controls.Add(this.panelTop);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.Name = "ProveedorRegistrarReclamo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SurFe - Gestión de Reclamos a Proveedores";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox tbcantidad;
-        private Label label3;
-        private Button btnagregar;
-        private Button btnbuscar;
-        private DataGridView dataGridView1;
-        private Button btnguardar;
-        private Button button1;
-        private Label label4;
-        private Label lbrazonsocial;
-        private Button btnbuscarproveedor;
-        private Label lbbarcode;
-        private Label lbdetalle;
-        private DataGridViewTextBoxColumn Barcode;
-        private DataGridViewTextBoxColumn Detalle;
-        private DataGridViewTextBoxColumn Cantidad;
-        private DataGridViewComboBoxColumn Tipo;
-        private DataGridViewTextBoxColumn Motivo;
+        private System.Windows.Forms.Button btnBuscarPedido;
+        private System.Windows.Forms.Label lblProveedor;
+        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.Label labelTipo;
+        private System.Windows.Forms.TextBox txtComprobante;
+        private System.Windows.Forms.Label labelComp;
+        private System.Windows.Forms.DataGridView dgvProductos;
+        private System.Windows.Forms.Label labelGrid;
+        private System.Windows.Forms.TextBox txtMotivo;
+        private System.Windows.Forms.Label labelMotivo;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantDevolver;
     }
 }

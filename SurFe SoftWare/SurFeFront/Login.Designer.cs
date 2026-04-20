@@ -2,15 +2,8 @@
 {
     partial class Login
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             lblUsu = new Label();
@@ -40,10 +29,11 @@
             // 
             lblUsu.AutoSize = true;
             lblUsu.BackColor = Color.Transparent;
-            lblUsu.Font = new Font("Segoe UI", 10.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblUsu.Location = new Point(310, 224);
+            lblUsu.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblUsu.ForeColor = Color.White; // Asumiendo fondo oscuro
+            lblUsu.Location = new Point(275, 200);
             lblUsu.Name = "lblUsu";
-            lblUsu.Size = new Size(67, 20);
+            lblUsu.Size = new Size(66, 20);
             lblUsu.TabIndex = 3;
             lblUsu.Text = "Usuario:";
             // 
@@ -51,68 +41,89 @@
             // 
             lblCont.AutoSize = true;
             lblCont.BackColor = Color.Transparent;
-            lblCont.Font = new Font("Segoe UI", 10.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCont.Location = new Point(296, 273);
+            lblCont.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblCont.ForeColor = Color.White;
+            lblCont.Location = new Point(275, 265);
             lblCont.Name = "lblCont";
-            lblCont.Size = new Size(92, 20);
+            lblCont.Size = new Size(90, 20);
             lblCont.TabIndex = 4;
             lblCont.Text = "Contraseña:";
             // 
             // txtUsu
             // 
-            txtUsu.Location = new Point(275, 247);
+            txtUsu.BackColor = Color.White;
+            txtUsu.BorderStyle = BorderStyle.FixedSingle;
+            txtUsu.Font = new Font("Segoe UI", 11F);
+            txtUsu.Location = new Point(275, 225);
             txtUsu.Name = "txtUsu";
-            txtUsu.Size = new Size(136, 23);
-            txtUsu.TabIndex = 5;
+            txtUsu.Size = new Size(180, 27);
+            txtUsu.TabIndex = 0;
             // 
             // txtCont
             // 
-            txtCont.Location = new Point(275, 295);
+            txtCont.BackColor = Color.White;
+            txtCont.BorderStyle = BorderStyle.FixedSingle;
+            txtCont.Font = new Font("Segoe UI", 11F);
+            txtCont.Location = new Point(275, 290);
             txtCont.Name = "txtCont";
-            txtCont.Size = new Size(136, 23);
-            txtCont.TabIndex = 6;
+            txtCont.PasswordChar = '●'; // Caracter de seguridad moderno
+            txtCont.Size = new Size(180, 27);
+            txtCont.TabIndex = 1;
             txtCont.TextChanged += txtCont_TextChanged;
             // 
             // btAcceso
             // 
-            btAcceso.Location = new Point(275, 332);
+            btAcceso.BackColor = Color.FromArgb(0, 120, 215); // Azul moderno
+            btAcceso.Cursor = Cursors.Hand;
+            btAcceso.FlatAppearance.BorderSize = 0;
+            btAcceso.FlatStyle = FlatStyle.Flat;
+            btAcceso.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btAcceso.ForeColor = Color.White;
+            btAcceso.Location = new Point(275, 335);
             btAcceso.Name = "btAcceso";
-            btAcceso.Size = new Size(136, 27);
-            btAcceso.TabIndex = 7;
-            btAcceso.Text = "Acceso ";
-            btAcceso.UseVisualStyleBackColor = true;
+            btAcceso.Size = new Size(180, 35);
+            btAcceso.TabIndex = 2;
+            btAcceso.Text = "INGRESAR";
+            btAcceso.UseVisualStyleBackColor = false;
             btAcceso.Click += btAcceso_Click;
             // 
             // btSalir
             // 
-            btSalir.Location = new Point(275, 366);
+            btSalir.BackColor = Color.FromArgb(64, 64, 64); // Gris oscuro
+            btSalir.Cursor = Cursors.Hand;
+            btSalir.FlatAppearance.BorderSize = 0;
+            btSalir.FlatStyle = FlatStyle.Flat;
+            btSalir.Font = new Font("Segoe UI", 9F);
+            btSalir.ForeColor = Color.Silver;
+            btSalir.Location = new Point(275, 380);
             btSalir.Name = "btSalir";
-            btSalir.Size = new Size(136, 27);
+            btSalir.Size = new Size(180, 30);
             btSalir.TabIndex = 8;
             btSalir.Text = "Cancelar";
-            btSalir.UseVisualStyleBackColor = true;
+            btSalir.UseVisualStyleBackColor = false;
             btSalir.Click += btSalir_Click;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.AppWorkspace;
+            BackColor = Color.FromArgb(30, 30, 30); // Fondo oscuro base
             BackgroundImage = Properties.Resources.fondo_login2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(683, 440);
+            ClientSize = new Size(720, 480);
             Controls.Add(btSalir);
             Controls.Add(btAcceso);
             Controls.Add(txtCont);
             Controls.Add(txtUsu);
             Controls.Add(lblCont);
             Controls.Add(lblUsu);
+            DoubleBuffered = true; // Evita el parpadeo al cargar imagen
+            FormBorderStyle = FormBorderStyle.None; // Login sin bordes de ventana feos
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Login";
+            Text = "Login - SurFe";
             Load += Login_Load;
             KeyDown += Login_KeyDown;
-           
             ResumeLayout(false);
             PerformLayout();
         }

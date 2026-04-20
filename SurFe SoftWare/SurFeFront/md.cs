@@ -31,19 +31,62 @@ namespace SurFeFront
                     cLIENTESToolStripMenuItem.Visible = true;
                     iNFORMESToolStripMenuItem.Visible = true;
                     pDFSistemaToolStripMenuItem.Visible = true;
-
+                    pRODUCTOSToolStripMenuItem.Visible = true;
+                    dEPOSITOToolStripMenuItem.Visible = true;
+                    registrarStockToolStripMenuItem.Visible = true;
+                    iNFORMESToolStripMenuItem.Visible = true;
+                    porFaltanteToolStripMenuItem.Visible = true;
+                    ventasRealizadasToolStripMenuItem.Visible = true;
+                    top10ClientesConMasComprasToolStripMenuItem.Visible = true;
+                    top10ProductosMasVendidosToolStripMenuItem.Visible = true;
+                    actualizarStockPorPerdidaRoturaOAntiguedadToolStripMenuItem.Visible = true;
+                    controlPorInventarioToolStripMenuItem.Visible = true;
+                    consultarStockPorProductoToolStripMenuItem.Visible = true;
+                    pROVEEDORESToolStripMenuItem.Visible = true;
+                    proveedoresToolStripMenuItem1.Visible = true;
+                    registrarPedidoToolStripMenuItem.Visible = true;
+                    registrarReclamoODevolucionToolStripMenuItem.Visible = true;
+                    registrarPagoToolStripMenuItem.Visible = true;
 
                     break;
 
                 case 2: // VENTAS BÁSICO
                     vENTAToolStripMenuItem.Visible = true;
                     cLIENTESToolStripMenuItem.Visible = true;
+                    consultarStockPorProductoToolStripMenuItem.Visible = true;
+                    dEPOSITOToolStripMenuItem.Visible = true;
                     break;
 
                 case 3: // jefe de ventas 
                     //vENTAToolStripMenuItem.Visible = true;
                     cLIENTESToolStripMenuItem.Visible = true;
                     iNFORMESToolStripMenuItem.Visible = true;
+                    ventasRealizadasToolStripMenuItem.Visible = true;
+                    top10ClientesConMasComprasToolStripMenuItem.Visible = true;
+                    top10ProductosMasVendidosToolStripMenuItem.Visible = true;
+
+
+
+                    break;
+
+                case 4: //jefe de deposito
+                    pRODUCTOSToolStripMenuItem.Visible = true;
+                    dEPOSITOToolStripMenuItem.Visible = true;
+                    registrarStockToolStripMenuItem.Visible = true;
+                    iNFORMESToolStripMenuItem.Visible = true;
+                    porFaltanteToolStripMenuItem.Visible = true;
+                    actualizarStockPorPerdidaRoturaOAntiguedadToolStripMenuItem.Visible = true;
+                    controlPorInventarioToolStripMenuItem.Visible = true;
+                    consultarStockPorProductoToolStripMenuItem.Visible = true;
+                    break;
+
+
+                case 5:
+                    pROVEEDORESToolStripMenuItem.Visible = true;
+                    proveedoresToolStripMenuItem1.Visible = true;
+                    registrarPedidoToolStripMenuItem.Visible = true;
+                    registrarReclamoODevolucionToolStripMenuItem.Visible = true;
+                    registrarPagoToolStripMenuItem.Visible = true;
                     break;
             }
 
@@ -349,11 +392,7 @@ namespace SurFeFront
 
         private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProveedorRegistrarPago newMDIChild = new ProveedorRegistrarPago();
-            // Set the parent form of the child window.  
-            newMDIChild.MdiParent = this;
-            // Display the new form.  
-            newMDIChild.Show();
+
         }
 
         private void registrarCompraToolStripMenuItem_Click(object sender, EventArgs e)
@@ -799,6 +838,25 @@ namespace SurFeFront
                 // porque al reiniciarse vuelven a sus valores por defecto (null y 0).
                 Application.Restart();
             }
+        }
+
+        private void graficosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void administracionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registrarPagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProveedorRegistrarPago newMDIChild = new ProveedorRegistrarPago();
+            // Set the parent form of the child window.  
+            newMDIChild.MdiParent = this;
+            // Display the new form.  
+            newMDIChild.Show();
         }
     }
 }

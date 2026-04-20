@@ -41,5 +41,10 @@ namespace SurFeFront
         //cargar factura
         public static string id_factura;
         //cargarfactura
+
+
+
+        // baja stock por perdida, rotura o antiguedad
+        public static string operadorbaja { get; set; } // En ClaseCompartida.cs
     }
 }

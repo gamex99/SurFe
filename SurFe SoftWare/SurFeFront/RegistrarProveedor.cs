@@ -1,281 +1,199 @@
-﻿using iTextSharp.text.pdf;
-using SurFeEntidades;
-using SurFeFront;
+﻿using SurFeFront;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SurFe
 {
-
-
     public partial class RegistrarProveedor : Form
     {
-        public EnumModoForm modo = EnumModoForm.Alta;
- 
+        private string conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+        public EnumModoForm modo { get; set; }
+
         public RegistrarProveedor()
         {
             InitializeComponent();
-            getLocalidades();
-           
-
+            // Cargamos las provincias apenas se crea la ventana
+            CargarComboProvincias();
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void RegistrarProveedor_Load(object sender, EventArgs e)
         {
-
+            if (modo == EnumModoForm.Modificacion) btnCargar.Text = "ACTUALIZAR";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void CargarDatos(string razon, long cuit, string dir, string tel, string correo, int idLoc)
         {
-            if (validarcontroles() == true)
+            tbrazonsocial.Text = razon;
+            tbcuit.Text = cuit.ToString();
+            tbdireccion.Text = dir;
+            tbtel.Text = tel;
+            tbcorreo.Text = correo;
+
+            // En edición, buscamos a qué provincia pertenece la localidad para setear el primer combo
+            int idProv = ObtenerProvinciaDeLocalidad(idLoc);
+            if (idProv != -1)
             {
-
-                
-                if (modo == EnumModoForm.Alta)
-                { 
-                    Guardar();
-
-                   
-                    {
-                        DialogResult result = MessageBox.Show("¿Desea cargar otro producto?", "Mensaje de confirmación",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        switch (result)
-                        {
-                            case DialogResult.Yes:
-                                LimpiarControles(); 
-                                break;
-                            case DialogResult.No:
-                                this.Close();
-                                break;
-
-                        }
-                    }
-                } else if (modo == EnumModoForm.Modificacion)
-                {
-                    DialogResult result = MessageBox.Show("¿Esta seguro que desea guardar las modificaciones?", "Mensaje de confirmación",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            Guardar();
-                            this.Close();
-                            break;
-                        case DialogResult.No:
-                            
-                            break;
-
-                    }
-                }
+                cbProvincia.SelectedValue = idProv;
+                CargarComboLocalidades(idProv); // Cargamos las localidades de esa provincia
+                cblocalidad.SelectedValue = idLoc; // Seleccionamos la localidad específica
             }
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void getLocalidades()
-        {
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            SqlConnection connection = new SqlConnection(conString);
-            connection.Open();
-
-            string sql = "SELECT [id], [localidad] FROM [dbo].[localidad]";
-            SqlCommand command = new SqlCommand(sql, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            cblocalidad.Items.Clear();
-            while (reader.Read())
-            {
-                int id = reader.GetInt32(0);
-                string categoria = reader.GetString(1);
-
-                // Add category name to the ComboBox
-
-                //cbcategorias.Items.Insert( categoria);
-                cblocalidad.Items.Add(categoria);
-            }
-            reader.Close();
-            connection.Close();
-        }
-
-        private void CargarProducto_Load(object sender, EventArgs e)
-        {
-            if (modo == EnumModoForm.Alta)
-            {
-                LimpiarControles();
-                HabilitarControles(true);
-                
-            }
-            if (modo == EnumModoForm.Modificacion)
-            {
-                HabilitarControles(true);
-                tbcuit.Enabled = false;
-                CargarDatos();
-                tbtel.Enabled = false;
-                
-                btnCargar.Text = "Modificar";
-            }
             if (modo == EnumModoForm.Consulta)
             {
-                HabilitarControles(false);
-                CargarDatos();
-                btnCargar.Enabled = false;
-                
+                foreach (Control c in this.Controls) if (c is TextBox || c is ComboBox) c.Enabled = false;
                 btnCargar.Visible = false;
             }
+            if (modo == EnumModoForm.Modificacion) tbcuit.Enabled = false; // El CUIT no se edita
         }
-        private void LimpiarControles()
 
+        // --- MANEJO DE COMBOBOXES ---
+
+        private void CargarComboProvincias()
         {
-            cblocalidad.SelectedIndex = -1;
-            tbcuit.Text = "";
-            tbdireccion.Text = "";
-            tbcorreo.Text = "";
-            tbtel.Text = "";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SELECT id, provincia FROM provincia ORDER BY provincia", con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    cbProvincia.DataSource = dt;
+                    cbProvincia.DisplayMember = "provincia";
+                    cbProvincia.ValueMember = "id";
+                    cbProvincia.SelectedIndex = -1; // Lo dejamos en blanco al principio
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Error al cargar provincias: " + ex.Message); }
         }
 
-        private void HabilitarControles(bool habilitar)
+        private void CargarComboLocalidades(int idProvincia)
         {
-            cblocalidad.Enabled = habilitar;
-            tbcuit.Enabled = habilitar;
-            tbdireccion.Enabled = habilitar;
-            tbcorreo.Enabled = habilitar;
-            tbtel.Enabled = habilitar;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    // Filtramos por id_provincia usando la tabla que me mostraste
+                    string query = "SELECT id, localidad FROM localidad WHERE id_provincia = @idProv ORDER BY localidad";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@idProv", idProvincia);
 
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    cblocalidad.DataSource = dt;
+                    cblocalidad.DisplayMember = "localidad";
+                    cblocalidad.ValueMember = "id";
+                    cblocalidad.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Error al cargar localidades: " + ex.Message); }
         }
 
-     
+        // Evento: Cuando el usuario elige una provincia, cargamos sus localidades
+        private void cbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cbProvincia.SelectedValue != null && int.TryParse(cbProvincia.SelectedValue.ToString(), out int idProv))
+            {
+                CargarComboLocalidades(idProv);
+            }
+        }
+
+        // Método auxiliar para el modo Modificar/Consultar
+        private int ObtenerProvinciaDeLocalidad(int idLoc)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT id_provincia FROM localidad WHERE id = @id", con);
+                    cmd.Parameters.AddWithValue("@id", idLoc);
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value) return Convert.ToInt32(result);
+                }
+            }
+            catch { }
+            return -1;
+        }
+
+        // --- VALIDACIÓN Y GUARDADO ---
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            if (!Validar()) return;
+            Guardar();
+        }
+
+        private bool Validar()
+        {
+            // Verificamos que NINGÚN campo esté vacío
+            if (string.IsNullOrWhiteSpace(tbrazonsocial.Text)) { MessageBox.Show("Razón Social es obligatoria."); tbrazonsocial.Focus(); return false; }
+            if (string.IsNullOrWhiteSpace(tbdireccion.Text)) { MessageBox.Show("Dirección es obligatoria."); tbdireccion.Focus(); return false; }
+            if (string.IsNullOrWhiteSpace(tbtel.Text)) { MessageBox.Show("Teléfono es obligatorio."); tbtel.Focus(); return false; }
+            if (string.IsNullOrWhiteSpace(tbcorreo.Text)) { MessageBox.Show("Correo es obligatorio."); tbcorreo.Focus(); return false; }
+            if (cbProvincia.SelectedIndex == -1) { MessageBox.Show("Seleccione una provincia."); cbProvincia.Focus(); return false; }
+            if (cblocalidad.SelectedIndex == -1) { MessageBox.Show("Seleccione una localidad."); cblocalidad.Focus(); return false; }
+
+            long cuitVal;
+            if (tbcuit.Text.Trim().Length != 11 || !long.TryParse(tbcuit.Text, out cuitVal))
+            {
+                MessageBox.Show("CUIT inválido. Debe tener exactamente 11 dígitos numéricos.");
+                tbcuit.Focus();
+                return false;
+            }
+
+            if (modo == EnumModoForm.Alta && ExisteCuit(cuitVal))
+            {
+                MessageBox.Show("El CUIT ingresado ya se encuentra registrado.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ExisteCuit(long cuit)
+        {
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM proveedor WHERE cuit = @c", con);
+                cmd.Parameters.AddWithValue("@c", cuit);
+                con.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
 
         private void Guardar()
         {
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(conString))
+                using (SqlConnection con = new SqlConnection(conString))
                 {
-                    connection.Open();
+                    con.Open();
+                    string query = modo == EnumModoForm.Alta
+                        ? "INSERT INTO proveedor (razon_social, cuit, direccion, tel, correo, idLocalidad) VALUES (@r, @c, @d, @t, @m, @l)"
+                        : "UPDATE proveedor SET razon_social=@r, direccion=@d, tel=@t, correo=@m, idLocalidad=@l WHERE cuit=@c";
 
-                    string query;
-                    if (modo == EnumModoForm.Modificacion)
-                    {
-                        query = "UPDATE proveedor SET razon_social = @razon_social,   cuit = @cuit,    direccion = @direccion,   idLocalidad = @idLocalidad,   tel = @tel,   correo = @correo WHERE CUIT = @cuit;";
-                    }
-                    else
-                    {
-                        query = "INSERT INTO proveedor (razon_social, cuit, direccion, idLocalidad, tel, correo ) VALUES (@razon_social, @cuit, @direccion, @idLocalidad, @tel, @correo)";
-                    }
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@r", tbrazonsocial.Text.Trim());
+                    cmd.Parameters.AddWithValue("@c", Convert.ToInt64(tbcuit.Text.Trim()));
+                    cmd.Parameters.AddWithValue("@d", tbdireccion.Text.Trim());
+                    cmd.Parameters.AddWithValue("@t", tbtel.Text.Trim());
+                    cmd.Parameters.AddWithValue("@m", tbcorreo.Text.Trim());
+                    cmd.Parameters.AddWithValue("@l", cblocalidad.SelectedValue);
 
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@razon_social", tbrazonsocial.Text);
-                    command.Parameters.AddWithValue("@idlocalidad", cblocalidad.SelectedIndex + 1);
-                    command.Parameters.AddWithValue("@cuit", long.Parse(tbcuit.Text)); // Allow null for barcode (consider validation)
-                    command.Parameters.AddWithValue("@direccion", tbdireccion.Text);
-                    command.Parameters.AddWithValue("@tel", long.Parse(tbtel.Text));
-                    command.Parameters.AddWithValue("@correo", tbcorreo.Text);
-
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        
-                        MessageBox.Show("¡Operación realizada con éxito!", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                       
-                        MessageBox.Show("Ha ocurrido un error al guardar los datos. Por favor, intente nuevamente o contacte al soporte técnico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Proveedor guardado exitosamente.", "SurFe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Se ha producido un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              
-            }
+            catch (Exception ex) { MessageBox.Show("Error al guardar en la base de datos: " + ex.Message); }
         }
 
-        private void CargarDatos()
-        {
-            
-            cblocalidad.SelectedIndex = ClaseCompartida.idlocalidad - 1;
-            tbrazonsocial.Text = ClaseCompartida.razon_rosial;
-            tbcuit.Text = ClaseCompartida.cuit.ToString();
-            tbdireccion.Text = ClaseCompartida.direccion.ToString();
-            tbcorreo.Text = ClaseCompartida.correo.ToString();
-            tbtel.Text = ClaseCompartida.tel.ToString();
-            tbcorreo.Text = ClaseCompartida.correo.ToString();
-
-        }
-        private bool validarcontroles()
-        {
-            /* if(cblocalidad.SelectedIndex > -1)
-             {
-                 if(tbcuit.Text.Length > 0 && int.TryParse(tbcuit.Text, out int barcode))
-                 {
-                     if (tbdireccion.Text.Length > 0)
-                     {
-                         if(tbtel.Text.Length > 0)
-                         {
-                             if(tbcorreo.Text.Length > 0 )
-                             {
-                                 return true;
-                             }
-                             else
-                             {
-                                 MessageBox.Show("Falta cargar precio o no es decimal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                 return false;
-                             }
-
-                         }
-                         else
-                         {
-                             MessageBox.Show("Falta cargar stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                             return false;
-                         }
-
-                     }
-                     else
-                     {
-                         MessageBox.Show("Falta cargar detalle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                         return false;
-                     }
-                 }
-                 else { 
-                     MessageBox.Show("Falta cargar barcode o no es un numero entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                     return false;
-                 }
-             } else
-             {
-                 MessageBox.Show("Cargar Categoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 return false;
-             }*/
-            return true;
-
-        }
-
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
     }
-    }
-
+}

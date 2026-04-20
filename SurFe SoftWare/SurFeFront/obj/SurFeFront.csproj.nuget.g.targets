@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)system.text.encodings.web\10.0.2\buildTransitive\netcoreapp2.0\System.Text.Encodings.Web.targets" Condition="Exists('$(NuGetPackageRoot)system.text.encodings.web\10.0.2\buildTransitive\netcoreapp2.0\System.Text.Encodings.Web.targets')" />
+    <Import Project="$(NuGetPackageRoot)system.io.pipelines\10.0.2\buildTransitive\netcoreapp2.0\System.IO.Pipelines.targets" Condition="Exists('$(NuGetPackageRoot)system.io.pipelines\10.0.2\buildTransitive\netcoreapp2.0\System.IO.Pipelines.targets')" />
+    <Import Project="$(NuGetPackageRoot)system.text.json\10.0.2\buildTransitive\netcoreapp2.0\System.Text.Json.targets" Condition="Exists('$(NuGetPackageRoot)system.text.json\10.0.2\buildTransitive\netcoreapp2.0\System.Text.Json.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.web.webview2\1.0.3800.47\buildTransitive\Microsoft.Web.WebView2.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.web.webview2\1.0.3800.47\buildTransitive\Microsoft.Web.WebView2.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.dependencymodel\10.0.2\buildTransitive\netcoreapp2.0\Microsoft.Extensions.DependencyModel.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.dependencymodel\10.0.2\buildTransitive\netcoreapp2.0\Microsoft.Extensions.DependencyModel.targets')" />
   </ImportGroup>
 </Project>

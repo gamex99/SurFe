@@ -1,229 +1,200 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.IO;
+// Usamos solo los namespaces básicos de iText
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 
 namespace SurFeFront
 {
     public partial class ProveedorRegistrarPedido : Form
     {
-        public int id;
-        public string razon_social;
-
+        private string conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+        private int idProveedorSeleccionado = -1;
 
         public ProveedorRegistrarPedido()
         {
             InitializeComponent();
-            lbdetalle.Text = "";
-            lbrazonsocial.Text = "";
-            lbbarcode.Text = "";
-
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        // --- BUSCADORES ---
+        private void btnbuscarproveedor_Click(object sender, EventArgs e)
         {
-
+            using (BusquedaProveedor b = new BusquedaProveedor())
+            {
+                if (b.ShowDialog() == DialogResult.OK)
+                {
+                    idProveedorSeleccionado = b.IdSeleccionado;
+                    lbrazonsocial.Text = b.NombreSeleccionado;
+                }
+            }
         }
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-            SelectProducto formproducto = new SelectProducto();
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            if (formproducto.ShowDialog() == DialogResult.OK)
-            {/* barcode = row.Cells["barcode"].Value.ToString();
-                detalle = row.Cells["detalle"].Value.ToString();
-                stock = row.Cells["stock"].Value.ToString();
-                precio = numeroConComa;*/
-
-
-
-                // Obtener los datos del formulario secundario
-                string barcode = formproducto.barcode;
-
-                lbbarcode.Text = barcode;
-                lbdetalle.Text = formproducto.detalle;
-
-
-
-
-
-            }
-        }
-
-        private void btnbuscarproveedor_Click(object sender, EventArgs e)
-        {
-            ProveedorSelect form = new ProveedorSelect();
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            if (form.ShowDialog() == DialogResult.OK)
+            using (BusquedaProducto b = new BusquedaProducto())
             {
-
-
-                id = form.id;
-
-                razon_social = form.razon_social;
-
-
-
-                lbrazonsocial.Text = razon_social;
+                if (b.ShowDialog() == DialogResult.OK)
+                {
+                    lbbarcode.Text = b.BarcodeSeleccionado;
+                    lbdetalle.Text = b.NombreSeleccionado;
+                    tbcantidad.Focus();
+                }
             }
         }
 
         private void btnagregar_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Add(lbbarcode.Text, lbdetalle.Text, tbcantidad.Text);
-            lbbarcode.Text = "";
-            lbdetalle.Text = "";
-            tbcantidad.Text = "";
+            if (lbbarcode.Text == "Código" || lbbarcode.Text == "***") return;
+            if (!int.TryParse(tbcantidad.Text, out int cant) || cant <= 0) return;
+
+            dataGridView1.Rows.Add(lbbarcode.Text, lbdetalle.Text, cant);
+            tbcantidad.Clear();
+            lbbarcode.Text = "Código";
+            lbdetalle.Text = "Seleccione otro producto...";
         }
 
+        // --- GUARDADO ---
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            //verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-            if (!Directory.Exists(ClaseCompartida.carpetaTemp))
+            if (idProveedorSeleccionado == -1 || dataGridView1.Rows.Count == 0)
             {
-                // La carpeta no existe, crearla
-                Directory.CreateDirectory(ClaseCompartida.carpetaTemp);
-
+                MessageBox.Show("Faltan datos para completar el pedido.", "SurFe");
+                return;
             }
-            // hasta aca verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-            string nombreArchivo = GetNombreArchivoFechaHora();
-            string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
-            //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
-            string rutaArchivoPDF = nombreArchivo;
 
-            string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n\r\n\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n\r\n        .header {\r\n            position: relative;\r\n            color: #fff;\r\n            background-color: #3498db;\r\n            padding: 10px 0;\r\n        }\r\n\r\n            .header img {\r\n                width: 250px;\r\n                height: auto;\r\n                position: absolute;\r\n            }\r\n\r\n            .header .left-img {\r\n                left: 10px;\r\n            }\r\n\r\n        .footer {\r\n            background-color: #f1c40f;\r\n        }\r\n\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n\r\n        th {\r\n            background-color: #3498db;\r\n        }\r\n\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h3>ORDEN DE COMPRA</h3>\r\n            <p> @Proveedor</p>\r\n            \r\n\r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Barcode</th>\r\n                        <th>Descripción</th>\r\n                        <th>Stock</th>\r\n                        <th></th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        \r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p></p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>\r\n\r\n";
-            string filas = string.Empty;
-            decimal total = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            using (SqlConnection con = new SqlConnection(conString))
             {
-                filas += "<tr>";
-
-                filas += "<td>" + row.Cells[0].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells[1].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells[2].Value.ToString() + "</td>";
-                filas += "</tr>";
-
-            }
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@Proveedor", DateTime.Now + "   " + lbrazonsocial.Text);
-            using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
-            {
-                //Creamos un nuevo documento y lo definimos como PDF
-                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                pdfDoc.Open();
-                pdfDoc.Add(new Phrase(""));
-
-                //Agregamos la imagen del banner al documento
-                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.logo_pp1_carpeta_2023, System.Drawing.Imaging.ImageFormat.Png);
-                img.ScaleToFit(60, 60);
-                img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                //img.SetAbsolutePosition(10,100);
-                img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                pdfDoc.Add(img);
-
-
-
-
-
-                //pdfDoc.Add(new Phrase("Hola Mundo"));
-                using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                con.Open();
+                SqlTransaction tra = con.BeginTransaction();
+                try
                 {
-                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    // 1. Cabecera
+                    string sqlCab = @"INSERT INTO pedido_proveedor (id_proveedor, fecha, estado) 
+                                      VALUES (@idp, GETDATE(), 'Pendiente');
+                                      SELECT SCOPE_IDENTITY();";
+                    SqlCommand cmdCab = new SqlCommand(sqlCab, con, tra);
+                    cmdCab.Parameters.AddWithValue("@idp", idProveedorSeleccionado);
+                    int idGenerado = Convert.ToInt32(cmdCab.ExecuteScalar());
+
+                    // 2. Detalles
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Cells["Barcode"].Value != null)
+                        {
+                            string sqlDet = "INSERT INTO pedido_detalle (id_pedido, barcode, cantidad) VALUES (@idp, @bar, @cant)";
+                            SqlCommand cmdDet = new SqlCommand(sqlDet, con, tra);
+                            cmdDet.Parameters.AddWithValue("@idp", idGenerado);
+                            cmdDet.Parameters.AddWithValue("@bar", row.Cells["Barcode"].Value.ToString());
+                            cmdDet.Parameters.AddWithValue("@cant", Convert.ToInt32(row.Cells["Cantidad"].Value));
+                            cmdDet.ExecuteNonQuery();
+                        }
+                    }
+
+                    tra.Commit();
+
+                    // 3. Generar PDF (Sin estilos conflictivos)
+                    GenerarYMostrarPDF(idGenerado, lbrazonsocial.Text);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    tra.Rollback();
+                    MessageBox.Show("Error al guardar: " + ex.Message);
+                }
+            }
+        }
+
+        // --- GENERACIÓN DE PDF LIMPIA ---
+        private void GenerarYMostrarPDF(int nro, string prov)
+        {
+            // 1. Definir rutas (Igual que en tu código de Nota de Crédito)
+            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
+            string nombreArchivo = "Pedido_" + GetNombreArchivoFechaHora();
+            string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
+
+            try
+            {
+                // 2. Crear el HTML (Más fácil de manejar que los objetos Paragraph rebeldes)
+                string filasHtml = "";
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells["Barcode"].Value != null)
+                    {
+                        filasHtml += $@"
+                    <tr>
+                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells["Barcode"].Value}</td>
+                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells["Detalle"].Value}</td>
+                        <td style='border: 1px solid #ddd; padding: 8px; text-align: center;'>{row.Cells["Cantidad"].Value}</td>
+                    </tr>";
+                    }
                 }
 
-                pdfDoc.Close();
-                stream.Close();
+                string PaginaHTML_Texto = $@"
+            <html>
+            <body style='font-family: Arial, sans-serif;'>
+                <div style='text-align: center;'>
+                    <h1 style='color: #2c3e50;'>SurFe - ORDEN DE PEDIDO</h1>
+                    <p><b>Número de Pedido:</b> {nro} | <b>Fecha:</b> {DateTime.Now:dd/MM/yyyy}</p>
+                    <hr/>
+                </div>
+                <div style='margin: 20px 0;'>
+                    <p><b>Proveedor:</b> {prov}</p>
+                </div>
+                <table style='width: 100%; border-collapse: collapse;'>
+                    <thead>
+                        <tr style='background-color: #2c3e50; color: white;'>
+                            <th style='padding: 10px;'>Código</th>
+                            <th style='padding: 10px;'>Producto</th>
+                            <th style='padding: 10px;'>Cant.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filasHtml}
+                    </tbody>
+                </table>
+                <p style='margin-top: 50px;'>Firma Autorizada: _________________________</p>
+            </body>
+            </html>";
+
+                // 3. Generar el PDF usando iTextSharp (Tu método de confianza)
+                using (FileStream stream = new FileStream(rutaCompletaArchivo, FileMode.Create))
+                {
+                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 25, 25, 25, 25);
+                    iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, stream);
+
+                    pdfDoc.Open();
+
+                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                    {
+                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+
+                // 4. Abrir en tu PDFView (que ya sabemos que funciona)
+                PDFView formPDF = new PDFView(rutaCompletaArchivo);
+                formPDF.ShowDialog();
             }
-
-
-            //aca guardamos en la db la orden de compra
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            string sql = "INSERT INTO dbo.ordendecompra ([fecha], [id_proveedor], [location]) VALUES (@fecha, @id_proveedor, @location)";
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            DateTime fechaActual = DateTime.Now;
-
-            command.Parameters.AddWithValue("@fecha", fechaActual);
-            command.Parameters.AddWithValue("@id_proveedor", id);
-            command.Parameters.AddWithValue("@location", nombreArchivo);
-            // connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-
-
-
-
-
-            //hasta aca 
-
-
-
-
-
-
-
-
-
-            PDFView formPDF = new PDFView(rutaCompletaArchivo);
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            formPDF.ShowDialog();
-            //eso es codigo para hacer el html del pdf
-            // Cerrar el formulario Form1 después de cerrar el formulario Form2
-            this.Close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar PDF: " + ex.Message, "SurFe Error");
+            }
         }
+
+        // No te olvides de copiar este método también si no lo tenés en este form
         private static string GetNombreArchivoFechaHora()
         {
-            // Obtener la fecha y hora actual
-            DateTime now = DateTime.Now;
-
-            // Formatear la fecha y hora en un formato de nombre de archivo
-            string nombreArchivoFormateado = now.ToString("yyyyMMdd_HHmmss");
-
-            // Combinar el nombre con la extensión
-            string nombreArchivo = nombreArchivoFormateado + "NotaDePedido" + ".pdf";
-
-            // Devolver el nombre de archivo
-            return nombreArchivo;
+            return DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void button1_Click(object sender, EventArgs e) => this.Close();
     }
 }

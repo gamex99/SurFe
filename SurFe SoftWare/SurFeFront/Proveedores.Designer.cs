@@ -1,17 +1,9 @@
 ﻿namespace SurFeFront
 {
     partial class Proveedores
-
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,132 +15,218 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            btnConsulta = new Button();
-            btncons = new Button();
-            button5 = new Button();
-            label1 = new Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            btnNuevo = new Button();
+            btnModificar = new Button();
+            btnConsultar = new Button();
+            btnSalir = new Button();
+            lblBuscar = new Label();
             tbBuscar = new TextBox();
-            dataProductos = new DataGridView();
-            btneliminar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataProductos).BeginInit();
+            dgvProveedores = new DataGridView();
+            btnEliminar = new Button();
+            panelHeader = new Panel();
+            panelFooter = new Panel();
+            ((System.ComponentModel.ISupportInitialize)dgvProveedores).BeginInit();
+            panelHeader.SuspendLayout();
+            panelFooter.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // panelHeader
             // 
-            button1.Location = new Point(12, 362);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Nuevo";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            panelHeader.BackColor = Color.FromArgb(240, 240, 240);
+            panelHeader.Controls.Add(lblBuscar);
+            panelHeader.Controls.Add(tbBuscar);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(800, 60);
+            panelHeader.TabIndex = 10;
             // 
-            // btnConsulta
+            // lblBuscar
             // 
-            btnConsulta.Location = new Point(93, 362);
-            btnConsulta.Name = "btnConsulta";
-            btnConsulta.Size = new Size(75, 23);
-            btnConsulta.TabIndex = 1;
-            btnConsulta.Text = "Modificacion";
-            btnConsulta.UseVisualStyleBackColor = true;
-            btnConsulta.Click += button2_Click;
-            // 
-            // btncons
-            // 
-            btncons.Location = new Point(174, 362);
-            btncons.Name = "btncons";
-            btncons.Size = new Size(75, 23);
-            btncons.TabIndex = 2;
-            btncons.Text = "Consulta";
-            btncons.UseVisualStyleBackColor = true;
-            btncons.Click += btncons_Click;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(602, 362);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 4;
-            button5.Text = "Salir";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 43);
-            label1.Name = "label1";
-            label1.Size = new Size(42, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Buscar";
+            lblBuscar.AutoSize = true;
+            lblBuscar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblBuscar.ForeColor = Color.FromArgb(64, 64, 64);
+            lblBuscar.Location = new Point(20, 22);
+            lblBuscar.Name = "lblBuscar";
+            lblBuscar.Size = new Size(51, 17);
+            lblBuscar.TabIndex = 5;
+            lblBuscar.Text = "Buscar:";
             // 
             // tbBuscar
             // 
-            tbBuscar.Location = new Point(60, 40);
+            tbBuscar.BackColor = Color.White;
+            tbBuscar.BorderStyle = BorderStyle.FixedSingle;
+            tbBuscar.Font = new Font("Segoe UI", 10F);
+            tbBuscar.Location = new Point(77, 18);
             tbBuscar.Name = "tbBuscar";
-            tbBuscar.Size = new Size(225, 23);
+            tbBuscar.PlaceholderText = " Ingrese razón social o CUIT...";
+            tbBuscar.Size = new Size(350, 25);
             tbBuscar.TabIndex = 6;
             tbBuscar.TextChanged += tbBuscar_TextChanged;
             // 
-            // dataProductos
+            // dgvProveedores
             // 
-            dataProductos.AllowUserToAddRows = false;
-            dataProductos.AllowUserToDeleteRows = false;
-            dataProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataProductos.Location = new Point(12, 69);
-            dataProductos.Name = "dataProductos";
-            dataProductos.ReadOnly = true;
-            dataProductos.RowTemplate.Height = 25;
-            dataProductos.Size = new Size(665, 287);
-            dataProductos.TabIndex = 8;
-            dataProductos.CellClick += dataProductos_CellClick;
+            dgvProveedores.AllowUserToAddRows = false;
+            dgvProveedores.AllowUserToDeleteRows = false;
+            dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProveedores.BackgroundColor = Color.White;
+            dgvProveedores.BorderStyle = BorderStyle.None;
+            dgvProveedores.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProveedores.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 122, 204);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 122, 204);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvProveedores.ColumnHeadersHeight = 35;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(230, 242, 250);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvProveedores.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvProveedores.Dock = DockStyle.Fill;
+            dgvProveedores.EnableHeadersVisualStyles = false;
+            dgvProveedores.GridColor = Color.FromArgb(224, 224, 224);
+            dgvProveedores.Location = new Point(0, 60);
+            dgvProveedores.MultiSelect = false;
+            dgvProveedores.Name = "dgvProveedores";
+            dgvProveedores.ReadOnly = true;
+            dgvProveedores.RowHeadersVisible = false;
+            dgvProveedores.RowTemplate.Height = 30;
+            dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProveedores.Size = new Size(800, 360);
+            dgvProveedores.TabIndex = 8;
             // 
-            // btneliminar
+            // panelFooter
             // 
-            btneliminar.Location = new Point(255, 362);
-            btneliminar.Name = "btneliminar";
-            btneliminar.Size = new Size(75, 23);
-            btneliminar.TabIndex = 9;
-            btneliminar.Text = "Eliminar";
-            btneliminar.UseVisualStyleBackColor = true;
-            btneliminar.Click += btneliminar_Click;
+            panelFooter.BackColor = Color.FromArgb(245, 245, 245);
+            panelFooter.Controls.Add(btnNuevo);
+            panelFooter.Controls.Add(btnModificar);
+            panelFooter.Controls.Add(btnConsultar);
+            panelFooter.Controls.Add(btnEliminar);
+            panelFooter.Controls.Add(btnSalir);
+            panelFooter.Dock = DockStyle.Bottom;
+            panelFooter.Location = new Point(0, 420);
+            panelFooter.Name = "panelFooter";
+            panelFooter.Size = new Size(800, 80);
+            panelFooter.TabIndex = 11;
+            // 
+            // btnNuevo
+            // 
+            btnNuevo.BackColor = Color.FromArgb(0, 122, 204);
+            btnNuevo.FlatAppearance.BorderSize = 0;
+            btnNuevo.FlatStyle = FlatStyle.Flat;
+            btnNuevo.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnNuevo.ForeColor = Color.White;
+            btnNuevo.Location = new Point(20, 20);
+            btnNuevo.Name = "btnNuevo";
+            btnNuevo.Size = new Size(110, 40);
+            btnNuevo.TabIndex = 0;
+            btnNuevo.Text = "NUEVO";
+            btnNuevo.UseVisualStyleBackColor = false;
+            btnNuevo.Click += button1_Click;
+            // 
+            // btnModificar
+            // 
+            btnModificar.BackColor = Color.FromArgb(224, 224, 224);
+            btnModificar.FlatAppearance.BorderSize = 0;
+            btnModificar.FlatStyle = FlatStyle.Flat;
+            btnModificar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnModificar.ForeColor = Color.Black;
+            btnModificar.Location = new Point(140, 20);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(110, 40);
+            btnModificar.TabIndex = 1;
+            btnModificar.Text = "MODIFICAR";
+            btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += button2_Click;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.BackColor = Color.FromArgb(224, 224, 224);
+            btnConsultar.FlatAppearance.BorderSize = 0;
+            btnConsultar.FlatStyle = FlatStyle.Flat;
+            btnConsultar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnConsultar.ForeColor = Color.Black;
+            btnConsultar.Location = new Point(260, 20);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(110, 40);
+            btnConsultar.TabIndex = 2;
+            btnConsultar.Text = "CONSULTA";
+            btnConsultar.UseVisualStyleBackColor = false;
+            btnConsultar.Click += btncons_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.FromArgb(255, 192, 192);
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnEliminar.ForeColor = Color.FromArgb(192, 0, 0);
+            btnEliminar.Location = new Point(380, 20);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(110, 40);
+            btnEliminar.TabIndex = 9;
+            btnEliminar.Text = "ELIMINAR";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btneliminar_Click;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSalir.BackColor = Color.FromArgb(224, 224, 224);
+            btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnSalir.ForeColor = Color.Black;
+            btnSalir.Location = new Point(670, 20);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(110, 40);
+            btnSalir.TabIndex = 4;
+            btnSalir.Text = "SALIR";
+            btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += button5_Click;
             // 
             // Proveedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(689, 397);
-            Controls.Add(btneliminar);
-            Controls.Add(dataProductos);
-            Controls.Add(tbBuscar);
-            Controls.Add(label1);
-            Controls.Add(button5);
-            Controls.Add(btncons);
-            Controls.Add(btnConsulta);
-            Controls.Add(button1);
+            BackColor = Color.White;
+            ClientSize = new Size(800, 500);
+            Controls.Add(dgvProveedores);
+            Controls.Add(panelFooter);
+            Controls.Add(panelHeader);
             Name = "Proveedores";
-            Text = "Proveedores";
-            ((System.ComponentModel.ISupportInitialize)dataProductos).EndInit();
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "SurFe - Gestión de Proveedores";
+            ((System.ComponentModel.ISupportInitialize)dgvProveedores).EndInit();
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
+            panelFooter.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private Button btnConsulta;
-        private Button btncons;
-        private Button button5;
-        private Label label1;
+        private Button btnNuevo;
+        private Button btnModificar;
+        private Button btnConsultar;
+        private Button btnSalir;
+        private Label lblBuscar;
         private TextBox tbBuscar;
-        private DataGridView dataProductos;
-        private Button btneliminar;
+        private DataGridView dgvProveedores;
+        private Button btnEliminar;
+        private Panel panelHeader;
+        private Panel panelFooter;
     }
 }

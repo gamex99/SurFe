@@ -206,6 +206,7 @@
             // 
             // cbxprov
             // 
+            cbxprov.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxprov.FormattingEnabled = true;
             cbxprov.Items.AddRange(new object[] { "", "Santa Fe" });
             cbxprov.Location = new Point(101, 325);
@@ -226,6 +227,7 @@
             // 
             // cbxLoc
             // 
+            cbxLoc.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxLoc.FormattingEnabled = true;
             cbxLoc.Items.AddRange(new object[] { "", "Peyrano", "Santa Teresa", "Rosario" });
             cbxLoc.Location = new Point(101, 357);
@@ -316,6 +318,7 @@
             // 
             // cbxiva
             // 
+            cbxiva.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxiva.FormattingEnabled = true;
             cbxiva.Items.AddRange(new object[] { "", "Responsable Inscripto", "Consumidor Final", "Excento" });
             cbxiva.Location = new Point(563, 90);
@@ -336,6 +339,7 @@
             // 
             // cbxtfac
             // 
+            cbxtfac.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxtfac.FormattingEnabled = true;
             cbxtfac.Items.AddRange(new object[] { "", "A", "B", "C" });
             cbxtfac.Location = new Point(563, 133);
@@ -365,6 +369,7 @@
             // 
             // cbxDoc
             // 
+            cbxDoc.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxDoc.FormattingEnabled = true;
             cbxDoc.Items.AddRange(new object[] { "", "DNI", "LC" });
             cbxDoc.Location = new Point(149, 90);
