@@ -1,230 +1,191 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SurFeFront
 {
     public partial class ComprasRegistrar : Form
     {
-        public int id;
-        public string razon_social;
-
+        string conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+        int idFacturaSel = -1;
+        int idProvSel = -1;
 
         public ComprasRegistrar()
         {
             InitializeComponent();
-            lbdetalle.Text = "";
-            lbrazonsocial.Text = "";
-            lbbarcode.Text = "";
-
+            ConfigurarGrillaRemitos();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void ConfigurarGrillaRemitos()
         {
+            dgvRemitos.Columns.Clear();
+            dgvRemitos.AutoGenerateColumns = false;
 
+            // Checkbox para selección múltiple (Criterio: uno o más remitos)
+            dgvRemitos.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCheck", HeaderText = "Asociar", Width = 60 });
+            dgvRemitos.Columns.Add(new DataGridViewTextBoxColumn { Name = "id_remito", Visible = false });
+            dgvRemitos.Columns.Add(new DataGridViewTextBoxColumn { Name = "nro_remito", HeaderText = "Nro. Remito", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dgvRemitos.Columns.Add(new DataGridViewTextBoxColumn { Name = "fecha_entrada", HeaderText = "Fecha Ingreso", ReadOnly = true, Width = 120 });
         }
 
-        private void btnbuscar_Click(object sender, EventArgs e)
+        private void btnSeleccionarFactura_Click(object sender, EventArgs e)
         {
-            SelectProducto formproducto = new SelectProducto();
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            if (formproducto.ShowDialog() == DialogResult.OK)
-            {/* barcode = row.Cells["barcode"].Value.ToString();
-                detalle = row.Cells["detalle"].Value.ToString();
-                stock = row.Cells["stock"].Value.ToString();
-                precio = numeroConComa;*/
-
-
-
-                // Obtener los datos del formulario secundario
-                string barcode = formproducto.barcode;
-
-                lbbarcode.Text = barcode;
-                lbdetalle.Text = formproducto.detalle;
-
-
-
-
-
-            }
-        }
-
-        private void btnbuscarproveedor_Click(object sender, EventArgs e)
-        {
-            ProveedorSelect form = new ProveedorSelect();
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            if (form.ShowDialog() == DialogResult.OK)
+            // Llamamos al buscador de Facturas (SCRUM-14)
+            using (BusquedaFacturaCompra f = new BusquedaFacturaCompra(soloNoAsociadas: true))
             {
-
-
-                id = form.id;
-
-                razon_social = form.razon_social;
-
-
-
-                lbrazonsocial.Text = razon_social;
-            }
-        }
-
-        private void btnagregar_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Rows.Add(lbbarcode.Text, lbdetalle.Text, tbcantidad.Text);
-            lbbarcode.Text = "";
-            lbdetalle.Text = "";
-            tbcantidad.Text = "";
-        }
-
-        private void btnguardar_Click(object sender, EventArgs e)
-        {
-            //verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-            if (!Directory.Exists(ClaseCompartida.carpetaTemp))
-            {
-                // La carpeta no existe, crearla
-                Directory.CreateDirectory(ClaseCompartida.carpetaTemp);
-
-            }
-            // hasta aca verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-            string nombreArchivo = GetNombreArchivoFechaHora();
-            string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
-            //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
-            string rutaArchivoPDF = nombreArchivo;
-
-            string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n\r\n\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n\r\n        .header {\r\n            position: relative;\r\n            color: #fff;\r\n            background-color: #3498db;\r\n            padding: 10px 0;\r\n        }\r\n\r\n            .header img {\r\n                width: 250px;\r\n                height: auto;\r\n                position: absolute;\r\n            }\r\n\r\n            .header .left-img {\r\n                left: 10px;\r\n            }\r\n\r\n        .footer {\r\n            background-color: #f1c40f;\r\n        }\r\n\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n\r\n        th {\r\n            background-color: #3498db;\r\n        }\r\n\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h3>COMPRA A PROVEEDOR</h3>\r\n            <p> @Proveedor</p>\r\n            \r\n\r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Barcode</th>\r\n                        <th>Descripción</th>\r\n                        <th>Stock</th>\r\n                        <th></th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        \r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p></p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>\r\n\r\n";
-            string filas = string.Empty;
-            decimal total = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                filas += "<tr>";
-
-                filas += "<td>" + row.Cells[0].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells[1].Value.ToString() + "</td>";
-                filas += "<td>" + row.Cells[2].Value.ToString() + "</td>";
-                filas += "</tr>";
-
-            }
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@Proveedor", DateTime.Now + "   " + lbrazonsocial.Text);
-            using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
-            {
-                //Creamos un nuevo documento y lo definimos como PDF
-                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                pdfDoc.Open();
-                pdfDoc.Add(new Phrase(""));
-
-                //Agregamos la imagen del banner al documento
-                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.logo_pp1_carpeta_2023, System.Drawing.Imaging.ImageFormat.Png);
-                img.ScaleToFit(60, 60);
-                img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                //img.SetAbsolutePosition(10,100);
-                img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                pdfDoc.Add(img);
-
-
-
-
-
-                //pdfDoc.Add(new Phrase("Hola Mundo"));
-                using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                if (f.ShowDialog() == DialogResult.OK)
                 {
-                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    idFacturaSel = f.IdFactura;
+                    idProvSel = f.IdProveedor;
+                    lblFacturaInfo.Text = $"Factura: {f.NroFactura} | Proveedor: {f.NombreProv}";
+
+                    // FILTRO AUTOMÁTICO: Solo remitos del mismo proveedor (Criterio SCRUM)
+                    CargarRemitosPendientes(idProvSel);
                 }
-
-                pdfDoc.Close();
-                stream.Close();
             }
-
-
-            //aca guardamos en la db la orden de compra
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            string sql = "INSERT INTO dbo.compra ([fecha], [id_proveedor], [location]) VALUES (@fecha, @id_proveedor, @location)";
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            DateTime fechaActual = DateTime.Now;
-
-            command.Parameters.AddWithValue("@fecha", fechaActual);
-            command.Parameters.AddWithValue("@id_proveedor", id);
-            command.Parameters.AddWithValue("@location", nombreArchivo);
-
-            // connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-
-
-
-
-
-            //hasta aca 
-
-
-
-
-
-
-
-
-
-            PDFView formPDF = new PDFView(rutaCompletaArchivo);
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            formPDF.ShowDialog();
-            //eso es codigo para hacer el html del pdf
-            // Cerrar el formulario Form1 después de cerrar el formulario Form2
-            this.Close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-        private static string GetNombreArchivoFechaHora()
-        {
-            // Obtener la fecha y hora actual
-            DateTime now = DateTime.Now;
-
-            // Formatear la fecha y hora en un formato de nombre de archivo
-            string nombreArchivoFormateado = now.ToString("yyyyMMdd_HHmmss");
-
-            // Combinar el nombre con la extensión
-            string nombreArchivo = nombreArchivoFormateado + "NotaDeCompra" + ".pdf";
-
-            // Devolver el nombre de archivo
-            return nombreArchivo;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CargarRemitosPendientes(int idProv)
         {
-            this.Close();
+            dgvRemitos.Rows.Clear();
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                // Solo remitos que no hayan sido "quemados" en otra compra (Evita duplicación)
+                string sql = @"SELECT id_remito, nro_remito, fecha_entrada 
+                               FROM remito_entrada 
+                               WHERE id_proveedor = @idp 
+                               AND id_remito NOT IN (SELECT id_remito FROM compra_remito)";
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@idp", idProv);
+                con.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    dgvRemitos.Rows.Add(false, dr["id_remito"], dr["nro_remito"], dr["fecha_entrada"]);
+                }
+            }
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            if (idFacturaSel == -1) { MessageBox.Show("Debe seleccionar una factura primero."); return; }
+
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                con.Open();
+                SqlTransaction tra = con.BeginTransaction();
+                try
+                {
+                    // 1. Crear el registro de Compra (Maestro)
+                    string sqlC = @"INSERT INTO compra (id_factura, id_proveedor, nro_orden_compra, fecha_registro) 
+                                   VALUES (@idf, @idp, @oc, GETDATE()); SELECT SCOPE_IDENTITY();";
+                    SqlCommand cmdC = new SqlCommand(sqlC, con, tra);
+                    cmdC.Parameters.AddWithValue("@idf", idFacturaSel);
+                    cmdC.Parameters.AddWithValue("@idp", idProvSel);
+                    cmdC.Parameters.AddWithValue("@oc", txtOrdenCompra.Text);
+                    int idCompra = Convert.ToInt32(cmdC.ExecuteScalar());
+
+                    // 2. Vincular Remitos (Detalle / Trazabilidad)
+                    int contadorRemitos = 0;
+                    foreach (DataGridViewRow row in dgvRemitos.Rows)
+                    {
+                        if (Convert.ToBoolean(row.Cells["colCheck"].Value))
+                        {
+                            int idR = Convert.ToInt32(row.Cells["id_remito"].Value);
+                            SqlCommand cmdR = new SqlCommand("INSERT INTO compra_remito (id_compra, id_remito) VALUES (@idc, @idr)", con, tra);
+                            cmdR.Parameters.AddWithValue("@idc", idCompra);
+                            cmdR.Parameters.AddWithValue("@idr", idR);
+                            cmdR.ExecuteNonQuery();
+                            contadorRemitos++;
+                        }
+                    }
+
+                    if (contadorRemitos == 0) throw new Exception("Debe seleccionar al menos un remito para validar la entrada de mercadería.");
+
+                    // 3. Marcar factura como 'Asociada' para que no vuelva a aparecer
+                    SqlCommand cmdF = new SqlCommand("UPDATE factura_compra SET asociada_compra = 1 WHERE id_factura = @idf", con, tra);
+                    cmdF.Parameters.AddWithValue("@idf", idFacturaSel);
+                    cmdF.ExecuteNonQuery();
+
+                    tra.Commit();
+                    MessageBox.Show("Compra registrada con éxito. La trazabilidad entre Factura y Remito ha sido establecida.");
+                    GenerarComprobanteCompra(idCompra);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    tra.Rollback();
+                    MessageBox.Show("Error al registrar: " + ex.Message);
+                }
+            }
+        }
+        private void GenerarComprobanteCompra(int idCompra)
+        {
+            string carpeta = Path.Combine(Application.StartupPath, "ComprobantesCompras");
+            if (!Directory.Exists(carpeta)) Directory.CreateDirectory(carpeta);
+            string ruta = Path.Combine(carpeta, $"Compra_Vinculada_{idCompra}.pdf");
+
+            try
+            {
+                Document doc = new Document(PageSize.A4, 30, 30, 30, 30);
+                PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
+                doc.Open();
+
+                // --- ENCABEZADO ---
+                var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+                var fontSub = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
+                var fontCuerpo = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+
+                doc.Add(new Paragraph("SURFE - REGISTRO DE COMPRA INTEGRAL", fontTitulo));
+                doc.Add(new Paragraph($"Operación Nro: #{idCompra} | Fecha: {DateTime.Now:dd/MM/yyyy HH:mm}"));
+                doc.Add(new Paragraph("------------------------------------------------------------------"));
+
+                // --- DATOS DE LA OPERACIÓN ---
+                doc.Add(new Paragraph("\nDATOS DE LA FACTURA (Contable):", fontSub));
+                doc.Add(new Paragraph(lblFacturaInfo.Text, fontCuerpo)); // Usamos el texto que ya tenemos en pantalla
+                doc.Add(new Paragraph($"Orden de Compra Interna: {txtOrdenCompra.Text}", fontCuerpo));
+
+                doc.Add(new Paragraph("\nREMITOS ASOCIADOS (Ingreso de Mercadería):", fontSub));
+                doc.Add(new Paragraph("La siguiente mercadería ha sido validada contra la factura mencionada:", fontCuerpo));
+                doc.Add(new Paragraph("\n"));
+
+                // --- TABLA DE REMITOS ---
+                PdfPTable table = new PdfPTable(2);
+                table.WidthPercentage = 100;
+                table.AddCell(new PdfPCell(new Phrase("Nro. Remito", fontSub)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                table.AddCell(new PdfPCell(new Phrase("Fecha de Ingreso", fontSub)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+
+                foreach (DataGridViewRow r in dgvRemitos.Rows)
+                {
+                    if (Convert.ToBoolean(r.Cells["colCheck"].Value))
+                    {
+                        table.AddCell(r.Cells["nro_remito"].Value.ToString());
+                        table.AddCell(r.Cells["fecha_entrada"].Value.ToString());
+                    }
+                }
+                doc.Add(table);
+
+                // --- CIERRE ---
+                doc.Add(new Paragraph("\n\n\n"));
+                doc.Add(new Paragraph("__________________________", fontCuerpo));
+                doc.Add(new Paragraph("Firma Responsable Compras", fontCuerpo));
+                doc.Add(new Paragraph("\n* Este documento certifica que la mercadería recibida coincide con la facturación del proveedor.", fontCuerpo));
+
+                doc.Close();
+
+                // Mostrar en el visor que ya tenemos
+                PDFView visor = new PDFView(ruta);
+                visor.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar PDF de compra: " + ex.Message);
+            }
         }
     }
 }

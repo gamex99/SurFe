@@ -38,6 +38,7 @@
             consultarStockPorProductoToolStripMenuItem = new ToolStripMenuItem();
             actualizarStockPorPerdidaRoturaOAntiguedadToolStripMenuItem = new ToolStripMenuItem();
             controlPorInventarioToolStripMenuItem = new ToolStripMenuItem();
+            registraRemitoToolStripMenuItem = new ToolStripMenuItem();
             iNFORMESToolStripMenuItem = new ToolStripMenuItem();
             porProductoToolStripMenuItem = new ToolStripMenuItem();
             noSeQueSeHaciaAcaToolStripMenuItem = new ToolStripMenuItem();
@@ -117,7 +118,7 @@
             // 
             // dEPOSITOToolStripMenuItem
             // 
-            dEPOSITOToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { registrarStockToolStripMenuItem, consultarStockPorProductoToolStripMenuItem, actualizarStockPorPerdidaRoturaOAntiguedadToolStripMenuItem, controlPorInventarioToolStripMenuItem });
+            dEPOSITOToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { registrarStockToolStripMenuItem, consultarStockPorProductoToolStripMenuItem, actualizarStockPorPerdidaRoturaOAntiguedadToolStripMenuItem, controlPorInventarioToolStripMenuItem, registraRemitoToolStripMenuItem });
             dEPOSITOToolStripMenuItem.Name = "dEPOSITOToolStripMenuItem";
             dEPOSITOToolStripMenuItem.Size = new Size(79, 21);
             dEPOSITOToolStripMenuItem.Text = "DEPOSITO";
@@ -155,6 +156,14 @@
             controlPorInventarioToolStripMenuItem.Text = "Control Por Inventario";
             controlPorInventarioToolStripMenuItem.Visible = false;
             controlPorInventarioToolStripMenuItem.Click += controlPorInventarioToolStripMenuItem_Click;
+            // 
+            // registraRemitoToolStripMenuItem
+            // 
+            registraRemitoToolStripMenuItem.Name = "registraRemitoToolStripMenuItem";
+            registraRemitoToolStripMenuItem.Size = new Size(369, 22);
+            registraRemitoToolStripMenuItem.Text = "Registra Remito";
+            registraRemitoToolStripMenuItem.Visible = false;
+            registraRemitoToolStripMenuItem.Click += registraRemitoToolStripMenuItem_Click;
             // 
             // iNFORMESToolStripMenuItem
             // 
@@ -371,6 +380,7 @@
             registrarCompraToolStripMenuItem.Name = "registrarCompraToolStripMenuItem";
             registrarCompraToolStripMenuItem.Size = new Size(176, 22);
             registrarCompraToolStripMenuItem.Text = "RegistrarCompra";
+            registrarCompraToolStripMenuItem.Visible = false;
             registrarCompraToolStripMenuItem.Click += registrarCompraToolStripMenuItem_Click;
             // 
             // registrarToolStripMenuItem
@@ -378,6 +388,7 @@
             registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
             registrarToolStripMenuItem.Size = new Size(176, 22);
             registrarToolStripMenuItem.Text = "Registrar Factura";
+            registrarToolStripMenuItem.Visible = false;
             registrarToolStripMenuItem.Click += registrarToolStripMenuItem_Click;
             // 
             // otroMenuToolStripMenuItem
@@ -529,5 +540,6 @@
         private Label lbdepto;
         private Button btnLogOut;
         private ToolStripMenuItem registrarPagoToolStripMenuItem;
+        private ToolStripMenuItem registraRemitoToolStripMenuItem;
     }
 }

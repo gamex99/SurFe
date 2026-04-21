@@ -1,43 +1,74 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace SurFeFront
 {
     public partial class BusquedaProveedor : Form
     {
-        public int IdSeleccionado { get; set; }
-        public string NombreSeleccionado { get; set; }
-        private string conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+        string conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
 
+        // ¡ACÁ ESTÁN LAS PROPIEDADES QUE FALTABAN!
+        public int IdProveedor { get; set; }
+        public string RazonSocial { get; set; }
+        public string Cuit { get; set; }
+        public int IdSeleccionado => IdProveedor;
+        public string NombreSeleccionado => RazonSocial;
         public BusquedaProveedor()
         {
             InitializeComponent();
-            CargarDatos("");
+            ConfigurarGrilla();
+            CargarProveedores();
         }
 
-        private void CargarDatos(string filtro)
+        private void ConfigurarGrilla()
         {
+            dgvProveedores.Columns.Clear();
+            dgvProveedores.Columns.Add("id", "ID");
+            dgvProveedores.Columns["id"].Visible = false; // Ocultamos el ID por estética
+            dgvProveedores.Columns.Add("razon_social", "Razón Social");
+            dgvProveedores.Columns.Add("cuit", "CUIT");
+        }
+
+        private void CargarProveedores()
+        {
+            dgvProveedores.Rows.Clear();
             using (SqlConnection con = new SqlConnection(conString))
             {
-                string sql = "SELECT id, razon_social as [Razón Social], cuit as CUIT FROM proveedor WHERE razon_social LIKE @f OR cuit LIKE @f";
-                SqlDataAdapter da = new SqlDataAdapter(sql, con);
-                da.SelectCommand.Parameters.AddWithValue("@f", "%" + filtro + "%");
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvProveedores.DataSource = dt;
-                if (dgvProveedores.Columns["id"] != null) dgvProveedores.Columns["id"].Visible = false;
+                // Usamos los nombres reales de tu tabla (id, razon_social, cuit)
+                string sql = "SELECT id, razon_social, cuit FROM proveedor";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        dgvProveedores.Rows.Add(dr["id"], dr["razon_social"], dr["cuit"]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar proveedores: " + ex.Message);
+                }
             }
         }
-
-        private void txtFiltro_TextChanged(object sender, EventArgs e) => CargarDatos(txtFiltro.Text.Trim());
 
         private void dgvProveedores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                IdSeleccionado = Convert.ToInt32(dgvProveedores.CurrentRow.Cells["id"].Value);
-                NombreSeleccionado = dgvProveedores.CurrentRow.Cells["Razón Social"].Value.ToString();
+                // Cuando el usuario hace doble clic, llenamos las propiedades y cerramos
+                this.IdProveedor = Convert.ToInt32(dgvProveedores.CurrentRow.Cells["id"].Value);
+                this.RazonSocial = dgvProveedores.CurrentRow.Cells["razon_social"].Value.ToString();
+
+                // Por si el CUIT está vacío en la base de datos, evitamos que explote
+                this.Cuit = dgvProveedores.CurrentRow.Cells["cuit"].Value != DBNull.Value
+                            ? dgvProveedores.CurrentRow.Cells["cuit"].Value.ToString()
+                            : "S/N";
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

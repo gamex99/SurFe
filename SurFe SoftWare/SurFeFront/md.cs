@@ -47,6 +47,10 @@ namespace SurFeFront
                     registrarPedidoToolStripMenuItem.Visible = true;
                     registrarReclamoODevolucionToolStripMenuItem.Visible = true;
                     registrarPagoToolStripMenuItem.Visible = true;
+                    cOMPRASToolStripMenuItem.Visible = true;
+                    registrarCompraToolStripMenuItem.Visible = true;
+                    registraRemitoToolStripMenuItem.Visible = true;
+                    registrarToolStripMenuItem.Visible = true;
 
                     break;
 
@@ -78,15 +82,21 @@ namespace SurFeFront
                     actualizarStockPorPerdidaRoturaOAntiguedadToolStripMenuItem.Visible = true;
                     controlPorInventarioToolStripMenuItem.Visible = true;
                     consultarStockPorProductoToolStripMenuItem.Visible = true;
+                    registraRemitoToolStripMenuItem.Visible = true;
+                    registrarToolStripMenuItem.Visible = true;
                     break;
 
-
+                    
                 case 5:
                     pROVEEDORESToolStripMenuItem.Visible = true;
                     proveedoresToolStripMenuItem1.Visible = true;
                     registrarPedidoToolStripMenuItem.Visible = true;
                     registrarReclamoODevolucionToolStripMenuItem.Visible = true;
                     registrarPagoToolStripMenuItem.Visible = true;
+                    cOMPRASToolStripMenuItem.Visible = true;
+                    registrarCompraToolStripMenuItem.Visible = true;
+                    
+                     
                     break;
             }
 
@@ -407,7 +417,7 @@ namespace SurFeFront
 
         private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RegistrarFactura newMDIChild = new RegistrarFactura();
+            FacturaCompraRegistrar newMDIChild = new FacturaCompraRegistrar();
             // Set the parent form of the child window.  
             newMDIChild.MdiParent = this;
             // Display the new form.  
@@ -857,6 +867,13 @@ namespace SurFeFront
             newMDIChild.MdiParent = this;
             // Display the new form.  
             newMDIChild.Show();
+        }
+
+        private void registraRemitoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemitoRegistrar frmRemito = new RemitoRegistrar();
+            frmRemito.MdiParent = this; // Esto lo mete adentro de la ventana principal
+            frmRemito.Show();
         }
     }
 }

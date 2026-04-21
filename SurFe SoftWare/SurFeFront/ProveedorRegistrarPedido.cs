@@ -74,7 +74,7 @@ namespace SurFeFront
                 SqlTransaction tra = con.BeginTransaction();
                 try
                 {
-                    // 1. Cabecera
+                    // 1. Cabecera (Esto estaba bien)
                     string sqlCab = @"INSERT INTO pedido_proveedor (id_proveedor, fecha, estado) 
                                       VALUES (@idp, GETDATE(), 'Pendiente');
                                       SELECT SCOPE_IDENTITY();";
@@ -82,23 +82,30 @@ namespace SurFeFront
                     cmdCab.Parameters.AddWithValue("@idp", idProveedorSeleccionado);
                     int idGenerado = Convert.ToInt32(cmdCab.ExecuteScalar());
 
-                    // 2. Detalles
+                    // 2. Detalles (¡ACÁ ESTÁ LA CORRECCIÓN!)
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        if (row.Cells["Barcode"].Value != null)
+                        // Usamos índice 0 para verificar porque es el primer dato (Barcode) que agregaste con Rows.Add()
+                        if (row.Cells[0].Value != null)
                         {
-                            string sqlDet = "INSERT INTO pedido_detalle (id_pedido, barcode, cantidad) VALUES (@idp, @bar, @cant)";
+                            // CORRECCIÓN: Apuntamos a pedido_proveedor_detalle y buscamos el ID real usando el Barcode
+                            string sqlDet = @"INSERT INTO pedido_proveedor_detalle (id_pedido, id_producto, cantidad) 
+                                              VALUES (@idp, (SELECT TOP 1 id FROM producto WHERE barcode = @bar), @cant)";
+
                             SqlCommand cmdDet = new SqlCommand(sqlDet, con, tra);
                             cmdDet.Parameters.AddWithValue("@idp", idGenerado);
-                            cmdDet.Parameters.AddWithValue("@bar", row.Cells["Barcode"].Value.ToString());
-                            cmdDet.Parameters.AddWithValue("@cant", Convert.ToInt32(row.Cells["Cantidad"].Value));
+
+                            // row.Cells[0] es el Barcode, row.Cells[2] es la Cantidad (según tu Rows.Add)
+                            cmdDet.Parameters.AddWithValue("@bar", row.Cells[0].Value.ToString());
+                            cmdDet.Parameters.AddWithValue("@cant", Convert.ToInt32(row.Cells[2].Value));
+
                             cmdDet.ExecuteNonQuery();
                         }
                     }
 
                     tra.Commit();
 
-                    // 3. Generar PDF (Sin estilos conflictivos)
+                    // 3. Generar PDF
                     GenerarYMostrarPDF(idGenerado, lbrazonsocial.Text);
                     this.Close();
                 }
@@ -113,24 +120,22 @@ namespace SurFeFront
         // --- GENERACIÓN DE PDF LIMPIA ---
         private void GenerarYMostrarPDF(int nro, string prov)
         {
-            // 1. Definir rutas (Igual que en tu código de Nota de Crédito)
             string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
             string nombreArchivo = "Pedido_" + GetNombreArchivoFechaHora();
             string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
 
             try
             {
-                // 2. Crear el HTML (Más fácil de manejar que los objetos Paragraph rebeldes)
                 string filasHtml = "";
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if (row.Cells["Barcode"].Value != null)
+                    if (row.Cells[0].Value != null)
                     {
                         filasHtml += $@"
                     <tr>
-                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells["Barcode"].Value}</td>
-                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells["Detalle"].Value}</td>
-                        <td style='border: 1px solid #ddd; padding: 8px; text-align: center;'>{row.Cells["Cantidad"].Value}</td>
+                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells[0].Value}</td>
+                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells[1].Value}</td>
+                        <td style='border: 1px solid #ddd; padding: 8px; text-align: center;'>{row.Cells[2].Value}</td>
                     </tr>";
                     }
                 }
@@ -162,7 +167,6 @@ namespace SurFeFront
             </body>
             </html>";
 
-                // 3. Generar el PDF usando iTextSharp (Tu método de confianza)
                 using (FileStream stream = new FileStream(rutaCompletaArchivo, FileMode.Create))
                 {
                     iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 25, 25, 25, 25);
@@ -179,7 +183,6 @@ namespace SurFeFront
                     stream.Close();
                 }
 
-                // 4. Abrir en tu PDFView (que ya sabemos que funciona)
                 PDFView formPDF = new PDFView(rutaCompletaArchivo);
                 formPDF.ShowDialog();
             }
@@ -189,7 +192,6 @@ namespace SurFeFront
             }
         }
 
-        // No te olvides de copiar este método también si no lo tenés en este form
         private static string GetNombreArchivoFechaHora()
         {
             return DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";

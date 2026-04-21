@@ -4,6 +4,12 @@
     <Compile Update="ActualizarStockPorPerdidaRoturaAntiguedad.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="BusquedaFacturaCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BusquedaPedidoProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="BusquedaPedidoRecibido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -11,6 +17,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="BusquedaProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BusquedaRemitosProv.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="CargaFactura.cs">
@@ -29,6 +38,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ControlPorInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FacturaCompraRegistrar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GraficosAltaClientesMensualesMDI.cs">
@@ -83,6 +95,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RegistrarStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RemitoRegistrar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SelectClienteVenta.cs">

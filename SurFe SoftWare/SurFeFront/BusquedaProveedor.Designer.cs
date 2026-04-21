@@ -10,52 +10,57 @@
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            txtFiltro = new TextBox();
-            dgvProveedores = new DataGridView();
-            label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgvProveedores).BeginInit();
-            SuspendLayout();
-            // txtFiltro
-            txtFiltro.Location = new Point(12, 32);
-            txtFiltro.Name = "txtFiltro";
-            txtFiltro.PlaceholderText = " Buscar por Razón Social o CUIT...";
-            txtFiltro.Size = new Size(360, 23);
-            txtFiltro.TextChanged += txtFiltro_TextChanged;
+            this.dgvProveedores = new System.Windows.Forms.DataGridView();
+            this.lblInstruccion = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).BeginInit();
+            this.SuspendLayout();
+            // 
             // dgvProveedores
-            dgvProveedores.AllowUserToAddRows = false;
-            dgvProveedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProveedores.BackgroundColor = Color.White;
-            dgvProveedores.ColumnHeadersHeight = 30;
-            dgvProveedores.Location = new Point(12, 70);
-            dgvProveedores.MultiSelect = false;
-            dgvProveedores.Name = "dgvProveedores";
-            dgvProveedores.ReadOnly = true;
-            dgvProveedores.RowHeadersVisible = false;
-            dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProveedores.Size = new Size(360, 280);
-            dgvProveedores.CellDoubleClick += dgvProveedores_CellDoubleClick;
-            // label1
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            label1.Location = new Point(12, 12);
-            label1.Text = "Seleccione un Proveedor (Doble Clic):";
+            // 
+            this.dgvProveedores.AllowUserToAddRows = false;
+            this.dgvProveedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProveedores.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProveedores.ColumnHeadersHeight = 30;
+            this.dgvProveedores.Location = new System.Drawing.Point(12, 40);
+            this.dgvProveedores.Name = "dgvProveedores";
+            this.dgvProveedores.ReadOnly = true;
+            this.dgvProveedores.RowHeadersVisible = false;
+            this.dgvProveedores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProveedores.Size = new System.Drawing.Size(460, 260);
+            this.dgvProveedores.TabIndex = 0;
+            this.dgvProveedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedores_CellDoubleClick);
+            // 
+            // lblInstruccion
+            // 
+            this.lblInstruccion.AutoSize = true;
+            this.lblInstruccion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            this.lblInstruccion.Location = new System.Drawing.Point(12, 15);
+            this.lblInstruccion.Name = "lblInstruccion";
+            this.lblInstruccion.Size = new System.Drawing.Size(277, 15);
+            this.lblInstruccion.TabIndex = 1;
+            this.lblInstruccion.Text = "Doble clic sobre el proveedor para seleccionarlo...";
+            // 
             // BusquedaProveedor
-            ClientSize = new Size(384, 361);
-            Controls.Add(label1);
-            Controls.Add(dgvProveedores);
-            Controls.Add(txtFiltro);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SurFe - Buscador de Proveedores";
-            ((System.ComponentModel.ISupportInitialize)dgvProveedores).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(484, 311);
+            this.Controls.Add(this.lblInstruccion);
+            this.Controls.Add(this.dgvProveedores);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "BusquedaProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SurFe - Seleccionar Proveedor";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
+        #endregion
 
-        private TextBox txtFiltro;
-        private DataGridView dgvProveedores;
-        private Label label1;
+        private System.Windows.Forms.DataGridView dgvProveedores;
+        private System.Windows.Forms.Label lblInstruccion;
     }
 }
