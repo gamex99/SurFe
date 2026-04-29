@@ -51,6 +51,7 @@ namespace SurFeFront
                     registrarCompraToolStripMenuItem.Visible = true;
                     registraRemitoToolStripMenuItem.Visible = true;
                     registrarToolStripMenuItem.Visible = true;
+                    graficosToolStripMenuItem.Visible = true;
 
                     break;
 
@@ -68,6 +69,7 @@ namespace SurFeFront
                     ventasRealizadasToolStripMenuItem.Visible = true;
                     top10ClientesConMasComprasToolStripMenuItem.Visible = true;
                     top10ProductosMasVendidosToolStripMenuItem.Visible = true;
+                    graficosToolStripMenuItem.Visible = true;
 
 
 

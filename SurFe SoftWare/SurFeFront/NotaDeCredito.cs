@@ -1,29 +1,14 @@
-﻿using iTextSharp.tool.xml;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using SurFeEntidades;
 using SurFeFront;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using iTextSharp.text;
 using System.IO;
-using Document = iTextSharp.text.Document;
-using iTextSharp.text.pdf;
-using iTextSharp.tool;
-using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static iTextSharp.text.pdf.events.IndexEvents;
-using Org.BouncyCastle.Operators;
-
+using System.Windows.Forms;
 
 namespace SurFe
 {
@@ -36,34 +21,14 @@ namespace SurFe
         string localidad;
         int tipo_factura;
         string id_cliente1;
-        int numero_factura;
         string letra_factura;
         string condicionivaa;
+
         public NotaDeCredito()
         {
             InitializeComponent();
             btnagregar.Visible = false;
             cbxfactura.Visible = false;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -73,7 +38,6 @@ namespace SurFe
             dataGridView1.Columns.Add("Producto", "Producto");
             dataGridView1.Columns.Add("preciouni", "Precio Unitario");
             dataGridView1.Columns.Add("Precio", "Precio");
-
         }
 
         private void RecalcularSuma()
@@ -82,105 +46,48 @@ namespace SurFe
             decimal IVA = 0;
             decimal total = 0;
 
-            // Iterar a través de todas las filas en la columna "ColumnaNumerica"
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                // Verificar si la celda no está vacía
                 if (row.Cells["Precio"].Value != null)
                 {
-                    // Sumar el valor de la celda a la variable suma
                     SumaSubtotal += Convert.ToDecimal(row.Cells["Precio"].Value);
-
                 }
             }
             IVA = SumaSubtotal * (decimal).21;
             total = SumaSubtotal + IVA;
-            // Mostrar la suma en algún lugar, como un TextBox
+
             subtotal.Text = SumaSubtotal.ToString("N2");
             labeliva.Text = IVA.ToString("N2");
             labeltotal.Text = total.ToString("N2");
         }
 
-        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            RecalcularSuma();
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             SelectClienteVenta form = new SelectClienteVenta();
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
             if (form.ShowDialog() == DialogResult.OK)
             {
-                // Obtener los datos del formulario secundario
-                //string cuit = form.cuitselect;
-                //string razonsocial = form.razonsocialselect;
-                //string domicilio = form.domicilio;
-                //string localidad = form.localidad;
-                //string tipo_factura = form.factura_tipo;
-
                 id_cliente1 = form.id_clienteselect;
                 cuit = form.cuitselect;
                 razonsocial = form.razonsocialselect;
                 domicilio = form.domicilio;
                 localidad = form.localidad;
                 condicionivaa = form.condicioniva;
-                //tipo_factura = int.TryParse(form.factura_tipo);
                 int.TryParse(form.factura_tipo, out tipo_factura);
 
-                // Puedes usar los datos como desees, por ejemplo, mostrarlos en un MessageBox
                 labelrazonsocial.Text = "Razon Social: " + razonsocial;
-                /*
-                 *  cuitselect = row.Cells["cuit"].Value.ToString();
-                razonsocialselect = row.Cells["razon_social"].Value.ToString();
-                domicilio = row.Cells["domicilio"].Value.ToString();
-                localidad = row.Cells["localidad_loc"].Value.ToString();
-                factura_tipo = row.Cells["tipofactura"].Value.ToString();*/
-
                 labelcuit.Text = "CUIT: " + cuit;
                 labeldireccion.Text = "Direccion: " + domicilio;
                 labellocalidad.Text = "Localidad: " + localidad;
-                cbxfactura.SelectedIndex = tipo_factura;
-
-                //cbxfactura.SelectedIndex = tipo_facutra_cbx;
             }
         }
 
         private void btnbuscarart_Click(object sender, EventArgs e)
         {
             SelectProducto formproducto = new SelectProducto();
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
             if (formproducto.ShowDialog() == DialogResult.OK)
-            {/* barcode = row.Cells["barcode"].Value.ToString();
-                detalle = row.Cells["detalle"].Value.ToString();
-                stock = row.Cells["stock"].Value.ToString();
-                precio = numeroConComa;*/
-
-
-
-                // Obtener los datos del formulario secundario
-                string barcode = formproducto.barcode;
-
-                txtcodigo.Text = barcode;
-
-
-
-
+            {
+                txtcodigo.Text = formproducto.barcode;
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -189,64 +96,164 @@ namespace SurFe
             {
                 string filtro = txtcodigo.Text;
                 string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-                string barcode = "";
-                string detalle = "";
-                decimal precio = (decimal)00;
-                int stock = 0;
                 int cantidad = int.Parse(txtcantidad.Text);
-
 
                 using (SqlConnection connection = new SqlConnection(conString))
                 {
                     using (SqlCommand command = new SqlCommand("SelectProducto", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-
-                        // Ajusta el nombre del parámetro y su valor según tus necesidades
                         command.Parameters.AddWithValue("@filtro", filtro);
-
                         try
                         {
                             connection.Open();
-
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                while (reader.Read())
+                                if (reader.Read())
                                 {
-                                    // Asigna los valores a las variables
-                                    barcode = reader["barcode"].ToString();
-                                    detalle = reader["detalle"].ToString();
-                                    precio = Convert.ToDecimal(reader["precio"]);
-                                    stock = Convert.ToInt32(reader["stock"]);
+                                    string barcode = reader["barcode"].ToString();
+                                    string detalle = reader["detalle"].ToString();
+                                    decimal precio = Convert.ToDecimal(reader["precio"]);
+                                    decimal totalart = precio * cantidad;
 
-
+                                    dataGridView1.Rows.Add(barcode, cantidad, detalle, precio, totalart);
+                                    RecalcularSuma();
                                 }
                             }
-
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Error: " + ex.Message);
-                        }
+                        catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
                     }
                 }
-                if (stock > 0)
-                {
-                    decimal totalart = precio * cantidad;
-                    dataGridView1.Rows.Add(barcode, cantidad, detalle, precio, totalart, stock);
-                    RecalcularSuma();
-                }
-                else
-                {
-                    MessageBox.Show("NO HAY EN STOCK: " + detalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
-            else
+        }
+
+        // --- MÉTODO PRINCIPAL: GUARDAR Y SUMAR STOCK ---
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (labelcuit.Text == "CUIT: ")
             {
-                MessageBox.Show("Debe introducir codigo de producto y cantidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe cargar productos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+            int numero = 0;
+            string nombreArchivo = "NdC_" + GetNombreArchivoFechaHora();
+            string rutaCompletaArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nombreArchivo);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // 1. Obtener número actual
+                string sqlQuery = "SELECT [numero] FROM [dbo].[numero_factura] WHERE [id_numero] = 1;";
+                using (SqlCommand cmdNum = new SqlCommand(sqlQuery, connection))
+                {
+                    numero = Convert.ToInt32(cmdNum.ExecuteScalar());
+                }
+                string cadena = numero.ToString().PadLeft(5, '0');
+
+                // 2. Insertar Nota de Crédito
+                string sqlInsert = "INSERT INTO dbo.notaDeCredito ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id, @tipo, @fecha, @total, @loc)";
+                using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, connection))
+                {
+                    cmdInsert.Parameters.AddWithValue("@id", id_cliente1);
+                    cmdInsert.Parameters.AddWithValue("@tipo", "5"); // Código para Nota de Crédito
+                    cmdInsert.Parameters.AddWithValue("@fecha", DateTime.Now);
+                    cmdInsert.Parameters.AddWithValue("@total", decimal.Parse(labeltotal.Text));
+                    cmdInsert.Parameters.AddWithValue("@loc", nombreArchivo);
+                    cmdInsert.ExecuteNonQuery();
+                }
+
+                // 3. SUMAR STOCK (DEVOLUCIÓN)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    string codProducto = row.Cells["Codigo"].Value.ToString();
+                    int cantDevuelta = Convert.ToInt32(row.Cells["Cantidad"].Value);
+
+                    // Importante: stock = stock + @cant (Suma porque es una Nota de Crédito)
+                    string sqlStock = "UPDATE producto SET stock = stock + @cant WHERE barcode = @cod";
+                    using (SqlCommand cmdStock = new SqlCommand(sqlStock, connection))
+                    {
+                        cmdStock.Parameters.AddWithValue("@cant", cantDevuelta);
+                        cmdStock.Parameters.AddWithValue("@cod", codProducto);
+                        cmdStock.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            // 4. Generación de PDF (Diseño Profesional)
+            GenerarPDF(rutaCompletaArchivo, nombreArchivo);
+
+            MessageBox.Show("Nota de crédito registrada y stock actualizado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            PDFView formPDF = new PDFView(rutaCompletaArchivo);
+            formPDF.ShowDialog();
+            this.Close();
         }
+
+        private void GenerarPDF(string ruta, string nombre)
+        {
+            string html = @"<!DOCTYPE html><html><head><style>
+                body { font-family: Arial; font-size: 11px; }
+                .letra-box { background: #2c3e50; color: white; font-size: 24px; width: 40px; text-align: center; border-radius: 4px; padding: 5px; }
+                table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                th { background: #2c3e50; color: white; padding: 8px; text-align: left; }
+                td { padding: 8px; border-bottom: 1px solid #eee; }
+                .total-final { background: #2c3e50; color: white; font-weight: bold; }
+                .alerta { background: #fff3cd; color: #856404; padding: 10px; text-align: center; font-weight: bold; border: 1px solid #ffeeba; }
+            </style></head><body>
+                <table width='100%'><tr>
+                    <td><strong>SurFe Software</strong><br/>Bolivar 325, Peyrano</td>
+                    <td align='center'><div class='letra-box'>R</div><br/>COD. 03</td>
+                    <td align='right'><strong>NOTA DE CRÉDITO</strong><br/>Fecha: " + DateTime.Now.ToString("dd/MM/yyyy") + @"</td>
+                </tr></table>
+                <div style='background:#f8f9fa; padding:10px;'>
+                    Cliente: " + razonsocial + @" | CUIT: " + cuit + @"<br/>
+                    Cond. IVA: " + condicionivaa + @"
+                </div>
+                <table><thead><tr><th>Cod.</th><th>Cant.</th><th>Descripción</th><th>P. Unit</th><th>Importe</th></tr></thead><tbody>";
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                html += $"<tr><td>{row.Cells[0].Value}</td><td>{row.Cells[1].Value}</td><td>{row.Cells[2].Value}</td><td>$ {row.Cells[3].Value}</td><td>$ {row.Cells[4].Value}</td></tr>";
+            }
+
+            html += @"</tbody></table>
+                <table width='100%'><tr><td width='60%'></td><td width='40%'>
+                    Subtotal: $ " + subtotal.Text + @"<br/>IVA 21%: $ " + labeliva.Text + @"<br/>
+                    <div class='total-final'>TOTAL: $ " + labeltotal.Text + @"</div>
+                </td></tr></table>
+                <div class='alerta'>DOCUMENTO NO VÁLIDO COMO FACTURA - USO DIDÁCTICO</div>
+            </body></html>";
+
+            using (FileStream stream = new FileStream(ruta, FileMode.Create))
+            {
+                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+                using (StringReader sr = new StringReader(html))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                }
+                pdfDoc.Close();
+            }
+        }
+
+        private static string GetNombreArchivoFechaHora()
+        {
+            return DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
+        }
+
+        private void button4_Click(object sender, EventArgs e) { this.Close(); }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { RecalcularSuma(); }
+        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e) { RecalcularSuma(); }
 
         public class DetallesFactura
         {
@@ -255,468 +262,6 @@ namespace SurFe
             public int Cantidad { get; set; }
             public decimal PrecioUnitario { get; set; }
             public decimal TotalPorProducto { get; set; }
-        }
-
-        private void CargarDatosDesdeDataGridView()
-        {
-            foreach (DataGridViewRow fila in dataGridView1.Rows)
-            {
-                // Asegurarse de no procesar la última fila vacía si es editable
-                if (fila.IsNewRow) continue;
-
-                // Crear un nuevo producto y asignar los valores desde las celdas del DataGridView
-                DetallesFactura nuevoProducto = new DetallesFactura
-                {
-                    Barcode = fila.Cells["barcode"].Value.ToString(),
-                    Detalle = fila.Cells["detalle"].Value.ToString(),
-                    Cantidad = Convert.ToInt32(fila.Cells["cantidad"].Value),
-                    PrecioUnitario = Convert.ToDecimal(fila.Cells["precio"].Value),
-                    TotalPorProducto = Convert.ToDecimal(fila.Cells["totalart"].Value)
-                };
-
-                // Agregar el producto a la lista
-                detalles.Add(nuevoProducto);
-            }
-
-            // Ahora, 'productos' contiene la información del DataGridView en una lista de objetos Producto
-            // Puedes acceder a los elementos de la lista según tus necesidades.
-        }
-
-        private void GuardarDatosEnBaseDeDatos()
-        {
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-
-            string consultaSql = "INSERT INTO TuTabla (Barcode, Detalle, Cantidad, PrecioUnitario, TotalPorProducto) " +
-                                 "VALUES (@Barcode, @Detalle, @Cantidad, @PrecioUnitario, @TotalPorProducto); SELECT SCOPE_IDENTITY();";
-
-            using (SqlConnection conexion = new SqlConnection(conString))
-
-                try
-                {
-                    conexion.Open();
-
-                    foreach (DetallesFactura detalle in detalles)
-                    {
-                        using (SqlCommand comando = new SqlCommand(consultaSql, conexion))
-                        {
-                            // Configurar los parámetros del comando
-                            comando.Parameters.AddWithValue("@Barcode", detalle.Barcode);
-                            comando.Parameters.AddWithValue("@Detalle", detalle.Detalle);
-                            comando.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                            comando.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
-                            comando.Parameters.AddWithValue("@TotalPorProducto", detalle.TotalPorProducto);
-
-                            // Ejecutar la consulta de inserción
-                            comando.ExecuteNonQuery();
-                        }
-                    }
-
-                    MessageBox.Show("Datos guardados en la base de datos con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al guardar los datos en la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (labelcuit.Text != "CUIT: ")
-            {
-                if (dataGridView1.Rows.Count > 0)
-                {
-                    MessageBox.Show("Nota de credito registrada con exito", "Nueva nota de credito registrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-                    SqlConnection connection = new SqlConnection(connectionString);
-                    int numero = 0;
-
-
-
-
-                    connection.Open();
-
-                    string sqlQuery = "SELECT [numero] FROM [dbo].[numero_factura] WHERE [id_numero] = 1 ;";
-                    SqlCommand command2 = new SqlCommand(sqlQuery, connection);
-
-                    using (SqlDataReader reader = command2.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-
-                            numero = reader.GetInt32(0);
-
-
-                        }
-                    }
-
-
-
-
-                    string cadena = numero.ToString();
-
-                    if (cadena.Length > 5)
-                    {
-                        // Trunca si tiene más de 5 caracteres
-                        cadena = cadena.Substring(0, 5);
-                    }
-                    else if (cadena.Length < 5)
-                    {
-                        // Rellena con ceros si tiene menos de 5 caracteres
-                        cadena = cadena.PadLeft(5, '0');
-                    }
-
-                    //hasta aca el numero de factura
-                    // codigo para el cae
-                    Random random = new Random();
-                    long randomNumber = (long)(random.NextDouble() * (1e14 - 1e13) + 1e13);
-                    string randomString = randomNumber.ToString("D14");
-
-
-                    switch (cbxfactura.SelectedIndex)
-                    {
-                        case 1:
-                            letra_factura = "Factura A";
-                            break;
-                        case 2:
-                            letra_factura = "Factura B";
-                            break;
-                        case 3:
-                            letra_factura = "Factura C";
-                            break;
-                        case 4:
-                            letra_factura = "Presupuesto X";
-                            break;
-                    }
-
-                    //aca cae xddddddd
-
-                    //METEMOS CODIGO PARA HACER EL PDF backup
-
-
-
-                    //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-                    string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-                    string nombreArchivo = "NdC_" + GetNombreArchivoFechaHora();
-                    string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
-                    //string rutaArchivoPDF = @"\elarchivo.pdf"; // Reemplace con la ruta y nombre deseados
-                    string rutaArchivoPDF = nombreArchivo;
-
-
-
-
-                    //////////string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n        .header {\r\n            background-color: #3498db;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .header .info {\r\n            flex: 2;\r\n            text-align: center;\r\n        }\r\n        .header .mas-info {\r\n            flex: 3;\r\n            text-align: left;\r\n            height: 150px;\r\n        }\r\n        .header .logo {\r\n            width: auto;\r\n            margin-top: 0px;\r\n            flex: 1;\r\n            text-align: center;\r\n        }\r\n        img {\r\n            width: 200px;\r\n            height:200px;\r\n        }\r\n        .footer {\r\n            margin-top: 10px;\r\n            color: black;\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n        }\r\n        .main {\r\n            margin: 10px 0;\r\n        }\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n        th {\r\n            background-color: #3498db;\r\n            color: white;\r\n        }\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n        .cliente {\r\n            margin-top: 10px;\r\n        }\r\n        .productos {\r\n\r\n        }\r\n        #con {\r\n            width: 200px;\r\n        }\r\n        .logo-footer {\r\n            text-align: left;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <div class=\"logo\">\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n            </div>\r\n            <div class=\"info\">\r\n                <h1>@LETRA_FACTURA</h1>\r\n                <p>Dirección: Bolivar 325,Peyrano, Santa Fe</p>\r\n                <p>Teléfono: 3416082000</p>\r\n            </div>\r\n            <div class=\"mas-info\">\r\n                <p>Fecha de emision: @FECHAHOY</p>\r\n                <p>Cuit: 20-21950728-4</p>\r\n                <p>Ingresos Brutos: 102-009216-1</p>\r\n                <p>Inicio de actividades: 20/05/2005</p>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"main\">       \r\n            <table class=\"cliente\">\r\n                <tr>\r\n                    <td id=\"con\">Cliente:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CLIENTE</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Domicilio:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@DOMICILIO</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">Cond iva:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@IVA</td>\r\n                </tr>\r\n                <tr>\r\n                    <td id=\"con\">CUIT:</td>\r\n                    <td style=\"border-bottom:1px solid black\">@CUITCLIENTE</td>\r\n                </tr>\r\n                \r\n            </table>\r\n        </div>\r\n        <div class=\"productos\">    \r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Cod.</th>\r\n                        \r\n                        <th>Cant.</th>\r\n                        <th>Descripción</th>\r\n                        \r\n                        <th>P.Unitario</th>\r\n                       \r\n                        <th>Importe</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS \r\n                    <tr>\r\n                        <td colspan=\"3\" class=\"total\">Total:</td>\r\n                        <td>@NETO</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <div class=\"footer-uno\">\r\n                <table>\r\n                    <tr>\r\n                        <td id=\"con\">Importe neto </td>\r\n                        <td style=\"border-bottom:1px solid black\">@NETO</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 21% </td>\r\n                        <td style=\"border-bottom:1px solid black\">@ALGOIVA</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">IVA 10,5%</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td id=\"con\">Importe otros tributos:</td>\r\n                        <td style=\"border-bottom:1px solid black\">0.00</td>\r\n                    </tr>            \r\n                    <tr>\r\n                        <td id=\"con\">TOTAL</td>\r\n                        <td style=\"border-bottom:1px solid black\">@TOTAL</td>\r\n                    </tr>\r\n                </table>\r\n            </div>\r\n            <div class=\"logo-footer\">\r\n                <p>CAE N : @CAE</p>\r\n                <img src=\"https://via.placeholder.com/200\" />\r\n                <p> Muchas gracias por su compra, vuelva pronto</p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>";
-                    string PaginaHTML_Texto = @"<!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml'>
-<head>
-    <title>Nota de Crédito</title>
-    <style>
-        body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: 11px;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        
-        table { width: 100%; border-collapse: collapse; }
-        
-        /* HEADER */
-        .header-table { margin-bottom: 20px; }
-        .col-logo { width: 15%; height: 80px; }
-        .col-empresa { width: 45%; vertical-align: top; padding-left: 10px; }
-        .col-letra { width: 10%; vertical-align: top; text-align: center; }
-        .col-datos { width: 30%; vertical-align: top; text-align: right; }
-
-        .company-name { font-size: 16px; font-weight: bold; text-transform: uppercase; color: #2c3e50; }
-        .info-text { font-size: 10px; line-height: 1.4; color: #555; }
-        
-        /* Caja Letra */
-        .letra-box {
-            background-color: #2c3e50; color: white; font-size: 24px; font-weight: bold;
-            width: 40px; height: 40px; line-height: 40px; text-align: center; margin: 0 auto; border-radius: 4px;
-        }
-        .doc-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
-
-        /* CLIENTE */
-        .box-cliente { background-color: #f8f9fa; border: 1px solid #ddd; padding: 8px; margin-bottom: 15px; }
-        .tbl-cliente td { padding: 3px; }
-        .label { font-weight: bold; color: #2c3e50; width: 70px; }
-
-        /* PRODUCTOS */
-        .tbl-productos { margin-bottom: 10px; }
-        .tbl-productos th {
-            background-color: #2c3e50; color: white; padding: 6px; text-align: left; font-size: 10px; text-transform: uppercase;
-        }
-        .tbl-productos td { border-bottom: 1px solid #eee; padding: 6px; font-size: 11px; }
-        
-        tr { page-break-inside: avoid; }
-        .right { text-align: right; }
-        .center { text-align: center; }
-
-        /* FOOTER */
-        .footer-section { margin-top: 20px; }
-        .cae-container { border: 1px dashed #aaa; padding: 8px; background-color: #fafafa; font-size: 10px; width: 90%; }
-        .cae-label { font-weight: bold; }
-
-        .tbl-totales td { padding: 4px; border-bottom: 1px solid #eee; }
-        .total-label { font-weight: bold; text-align: right; }
-        .total-number { text-align: right; width: 100px; }
-        .row-total-final { background-color: #2c3e50; color: white; font-size: 13px; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-    <table class='header-table'>
-        <tr>
-            <td class='col-logo'></td> <td class='col-empresa'>
-                <div class='company-name'>SurFe Software</div>
-                <div class='info-text'>
-                    Bolivar 325, Peyrano, Santa Fe<br/>
-                    Tel: 3416082000<br/>
-                    Email: contacto@surfe.com.ar<br/>
-                    IVA Responsable Inscripto
-                </div>
-            </td>
-            <td class='col-letra'>
-                <div class='letra-box'>@LETRA_FACTURA</div>
-                <div style='font-size:9px; font-weight:bold; margin-top:2px;'>COD. @CODIGO</div>
-            </td>
-            <td class='col-datos'>
-                <div class='doc-title'>NOTA DE CRÉDITO</div>
-                <div class='info-text'>
-                    <strong>N°:</strong> 0001-@NUMERO<br/>
-                    <strong>Fecha:</strong> @FECHAHOY<br/>
-                    <strong>CUIT:</strong> 20-21950728-4<br/>
-                    <strong>Ing. Brutos:</strong> 102-009216-1
-                </div>
-            </td>
-        </tr>
-    </table>
-
-    <div class='box-cliente'>
-        <table class='tbl-cliente'>
-            <tr>
-                <td class='label'>Cliente:</td> <td>@CLIENTE</td>
-                <td class='label'>CUIT:</td> <td>@CUITCLIENTE</td>
-            </tr>
-            <tr>
-                <td class='label'>Domicilio:</td> <td>@DOMICILIO</td>
-                <td class='label'>Cond. IVA:</td> <td>@IVA</td>
-            </tr>
-        </table>
-    </div>
-
-    <table class='tbl-productos'>
-        <thead>
-            <tr>
-                <th style='width:10%;'>Cod.</th>
-                <th style='width:10%;' class='center'>Cant.</th>
-                <th style='width:40%;'>Descripción</th>
-                <th style='width:20%;' class='right'>P. Unitario</th>
-                <th style='width:20%;' class='right'>Importe</th>
-            </tr>
-        </thead>
-        <tbody>
-            @FILAS
-        </tbody>
-    </table>
-
-    <table class='footer-section'>
-        <tr>
-            <td style='width: 60%; vertical-align: top;'>
-                <div class='cae-container'>
-                    <span class='cae-label'>CAE N°:</span> @CAE <br/>
-                    <span class='cae-label'>Vto. CAE:</span> @FECHAHOY <br/> 
-                    <br/>
-                    <em>Comprobante Autorizado</em>
-                </div>
-            </td>
-
-            <td style='width: 40%; vertical-align: top;'>
-                <table class='tbl-totales'>
-                    <tr>
-                        <td class='total-label'>Subtotal:</td>
-                        <td class='total-number'>@NETO</td>
-                    </tr>
-                    <tr>
-                        <td class='total-label'>IVA (21%):</td>
-                        <td class='total-number'>@ALGOIVA</td>
-                    </tr>
-                    <tr>
-                        <td class='total-label'>IVA (10.5%):</td>
-                        <td class='total-number'>0.00</td>
-                    </tr>
-                    <tr class='row-total-final'>
-                        <td class='total-label' style='color:white;'>TOTAL:</td>
-                        <td class='total-number' style='color:white;'>@TOTAL</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-</body>
-</html>";
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", razonsocial);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUITCLIENTE", cuit);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHAHOY", DateTime.Now.ToString("dd/MM/yyyy"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMERO", cadena);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LETRA_FACTURA", "NOTA DE CREDITO");
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CAE", randomString);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IVA", condicionivaa);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NETO", subtotal.Text.ToString());
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ALGOIVA", labeliva.Text.ToString());
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOMICILIO", labeldireccion.Text.ToString());
-
-                    string filas = string.Empty;
-                    decimal total = 0;
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        filas += "<tr>";
-                        filas += "<td>" + row.Cells["Codigo"].Value.ToString() + "</td>";
-                        filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
-                        filas += "<td>" + row.Cells["Producto"].Value.ToString() + "</td>";
-                        filas += "<td>" + row.Cells["preciouni"].Value.ToString() + "</td>";
-                        filas += "<td>" + row.Cells["Precio"].Value.ToString() + "</td>";
-                        filas += "</tr>";
-                        total += decimal.Parse(row.Cells["Precio"].Value.ToString());
-                    }
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", labeltotal.Text.ToString());
-
-
-
-
-                    using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
-                    {
-                        //Creamos un nuevo documento y lo definimos como PDF
-                        Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                        pdfDoc.Open();
-                        pdfDoc.Add(new Phrase(""));
-
-                        //Agregamos la imagen del banner al documento
-                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.logo_pp1_carpeta_2023, System.Drawing.Imaging.ImageFormat.Png);
-                        img.ScaleToFit(60, 60);
-                        img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                        //img.SetAbsolutePosition(10,100);
-                        img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                        pdfDoc.Add(img);
-
-
-                        //pdfDoc.Add(new Phrase("Hola Mundo"));
-                        using (StringReader sr = new StringReader(PaginaHTML_Texto))
-                        {
-                            XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-                        }
-
-                        pdfDoc.Close();
-                        stream.Close();
-                    }// aca vamo a mandar a la base de dato antes de abrir el pdf porque sino desp se traba y no anda pa 
-
-                    string tipo_documento = tipo_factura.ToString();
-                    // string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-                    // SqlConnection connection = new SqlConnection(connectionString);
-
-
-
-                    //string sql = "INSERT INTO dbo.factura ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
-                    string sql = "INSERT INTO dbo.notaDeCredito ([id_cliente], [tipo_documento], [fecha], [total], [location]) VALUES (@id_cliente, @tipo_documento, @fecha, @total, @location)";
-                    SqlCommand command = new SqlCommand(sql, connection);
-
-                    DateTime fechaActual = DateTime.Now;
-                    command.Parameters.AddWithValue("@id_cliente", id_cliente1);
-                    command.Parameters.AddWithValue("@tipo_documento", "5");
-                    command.Parameters.AddWithValue("@fecha", fechaActual);
-                    command.Parameters.AddWithValue("@total", total);
-                    command.Parameters.AddWithValue("@location", nombreArchivo);
-                    // connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-
-                    //hasta aca guardamos en la db
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-                    //hasta aca guardamos en la db
-
-                    PDFView formPDF = new PDFView(rutaCompletaArchivo);
-
-                    // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-                    formPDF.ShowDialog();
-                    //eso es codigo para hacer el html del pdf
-                    // Cerrar el formulario Form1 después de cerrar el formulario Form2
-                    this.Close();
-                }
-
-                else
-                {
-                    MessageBox.Show("Debe cargar productos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            } 
-        private static string GetNombreArchivoFechaHora()
-        {
-            // Obtener la fecha y hora actual
-            DateTime now = DateTime.Now;
-
-            // Formatear la fecha y hora en un formato de nombre de archivo
-            string nombreArchivoFormateado = now.ToString("yyyyMMdd_HHmmss");
-
-            // Combinar el nombre con la extensión
-            string nombreArchivo = nombreArchivoFormateado + ".pdf";
-
-            // Devolver el nombre de archivo
-            return nombreArchivo;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            RecalcularSuma();
-        }
-
-        private void btnagregar_Click(object sender, EventArgs e)
-        {
-            CargarProducto NewProd = new CargarProducto();
-            NewProd.modo = EnumModoForm.Alta;
-            NewProd.ShowDialog();
-            NewProd.FormClosed += delegate
-            {
-                
-            };
-        }
-
-        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            RecalcularSuma();
         }
     }
 }
