@@ -24,6 +24,9 @@ namespace SurFeFront
             InitializeComponent();
             lbNombre.Text = "Usuario: " + ClaseCompartida.nombre + " " + ClaseCompartida.apellido;
             lbdepto.Text = "Departamento: " + ClaseCompartida.departamnto;
+            lbNombre.SendToBack();
+            lbdepto.SendToBack();
+            btnLogOut.SendToBack();
             switch (ClaseCompartida.idDepartamento)
             {
                 case 1: // ADMIN - Habilita TODO
@@ -48,10 +51,11 @@ namespace SurFeFront
                     registrarReclamoODevolucionToolStripMenuItem.Visible = true;
                     registrarPagoToolStripMenuItem.Visible = true;
                     cOMPRASToolStripMenuItem.Visible = true;
-                    registrarCompraToolStripMenuItem.Visible = true;
+                    //registrarCompraToolStripMenuItem.Visible = true;
                     registraRemitoToolStripMenuItem.Visible = true;
                     registrarToolStripMenuItem.Visible = true;
                     graficosToolStripMenuItem.Visible = true;
+                    gestorDeRolesToolStripMenuItem.Visible = true;
 
                     break;
 
@@ -88,17 +92,17 @@ namespace SurFeFront
                     registrarToolStripMenuItem.Visible = true;
                     break;
 
-                    
-                case 5:
+
+                case 5: //jefe de compras
                     pROVEEDORESToolStripMenuItem.Visible = true;
                     proveedoresToolStripMenuItem1.Visible = true;
                     registrarPedidoToolStripMenuItem.Visible = true;
                     registrarReclamoODevolucionToolStripMenuItem.Visible = true;
                     registrarPagoToolStripMenuItem.Visible = true;
                     cOMPRASToolStripMenuItem.Visible = true;
-                    registrarCompraToolStripMenuItem.Visible = true;
-                    
-                     
+                   // registrarCompraToolStripMenuItem.Visible = true;
+                    registrarToolStripMenuItem.Visible = true;
+
                     break;
             }
 
@@ -583,106 +587,9 @@ namespace SurFeFront
         private void ventasRealizadasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-            string conString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            SqlConnection connection = new SqlConnection(conString);
-            connection.Open();
-
-            // string sql = "SELECT \r\n    [barcodebaja] as BarCode,\r\n    [cantidadbaja] as CantidadBaja,\r\n    [motivo] as Baja,\r\n   \r\n    u.nombre as Nombre,\r\n    u.apellido as Apellido\r\nFROM [dbo].[motivoBajaStock] AS mb\r\nINNER JOIN [dbo].[usuarios] AS u ON mb.operador = u.id";
-            string sql = "SELECT TOP (1000)\r\n    f.[id_factura] ,\r\n    \r\n    c.[razon_social],\r\n    \r\n    td.[descripcion],\r\n    f.[fecha],\r\n    f.[total]\r\n   \r\nFROM [factura] AS f\r\nJOIN [cliente] AS c\r\n    ON f.id_cliente = c.id_cliente\r\nJOIN [tipo_factura] AS td\r\n    ON f.tipo_documento = td.id;";
-            SqlCommand comando = new SqlCommand(sql, connection);
-
-
-
-
-
-
-
-            SqlDataReader lector = comando.ExecuteReader();
-
-
-            //verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-            if (!Directory.Exists(ClaseCompartida.carpetaTemp))
-            {
-                // La carpeta no existe, crearla
-                Directory.CreateDirectory(ClaseCompartida.carpetaTemp);
-
-            }
-            // hasta aca verificamos si esta la carpeta en temp total no tenemos que guardar este informe
-            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-            string nombreArchivo = "VentasRealizadas";
-            string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
-            string rutaArchivoPDF = nombreArchivo;
-            string PaginaHTML_Texto = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n\r\n\r\n    <title>Título del Documento</title>\r\n    <style>\r\n        body {\r\n            font-family: 'Arial', sans-serif;\r\n            margin: 0;\r\n            padding: 0;\r\n            background-color: #f4f4f4;\r\n        }\r\n\r\n        .container {\r\n            width: 80%;\r\n            margin: auto;\r\n            background-color: #fff;\r\n            padding: 20px;\r\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n        }\r\n\r\n        .header, .footer {\r\n            text-align: center;\r\n            padding: 10px 0;\r\n            color: #fff;\r\n        }\r\n\r\n        .header {\r\n            position: relative;\r\n            color: #fff;\r\n            background-color: #3498db;\r\n            padding: 10px 0;\r\n        }\r\n\r\n            .header img {\r\n                width: 250px;\r\n                height: auto;\r\n                position: absolute;\r\n            }\r\n\r\n            .header .left-img {\r\n                left: 10px;\r\n            }\r\n\r\n        .footer {\r\n            background-color: #f1c40f;\r\n        }\r\n\r\n        .main {\r\n            margin: 20px 0;\r\n        }\r\n\r\n        table {\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n\r\n        th, td {\r\n            padding: 10px;\r\n            border: 1px solid #ddd;\r\n            text-align: left;\r\n        }\r\n\r\n        th {\r\n            background-color: #3498db;\r\n        }\r\n\r\n        .highlight {\r\n            background-color: #f1c40f;\r\n            color: #fff;\r\n        }\r\n\r\n        .total {\r\n            text-align: right;\r\n            font-weight: bold;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div class=\"header\">\r\n            <img src=\"./logo pp1 carpeta 2023.png\" class=\"left-img\" />\r\n            <h3>INFORME</h3>\r\n            <p>INFORME @tipoinfo</p>\r\n            \r\n\r\n        </div>\r\n        <div class=\"main\">\r\n            <table>\r\n                <thead>\r\n                    <tr class=\"highlight\">\r\n                        <th>Factura N°</th>\r\n       <th>Cliente</th>                   <th>Factura</th>\r\n                        <th>Fecha</th>    <th>Monto</th>                  \r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    @FILAS\r\n                    <tr>\r\n                        \r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <div class=\"footer\">\r\n            <p></p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>\r\n\r\n";
-            string filas = string.Empty;
-            decimal total = 0;
-            while (lector.Read())
-            {
-                string htmlRow = "<tr>";
-
-                for (int i = 0; i < lector.FieldCount; i++)
-                {
-                    htmlRow += "<td>" + lector.GetValue(i).ToString() + "</td>";
-                }
-                htmlRow += "</tr>";
-                filas += htmlRow;
-
-            }
-            lector.Close();
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@tipoinfo", " COMPRAS REALIZADAS");
-            using (FileStream stream = new FileStream(rutaArchivoPDF, FileMode.Create))
-            {
-                //Creamos un nuevo documento y lo definimos como PDF
-                Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                pdfDoc.Open();
-                pdfDoc.Add(new Phrase(""));
-
-                //Agregamos la imagen del banner al documento
-                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(SurFeFront.Properties.Resources.logo_pp1_carpeta_2023, System.Drawing.Imaging.ImageFormat.Png);
-                img.ScaleToFit(60, 60);
-                img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                //img.SetAbsolutePosition(10,100);
-                img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                pdfDoc.Add(img);
-
-
-
-
-
-                //pdfDoc.Add(new Phrase("Hola Mundo"));
-                using (StringReader sr = new StringReader(PaginaHTML_Texto))
-                {
-                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-                }
-
-                pdfDoc.Close();
-                stream.Close();
-            }
-
-
-
-
-
-            PDFView formPDF = new PDFView(rutaCompletaArchivo);
-
-            // Mostrar el formulario secundario y verificar si se hizo clic en "Aceptar"
-            formPDF.ShowDialog();
-            //eso es codigo para hacer el html del pdf
-            // Cerrar el formulario Form1 después de cerrar el formulario Form2
-
-
-
-
-
-
-
-
-
-
-
+            FormDashboardVentas dashboard = new FormDashboardVentas();
+            dashboard.MdiParent = this; // Omitir esta linea si no usas MDI Container
+            dashboard.Show();
 
         }
 
@@ -864,7 +771,10 @@ namespace SurFeFront
 
         private void registrarPagoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProveedorRegistrarPago newMDIChild = new ProveedorRegistrarPago();
+           
+
+
+            FacturaPagoRegistrar newMDIChild = new FacturaPagoRegistrar();
             // Set the parent form of the child window.  
             newMDIChild.MdiParent = this;
             // Display the new form.  
@@ -873,9 +783,27 @@ namespace SurFeFront
 
         private void registraRemitoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RemitoRegistrar frmRemito = new RemitoRegistrar();
+            RecepcionMercaderia frmRemito = new RecepcionMercaderia();
             frmRemito.MdiParent = this; // Esto lo mete adentro de la ventana principal
             frmRemito.Show();
+        }
+
+        private void gestorDeRolesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Verificamos si el formulario ya está abierto para no duplicarlo
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.GetType() == typeof(GestionUsuarios))
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            // Instanciamos y configuramos el MdiParent
+            GestionUsuarios formUsuarios = new GestionUsuarios();
+            formUsuarios.MdiParent = this; // 'this' es el formulario principal
+            formUsuarios.Show();
         }
     }
 }

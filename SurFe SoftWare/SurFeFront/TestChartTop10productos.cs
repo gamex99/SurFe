@@ -1,347 +1,381 @@
-﻿using iTextSharp.tool.xml.css.parser.state;
-using Microsoft.VisualBasic.Logging;
-using OpenTK.Audio.OpenAL;
-using Org.BouncyCastle.Utilities;
-using ScottPlot;
+﻿using ScottPlot;
 using ScottPlot.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient; // Necesario para la conexión a SQL Server
-using System.Drawing;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static iTextSharp.text.pdf.events.IndexEvents;
-
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Color = System.Drawing.Color;
+using Label = System.Windows.Forms.Label;
+using Panel = System.Windows.Forms.Panel;
+using Orientation = ScottPlot.Orientation;
 
 namespace SurFeFront
 {
     public partial class TestChartTop10productos : Form
     {
         readonly FormsPlot FormsPlot1 = new FormsPlot() { Dock = DockStyle.Fill };
+
+        private System.Windows.Forms.Timer _animTimer;
+        private double _animProgress = 0;
+        private double[] _finalValues;
+        private string[] _finalLabels;
+        private byte[] _plotClaroCache;
+
         public TestChartTop10productos()
         {
             InitializeComponent();
-            // Add the FormsPlot to the panel
-            panel1.Controls.Add(FormsPlot1);
-
-
-
-            // Plot data using the control
-
-            double[] data = ScottPlot.Generate.Sin();
-
-            FormsPlot1.Plot.Add.Signal(data);
-
-            FormsPlot1.Refresh();
-            CargarGrafico2();
-
+            AplicarTemaOscuro();
+            panelGrafico.Controls.Add(FormsPlot1);
+            ConfigurarFiltrosIniciales();
+            CargarDatos();
         }
 
-        private void CargarGrafico()
+        // ════════════════════════════════════════════
+        //  TEMA OSCURO
+        // ════════════════════════════════════════════
+        private void AplicarTemaOscuro()
         {
-           
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-      
+            this.BackColor = Color.FromArgb(18, 18, 30);
+            panelTop.BackColor = Color.FromArgb(28, 28, 45);
+            panelFiltros.BackColor = Color.FromArgb(28, 28, 45);
+            panelKpis.BackColor = Color.FromArgb(28, 28, 45);
+            panelGrafico.BackColor = Color.FromArgb(18, 18, 30);
 
+            lblTitulo.ForeColor = Color.FromArgb(120, 180, 255);
+            lblSubtitulo.ForeColor = Color.FromArgb(160, 160, 200);
 
+            foreach (Label lbl in new[] { lblMes, lblAnio, lblTop, lblPeriodo })
+                lbl.ForeColor = Color.FromArgb(160, 160, 200);
 
-                
-                    // --- 1 y 2. OBTENER DATOS DE SQL ---
-                    // (Esta parte esta idéntica y funciona bien)
-                    List<double> values = new List<double>();
-                    List<string> labels = new List<string>();
-                   
-                    string query = @"
-        SELECT TOP 10 [detalle], [vendidos] 
-        FROM [dbo].[producto] 
-        WHERE [vendidos] > 0 
+            foreach (System.Windows.Forms.ComboBox cmb in new[] { cmbMes, cmbAnio, cmbTop })
+            {
+                cmb.BackColor = Color.FromArgb(38, 38, 58);
+                cmb.ForeColor = Color.White;
+            }
+            foreach (System.Windows.Forms.RadioButton rb in new[] { rbMensual, rbAnual })
+            {
+                rb.ForeColor = Color.FromArgb(160, 160, 200);
+                rb.BackColor = Color.FromArgb(28, 28, 45);
+            }
+
+            btnActualizar.BackColor = Color.FromArgb(60, 100, 200);
+            btnActualizar.ForeColor = Color.White;
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.FlatAppearance.BorderColor = Color.FromArgb(80, 120, 220);
+
+            btnExportarPDF.BackColor = Color.FromArgb(180, 60, 60);
+            btnExportarPDF.ForeColor = Color.White;
+            btnExportarPDF.FlatStyle = FlatStyle.Flat;
+            btnExportarPDF.FlatAppearance.BorderColor = Color.FromArgb(200, 80, 80);
+
+            foreach (Panel card in new[] { cardTotal, cardPromedio, cardMaximo })
+                card.BackColor = Color.FromArgb(38, 38, 58);
+
+            foreach (Label lbl in new[] { lblTotalVal, lblPromedioVal, lblMaximoVal,
+                                          lblTotalTxt, lblPromedioTxt, lblMaximoTxt })
+                lbl.ForeColor = Color.White;
+        }
+
+        // ════════════════════════════════════════════
+        //  FILTROS INICIALES
+        // ════════════════════════════════════════════
+        private void ConfigurarFiltrosIniciales()
+        {
+            for (int i = 2020; i <= DateTime.Now.Year; i++) cmbAnio.Items.Add(i);
+            cmbAnio.SelectedItem = DateTime.Now.Year;
+
+            cmbMes.DataSource = System.Globalization.CultureInfo.CurrentCulture
+                .DateTimeFormat.MonthNames.Where(m => !string.IsNullOrEmpty(m)).ToList();
+            cmbMes.SelectedIndex = DateTime.Now.Month - 1;
+
+            cmbTop.Items.AddRange(new object[] { "Top 5", "Top 10", "Top 20" });
+            cmbTop.SelectedIndex = 1;
+
+            rbMensual.CheckedChanged += (s, e) => cmbMes.Enabled = rbMensual.Checked;
+            rbAnual.CheckedChanged += (s, e) => cmbMes.Enabled = !rbAnual.Checked;
+
+            btnActualizar.Click += (s, e) => CargarDatos();
+            btnExportarPDF.Click += BtnExportarPDF_Click;
+        }
+
+        // ════════════════════════════════════════════
+        //  CARGA DE DATOS
+        // ════════════════════════════════════════════
+        private void CargarDatos()
+        {
+            int top = int.Parse(cmbTop.SelectedItem.ToString().Split(' ')[1]);
+
+            var values = new List<double>();
+            var labels = new List<string>();
+
+            string connectionString = System.Configuration.ConfigurationManager
+                .ConnectionStrings["conexionDB"].ConnectionString;
+
+            // Consulta original — usa la columna [vendidos] directo de [producto]
+            string query = $@"
+        SELECT TOP {top}
+            [detalle],
+            [vendidos]
+        FROM [dbo].[producto]
+        WHERE [vendidos] > 0
         ORDER BY [vendidos] DESC";
 
-                    try
-                    {
-                        using (SqlConnection connection = new SqlConnection(connectionString))
+            try
+            {
+                using (var conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            SqlCommand command = new SqlCommand(query, connection);
-                            connection.Open();
-                            SqlDataReader reader = command.ExecuteReader();
-                            while (reader.Read())
-                            {
-                                labels.Add(reader.GetString(0));
-                                values.Add(Convert.ToDouble(reader.GetValue(1)));
-                            }
+                            labels.Add(reader.GetString(0));
+                            values.Add(Convert.ToDouble(reader.GetValue(1)));
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al cargar datos de la base de datos: " + ex.Message);
-                        return;
-                    }
-
-                    // --- 3. Configurar el gráfico (Versión Segura) ---
-                    FormsPlot1.Plot.Clear();
-                    double[] dataValues = values.ToArray();
-                    string[] dataLabels = labels.ToArray();
-
-                    // 1. Añadir las barras
-                    var barPlot = FormsPlot1.Plot.Add.Bars(dataValues);
-                    barPlot.Color = Colors.Navy; // Usamos un color oscuro para que el texto blanco resalte
-
-                    // 2. Asignar etiquetas en ScottPlot 5
-                    Tick[] ticks = new Tick[dataLabels.Length];
-                    for (int i = 0; i < dataLabels.Length; i++)
-                    {
-                        ticks[i] = new Tick(i, dataLabels[i]);
-                    }
-                    FormsPlot1.Plot.Axes.Bottom.TickGenerator = new ScottPlot.TickGenerators.NumericManual(ticks);
-                    FormsPlot1.Plot.Axes.Bottom.TickLabelStyle.Rotation = 60;
-
-                    // 3. Títulos y Etiquetas
-                    FormsPlot1.Plot.Title("Top 10 Productos Más Vendidos");
-                    FormsPlot1.Plot.YLabel("Cantidad Vendida");
-                    FormsPlot1.Plot.XLabel("Producto");
-
-                    // 4. Límites de Ejes
-                    double maxY = dataValues.Length > 0 ? dataValues.Max() : 10;
-                    FormsPlot1.Plot.Axes.SetLimitsY(0, maxY * 1.1);
-                    FormsPlot1.Plot.Axes.SetLimitsX(-0.5, dataValues.Length - 0.5);
-
-
-                    // --- 6. (NUEVO) AÑADIR ETIQUETAS DE VALOR (TEXTO) ---
-                    for (int i = 0; i < dataValues.Length; i++)
-                    {
-                        // Convertimos el número (ej. 97) a un string
-                        string label = dataValues[i].ToString();
-
-                        // Posición X: Centrado en la barra (posición 'i')
-                        double xPos = i;
-
-                        // Posición Y: Justo *debajo* del borde superior de la barra
-                        // Ajusta el '- 2' si quieres el texto más arriba o más abajo
-                        double yPos = dataValues[i] - 2;
-
-                        // Añadimos el objeto Texto
-                        var text = FormsPlot1.Plot.Add.Text(label, xPos, yPos);
-
-                        // --- Estilo del texto ---
-                        text.Color = Colors.White; // Texto blanco para que resalte
-                          text.Bold = true;
-                            text.Size = 10;
-
-                // Alineación: Centrado horizontalmente (TopCenter)
-                // Esto significa que la 'yPos' es el borde SUPERIOR del texto
-                text.Alignment = Alignment.UpperCenter;
-                    }
-
-
-                    // ¡Refrescar el gráfico!
-                    FormsPlot1.Refresh();
-                }
-        /*
-        private void CargarGrafico2()
-
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            // --- 1 y 2. OBTENER DATOS DE SQL ---
-            // (Esta parte esta idéntica y funciona bien)
-            List<double> values = new List<double>();
-            List<string> labels = new List<string>();
-            
-            string query = @"
-        SELECT TOP 10 [detalle], [cantidad_venta] 
-        FROM [dbo].[producto] 
-        WHERE [cantidad_venta] > 0 
-        ORDER BY [cantidad_venta] DESC";
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        labels.Add(reader.GetString(0));
-                        values.Add(Convert.ToDouble(reader.GetValue(1)));
-                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar datos de la base de datos: " + ex.Message);
+                MessageBox.Show("Error al cargar datos: " + ex.Message);
                 return;
             }
 
-            // --- 3. Configurar el gráfico (Versión Horizontal) ---
-            FormsPlot1.Plot.Clear();
-            double[] dataValues = values.ToArray();
-            string[] dataLabels = labels.ToArray();
-
-            // 1. Añadir las barras HORIZONTALES
-            // (Este es el cambio principal)
-            var barPlot = FormsPlot1.Plot.Add.Bars(dataValues);
-            barPlot.Horizontal = true;
-            barPlot.Color = Colors.Navy;
-
-            // 2. Asignar etiquetas de eje (AHORA EN EL EJE IZQUIERDO)
-            Tick[] ticks = new Tick[dataLabels.Length];
-            for (int i = 0; i < dataLabels.Length; i++)
+            if (values.Count == 0)
             {
-                ticks[i] = new Tick(i, dataLabels[i]);
-            }
-            // Asignamos los nombres al eje Izquierdo (Y)
-            FormsPlot1.Plot.Axes.Left.TickGenerator = new ScottPlot.TickGenerators.NumericManual(ticks);
-            // Ya no necesitamos rotar las etiquetas del eje X
-            // FormsPlot1.Plot.Axes.Bottom.TickLabelStyle.Rotation = 60; 
-
-            // 3. Títulos y Etiquetas (EJES INVERTIDOS)
-            FormsPlot1.Plot.Title("Top 10 Productos Más Vendidos");
-            FormsPlot1.Plot.XLabel("Cantidad Vendida"); // Eje X es ahora la cantidad
-            FormsPlot1.Plot.YLabel("Producto");         // Eje Y es ahora el producto
-
-            // 4. Límites de Ejes (EJES INVERTIDOS)
-            double maxX = dataValues.Length > 0 ? dataValues.Max() : 10;
-            FormsPlot1.Plot.Axes.SetLimitsX(0, maxX * 1.1); // El límite de valor va en el Eje X
-            FormsPlot1.Plot.Axes.SetLimitsY(-0.5, dataValues.Length - 0.5); // El límite de categoría va en el Eje Y
-
-
-            // --- 6. AÑADIR ETIQUETAS DE TEXTO (LOS NOMBRES) ---
-            // (Con lógica adaptada para barras horizontales)
-            for (int i = 0; i < dataValues.Length; i++)
-            {
-                // CAMBIO: La etiqueta es el NOMBRE, no el número
-                string label = dataLabels[i];
-
-                // CAMBIO: La posición Y es el centro de la barra ('i')
-                double yPos = i;
-
-                // CAMBIO: La posición X la pondremos cerca del inicio de la barra
-                double xPos = 1; // Empezar justo a la derecha del eje
-
-                var text = FormsPlot1.Plot.Add.Text(label, xPos, yPos);
-
-                // --- Estilo del texto ---
-                text.Color = Colors.White;
-                text.Bold = true;
-                text.Size = 10;
-
-                // CAMBIO: Alineación (Probamos 'MiddleLeft')
-                // Si 'MiddleLeft' da error, prueba 'UpperCenter' o 'LowerCenter'
-                text.Alignment = Alignment.MiddleLeft;
-            }
-
-
-            // ¡Refrescar el gráfico!
-            FormsPlot1.Refresh();
-        }*/
-        private void CargarGrafico2()
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-            // --- 1 y 2. OBTENER DATOS DE SQL ---
-            // (Esta parte esta idéntica y funciona bien)
-            List<double> values = new List<double>();
-            List<string> labels = new List<string>();
-
-            string query = @"
-SELECT TOP 10 [detalle], [vendidos] 
-FROM [dbo].[producto] 
-WHERE [vendidos] > 0 
-ORDER BY [vendidos] DESC";
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        labels.Add(reader.GetString(0));
-                        values.Add(Convert.ToDouble(reader.GetValue(1)));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar datos de la base de datos: " + ex.Message);
+                MessageBox.Show("Sin datos para mostrar.", "Sin Datos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // --- 3. Configurar el gráfico (Versión Horizontal) ---
-            FormsPlot1.Plot.Clear();
-            double[] dataValues = values.ToArray();
-            string[] dataLabels = labels.ToArray();
+            // Invertir: mayor queda arriba
+            values.Reverse();
+            labels.Reverse();
 
-            // 1. Añadir las barras HORIZONTALES
-            var barPlot = FormsPlot1.Plot.Add.Bars(dataValues);
-            barPlot.Horizontal = true;
-            barPlot.Color = Colors.Navy;
+            _finalValues = values.ToArray();
+            _finalLabels = labels.ToArray();
 
-            // 2. Asignar etiquetas de eje (AHORA EN EL EJE IZQUIERDO)
-            Tick[] ticks = new Tick[dataLabels.Length];
-            for (int i = 0; i < dataLabels.Length; i++)
-            {
-                ticks[i] = new Tick(i, dataLabels[i]);
-            }
-            // Asignamos los nombres al eje Izquierdo (Y)
-            FormsPlot1.Plot.Axes.Left.TickGenerator = new ScottPlot.TickGenerators.NumericManual(ticks);
-
-            // 3. Títulos y Etiquetas (EJES INVERTIDOS)
-            FormsPlot1.Plot.Title("Top 10 Productos Más Vendidos");
-            FormsPlot1.Plot.XLabel("Cantidad Vendida"); // Eje X es ahora la cantidad
-            FormsPlot1.Plot.YLabel("Producto");       // Eje Y es ahora el producto
-
-            // 4. Límites de Ejes (EJES INVERTIDOS)
-            double maxX = dataValues.Length > 0 ? dataValues.Max() : 10;
-            // Modificado: Damos un 20% de espacio extra para las etiquetas de valor
-            FormsPlot1.Plot.Axes.SetLimitsX(0, maxX * 1.20);
-            FormsPlot1.Plot.Axes.SetLimitsY(-0.5, dataValues.Length - 0.5);
-
-
-            // --- 6. AÑADIR ETIQUETAS DE VALOR (LA CANTIDAD) ---
-            // (Modificado para mostrar la cantidad al final de la barra)
-            for (int i = 0; i < dataValues.Length; i++)
-            {
-                // CAMBIO: La etiqueta es el VALOR, no el nombre
-                // "N0" es para un número entero (ej: "150")
-                string label = dataValues[i].ToString("N0");
-
-                // CAMBIO: La posición Y es el centro de la barra ('i')
-                double yPos = i;
-
-                // CAMBIO: La posición X es el FINAL de la barra
-                double xPos = dataValues[i];
-
-                var text = FormsPlot1.Plot.Add.Text(label, xPos, yPos);
-
-                // --- Estilo del texto ---
-                // CAMBIO: Color a negro para ser visible fuera de la barra
-                text.Color = Colors.Black;
-                text.Bold = false;
-                text.Size = 10;
-
-                // CAMBIO: Alineación (Mantenemos 'MiddleLeft')
-                // Esto hace que el texto EMPIECE en xPos
-                text.Alignment = Alignment.MiddleLeft;
-
-                // AÑADIDO: Un pequeño padding para que no esté pegado
-                text.OffsetX = 5;
-            }
-
-            // ¡Refrescar el gráfico!
-            FormsPlot1.Refresh();
+            ActualizarKpis(_finalValues, _finalLabels);
+            IniciarAnimacion();
+        
         }
 
-        private void TestChartTop10productos_Load(object sender, EventArgs e)
+        // ════════════════════════════════════════════
+        //  KPIs
+        // ════════════════════════════════════════════
+        private void ActualizarKpis(double[] vals, string[] labs)
         {
+            lblTotalVal.Text = vals.Sum().ToString("N0");
+            lblPromedioVal.Text = vals.Average().ToString("N1");
+            int idxMax = Array.IndexOf(vals, vals.Max());
+            string nombreTop = labs[idxMax].Length > 18
+                ? labs[idxMax].Substring(0, 18) + "…"
+                : labs[idxMax];
+            lblMaximoVal.Text = $"{nombreTop}\n({vals.Max():N0})";
+        }
 
+        // ════════════════════════════════════════════
+        //  ANIMACIÓN
+        // ════════════════════════════════════════════
+        private void IniciarAnimacion()
+        {
+            _animProgress = 0;
+            _animTimer?.Stop();
+            _animTimer = new System.Windows.Forms.Timer { Interval = 16 };
+            _animTimer.Tick += (s, e) =>
+            {
+                _animProgress += 0.045;
+                if (_animProgress >= 1.0) { _animProgress = 1.0; _animTimer.Stop(); }
+                double t = 1 - Math.Pow(1 - _animProgress, 3);
+                DibujarGrafico(_finalValues.Select(v => v * t).ToArray(), claro: false);
+            };
+            _animTimer.Start();
+        }
+
+        // ════════════════════════════════════════════
+        //  DIBUJO DEL GRÁFICO
+        // ════════════════════════════════════════════
+        private void DibujarGrafico(double[] values, bool claro)
+        {
+            var plot = claro ? new ScottPlot.Plot() : FormsPlot1.Plot;
+            plot.Clear();
+
+            // ── Tema ──
+            if (claro)
+            {
+                plot.FigureBackground.Color = ScottPlot.Color.FromHex("#FFFFFF");
+                plot.DataBackground.Color = ScottPlot.Color.FromHex("#F5F7FF");
+                plot.Axes.Color(ScottPlot.Color.FromHex("#333355"));
+                plot.Grid.MajorLineColor = ScottPlot.Color.FromHex("#DDDDEE");
+            }
+            else
+            {
+                plot.FigureBackground.Color = ScottPlot.Color.FromHex("#12121E");
+                plot.DataBackground.Color = ScottPlot.Color.FromHex("#1C1C2D");
+                plot.Axes.Color(ScottPlot.Color.FromHex("#A0A0C8"));
+                plot.Grid.MajorLineColor = ScottPlot.Color.FromHex("#2A2A42");
+            }
+
+            // ── Gradiente por ranking (azul → dorado, mayor = dorado) ──
+            var barItems = new ScottPlot.Bar[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                double ratio = values.Length > 1 ? (double)i / (values.Length - 1) : 1;
+                int r = (int)(58 + ratio * (245 - 58));
+                int g = (int)(111 + ratio * (166 - 111));
+                int b = (int)(216 + ratio * (35 - 216));
+
+                barItems[i] = new ScottPlot.Bar
+                {
+                    Position = i,
+                    Value = values[i],
+                    FillColor = ScottPlot.Color.FromHex($"#{r:X2}{g:X2}{b:X2}"),
+                    Label = _animProgress >= 1.0 ? values[i].ToString("N0") : string.Empty,
+                    Orientation = Orientation.Horizontal
+                };
+            }
+            plot.Add.Bars(barItems);
+
+            // ── Línea de promedio vertical ──
+            if (_animProgress >= 1.0)
+            {
+                double promedio = _finalValues.Average();
+                var vline = plot.Add.VerticalLine(promedio);
+                vline.Color = ScottPlot.Color.FromHex(claro ? "#CC3333" : "#FF6B6B");
+                vline.LineWidth = 2;
+                vline.LinePattern = ScottPlot.LinePattern.Dashed;
+
+                var txt = plot.Add.Text($"Prom: {promedio:N1}", promedio, values.Length - 0.3);
+                txt.LabelFontColor = ScottPlot.Color.FromHex(claro ? "#CC3333" : "#FF6B6B");
+                txt.LabelFontSize = 9;
+            }
+
+            // ── Eje Y con nombres de productos ──
+            var tickGen = new ScottPlot.TickGenerators.NumericManual();
+            for (int i = 0; i < _finalLabels.Length; i++)
+            {
+                string nombre = _finalLabels[i].Length > 24
+                    ? _finalLabels[i].Substring(0, 24) + "…"
+                    : _finalLabels[i];
+                tickGen.AddMajor(i, nombre);
+            }
+            plot.Axes.Left.TickGenerator = tickGen;
+            plot.Axes.Left.TickLabelStyle.ForeColor =
+                ScottPlot.Color.FromHex(claro ? "#333355" : "#A0A0C8");
+
+            // ── Límites ──
+            plot.Axes.SetLimitsX(0, _finalValues.Max() * 1.25);
+            plot.Axes.SetLimitsY(-0.5, values.Length - 0.5);
+            plot.Axes.Bottom.Label.Text = "Unidades Vendidas";
+            plot.Axes.Bottom.Label.ForeColor =
+                ScottPlot.Color.FromHex(claro ? "#333355" : "#A0A0C8");
+
+            if (!claro)
+                FormsPlot1.Refresh();
+            else
+                _plotClaroCache = plot.GetImageBytes(900, 520);
+        }
+
+        // ════════════════════════════════════════════
+        //  EXPORTAR PDF → PDFView
+        // ════════════════════════════════════════════
+        private void BtnExportarPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DibujarGrafico(_finalValues, claro: true);
+                byte[] pngGrafico = _plotClaroCache;
+
+                string rutaTmp = Path.Combine(Path.GetTempPath(),
+                    $"TopProductos_{DateTime.Now:yyyyMMdd_HHmm}.pdf");
+
+                using (var ms = new MemoryStream())
+                {
+                    var pageSize = iTextSharp.text.PageSize.A4;
+                    var doc = new Document(pageSize, 40, 40, 50, 40);
+                    var writer = PdfWriter.GetInstance(doc, ms);
+                    doc.Open();
+
+                    // ── Fondo blanco ──
+                    var cb = writer.DirectContentUnder;
+                    cb.SetColorFill(BaseColor.WHITE);
+                    cb.Rectangle(0, 0, pageSize.Width, pageSize.Height);
+                    cb.Fill();
+
+                    // ── Fuentes ──
+                    var colorTitulo = new BaseColor(30, 80, 180);
+                    var colorSub = new BaseColor(80, 80, 110);
+                    var colorCard = new BaseColor(235, 238, 248);
+                    var colorCardVal = new BaseColor(20, 20, 50);
+
+                    var fTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20, colorTitulo);
+                    var fSub = FontFactory.GetFont(FontFactory.HELVETICA, 9, colorSub);
+                    var fKpiTxt = FontFactory.GetFont(FontFactory.HELVETICA, 7, colorSub);
+                    var fKpiVal = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 13, colorCardVal);
+                    var fSeccion = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 11, colorTitulo);
+
+                    // ── Encabezado ──
+                    int top = int.Parse(cmbTop.SelectedItem.ToString().Split(' ')[1]);
+                    string periodo = rbMensual.Checked
+                        ? $"{cmbMes.SelectedItem} {cmbAnio.SelectedItem}"
+                        : cmbAnio.SelectedItem.ToString();
+
+                    doc.Add(new Paragraph($"Top {top} Productos Más Vendidos", fTitulo)
+                    { Alignment = Element.ALIGN_CENTER, SpacingAfter = 2 });
+                    doc.Add(new Paragraph(
+                        $"Período: {periodo}  |  Generado: {DateTime.Now:dd/MM/yyyy HH:mm}",
+                        fSub)
+                    { Alignment = Element.ALIGN_CENTER, SpacingAfter = 16 });
+
+                    // ── KPIs ──
+                    var tablaKpi = new PdfPTable(3) { WidthPercentage = 100 };
+                    tablaKpi.SpacingAfter = 16;
+
+                    void AgregarKpi(string titulo, string valor)
+                    {
+                        var cell = new PdfPCell
+                        {
+                            Border = 0,
+                            BackgroundColor = colorCard,
+                            Padding = 10,
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        };
+                        cell.AddElement(new Paragraph(titulo, fKpiTxt)
+                        { Alignment = Element.ALIGN_CENTER });
+                        cell.AddElement(new Paragraph(valor, fKpiVal)
+                        { Alignment = Element.ALIGN_CENTER });
+                        tablaKpi.AddCell(cell);
+                    }
+
+                    AgregarKpi("TOTAL UNIDADES VENDIDAS", lblTotalVal.Text);
+                    AgregarKpi("PROMEDIO POR PRODUCTO", lblPromedioVal.Text);
+                    AgregarKpi("PRODUCTO TOP", lblMaximoVal.Text);
+                    doc.Add(tablaKpi);
+
+                    // ── Gráfico ──
+                    doc.Add(new Paragraph($"Ranking Top {top} — Unidades Vendidas", fSeccion)
+                    { SpacingAfter = 6 });
+                    var img = iTextSharp.text.Image.GetInstance(pngGrafico);
+                    img.ScaleToFit(pageSize.Width - 80, 450);
+                    img.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(img);
+
+                    doc.Close();
+                    File.WriteAllBytes(rutaTmp, ms.ToArray());
+                }
+
+                var pdfView = new PDFView(rutaTmp);
+                pdfView.MdiParent = this.MdiParent;
+                pdfView.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar PDF: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
-

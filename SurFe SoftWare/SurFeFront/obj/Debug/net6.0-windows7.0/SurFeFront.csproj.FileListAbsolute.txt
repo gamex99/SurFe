@@ -168,3 +168,15 @@ C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.BusquedaProveedor.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.BusquedaRemitosProv.resources
 C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.FacturaCompraRegistrar.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.GestionUsuarios.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows7.0\WinForms.DataVisualization.Utilities.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows7.0\WinForms.DataVisualization.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.FormDashboardVentas.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows7.0\Guna.UI2.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows7.0\System.Management.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\bin\Debug\net6.0-windows7.0\runtimes\win\lib\net6.0\System.Management.dll
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.BusquedaOCProveedor.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.FacturaPagoRegistrar.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.BusquedaFacturaPendiente.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.RecepcionMercaderia.resources
+C:\Users\ParraX\Documents\GitHub\SurFe\SurFe SoftWare\SurFeFront\obj\Debug\net6.0-windows7.0\SurFeFront.BusquedaRemitoRecibido.resources

@@ -204,6 +204,10 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows7.0",
           "dependencies": {
+            "Guna.UI2.WinForms": {
+              "target": "Package",
+              "version": "[2.0.4.7, )"
+            },
             "Microsoft.Web.WebView2": {
               "target": "Package",
               "version": "[1.0.3800.47, )"
@@ -215,6 +219,10 @@
             "ScottPlot.WinForms": {
               "target": "Package",
               "version": "[5.1.57, )"
+            },
+            "WinForms.DataVisualization": {
+              "target": "Package",
+              "version": "[1.10.0, )"
             },
             "itext7": {
               "target": "Package",

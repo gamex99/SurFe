@@ -1,202 +1,291 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Windows.Forms;
 using System.IO;
-// Usamos solo los namespaces básicos de iText
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
+using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 
 namespace SurFeFront
 {
     public partial class ProveedorRegistrarPedido : Form
     {
-        private string conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
-        private int idProveedorSeleccionado = -1;
+        // ─── Estados posibles del pedido ────────────────────────────────
+        private static class EstadoPedido
+        {
+            public const string Pendiente = "Pendiente";
+            public const string Enviado = "Enviado";
+            public const string Recibido = "Recibido";
+            public const string ConReclamo = "Con reclamo";
+            public const string Cerrado = "Cerrado";
+            public const string Cancelado = "Cancelado";
+        }
+
+        // ─── Estado interno del formulario ──────────────────────────────
+        private readonly string _conString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+        private int _idProveedor = -1;
+        private string _barcodeActual = string.Empty;
 
         public ProveedorRegistrarPedido()
         {
             InitializeComponent();
         }
 
-        // --- BUSCADORES ---
-        private void btnbuscarproveedor_Click(object sender, EventArgs e)
+        // ─── BUSCADORES ─────────────────────────────────────────────────
+
+        private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
-            using (BusquedaProveedor b = new BusquedaProveedor())
+            using (var dialogo = new BusquedaProveedor())
             {
-                if (b.ShowDialog() == DialogResult.OK)
+                if (dialogo.ShowDialog() == DialogResult.OK)
                 {
-                    idProveedorSeleccionado = b.IdSeleccionado;
-                    lbrazonsocial.Text = b.NombreSeleccionado;
+                    _idProveedor = dialogo.IdSeleccionado;
+                    lblRazonSocial.Text = dialogo.NombreSeleccionado;
+                    lblRazonSocial.ForeColor = Color.Black;
                 }
             }
         }
 
-        private void btnbuscar_Click(object sender, EventArgs e)
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
-            using (BusquedaProducto b = new BusquedaProducto())
+            using (var dialogo = new BusquedaProducto())
             {
-                if (b.ShowDialog() == DialogResult.OK)
+                if (dialogo.ShowDialog() == DialogResult.OK)
                 {
-                    lbbarcode.Text = b.BarcodeSeleccionado;
-                    lbdetalle.Text = b.NombreSeleccionado;
-                    tbcantidad.Focus();
+                    _barcodeActual = dialogo.BarcodeSeleccionado;
+                    lblBarcode.Text = dialogo.BarcodeSeleccionado;
+                    lblDetalle.Text = dialogo.NombreSeleccionado;
+                    tbCantidad.Clear();
+                    tbCantidad.Focus();
                 }
             }
         }
 
-        private void btnagregar_Click(object sender, EventArgs e)
-        {
-            if (lbbarcode.Text == "Código" || lbbarcode.Text == "***") return;
-            if (!int.TryParse(tbcantidad.Text, out int cant) || cant <= 0) return;
+        // ─── AGREGAR PRODUCTO A LA GRILLA ───────────────────────────────
 
-            dataGridView1.Rows.Add(lbbarcode.Text, lbdetalle.Text, cant);
-            tbcantidad.Clear();
-            lbbarcode.Text = "Código";
-            lbdetalle.Text = "Seleccione otro producto...";
-        }
-
-        // --- GUARDADO ---
-        private void btnguardar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (idProveedorSeleccionado == -1 || dataGridView1.Rows.Count == 0)
+            if (string.IsNullOrEmpty(_barcodeActual))
             {
-                MessageBox.Show("Faltan datos para completar el pedido.", "SurFe");
+                MessageBox.Show("Primero seleccione un producto.", "SurFe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            using (SqlConnection con = new SqlConnection(conString))
+            if (!int.TryParse(tbCantidad.Text.Trim(), out int cantidad) || cantidad <= 0)
+            {
+                MessageBox.Show("Ingrese una cantidad válida (número mayor a cero).", "SurFe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbCantidad.Focus();
+                return;
+            }
+
+            // Si el producto ya está en la grilla, suma la cantidad
+            foreach (DataGridViewRow fila in gridPedido.Rows)
+            {
+                if (fila.Cells["colBarcode"].Value?.ToString() == _barcodeActual)
+                {
+                    int cantActual = Convert.ToInt32(fila.Cells["colCantidad"].Value);
+                    fila.Cells["colCantidad"].Value = cantActual + cantidad;
+                    LimpiarSeleccionProducto();
+                    return;
+                }
+            }
+
+            gridPedido.Rows.Add(_barcodeActual, lblDetalle.Text, cantidad);
+            LimpiarSeleccionProducto();
+        }
+
+        private void LimpiarSeleccionProducto()
+        {
+            _barcodeActual = string.Empty;
+            lblBarcode.Text = "—";
+            lblDetalle.Text = "Seleccione un producto...";
+            tbCantidad.Clear();
+            btnBuscarProducto.Focus();
+        }
+
+        // ─── ELIMINAR FILA DE LA GRILLA ─────────────────────────────────
+
+        private void gridPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != gridPedido.Columns["colEliminar"].Index)
+                return;
+
+            var confirmacion = MessageBox.Show(
+                "¿Desea quitar este producto del pedido?",
+                "SurFe",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+                gridPedido.Rows.RemoveAt(e.RowIndex);
+        }
+
+        // ─── SOLO NÚMEROS EN EL CAMPO CANTIDAD ──────────────────────────
+
+        private void tbCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        // ─── GUARDAR ────────────────────────────────────────────────────
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (!ValidarFormulario()) return;
+
+            using (var con = new SqlConnection(_conString))
             {
                 con.Open();
-                SqlTransaction tra = con.BeginTransaction();
+                var tra = con.BeginTransaction();
                 try
                 {
-                    // 1. Cabecera (Esto estaba bien)
-                    string sqlCab = @"INSERT INTO pedido_proveedor (id_proveedor, fecha, estado) 
-                                      VALUES (@idp, GETDATE(), 'Pendiente');
-                                      SELECT SCOPE_IDENTITY();";
-                    SqlCommand cmdCab = new SqlCommand(sqlCab, con, tra);
-                    cmdCab.Parameters.AddWithValue("@idp", idProveedorSeleccionado);
-                    int idGenerado = Convert.ToInt32(cmdCab.ExecuteScalar());
-
-                    // 2. Detalles (¡ACÁ ESTÁ LA CORRECCIÓN!)
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        // Usamos índice 0 para verificar porque es el primer dato (Barcode) que agregaste con Rows.Add()
-                        if (row.Cells[0].Value != null)
-                        {
-                            // CORRECCIÓN: Apuntamos a pedido_proveedor_detalle y buscamos el ID real usando el Barcode
-                            string sqlDet = @"INSERT INTO pedido_proveedor_detalle (id_pedido, id_producto, cantidad) 
-                                              VALUES (@idp, (SELECT TOP 1 id FROM producto WHERE barcode = @bar), @cant)";
-
-                            SqlCommand cmdDet = new SqlCommand(sqlDet, con, tra);
-                            cmdDet.Parameters.AddWithValue("@idp", idGenerado);
-
-                            // row.Cells[0] es el Barcode, row.Cells[2] es la Cantidad (según tu Rows.Add)
-                            cmdDet.Parameters.AddWithValue("@bar", row.Cells[0].Value.ToString());
-                            cmdDet.Parameters.AddWithValue("@cant", Convert.ToInt32(row.Cells[2].Value));
-
-                            cmdDet.ExecuteNonQuery();
-                        }
-                    }
-
+                    int idPedido = InsertarCabecera(con, tra);
+                    InsertarDetalles(con, tra, idPedido);
                     tra.Commit();
 
-                    // 3. Generar PDF
-                    GenerarYMostrarPDF(idGenerado, lbrazonsocial.Text);
+                    GenerarYMostrarPDF(idPedido, lblRazonSocial.Text);
                     this.Close();
                 }
                 catch (Exception ex)
                 {
                     tra.Rollback();
-                    MessageBox.Show("Error al guardar: " + ex.Message);
+                    MessageBox.Show(
+                        $"Error al guardar el pedido:\n{ex.Message}",
+                        "SurFe — Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
 
-        // --- GENERACIÓN DE PDF LIMPIA ---
-        private void GenerarYMostrarPDF(int nro, string prov)
+        private bool ValidarFormulario()
         {
-            string directorioPrograma = AppDomain.CurrentDomain.BaseDirectory;
-            string nombreArchivo = "Pedido_" + GetNombreArchivoFechaHora();
-            string rutaCompletaArchivo = Path.Combine(directorioPrograma, nombreArchivo);
+            if (_idProveedor == -1)
+            {
+                MessageBox.Show("Seleccione un proveedor antes de guardar.", "SurFe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (gridPedido.Rows.Count == 0)
+            {
+                MessageBox.Show("Agregue al menos un producto al pedido.", "SurFe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private int InsertarCabecera(SqlConnection con, SqlTransaction tra)
+        {
+            const string sql = @"
+                INSERT INTO pedido_proveedor (id_proveedor, fecha, estado)
+                VALUES (@idProveedor, GETDATE(), @estado);
+                SELECT SCOPE_IDENTITY();";
+
+            using (var cmd = new SqlCommand(sql, con, tra))
+            {
+                cmd.Parameters.AddWithValue("@idProveedor", _idProveedor);
+                cmd.Parameters.AddWithValue("@estado", EstadoPedido.Pendiente);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private void InsertarDetalles(SqlConnection con, SqlTransaction tra, int idPedido)
+        {
+            const string sql = @"
+                INSERT INTO pedido_proveedor_detalle (id_pedido, id_producto, cantidad)
+                VALUES (@idPedido,
+                        (SELECT TOP 1 id FROM producto WHERE barcode = @barcode),
+                        @cantidad)";
+
+            foreach (DataGridViewRow fila in gridPedido.Rows)
+            {
+                if (fila.Cells["colBarcode"].Value == null) continue;
+
+                using (var cmd = new SqlCommand(sql, con, tra))
+                {
+                    cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                    cmd.Parameters.AddWithValue("@barcode", fila.Cells["colBarcode"].Value.ToString());
+                    cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila.Cells["colCantidad"].Value));
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // ─── GENERACIÓN DE PDF ──────────────────────────────────────────
+
+        private void GenerarYMostrarPDF(int nroPedido, string proveedor)
+        {
+            string ruta = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                $"Pedido_{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
 
             try
             {
-                string filasHtml = "";
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                string filasHtml = ConstruirFilasHtml();
+
+                string html = $@"
+                <html>
+                <body style='font-family: Arial, sans-serif;'>
+                    <div style='text-align: center;'>
+                        <h1 style='color: #007ACC;'>SurFe — ORDEN DE PEDIDO</h1>
+                        <p><b>N° Pedido:</b> {nroPedido} &nbsp;|&nbsp; <b>Fecha:</b> {DateTime.Now:dd/MM/yyyy}</p>
+                        <hr/>
+                    </div>
+                    <p><b>Proveedor:</b> {proveedor}</p>
+                    <table style='width:100%; border-collapse: collapse;'>
+                        <thead>
+                            <tr style='background-color:#007ACC; color:white;'>
+                                <th style='padding:10px;'>Código</th>
+                                <th style='padding:10px;'>Producto</th>
+                                <th style='padding:10px;'>Cant.</th>
+                            </tr>
+                        </thead>
+                        <tbody>{filasHtml}</tbody>
+                    </table>
+                    <br/><br/>
+                    <p>Firma autorizada: _______________________________</p>
+                </body>
+                </html>";
+
+                using (var stream = new FileStream(ruta, FileMode.Create))
                 {
-                    if (row.Cells[0].Value != null)
-                    {
-                        filasHtml += $@"
-                    <tr>
-                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells[0].Value}</td>
-                        <td style='border: 1px solid #ddd; padding: 8px;'>{row.Cells[1].Value}</td>
-                        <td style='border: 1px solid #ddd; padding: 8px; text-align: center;'>{row.Cells[2].Value}</td>
-                    </tr>";
-                    }
+                    var doc = new Document(PageSize.A4, 25, 25, 25, 25);
+                    var writer = PdfWriter.GetInstance(doc, stream);
+                    doc.Open();
+                    using (var sr = new StringReader(html))
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, sr);
+                    doc.Close();
                 }
 
-                string PaginaHTML_Texto = $@"
-            <html>
-            <body style='font-family: Arial, sans-serif;'>
-                <div style='text-align: center;'>
-                    <h1 style='color: #2c3e50;'>SurFe - ORDEN DE PEDIDO</h1>
-                    <p><b>Número de Pedido:</b> {nro} | <b>Fecha:</b> {DateTime.Now:dd/MM/yyyy}</p>
-                    <hr/>
-                </div>
-                <div style='margin: 20px 0;'>
-                    <p><b>Proveedor:</b> {prov}</p>
-                </div>
-                <table style='width: 100%; border-collapse: collapse;'>
-                    <thead>
-                        <tr style='background-color: #2c3e50; color: white;'>
-                            <th style='padding: 10px;'>Código</th>
-                            <th style='padding: 10px;'>Producto</th>
-                            <th style='padding: 10px;'>Cant.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filasHtml}
-                    </tbody>
-                </table>
-                <p style='margin-top: 50px;'>Firma Autorizada: _________________________</p>
-            </body>
-            </html>";
-
-                using (FileStream stream = new FileStream(rutaCompletaArchivo, FileMode.Create))
-                {
-                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 25, 25, 25, 25);
-                    iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, stream);
-
-                    pdfDoc.Open();
-
-                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
-                    {
-                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-                    }
-
-                    pdfDoc.Close();
-                    stream.Close();
-                }
-
-                PDFView formPDF = new PDFView(rutaCompletaArchivo);
-                formPDF.ShowDialog();
+                new PDFView(ruta).ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al generar PDF: " + ex.Message, "SurFe Error");
+                MessageBox.Show($"Error al generar el PDF:\n{ex.Message}", "SurFe — Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private static string GetNombreArchivoFechaHora()
+        private string ConstruirFilasHtml()
         {
-            return DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
+            var sb = new System.Text.StringBuilder();
+            foreach (DataGridViewRow fila in gridPedido.Rows)
+            {
+                if (fila.Cells["colBarcode"].Value == null) continue;
+                sb.Append($@"
+                    <tr>
+                        <td style='border:1px solid #ddd; padding:8px;'>{fila.Cells["colBarcode"].Value}</td>
+                        <td style='border:1px solid #ddd; padding:8px;'>{fila.Cells["colDetalle"].Value}</td>
+                        <td style='border:1px solid #ddd; padding:8px; text-align:center;'>{fila.Cells["colCantidad"].Value}</td>
+                    </tr>");
+            }
+            return sb.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e) => this.Close();
+        // ─── CANCELAR ───────────────────────────────────────────────────
+
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
     }
 }

@@ -70,6 +70,7 @@
             registrarToolStripMenuItem = new ToolStripMenuItem();
             otroMenuToolStripMenuItem = new ToolStripMenuItem();
             pDFSistemaToolStripMenuItem = new ToolStripMenuItem();
+            gestorDeRolesToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             toolStripStatusLabel = new ToolStripStatusLabel();
             toolTip = new ToolTip(components);
@@ -84,7 +85,7 @@
             // 
             menuStrip.BackColor = Color.FromArgb(240, 240, 240);
             menuStrip.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            menuStrip.Items.AddRange(new ToolStripItem[] { vENTAToolStripMenuItem, dEPOSITOToolStripMenuItem, iNFORMESToolStripMenuItem, cLIENTESToolStripMenuItem, pRODUCTOSToolStripMenuItem, pROVEEDORESToolStripMenuItem, cOMPRASToolStripMenuItem, otroMenuToolStripMenuItem, pDFSistemaToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { vENTAToolStripMenuItem, dEPOSITOToolStripMenuItem, iNFORMESToolStripMenuItem, cLIENTESToolStripMenuItem, pRODUCTOSToolStripMenuItem, pROVEEDORESToolStripMenuItem, cOMPRASToolStripMenuItem, otroMenuToolStripMenuItem, pDFSistemaToolStripMenuItem, gestorDeRolesToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(7, 4, 0, 4);
@@ -407,6 +408,14 @@
             pDFSistemaToolStripMenuItem.Visible = false;
             pDFSistemaToolStripMenuItem.Click += pDFSistemaToolStripMenuItem_Click;
             // 
+            // gestorDeRolesToolStripMenuItem
+            // 
+            gestorDeRolesToolStripMenuItem.Name = "gestorDeRolesToolStripMenuItem";
+            gestorDeRolesToolStripMenuItem.Size = new Size(107, 21);
+            gestorDeRolesToolStripMenuItem.Text = "GestorDeRoles";
+            gestorDeRolesToolStripMenuItem.Visible = false;
+            gestorDeRolesToolStripMenuItem.Click += gestorDeRolesToolStripMenuItem_Click;
+            // 
             // statusStrip
             // 
             statusStrip.BackColor = Color.FromArgb(0, 122, 204);
@@ -541,5 +550,6 @@
         private Button btnLogOut;
         private ToolStripMenuItem registrarPagoToolStripMenuItem;
         private ToolStripMenuItem registraRemitoToolStripMenuItem;
+        private ToolStripMenuItem gestorDeRolesToolStripMenuItem;
     }
 }
